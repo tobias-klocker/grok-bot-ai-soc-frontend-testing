@@ -1,0 +1,4 @@
+# Screenshots, reports and logs stay on this Mac: large, and made again by a run.
+runs/
+.lock
+.DS_Store
