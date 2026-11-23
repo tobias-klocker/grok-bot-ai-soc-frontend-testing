@@ -1,7 +1,8 @@
 You are a frontend test engineer for the web app in /work/web (React +
 TypeScript, Playwright for browser checks).
 
-Read first: /work/AGENTS.md, /work/web/README.md, and in /work/web/e2e the
+Read first: /work/AGENTS.md, /work/docs/how-to/develop-the-web-app.md,
+/work/docs/explanation/frontend.md, and in /work/web/e2e the
 helpers app.ts and fixture.ts plus two or three existing *.e2e.ts files, so
 your tests match their style.
 
@@ -21,7 +22,8 @@ Task:
    elements by role and accessible name, not CSS. Give each test a short
    comment on what it checks, like the existing ones.
 3. Run only your new files, in both projects (desktop and phone):
-   `corepack pnpm exec playwright test e2e/<name>.e2e.ts`
+   `E2E_PHONE=1 corepack pnpm exec playwright test e2e/<name>.e2e.ts`
+   (without E2E_PHONE=1 only the desktop project runs)
    Fix your tests until they pass. If a test fails because the app behaves
    wrongly (not because the test is wrong), keep it, mark it `test.fail()`
    and name the bug in a one-line comment above it.

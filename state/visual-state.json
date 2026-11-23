@@ -207,214 +207,260 @@
    "at": "2026-11-11T09:14:28.548Z"
   },
   "/o/$orgId/inbox en-desktop-light": {
-   "hash": "908436b8e80fe667",
+   "hash": "3355dcc67be25ecf",
    "findings": [],
-   "at": "2026-11-12T15:17:15.562Z"
+   "at": "2026-11-23T09:44:53.525Z"
   },
   "/o/$orgId/inbox en-desktop-dark": {
-   "hash": "495979d0b36242aa",
+   "hash": "0d146186fa255c20",
    "findings": [],
-   "at": "2026-11-12T15:17:04.560Z"
+   "at": "2026-11-23T09:44:47.884Z"
   },
   "/o/$orgId/inbox en-phone-light": {
-   "hash": "af2c2a70329b4f4e",
+   "hash": "ec800e8ab5578e13",
    "findings": [],
-   "at": "2026-11-12T15:18:45.416Z"
+   "at": "2026-11-23T09:44:54.906Z"
   },
   "/o/$orgId/inbox es-phone-light": {
-   "hash": "762bef0e6ea23f71",
+   "hash": "011a04bf52a35d55",
    "findings": [],
-   "at": "2026-11-12T15:18:23.003Z"
+   "at": "2026-11-23T09:46:22.957Z"
   },
   "/o/$orgId/inbox de-phone-light": {
-   "hash": "b481dced96560da9",
+   "hash": "ee8a47ffa7c1c636",
    "findings": [],
-   "at": "2026-11-12T15:15:36.618Z"
+   "at": "2026-11-23T09:43:40.255Z"
   },
   "/o/$orgId/w/$workspaceId/cases en-desktop-light": {
-   "hash": "b4e68384ddc2276c",
+   "hash": "caaa10e3698fe4e2",
    "findings": [],
-   "at": "2026-11-12T16:15:33.638Z"
+   "at": "2026-11-23T10:17:59.839Z"
   },
   "/o/$orgId/w/$workspaceId/cases en-desktop-dark": {
-   "hash": "6d2669d32d874b21",
+   "hash": "6c65529662d39141",
    "findings": [],
-   "at": "2026-11-12T16:15:48.793Z"
+   "at": "2026-11-23T10:17:48.542Z"
   },
   "/o/$orgId/w/$workspaceId/cases en-phone-light": {
-   "hash": "59ba2857650b092e",
+   "hash": "c3e387a0b5a0d1e0",
    "findings": [],
-   "at": "2026-11-12T16:17:26.310Z"
+   "at": "2026-11-23T10:18:34.669Z"
   },
   "/o/$orgId/w/$workspaceId/cases de-phone-light": {
-   "hash": "c507efb2613e793b",
+   "hash": "823a6c89d2b3bd50",
    "findings": [],
-   "at": "2026-11-12T16:14:25.033Z"
+   "at": "2026-11-23T10:16:33.913Z"
   },
   "/o/$orgId/w/$workspaceId/cases es-phone-light": {
-   "hash": "6c1ef960fcc15c27",
+   "hash": "5bd9dc6d514638cb",
    "findings": [],
-   "at": "2026-11-12T16:17:25.328Z"
+   "at": "2026-11-23T10:18:36.982Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId en-desktop-light": {
-   "hash": "2720ff70a60ebd97",
+   "hash": "a1afc851c5072b40",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline wraps onto two lines and shares its row with status badges. On desktop the h1 should stand on a single line with nothing beside it, and there is free space to its right.",
-     "where": "Case page header, the h1",
+     "problem": "The page headline wraps onto a second line while space remains free to its right, and a badge and button sit on the same row. On desktop the h1 should be one line with nothing beside it.",
+     "where": "Main content header, page title row",
      "quote": "Suspicious sign-in and lateral movement from ws-fin-014",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:18:56.731Z"
+   "at": "2026-11-23T10:19:58.743Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId en-desktop-dark": {
-   "hash": "13261c87934760b1",
+   "hash": "d1475448542b2247",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline wraps onto a second line while status badges sit beside it; on desktop the h1 should stand on one line with nothing beside it.",
-     "where": "Case title at the top of the main column",
+     "problem": "The page headline wraps onto two lines while free space remains to its right, and a status badge and a button sit beside it instead of the title standing alone on one line.",
+     "where": "Top of the main content, the case title row",
      "quote": "Suspicious sign-in and lateral movement from ws-fin-014",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:17:34.352Z"
+   "at": "2026-11-23T10:20:03.961Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId en-phone-light": {
-   "hash": "e4d6eb355299ca97",
+   "hash": "7cecd36c55e4cc1a",
    "findings": [],
-   "at": "2026-11-12T13:32:55.839Z"
+   "at": "2026-11-23T10:22:46.993Z"
   },
   "/p/$partnerId/cases en-desktop-light": {
-   "hash": "6f62fd2fc900b45e",
+   "hash": "761a913722886672",
    "findings": [],
-   "at": "2026-11-12T17:22:28.620Z"
+   "at": "2026-11-23T10:48:20.177Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId de-phone-light": {
-   "hash": "929b3d5611ffd4c2",
-   "findings": [],
-   "at": "2026-11-12T13:32:36.129Z"
-  },
-  "/p/$partnerId/cases en-desktop-dark": {
-   "hash": "dafe947c8b3000cf",
+   "hash": "27c5992c4fda6d90",
    "findings": [
     {
-     "severity": "low",
-     "problem": "The severity badge is followed by a trailing ellipsis, so the cell looks truncated. It happens only where the severity is Medium; Critical, High and Low render cleanly, which suggests the Severity column is just too narrow for the widest badge.",
-     "where": "Cases table, Severity column, on the Medium rows (Port scan from ws-dev-031, Mailbox rule forwarding to an external address, Lateral movement from ward PC ward-pc-118)",
-     "quote": "Medium",
+     "severity": "medium",
+     "problem": "The status chip is placed inline at the right of the question's first line, so the question wraps beside it, while the same chip on the two questions above sits on its own line beneath the full question. The repeated row is misaligned and the chip intrudes into the question.",
+     "where": "Offene Fragen card, third question",
+     "quote": "Ja, gesehen",
+     "variant": "de-phone-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T10:20:26.856Z"
+  },
+  "/p/$partnerId/cases en-desktop-dark": {
+   "hash": "380515948e745e65",
+   "findings": [],
+   "at": "2026-11-23T10:46:30.292Z"
+  },
+  "/o/$orgId/w/$workspaceId/cases/$caseId es-phone-light": {
+   "hash": "9c8490bd4651a548",
+   "findings": [],
+   "at": "2026-11-23T10:21:25.091Z"
+  },
+  "/p/$partnerId/cases en-phone-light": {
+   "hash": "1117435fecb8dc61",
+   "findings": [],
+   "at": "2026-11-23T10:48:08.111Z"
+  },
+  "/p/$partnerId/inbox en-desktop-light": {
+   "hash": "349476acf26b9bec",
+   "findings": [],
+   "at": "2026-11-23T10:51:16.591Z"
+  },
+  "/p/$partnerId/cases de-phone-light": {
+   "hash": "fbde0fe7c2002287",
+   "findings": [],
+   "at": "2026-11-23T10:46:46.925Z"
+  },
+  "/p/$partnerId/inbox en-phone-light": {
+   "hash": "1aacf19300e5c3b0",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "The context line is squeezed into the narrow left column and wraps, leaving the space to its right empty.",
+     "where": "Context line under the 'Removed all access of Robin Viewer' notification",
+     "quote": "Access · Organization · Sam Analyst",
+     "variant": "en-phone-light",
+     "source": "grok",
+     "onPage": true
+    },
+    {
+     "severity": "medium",
+     "problem": "The context line is squeezed into the narrow left column and wraps, leaving the space to its right empty.",
+     "where": "Context line under the 'Rejected an attestation on case #2' notification",
+     "quote": "Cases · Production · Robin Viewer",
+     "variant": "en-phone-light",
+     "source": "grok",
+     "onPage": true
+    },
+    {
+     "severity": "medium",
+     "problem": "The context line is squeezed into the narrow left column and wraps, leaving the space to its right empty.",
+     "where": "Context line under the 'The license expired; the grace period started' notification",
+     "quote": "License · Organization · datAInsights (automatic)",
+     "variant": "en-phone-light",
+     "source": "grok",
+     "onPage": true
+    },
+    {
+     "severity": "medium",
+     "problem": "The context line is squeezed into the narrow left column and wraps, leaving the space to its right empty.",
+     "where": "Context line under the 'The report Weekly SOC summary is ready' notification",
+     "quote": "Reports · Clinical network · Sam Analyst",
+     "variant": "en-phone-light",
+     "source": "grok",
+     "onPage": true
+    },
+    {
+     "severity": "medium",
+     "problem": "The context line is squeezed into the narrow left column and wraps, leaving the space to its right empty.",
+     "where": "Context line under the 'The AI SOC started anew because its node was revoked' notification",
+     "quote": "Workspaces · Hospital administration · Robin Viewer",
+     "variant": "en-phone-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T10:52:39.977Z"
+  },
+  "/p/$partnerId/cases es-phone-light": {
+   "hash": "4cb0010c4b67d119",
+   "findings": [],
+   "at": "2026-11-23T10:49:14.576Z"
+  },
+  "/p/$partnerId/inbox en-desktop-dark": {
+   "hash": "546a81e468dea980",
+   "findings": [],
+   "at": "2026-11-23T10:50:51.778Z"
+  },
+  "/p/$partnerId/inbox es-phone-light": {
+   "hash": "a8f43fa7f669bb9e",
+   "findings": [],
+   "at": "2026-11-23T10:52:14.816Z"
+  },
+  "/p/$partnerId/inbox de-phone-light": {
+   "hash": "0ad81f443c646651",
+   "findings": [],
+   "at": "2026-11-23T10:50:34.820Z"
+  },
+  "/o/$orgId/license en-desktop-light": {
+   "hash": "005f6effad5a305b",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "The page headline has a status badge beside it. On desktop the h1 should stand alone on one line with nothing next to it.",
+     "where": "Page header, immediately right of the h1",
+     "quote": "License & seats",
+     "variant": "en-desktop-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T09:51:10.807Z"
+  },
+  "/o/$orgId/license en-desktop-dark": {
+   "hash": "a72a7054503ea9f8",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "The page headline has a status badge beside it on the same line. On desktop the h1 should stand alone with nothing next to it.",
+     "where": "Page header, immediately right of the title",
+     "quote": "License & seats",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T17:21:21.157Z"
-  },
-  "/o/$orgId/w/$workspaceId/cases/$caseId es-phone-light": {
-   "hash": "f3d6e76271b4ae9e",
-   "findings": [],
-   "at": "2026-11-12T13:34:51.510Z"
-  },
-  "/p/$partnerId/cases en-phone-light": {
-   "hash": "b3afc0261cdf5ce9",
-   "findings": [],
-   "at": "2026-11-12T17:22:21.788Z"
-  },
-  "/p/$partnerId/inbox en-desktop-light": {
-   "hash": "1aca6b3affed7f70",
-   "findings": [],
-   "at": "2026-11-12T17:26:03.468Z"
-  },
-  "/p/$partnerId/cases de-phone-light": {
-   "hash": "2584c7e6ce4571e6",
-   "findings": [],
-   "at": "2026-11-12T17:21:03.145Z"
-  },
-  "/p/$partnerId/inbox en-phone-light": {
-   "hash": "a855532a5411b976",
-   "findings": [],
-   "at": "2026-11-12T17:26:45.535Z"
-  },
-  "/p/$partnerId/cases es-phone-light": {
-   "hash": "60fc6d28ef79a08f",
-   "findings": [],
-   "at": "2026-11-12T17:23:42.588Z"
-  },
-  "/p/$partnerId/inbox en-desktop-dark": {
-   "hash": "102e0ba00d8e8edb",
-   "findings": [],
-   "at": "2026-11-12T17:24:35.712Z"
-  },
-  "/p/$partnerId/inbox es-phone-light": {
-   "hash": "3f5a6b4f1cda2b4c",
-   "findings": [],
-   "at": "2026-11-12T17:27:48.949Z"
-  },
-  "/p/$partnerId/inbox de-phone-light": {
-   "hash": "b388e46610a3c40b",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Lowercase English token \"analyst\" is embedded untranslated in a German notification title, reading as a raw role key rather than a localized label.",
-     "where": "Title of the third notification in the Letzte 24 Stunden section",
-     "quote": "Sam Analyst erhielt analyst in",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T17:25:29.790Z"
-  },
-  "/o/$orgId/license en-desktop-light": {
-   "hash": "64473ebfa334712f",
-   "findings": [],
-   "at": "2026-11-12T12:53:50.187Z"
-  },
-  "/o/$orgId/license en-desktop-dark": {
-   "hash": "163de82124fc72de",
-   "findings": [],
-   "at": "2026-11-12T12:55:03.564Z"
+   "at": "2026-11-23T09:50:49.866Z"
   },
   "/o/$orgId/license en-phone-light": {
-   "hash": "4ca151cc73716234",
+   "hash": "ed9ae72dde4e88b8",
    "findings": [],
-   "at": "2026-11-12T13:28:59.353Z"
+   "at": "2026-11-23T09:52:19.700Z"
   },
   "/o/$orgId/settings en-desktop-light": {
-   "hash": "1b6741178da1fb3a",
+   "hash": "464241c7b0d3790c",
    "findings": [],
-   "at": "2026-11-12T12:55:59.582Z"
+   "at": "2026-11-23T10:06:06.567Z"
   },
   "/o/$orgId/license de-phone-light": {
-   "hash": "6cc957f61246390e",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Progress bar fill is far too short for the stated 55 of 250 (22%): the dark segment is only a small sliver, much shorter than the 30% bar in the Workspaces row above.",
-     "where": "Nutzung und Grenzen section, GERÄTE row",
-     "quote": "55 von 250",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T13:31:17.310Z"
+   "hash": "a4b7a713608ced63",
+   "findings": [],
+   "at": "2026-11-23T09:50:13.110Z"
   },
   "/o/$orgId/license es-phone-light": {
-   "hash": "222d84a9920da69d",
+   "hash": "84d0e0c64702845c",
    "findings": [],
-   "at": "2026-11-12T13:31:30.737Z"
+   "at": "2026-11-23T09:53:14.913Z"
   },
   "/o/$orgId/settings en-desktop-dark": {
-   "hash": "3650467cd5bd3e25",
+   "hash": "8609364b5703f61a",
    "findings": [],
-   "at": "2026-11-12T12:56:33.771Z"
+   "at": "2026-11-23T10:05:31.711Z"
   },
   "/o/$orgId/settings en-phone-light": {
    "hash": "1d5ad749de8414cc",
@@ -471,89 +517,69 @@
    "at": "2026-11-12T12:58:22.458Z"
   },
   "/o/$orgId/w/$workspaceId/settings en-desktop-light": {
-   "hash": "004fe8d7f1d5d6f3",
+   "hash": "81a8c33397a7b04d",
    "findings": [],
-   "at": "2026-11-12T17:15:46.876Z"
+   "at": "2026-11-23T10:42:47.568Z"
   },
   "/o/$orgId/w/$workspaceId/settings en-phone-light": {
-   "hash": "55732cb1aad9bc38",
+   "hash": "5f6c8c4cfb60a7de",
    "findings": [],
-   "at": "2026-11-12T17:15:06.099Z"
+   "at": "2026-11-23T10:42:05.287Z"
   },
   "/o/$orgId/w/$workspaceId/settings en-desktop-dark": {
-   "hash": "8fa0d0e99ff64eea",
+   "hash": "f65a68f0e4f1689c",
    "findings": [],
-   "at": "2026-11-12T17:13:18.717Z"
+   "at": "2026-11-23T10:41:59.890Z"
   },
   "/o/$orgId/w/$workspaceId/settings es-phone-light": {
-   "hash": "078eb1e88eb60b3f",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The next tab label is clipped at the right edge of the screen, so only the start of the word is visible and the tab name cannot be read.",
-     "where": "Tab bar under the subtitle, right edge",
-     "quote": "Corr",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T17:15:16.589Z"
+   "hash": "1d2dafbbce0e9659",
+   "findings": [],
+   "at": "2026-11-23T10:43:05.148Z"
   },
   "/o/$orgId/w/$workspaceId/settings de-phone-light": {
-   "hash": "6d7d4af3fbc7e8a4",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The second tab label is truncated at the right screen edge, so the rest of the word is cut off and unreadable.",
-     "where": "Tab bar under the subtitle, second tab",
-     "quote": "Benachrichtigungs-E-M",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T17:12:55.025Z"
+   "hash": "a4d329a44be353ac",
+   "findings": [],
+   "at": "2026-11-23T10:40:58.112Z"
   },
   "/ de-phone-light": {
-   "hash": "e69887aca204f4d6",
+   "hash": "49d2ee55f4217481",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The status explanation is squeezed into a narrow right-hand column and wraps over four short lines, while the space to its left in the card stays empty.",
+     "problem": "Status detail is squeezed into a narrow right-hand column and wraps into short lines, while the space to its left inside the card stays empty.",
      "where": "Production workspace card, under the status badge",
-     "quote": "3 Quellen fehlerhaft, 1 Benachrichtigungskanal fehlerhaft, 1 SIEM-Ziel fehlerhaft",
+     "quote": "5 Quellen fehlerhaft, 1 Benachrichtigungskanal fehlerhaft, 1 SIEM-Ziel fehlerhaft",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:36:10.626Z"
+   "at": "2026-11-23T09:21:52.030Z"
   },
   "/ en-desktop-dark": {
-   "hash": "a9a366421a6ac572",
+   "hash": "15113964ac89b185",
    "findings": [],
-   "at": "2026-11-12T14:36:49.502Z"
+   "at": "2026-11-23T09:22:56.798Z"
   },
   "/ en-desktop-light": {
-   "hash": "ade6f12c2ce27eb2",
+   "hash": "9ee7ed25b7d3c1a7",
    "findings": [],
-   "at": "2026-11-12T14:37:11.183Z"
+   "at": "2026-11-23T09:22:37.631Z"
   },
   "/ en-phone-light": {
-   "hash": "0927c64d3d0cf1a9",
+   "hash": "14aab662bc1a561e",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The failure summary is squeezed into a narrow right-hand column and wraps onto three lines, with the last line holding only the word failing, while the left side of the card beside it stays empty.",
+     "problem": "The status detail is squeezed into a narrow right-hand column and right-aligned, so it wraps awkwardly with the last word alone on its own line while the space to its left stays empty.",
      "where": "Production card, status detail under the needs attention badge",
-     "quote": "3 sources failing, 1 notification channel failing, 1 SIEM target failing",
+     "quote": "5 sources failing, 1 notification channel failing, 1 SIEM target failing",
      "variant": "en-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:37:16.063Z"
+   "at": "2026-11-23T09:22:39.726Z"
   },
   "/downloads/reports de-phone-light": {
    "hash": "e511d6e155b41151",
@@ -566,19 +592,19 @@
    "at": "2026-11-12T14:37:35.945Z"
   },
   "/ es-phone-light": {
-   "hash": "f43e7e0b8f66503a",
+   "hash": "782c868b4f349c5f",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The error summary is forced into the narrow value column and wraps across three lines, while the space to its left stays empty.",
-     "where": "Production card, under the status badge",
-     "quote": "3 fuentes con errores, 1 canal de notificación con errores, 1 destino SIEM con errores",
+     "problem": "The error summary is squeezed into a narrow right-hand column and wraps onto three short lines, while the left side of the card beside those lines stays empty.",
+     "where": "Production workspace card, under the status badge",
+     "quote": "5 fuentes con errores, 1 canal de notificación con errores, 1 destino SIEM con errores",
      "variant": "es-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:37:37.390Z"
+   "at": "2026-11-23T09:23:43.228Z"
   },
   "/downloads/reports en-desktop-light": {
    "hash": "df719ceb77a3fb70",
@@ -751,34 +777,34 @@
    "at": "2026-11-12T14:44:19.056Z"
   },
   "/o/$orgId en-desktop-dark": {
-   "hash": "d41d4df4a83c551b",
+   "hash": "11f039b5bdbc6672",
    "findings": [
     {
      "severity": "high",
-     "problem": "The main content area is completely blank, with no page headline and no content or empty-state message, so the page looks broken or failed to render.",
-     "where": "Main panel to the right of the sidebar, below the top bar",
+     "problem": "The main content area is entirely blank, with no page headline and no content or empty-state message, so the page looks broken.",
+     "where": "Main panel to the right of the sidebar",
      "quote": "12",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:44:21.635Z"
+   "at": "2026-11-23T09:24:40.594Z"
   },
   "/o/$orgId en-desktop-light": {
-   "hash": "27877da5df39276a",
+   "hash": "d8c0daef0ca6890f",
    "findings": [
     {
      "severity": "high",
-     "problem": "The main content area is completely blank, with no page heading, no content, and no empty-state message, leaving most of the page as empty space and looking broken.",
-     "where": "Main content region to the right of the sidebar",
+     "problem": "The main content area is completely blank across the full viewport height: no page headline, no content, and no empty-state message, so the page looks broken.",
+     "where": "Main panel to the right of the sidebar",
      "quote": "12",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:44:24.076Z"
+   "at": "2026-11-23T09:24:32.854Z"
   },
   "/o/$orgId es-phone-light": {
    "hash": "950a4b39344cacd0",
@@ -796,225 +822,179 @@
    "at": "2026-11-12T14:45:03.743Z"
   },
   "/o/$orgId/workspaces en-desktop-dark": {
-   "hash": "a9a366421a6ac572",
+   "hash": "15113964ac89b185",
    "findings": [],
-   "at": "2026-11-12T14:45:14.894Z"
+   "at": "2026-11-23T09:25:59.701Z"
   },
   "/o/$orgId/workspaces de-phone-light": {
-   "hash": "e69887aca204f4d6",
+   "hash": "49d2ee55f4217481",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The fault summary is squeezed into a narrow right-hand column and wraps into four short lines, while the space beside it in the card stays empty.",
-     "where": "Production workspace card, below the status badge",
-     "quote": "3 Quellen fehlerhaft, 1 Benachrichtigungskanal fehlerhaft, 1 SIEM-Ziel fehlerhaft",
+     "problem": "Status detail is squeezed into the right-hand value column and wraps across four short, ragged lines, while the left side of the card beside those lines stays empty.",
+     "where": "Production workspace card, under the status badge",
+     "quote": "5 Quellen fehlerhaft, 1 Benachrichtigungskanal fehlerhaft, 1 SIEM-Ziel fehlerhaft",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:45:24.485Z"
+   "at": "2026-11-23T09:25:14.390Z"
   },
   "/o/$orgId/workspaces en-desktop-light": {
-   "hash": "ade6f12c2ce27eb2",
+   "hash": "9ee7ed25b7d3c1a7",
    "findings": [],
-   "at": "2026-11-12T14:46:06.509Z"
+   "at": "2026-11-23T09:25:53.999Z"
   },
   "/o/$orgId/workspaces en-phone-light": {
-   "hash": "0927c64d3d0cf1a9",
+   "hash": "14aab662bc1a561e",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Status detail text is squeezed into a narrow right-hand column and wraps across four lines, with the last word left alone on its own line, while the space beside it in the card stays empty.",
-     "where": "Production workspace card, under the Status row",
-     "quote": "3 sources failing, 1 notification channel failing, 1 SIEM target failing",
+     "problem": "The failure summary is squeezed into a narrow right-aligned column and wraps badly, leaving the space to its left empty; the last word sits alone on its own line.",
+     "where": "Production row in the workspaces card, under the status badge",
+     "quote": "5 sources failing, 1 notification channel failing, 1 SIEM target failing",
      "variant": "en-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:46:13.782Z"
+   "at": "2026-11-23T09:26:01.938Z"
   },
   "/o/$orgId/workspaces es-phone-light": {
-   "hash": "f43e7e0b8f66503a",
+   "hash": "782c868b4f349c5f",
    "findings": [],
-   "at": "2026-11-12T14:46:58.936Z"
+   "at": "2026-11-23T09:26:56.160Z"
   },
   "/o/$orgId/access en-desktop-dark": {
-   "hash": "d7229296e6616eee",
+   "hash": "ef295181e92ad72c",
    "findings": [],
-   "at": "2026-11-12T14:47:33.259Z"
+   "at": "2026-11-23T09:27:06.810Z"
   },
   "/o/$orgId/access en-desktop-light": {
-   "hash": "0b8092b34a3f206a",
+   "hash": "f2c955d32ab50f8c",
    "findings": [],
-   "at": "2026-11-12T14:47:50.446Z"
+   "at": "2026-11-23T09:27:55.356Z"
   },
   "/o/$orgId/access en-phone-light": {
-   "hash": "2ebafedc5747191f",
+   "hash": "1a03dfd7e5514be6",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Search placeholder is clipped at the field's right edge and ends mid-word, so the hint cannot be read.",
-     "where": "Search field in the row with the overflow button and Grant access button",
+     "problem": "Search placeholder is clipped mid-word with no ellipsis, so the field label cannot be read.",
+     "where": "Search field under the tab bar, left of the overflow and Grant access buttons",
      "quote": "Search people an",
      "variant": "en-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:48:52.725Z"
+   "at": "2026-11-23T09:28:10.153Z"
   },
   "/o/$orgId/access de-phone-light": {
-   "hash": "733d38d769f7ed07",
+   "hash": "9746dd8009b581f2",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The last tab label is cut off at the right screen edge, so the end of the word sits outside the viewport and the label cannot be read in full.",
-     "where": "Tab bar, far right",
-     "quote": "API-Schlüssel",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "The search placeholder is clipped mid-word; the field is squeezed too narrow beside the overflow button and the grant button.",
-     "where": "Toolbar under the tabs, search field",
-     "quote": "Personen und",
+     "problem": "The search field's placeholder text is clipped at the right edge of the input, so the word is incomplete and the field's purpose cannot be read.",
+     "where": "Search input in the toolbar row under the tabs, left of the … button",
+     "quote": "Personen un",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:49:24.089Z"
+   "at": "2026-11-23T09:28:29.578Z"
   },
   "/o/$orgId/access es-phone-light": {
-   "hash": "76ee772d6ed84e0b",
+   "hash": "6c34f32124aa5a30",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The last tab is cut off at the right screen edge; its label is truncated and the tab bar overflows the phone width with no indication it can scroll.",
-     "where": "Tab bar, far right",
-     "quote": "Cla",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "The search placeholder is clipped inside the field with no ellipsis, so the hint reads as an incomplete word.",
-     "where": "Search field in the toolbar",
+     "problem": "Search placeholder is clipped mid-word, so the field is too narrow beside the overflow button and the Conceder acceso button.",
+     "where": "Search field in the row under the tabs",
      "quote": "Buscar perso",
      "variant": "es-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:49:45.233Z"
+   "at": "2026-11-23T09:29:20.549Z"
   },
   "/o/$orgId/access/grants en-desktop-dark": {
-   "hash": "d7229296e6616eee",
+   "hash": "ef295181e92ad72c",
    "findings": [],
-   "at": "2026-11-12T14:50:22.003Z"
+   "at": "2026-11-23T09:29:30.535Z"
   },
   "/o/$orgId/access/grants en-desktop-light": {
-   "hash": "0b8092b34a3f206a",
+   "hash": "f2c955d32ab50f8c",
    "findings": [],
-   "at": "2026-11-12T14:50:55.051Z"
+   "at": "2026-11-23T09:29:43.737Z"
   },
   "/o/$orgId/access/grants en-phone-light": {
-   "hash": "2ebafedc5747191f",
+   "hash": "1a03dfd7e5514be6",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Search placeholder is clipped at the field's right edge, ending mid-word so the hint cannot be read.",
-     "where": "Search field in the toolbar row under the tabs",
+     "problem": "Placeholder text is cut off at the right edge of the search field, so the full hint cannot be read.",
+     "where": "Search field in the toolbar under the tabs",
      "quote": "Search people an",
      "variant": "en-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:51:24.758Z"
+   "at": "2026-11-23T09:30:06.945Z"
   },
   "/o/$orgId/access/grants de-phone-light": {
-   "hash": "733d38d769f7ed07",
+   "hash": "9746dd8009b581f2",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Tab label is cut off at the right screen edge, so the word is incomplete and the rest of the tab sits outside the viewport.",
-     "where": "Tab row, far right",
-     "quote": "API-Schlüs",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "medium",
-     "problem": "Search placeholder is truncated mid-word; the field is squeezed too narrow by the buttons beside it, so the hint cannot be read.",
-     "where": "Search field in the toolbar under the tabs",
+     "problem": "Search placeholder is cut off mid-word inside the field",
+     "where": "Search box in the toolbar under the tabs",
      "quote": "Personen unc",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": false
     }
    ],
-   "at": "2026-11-12T14:51:29.710Z"
+   "at": "2026-11-23T09:28:58.263Z"
   },
   "/o/$orgId/access/roles en-desktop-dark": {
-   "hash": "bfdeefc4467e6fd1",
+   "hash": "8f5f805d722c01e5",
    "findings": [],
-   "at": "2026-11-12T14:52:17.837Z"
+   "at": "2026-11-23T09:31:04.989Z"
   },
   "/o/$orgId/access/roles de-phone-light": {
-   "hash": "727b0f55871f26ad",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The last tab label is cut off at the right screen edge, so the end of the word is not visible.",
-     "where": "Tab row at the top, far right",
-     "quote": "API-Schlüss",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T14:52:34.982Z"
+   "hash": "bc426053637498bf",
+   "findings": [],
+   "at": "2026-11-23T09:30:25.936Z"
   },
   "/o/$orgId/access/roles en-desktop-light": {
-   "hash": "32bdcb5a3eaf93a4",
+   "hash": "084072235f1c8a54",
    "findings": [],
-   "at": "2026-11-12T14:53:13.489Z"
+   "at": "2026-11-23T09:31:12.725Z"
   },
   "/o/$orgId/access/grants es-phone-light": {
-   "hash": "76ee772d6ed84e0b",
+   "hash": "6c34f32124aa5a30",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The tab bar overflows the phone width and the last tab is clipped at the right screen edge, so only \"Cla\" shows and the label cannot be read.",
-     "where": "Tab row under the page description, right edge",
-     "quote": "Cuentas de servicio",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "The search placeholder is cut off inside the field (\"Buscar perso\") because the field is squeezed on one row beside the overflow button and the Conceder acceso button.",
-     "where": "Search toolbar above the grants list",
+     "problem": "Search placeholder is cut off at the right edge of the field; the field is squeezed too narrow by the adjacent overflow and Conceder acceso buttons, so the word is truncated.",
+     "where": "Search field in the row under the tabs",
      "quote": "Buscar perso",
      "variant": "es-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:53:13.595Z"
+   "at": "2026-11-23T09:31:04.095Z"
   },
   "/o/$orgId/access/roles en-phone-light": {
-   "hash": "42d57fae4a6384bb",
+   "hash": "a58e64a5dded1122",
    "findings": [],
-   "at": "2026-11-12T14:53:37.960Z"
+   "at": "2026-11-23T09:31:39.751Z"
   },
   "/o/$orgId/access/service-accounts de-phone-light": {
    "hash": "8c67aaaed4e03010",
@@ -1041,24 +1021,24 @@
    "at": "2026-11-12T14:54:25.733Z"
   },
   "/o/$orgId/access/roles es-phone-light": {
-   "hash": "65d3d0ac19f916e0",
+   "hash": "3fd879f864173206",
+   "findings": [],
+   "at": "2026-11-23T09:31:40.552Z"
+  },
+  "/o/$orgId/access/service-accounts en-desktop-dark": {
+   "hash": "0efee91be86389c5",
    "findings": [
     {
-     "severity": "medium",
-     "problem": "The last tab label is clipped at the right screen edge mid-word, so the tab cannot be read.",
-     "where": "Tab bar under the page description, far right",
-     "quote": "Cla",
-     "variant": "es-phone-light",
+     "severity": "low",
+     "problem": "Service account name is truncated with an ellipsis even though the Description column beside it is far wider and empty in this row, so the name is squeezed into a narrow column while the space next to it stays unused.",
+     "where": "Service accounts table, last row, Name column",
+     "quote": "Vulnerability scan...",
+     "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T14:54:32.193Z"
-  },
-  "/o/$orgId/access/service-accounts en-desktop-dark": {
-   "hash": "d6d2556f16953269",
-   "findings": [],
-   "at": "2026-11-12T14:54:37.788Z"
+   "at": "2026-11-23T09:33:27.791Z"
   },
   "/o/$orgId/access/service-accounts en-phone-light": {
    "hash": "ae9d5b17a022f850",
@@ -1076,9 +1056,9 @@
    "at": "2026-11-12T14:55:21.844Z"
   },
   "/o/$orgId/access/service-accounts en-desktop-light": {
-   "hash": "5b68bb3d44025339",
+   "hash": "4d912f56ba15f9e7",
    "findings": [],
-   "at": "2026-11-12T14:55:35.633Z"
+   "at": "2026-11-23T09:32:35.053Z"
   },
   "/o/$orgId/access/service-accounts es-phone-light": {
    "hash": "e44b41ce4346ade5",
@@ -1105,14 +1085,14 @@
    "at": "2026-11-12T14:56:07.485Z"
   },
   "/o/$orgId/access/api-keys en-desktop-dark": {
-   "hash": "406a66b06591333d",
+   "hash": "0b3f4a76fcadd73b",
    "findings": [],
-   "at": "2026-11-12T14:56:30.136Z"
+   "at": "2026-11-23T09:32:33.445Z"
   },
   "/o/$orgId/access/api-keys en-desktop-light": {
-   "hash": "58bd4d23374552db",
+   "hash": "f393704053cfaf3e",
    "findings": [],
-   "at": "2026-11-12T14:57:12.308Z"
+   "at": "2026-11-23T09:33:57.686Z"
   },
   "/o/$orgId/access/api-keys de-phone-light": {
    "hash": "d33c2fb1180e0457",
@@ -1154,9 +1134,9 @@
    "at": "2026-11-12T14:57:48.824Z"
   },
   "/o/$orgId/access/administrators en-desktop-dark": {
-   "hash": "88135af049a40013",
+   "hash": "4ad92af13af8c525",
    "findings": [],
-   "at": "2026-11-12T14:58:45.289Z"
+   "at": "2026-11-23T09:33:06.673Z"
   },
   "/o/$orgId/access/administrators de-phone-light": {
    "hash": "2cbed0730aeca203",
@@ -1207,29 +1187,29 @@
    "at": "2026-11-12T14:59:31.817Z"
   },
   "/o/$orgId/access/administrators en-desktop-light": {
-   "hash": "2901b6dd235c5d6c",
+   "hash": "592000bce0402b6f",
    "findings": [],
-   "at": "2026-11-12T14:59:37.335Z"
+   "at": "2026-11-23T09:33:55.536Z"
   },
   "/o/$orgId/access/administrators en-phone-light": {
-   "hash": "77c37583d99f8196",
+   "hash": "c47a4868dbbd42be",
    "findings": [
     {
-     "severity": "high",
-     "problem": "The first tab label is clipped at the left edge of the screen, so the start of the word is missing and the label no longer reads as a real term.",
-     "where": "Tab bar, leftmost tab",
-     "quote": "vice accounts",
+     "severity": "medium",
+     "problem": "Placeholder text is cut off mid-word inside the search field, so the hint cannot be read in full.",
+     "where": "Search input to the left of the Appoint administrator button",
+     "quote": "Search adminis",
      "variant": "en-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:00:10.837Z"
+   "at": "2026-11-23T09:34:19.128Z"
   },
   "/o/$orgId/access/support en-desktop-dark": {
-   "hash": "c01cb0f72842713b",
+   "hash": "f50bbae3a4d409ca",
    "findings": [],
-   "at": "2026-11-12T15:01:04.731Z"
+   "at": "2026-11-23T09:34:54.819Z"
   },
   "/o/$orgId/access/support de-phone-light": {
    "hash": "44e46a80ac9e92b4",
@@ -1271,19 +1251,9 @@
    "at": "2026-11-12T15:02:28.132Z"
   },
   "/o/$orgId/access/support en-phone-light": {
-   "hash": "3dab255734a1dab1",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The leftmost tab label is clipped by the left edge of the screen, so its first character is cut off and only \"PI keys\" is visible.",
-     "where": "Tab bar, first tab",
-     "quote": "PI keys",
-     "variant": "en-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T15:03:43.549Z"
+   "hash": "cd3cf34b1b7e9644",
+   "findings": [],
+   "at": "2026-11-23T09:35:10.337Z"
   },
   "/o/$orgId/access/support es-phone-light": {
    "hash": "2d75031767da8c1b",
@@ -1291,79 +1261,98 @@
    "at": "2026-11-12T15:03:49.689Z"
   },
   "/o/$orgId/access/support en-desktop-light": {
-   "hash": "a0ca96f2ab6749bf",
-   "findings": [],
-   "at": "2026-11-12T15:04:04.372Z"
-  },
-  "/o/$orgId/access/service-accounts/$accountId en-desktop-dark": {
-   "hash": "0925ef1b98ce0f7a",
-   "findings": [],
-   "at": "2026-11-12T15:04:44.232Z"
-  },
-  "/o/$orgId/access/service-accounts/$accountId de-phone-light": {
-   "hash": "a76e03bfdfaac796",
-   "findings": [],
-   "at": "2026-11-12T15:04:53.427Z"
-  },
-  "/o/$orgId/access/service-accounts/$accountId en-desktop-light": {
-   "hash": "0b3b865f66688597",
-   "findings": [],
-   "at": "2026-11-12T15:05:35.733Z"
-  },
-  "/o/$orgId/access/service-accounts/$accountId en-phone-light": {
-   "hash": "917c43bfd09cd16c",
-   "findings": [],
-   "at": "2026-11-12T15:05:38.643Z"
-  },
-  "/o/$orgId/access/service-accounts/$accountId es-phone-light": {
-   "hash": "550c4bb94cd4bfae",
-   "findings": [],
-   "at": "2026-11-12T15:05:46.428Z"
-  },
-  "/o/$orgId/assets en-desktop-dark": {
-   "hash": "3f60a9b721c3566d",
+   "hash": "57014943a3e72bf6",
    "findings": [
     {
-     "severity": "medium",
-     "problem": "The assets table is wider than the viewport, so its final column is clipped at the right screen edge. The column header is cut off after \"Last\" and the cell values are sliced mid-word (visible fragments such as \"Not r\", \"Cha\", \"Add\", \"See\") with no ellipsis, so that column is unreadable. The toolbar above fits, so this is the table overflowing rather than the screenshot being cropped.",
-     "where": "Right edge of the assets table, the column immediately after the Last seen column",
-     "quote": "Last seen",
-     "variant": "en-desktop-dark",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T15:07:53.305Z"
-  },
-  "/o/$orgId/assets de-phone-light": {
-   "hash": "5bdf1066b83b9833",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The page headline is English on a German screen, and it is not one of the product terms meant to stay English.",
-     "where": "Page headline under the INVENTAR label",
-     "quote": "Assets",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T15:08:17.877Z"
-  },
-  "/o/$orgId/assets en-desktop-light": {
-   "hash": "d410883e4dadcb4c",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The rightmost table column is clipped at the viewport's right edge: the header is cut off after \"Last\" and the cell values are truncated mid-word, so the column cannot be read.",
-     "where": "Assets table, far right edge",
-     "quote": "Not r",
+     "severity": "low",
+     "problem": "The word \"support\" is duplicated, so the sentence reads \"support support engineer\".",
+     "where": "Helper text under the tab bar, left of the top Give support access button",
+     "quote": "Let a datAInsights support support engineer into your organization for a few hours to help you.",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:08:38.293Z"
+   "at": "2026-11-23T09:35:10.663Z"
+  },
+  "/o/$orgId/access/service-accounts/$accountId en-desktop-dark": {
+   "hash": "2eb4c1345f88c014",
+   "findings": [],
+   "at": "2026-11-23T09:36:17.164Z"
+  },
+  "/o/$orgId/access/service-accounts/$accountId de-phone-light": {
+   "hash": "612722f6956f844d",
+   "findings": [],
+   "at": "2026-11-23T09:35:52.617Z"
+  },
+  "/o/$orgId/access/service-accounts/$accountId en-desktop-light": {
+   "hash": "0eea0b5b91f0a8dc",
+   "findings": [],
+   "at": "2026-11-23T09:36:41.274Z"
+  },
+  "/o/$orgId/access/service-accounts/$accountId en-phone-light": {
+   "hash": "8b7382fce0f9e91c",
+   "findings": [],
+   "at": "2026-11-23T09:36:36.164Z"
+  },
+  "/o/$orgId/access/service-accounts/$accountId es-phone-light": {
+   "hash": "1f93a928ee26a3ed",
+   "findings": [],
+   "at": "2026-11-23T09:37:34.694Z"
+  },
+  "/o/$orgId/assets en-desktop-dark": {
+   "hash": "fcc9249c71cf9563",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "The rightmost table column is clipped at the screen edge, so its header and cell values are cut off mid-word (only fragments such as \"Not r\", \"Cha\", \"Add\" and \"See\" show) and cannot be read.",
+     "where": "Right edge of the assets table, the column after \"Last seen\"",
+     "quote": "Not r",
+     "variant": "en-desktop-dark",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T09:38:33.777Z"
+  },
+  "/o/$orgId/assets de-phone-light": {
+   "hash": "325bbc59557f426a",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "Page headline is English on a German screen and is not one of the product terms that stay English.",
+     "where": "Page title under the small uppercase line",
+     "quote": "Assets",
+     "variant": "de-phone-light",
+     "source": "grok",
+     "onPage": true
+    },
+    {
+     "severity": "low",
+     "problem": "Field label is English on a German screen and is not one of the product terms that stay English.",
+     "where": "Asset rows, label next to the tag values",
+     "quote": "Tags",
+     "variant": "de-phone-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T09:39:02.801Z"
+  },
+  "/o/$orgId/assets en-desktop-light": {
+   "hash": "56806747231da7f7",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "The table's final column is clipped at the right edge of the screen: its header is cut off after \"Last\" and the cell text is truncated (\"Not r\", \"Cha\"), with no horizontal scrollbar, so that column cannot be read.",
+     "where": "Right edge of the assets table, the column immediately after \"Last seen\"",
+     "quote": "Last seen",
+     "variant": "en-desktop-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T09:39:30.126Z"
   },
   "/o/$orgId/assets en-phone-light": {
    "hash": "dd68739aa9fb5528",
@@ -1371,54 +1360,72 @@
    "at": "2026-11-12T15:09:35.601Z"
   },
   "/o/$orgId/assets es-phone-light": {
-   "hash": "813ab413e2722c0d",
+   "hash": "a61a0f1f14e04e7b",
    "findings": [],
-   "at": "2026-11-12T15:10:07.178Z"
+   "at": "2026-11-23T09:39:54.178Z"
   },
   "/o/$orgId/assets/$assetId en-desktop-dark": {
-   "hash": "1015f6aa2d56e088",
+   "hash": "dee8f735d277576a",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline (h1) has a status badge on the same line beside it. On desktop the headline should stand alone on one line with nothing next to it.",
-     "where": "Top of the main content, immediately to the right of the page headline",
+     "problem": "A status badge sits on the same line as the page headline. On desktop the headline should stand alone on one line with nothing beside it.",
+     "where": "Main content header, immediately to the right of the hostname title",
      "quote": "Not rated",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:10:40.856Z"
+   "at": "2026-11-23T09:40:07.781Z"
   },
   "/o/$orgId/assets/$assetId de-phone-light": {
-   "hash": "16a834d99c61ad41",
+   "hash": "5a9dc04f6ba419ba",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Field label is English on a German screen whose other field labels are German; the value beside it is English too.",
-     "where": "Identität card, device property list",
+     "problem": "The page headline wraps after “srv-vie-” while a large part of the first line is empty, so more of the hostname would fit before the break.",
+     "where": "Page headline under the top bar",
+     "quote": "srv-vie-212.corp.example.com",
+     "variant": "de-phone-light",
+     "source": "grok",
+     "onPage": true
+    },
+    {
+     "severity": "medium",
+     "problem": "Field label is English in a German interface; the other labels in the same card are German.",
+     "where": "Identität card, label in the device-details list",
      "quote": "Onboarding",
+     "variant": "de-phone-light",
+     "source": "grok",
+     "onPage": true
+    },
+    {
+     "severity": "low",
+     "problem": "The label is squeezed into a narrow column and breaks awkwardly as “Betriebssystemver-” / “sion”, while the short value leaves empty space beside it.",
+     "where": "Identität card, Betriebssystemversion row",
+     "quote": "Betriebssystemversion",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:11:14.811Z"
+   "at": "2026-11-23T09:43:33.399Z"
   },
   "/o/$orgId/assets/$assetId en-desktop-light": {
-   "hash": "c90a01b13974395e",
+   "hash": "9e7dd3c8e633e914",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline does not stand alone: a status badge sits on the same line beside it, while free space remains to the right.",
-     "where": "Asset page headline, top of the main content",
-     "quote": "lt-vie-211.corp.example.com",
+     "problem": "The page headline shares its line with a 'Not rated' badge. On desktop the h1 must stand alone on one line with nothing beside it.",
+     "where": "Top of the main content, page title",
+     "quote": "srv-vie-212.corp.example.com",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:11:56.914Z"
+   "at": "2026-11-23T09:40:52.522Z"
   },
   "/o/$orgId/assets/$assetId en-phone-light": {
    "hash": "37261e1ba3529de9",
@@ -1426,14 +1433,14 @@
    "at": "2026-11-12T15:12:10.389Z"
   },
   "/o/$orgId/audit en-desktop-dark": {
-   "hash": "736dd8e0d5c660b6",
+   "hash": "6dabafa8e774c669",
    "findings": [],
-   "at": "2026-11-12T15:13:17.707Z"
+   "at": "2026-11-23T09:41:55.822Z"
   },
   "/o/$orgId/assets/$assetId es-phone-light": {
-   "hash": "fdb5deaf9490413b",
+   "hash": "a87d015d806d4426",
    "findings": [],
-   "at": "2026-11-12T15:13:21.742Z"
+   "at": "2026-11-23T09:41:37.518Z"
   },
   "/o/$orgId/audit de-phone-light": {
    "hash": "146d7f8952d86003",
@@ -1441,9 +1448,9 @@
    "at": "2026-11-12T15:13:41.963Z"
   },
   "/o/$orgId/audit en-desktop-light": {
-   "hash": "dfcbc9633ed24ed5",
+   "hash": "1ef7a117553fa736",
    "findings": [],
-   "at": "2026-11-12T15:14:26.464Z"
+   "at": "2026-11-23T09:42:59.134Z"
   },
   "/o/$orgId/audit en-phone-light": {
    "hash": "1caafdca6e960ab9",
@@ -1456,11 +1463,11 @@
    "at": "2026-11-12T15:16:21.826Z"
   },
   "/o/$orgId/api-reference de-phone-light": {
-   "hash": "f3bc0b2b0f1ad978",
+   "hash": "59f42fca33560bae",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Endpoint paths are clipped at the right edge of the card and do not wrap or scroll, so several paths are incomplete.",
+     "problem": "Endpoint paths are clipped at the right edge of the card (cut off mid-word, no wrap or ellipsis), so several routes cannot be read.",
      "where": "Operationen list under the session heading",
      "quote": "/organizations/{orgId}/meml",
      "variant": "de-phone-light",
@@ -1469,74 +1476,56 @@
     },
     {
      "severity": "medium",
-     "problem": "The example request is cut off at the right edge of the code block, so the URL and cookie value cannot be read in full.",
-     "where": "GET /session Shell Curl example",
+     "problem": "The example command is cut off at the right edge of the code box, so the URL and cookie value are incomplete.",
+     "where": "Shell Curl sample under Current user, organizations and permissions",
      "quote": "curl http://localhost:6590/api/v1/sessio",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": false
     }
    ],
-   "at": "2026-11-12T15:20:23.587Z"
+   "at": "2026-11-23T09:47:18.226Z"
   },
   "/o/$orgId/api-reference en-desktop-dark": {
-   "hash": "f6af68089cfaaa2a",
+   "hash": "033334a1b72f63c5",
    "findings": [],
-   "at": "2026-11-12T15:20:27.691Z"
+   "at": "2026-11-23T09:46:53.159Z"
   },
   "/o/$orgId/api-reference en-desktop-light": {
-   "hash": "066e7e8ec3d28e1c",
+   "hash": "d2607afc7d09bcb1",
    "findings": [],
-   "at": "2026-11-12T15:22:00.444Z"
+   "at": "2026-11-23T09:47:54.614Z"
   },
   "/o/$orgId/api-reference es-phone-light": {
-   "hash": "c5226245ab20eee7",
+   "hash": "dccd611214dc7d4a",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Operation paths are clipped at the right edge of the card, mid-segment, so the full routes cannot be read.",
-     "where": "Operaciones list in the session card",
-     "quote": "/organizations/{orgId}/meml",
+     "problem": "Endpoint paths are clipped at the right edge of the card, so the remainder of each path cannot be read.",
+     "where": "Operaciones list under the session heading",
+     "quote": "/organizations/{orgId}/",
      "variant": "es-phone-light",
      "source": "grok",
      "onPage": false
     },
     {
      "severity": "medium",
-     "problem": "The same operations list also cuts the next paths at the card edge (they end together at the same column).",
-     "where": "Operaciones list in the session card",
-     "quote": "/organizations/{orgId}/me/",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "medium",
-     "problem": "The curl example is cut off at the right edge of the code box, mid-word, with no wrap or visible way to read the rest of the line.",
-     "where": "GET /session code sample",
-     "quote": "curl http://localhost:6590/api/v1/sessio",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "medium",
-     "problem": "The cookie line of the same example is likewise clipped mid-token at the code box edge.",
-     "where": "GET /session code sample",
-     "quote": "--cookie '__Host-soc_session=YOUR_SECR",
+     "problem": "The example request is cut off at the right edge of the code block; the URL and cookie value cannot be read in full and there is no visible way to scroll to them.",
+     "where": "GET /session Shell Curl sample",
+     "quote": "curl http://localhost:6590/api/v1/",
      "variant": "es-phone-light",
      "source": "grok",
      "onPage": false
     }
    ],
-   "at": "2026-11-12T15:22:27.223Z"
+   "at": "2026-11-23T09:49:21.957Z"
   },
   "/o/$orgId/api-reference en-phone-light": {
-   "hash": "525d565cb404e9d7",
+   "hash": "24fa1e115c8bea1f",
    "findings": [
     {
-     "severity": "high",
-     "problem": "Endpoint paths are clipped at the right edge of the card, so the full paths cannot be read and there is no wrap or scroll.",
+     "severity": "medium",
+     "problem": "Operation paths are clipped at the right edge of the card, cutting the path so the endpoint cannot be read.",
      "where": "Operations list under the session heading",
      "quote": "/organizations/{orgId}/",
      "variant": "en-phone-light",
@@ -1544,9 +1533,9 @@
      "onPage": false
     },
     {
-     "severity": "high",
-     "problem": "The Shell cURL sample is clipped at the right edge of the code block; the URL and cookie value are cut off mid-word with no wrap or horizontal scroll.",
-     "where": "GET /session example",
+     "severity": "medium",
+     "problem": "The example command is cut off at the right edge of the code block, so the request URL and cookie value are incomplete.",
+     "where": "Shell Curl sample under Current user, organizations and permissions",
      "quote": "http://localhost:6590/api/v1/",
      "variant": "en-phone-light",
      "source": "grok",
@@ -1554,55 +1543,45 @@
     },
     {
      "severity": "medium",
-     "problem": "A response-example value is cut off at the right edge of the code block, so the timestamp cannot be read in full.",
-     "where": "200 response body",
-     "quote": "2026-11-02T08:30:00.",
+     "problem": "A value in the response example is cut off at the right edge of the schema block.",
+     "where": "200 response example",
+     "quote": "2026-11-02T08:30:00",
      "variant": "en-phone-light",
      "source": "grok",
      "onPage": false
     }
    ],
-   "at": "2026-11-12T15:23:00.867Z"
+   "at": "2026-11-23T09:50:39.970Z"
   },
   "/o/$orgId/sites en-desktop-dark": {
-   "hash": "ea0e0b1034217cec",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "A floating label/tooltip reading \"Dedicated node\" sits on top of the row and overlaps the status badge, colliding with the green \"active\" indicator so the name and status are not cleanly separated.",
-     "where": "Sites table, row \"Dedicated node nbg1-07\", between the Name and Status columns",
-     "quote": "Dedicated node nbg1-07",
-     "variant": "en-desktop-dark",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T15:24:01.565Z"
+   "hash": "a802de43f398d00b",
+   "findings": [],
+   "at": "2026-11-23T09:53:32.471Z"
   },
   "/o/$orgId/sites de-phone-light": {
-   "hash": "c5882755343e26a2",
-   "findings": [],
-   "at": "2026-11-12T15:24:17.954Z"
-  },
-  "/o/$orgId/sites en-phone-light": {
-   "hash": "6ccbc29c1b551d5e",
+   "hash": "236797c62524ada7",
    "findings": [
     {
-     "severity": "medium",
-     "problem": "The 'Dedicated node' badge overlaps the site title link, colliding with and obscuring the hostname portion of the title.",
-     "where": "Third site card, title row",
-     "quote": "Dedicated node nbg1-07",
-     "variant": "en-phone-light",
+     "severity": "low",
+     "problem": "Ungrammatical interface copy: “keiner” does not agree with “Verzögerung” (a none/no-delay state should read “keine Verzögerung” or similar).",
+     "where": "Secondary line under Zuletzt gesehen on the Dedicated node nbg1-07 card",
+     "quote": "Verzögerung keiner",
+     "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:25:01.619Z"
+   "at": "2026-11-23T09:52:45.588Z"
+  },
+  "/o/$orgId/sites en-phone-light": {
+   "hash": "7446376832d6067b",
+   "findings": [],
+   "at": "2026-11-23T09:54:49.537Z"
   },
   "/o/$orgId/sites en-desktop-light": {
-   "hash": "f79f51cf27195c79",
+   "hash": "9a7b9a2796324559",
    "findings": [],
-   "at": "2026-11-12T15:25:18.169Z"
+   "at": "2026-11-23T09:54:54.715Z"
   },
   "/o/$orgId/notifications de-phone-light": {
    "hash": "19c9732e7ad2b0e5",
@@ -1620,14 +1599,14 @@
    "at": "2026-11-12T15:26:12.489Z"
   },
   "/o/$orgId/notifications en-desktop-dark": {
-   "hash": "465f0d86400f7fb6",
+   "hash": "0103f96c49fe7e33",
    "findings": [],
-   "at": "2026-11-12T15:26:32.894Z"
+   "at": "2026-11-23T09:59:42.416Z"
   },
   "/o/$orgId/sites es-phone-light": {
-   "hash": "570d5ea9f16faff8",
+   "hash": "98262f9e59daa559",
    "findings": [],
-   "at": "2026-11-12T15:27:00.626Z"
+   "at": "2026-11-23T09:55:22.668Z"
   },
   "/o/$orgId/notifications en-phone-light": {
    "hash": "0577386262cf32c0",
@@ -1645,9 +1624,9 @@
    "at": "2026-11-12T15:27:20.939Z"
   },
   "/o/$orgId/notifications en-desktop-light": {
-   "hash": "52a15eed32d18003",
+   "hash": "dcea23d2330e7850",
    "findings": [],
-   "at": "2026-11-12T15:28:05.788Z"
+   "at": "2026-11-23T09:59:45.530Z"
   },
   "/o/$orgId/notifications/new de-phone-light": {
    "hash": "0e7724f8d00a8655",
@@ -1655,9 +1634,9 @@
    "at": "2026-11-12T15:28:20.348Z"
   },
   "/o/$orgId/notifications/new en-desktop-dark": {
-   "hash": "29360baf91297024",
+   "hash": "19b514865c40be19",
    "findings": [],
-   "at": "2026-11-12T15:29:04.558Z"
+   "at": "2026-11-23T09:59:48.369Z"
   },
   "/o/$orgId/notifications es-phone-light": {
    "hash": "0a47a714ec44ff83",
@@ -1665,9 +1644,9 @@
    "at": "2026-11-12T15:29:08.406Z"
   },
   "/o/$orgId/notifications/new en-desktop-light": {
-   "hash": "46fe0e30ac5047f5",
+   "hash": "021d938530ae245b",
    "findings": [],
-   "at": "2026-11-12T15:29:22.223Z"
+   "at": "2026-11-23T10:00:32.810Z"
   },
   "/o/$orgId/notifications/new en-phone-light": {
    "hash": "21ababc7be23969d",
@@ -1690,49 +1669,49 @@
    "at": "2026-11-12T15:30:47.313Z"
   },
   "/o/$orgId/notifications/$destinationId en-desktop-dark": {
-   "hash": "b3bd5f8becdaeb97",
+   "hash": "b1a782288f17d1c1",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline has a status badge on the same line beside it. On desktop the h1 should stand alone with nothing next to it.",
-     "where": "Page header, immediately to the right of the title",
+     "problem": "The page headline has a status badge beside it on the same line. On desktop the h1 should stand alone with nothing next to it.",
+     "where": "Page header, immediately to the right of the h1",
      "quote": "delivered",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:31:01.281Z"
+   "at": "2026-11-23T10:00:47.088Z"
   },
   "/o/$orgId/notifications/$destinationId en-desktop-light": {
-   "hash": "9319c8f3da5049ae",
+   "hash": "12d11e579d05c3be",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline (h1) has a status badge beside it on the same line. On desktop the headline should stand alone with nothing next to it.",
-     "where": "Page header, immediately to the right of the 'Administrators by email' heading",
+     "problem": "A status badge sits on the same line as the page headline; on desktop the h1 should stand alone with nothing beside it.",
+     "where": "Page header, immediately to the right of the title",
      "quote": "delivered",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:31:38.506Z"
+   "at": "2026-11-23T10:02:32.861Z"
   },
   "/o/$orgId/notifications/$destinationId en-phone-light": {
-   "hash": "3be0a70b49f4e904",
+   "hash": "28ba93a21a7c5441",
    "findings": [],
-   "at": "2026-11-12T15:32:02.779Z"
+   "at": "2026-11-23T10:01:26.840Z"
   },
   "/o/$orgId/notifications/$destinationId de-phone-light": {
-   "hash": "141954d6f06dcc18",
+   "hash": "cf92bce2ff74a78c",
    "findings": [],
-   "at": "2026-11-12T15:32:24.163Z"
+   "at": "2026-11-23T10:00:53.177Z"
   },
   "/o/$orgId/notifications/$destinationId es-phone-light": {
-   "hash": "933192137e5d4850",
+   "hash": "9cedd5f4f6f40146",
    "findings": [],
-   "at": "2026-11-12T15:33:13.489Z"
+   "at": "2026-11-23T10:02:15.081Z"
   },
   "/o/$orgId/exports de-phone-light": {
    "hash": "11b26a51c79aee3a",
@@ -1740,14 +1719,14 @@
    "at": "2026-11-12T15:33:13.703Z"
   },
   "/o/$orgId/exports en-desktop-dark": {
-   "hash": "b0ab103edffc11e2",
+   "hash": "10cc03aff1d085a0",
    "findings": [],
-   "at": "2026-11-12T15:33:25.462Z"
+   "at": "2026-11-23T10:02:03.281Z"
   },
   "/o/$orgId/exports en-desktop-light": {
-   "hash": "305d82e317eba561",
+   "hash": "2dc569705ce615de",
    "findings": [],
-   "at": "2026-11-12T15:34:14.464Z"
+   "at": "2026-11-23T10:03:22.392Z"
   },
   "/o/$orgId/exports en-phone-light": {
    "hash": "245277e918e68f1a",
@@ -1785,14 +1764,14 @@
    "at": "2026-11-12T15:35:12.576Z"
   },
   "/o/$orgId/exports/new en-desktop-light": {
-   "hash": "43901fec24a2c073",
+   "hash": "4b47019539e7c8e9",
    "findings": [],
-   "at": "2026-11-12T15:35:23.625Z"
+   "at": "2026-11-23T10:03:10.209Z"
   },
   "/o/$orgId/exports/new en-desktop-dark": {
-   "hash": "c7f565730447d50a",
+   "hash": "241ab552190ac6a6",
    "findings": [],
-   "at": "2026-11-12T15:35:25.524Z"
+   "at": "2026-11-23T10:03:12.430Z"
   },
   "/o/$orgId/exports/new en-phone-light": {
    "hash": "62d168d2a27a6320",
@@ -1805,11 +1784,11 @@
    "at": "2026-11-12T15:36:24.426Z"
   },
   "/o/$orgId/exports/$destinationId en-desktop-dark": {
-   "hash": "6a069cecd64176c5",
+   "hash": "19ba5c39a00abe16",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline (h1) has a status badge directly beside it. On desktop the headline should stand alone on one line with nothing beside it.",
+     "problem": "A status badge sits on the same line as the page headline. On desktop the headline should stand alone on one line with nothing beside it.",
      "where": "Page header, immediately right of the h1",
      "quote": "delivering",
      "variant": "en-desktop-dark",
@@ -1817,7 +1796,7 @@
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:36:51.061Z"
+   "at": "2026-11-23T10:03:59.626Z"
   },
   "/o/$orgId/exports/$destinationId en-phone-light": {
    "hash": "f006cba7d78725c0",
@@ -1825,19 +1804,19 @@
    "at": "2026-11-12T15:37:48.493Z"
   },
   "/o/$orgId/exports/$destinationId en-desktop-light": {
-   "hash": "09f1d819500ef0ea",
+   "hash": "5f195119d853325a",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline does not stand alone: a status badge sits inline on the same line immediately to its right, while desktop space is free.",
-     "where": "Main content header, directly beside the h1",
+     "problem": "A status badge sits on the same line as the page headline. On desktop the headline should stand alone on one line with nothing beside it.",
+     "where": "Main content, page title row",
      "quote": "delivering",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T15:38:08.377Z"
+   "at": "2026-11-23T10:04:06.477Z"
   },
   "/o/$orgId/exports/$destinationId es-phone-light": {
    "hash": "134848ebcc33e2b9",
@@ -1897,9 +1876,9 @@
    "at": "2026-11-12T15:39:46.967Z"
   },
   "/o/$orgId/preferences en-desktop-dark": {
-   "hash": "85a10fafb6e985c6",
+   "hash": "0ef038f792049743",
    "findings": [],
-   "at": "2026-11-12T15:39:51.683Z"
+   "at": "2026-11-23T10:04:25.428Z"
   },
   "/o/$orgId/preferences de-phone-light": {
    "hash": "c5664a5d909aa148",
@@ -1907,9 +1886,9 @@
    "at": "2026-11-12T15:39:58.848Z"
   },
   "/o/$orgId/preferences en-desktop-light": {
-   "hash": "e91f0f3f7aeb0010",
+   "hash": "c869f8b81456430a",
    "findings": [],
-   "at": "2026-11-12T15:40:27.515Z"
+   "at": "2026-11-23T10:04:43.316Z"
   },
   "/o/$orgId/preferences en-phone-light": {
    "hash": "9b8b43004a9e00a8",
@@ -1922,14 +1901,14 @@
    "at": "2026-11-12T15:40:42.793Z"
   },
   "/o/$orgId/preferences/api-keys en-desktop-light": {
-   "hash": "3ae8a0f36d8c745b",
+   "hash": "b823e439989d9684",
    "findings": [],
-   "at": "2026-11-12T15:41:40.570Z"
+   "at": "2026-11-23T10:05:23.700Z"
   },
   "/o/$orgId/preferences/api-keys en-desktop-dark": {
-   "hash": "0459ee6c2a86d106",
+   "hash": "c9bd507e74994fca",
    "findings": [],
-   "at": "2026-11-12T15:41:46.839Z"
+   "at": "2026-11-23T10:05:02.418Z"
   },
   "/o/$orgId/preferences/api-keys de-phone-light": {
    "hash": "b6402f58ed0f1bc4",
@@ -1947,14 +1926,14 @@
    "at": "2026-11-12T15:43:22.629Z"
   },
   "/o/$orgId/settings/notifications en-desktop-light": {
-   "hash": "49094d3bcba24116",
+   "hash": "1e525139237e7e4f",
    "findings": [],
-   "at": "2026-11-12T15:43:55.134Z"
+   "at": "2026-11-23T10:06:07.905Z"
   },
   "/o/$orgId/settings/notifications en-desktop-dark": {
-   "hash": "eccdde584739ebb6",
+   "hash": "1bf3956c5069b2d7",
    "findings": [],
-   "at": "2026-11-12T15:44:01.055Z"
+   "at": "2026-11-23T10:06:16.623Z"
   },
   "/o/$orgId/settings/notifications de-phone-light": {
    "hash": "ab901ef72b31da0e",
@@ -2011,81 +1990,34 @@
    "at": "2026-11-12T15:45:40.896Z"
   },
   "/o/$orgId/settings/security en-desktop-dark": {
-   "hash": "d5ef5a94de0167df",
+   "hash": "07fa226db05b632e",
    "findings": [],
-   "at": "2026-11-12T15:46:09.353Z"
+   "at": "2026-11-23T10:07:00.082Z"
   },
   "/o/$orgId/settings/security en-desktop-light": {
-   "hash": "34e8d9b164d648a9",
+   "hash": "b1f2d12ee36ec0fb",
    "findings": [],
-   "at": "2026-11-12T15:47:07.544Z"
+   "at": "2026-11-23T10:07:40.642Z"
   },
   "/o/$orgId/settings/security en-phone-light": {
-   "hash": "08cacabdf30576b8",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Tab label is clipped at the left edge of the screen, so its first letters are cut off and the label is unreadable.",
-     "where": "Tab bar below the Settings description, left edge",
-     "quote": "nguage and time",
-     "variant": "en-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T15:48:17.460Z"
+   "hash": "99d8f59a1288abd9",
+   "findings": [],
+   "at": "2026-11-23T10:08:27.734Z"
   },
   "/o/$orgId/settings/security de-phone-light": {
-   "hash": "c23da8fde73d6eba",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The tab to the left is cut off at the screen edge, so its label is only partly visible and cannot be read in full.",
-     "where": "Tab bar directly under the intro text",
-     "quote": "Benachrichtigungen",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "The label is hyphenated at the wrong point as 'Inakti-vität', so the word wraps badly and is hard to read in the narrow column.",
-     "where": "Sitzungen card, left label column",
-     "quote": "Abmelden bei Inaktivität nach",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "The label is hyphenated at the wrong point as 'aufbe-wahren', so the word wraps badly.",
-     "where": "Aufbewahrung card, first row label",
-     "quote": "Prüfprotokoll aufbewahren für",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "The label is hyphenated at the wrong point as 'aufbe-wahren', so the word wraps badly.",
-     "where": "Aufbewahrung card, second row label",
-     "quote": "Zustellungen aufbewahren für",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T15:48:28.323Z"
+   "hash": "1593ea18f7a0867f",
+   "findings": [],
+   "at": "2026-11-23T10:08:32.684Z"
   },
   "/o/$orgId/settings/reports en-desktop-dark": {
-   "hash": "16465b18f4cd9cf3",
+   "hash": "ec701601e3bb4907",
    "findings": [],
-   "at": "2026-11-12T15:49:49.822Z"
+   "at": "2026-11-23T10:08:56.564Z"
   },
   "/o/$orgId/settings/security es-phone-light": {
-   "hash": "cfdc58f131df4ef5",
+   "hash": "516ad5f2736aa6b2",
    "findings": [],
-   "at": "2026-11-12T15:50:18.431Z"
+   "at": "2026-11-23T10:08:33.298Z"
   },
   "/o/$orgId/settings/reports de-phone-light": {
    "hash": "efcf5130c2c5063e",
@@ -2103,19 +2035,9 @@
    "at": "2026-11-12T15:50:37.285Z"
   },
   "/o/$orgId/settings/reports en-desktop-light": {
-   "hash": "7871d7c52a9b9965",
-   "findings": [
-    {
-     "severity": "low",
-     "problem": "The description is held in a narrow column and wraps so that \"lead with.\" sits alone on a second line, while most of the card width beside it stays empty.",
-     "where": "Reports card, description under the Reports heading",
-     "quote": "How long reports are kept, how long mailed links work, and the colour reports lead with.",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T15:51:28.124Z"
+   "hash": "d77f42c91ddddefe",
+   "findings": [],
+   "at": "2026-11-23T10:09:41.744Z"
   },
   "/o/$orgId/settings/reports en-phone-light": {
    "hash": "4e5bbaeed148c59e",
@@ -2157,14 +2079,14 @@
    "at": "2026-11-12T15:52:28.618Z"
   },
   "/o/$orgId/settings/enrichment en-desktop-light": {
-   "hash": "1f0b0cba1200853e",
+   "hash": "ee6bc4470021555f",
    "findings": [],
-   "at": "2026-11-12T15:53:35.033Z"
+   "at": "2026-11-23T10:10:44.975Z"
   },
   "/o/$orgId/settings/enrichment en-desktop-dark": {
-   "hash": "2276571f10360634",
+   "hash": "39cde34cbe00d09e",
    "findings": [],
-   "at": "2026-11-12T15:53:38.583Z"
+   "at": "2026-11-23T10:09:40.709Z"
   },
   "/o/$orgId/settings/enrichment en-phone-light": {
    "hash": "68af4fc3eeca9594",
@@ -2212,14 +2134,14 @@
    "at": "2026-11-12T15:56:05.519Z"
   },
   "/o/$orgId/settings/installation en-desktop-light": {
-   "hash": "ed8a1aebdea8d3a6",
+   "hash": "352c740e48e96a9a",
    "findings": [],
-   "at": "2026-11-12T15:56:42.693Z"
+   "at": "2026-11-23T10:10:19.360Z"
   },
   "/o/$orgId/settings/installation en-desktop-dark": {
-   "hash": "3216df4f8b5c2869",
+   "hash": "4ea1bb08ba105ef8",
    "findings": [],
-   "at": "2026-11-12T15:57:13.893Z"
+   "at": "2026-11-23T10:10:36.503Z"
   },
   "/o/$orgId/settings/installation en-phone-light": {
    "hash": "85307a5c3ebb100f",
@@ -2276,9 +2198,9 @@
    "at": "2026-11-12T15:58:19.166Z"
   },
   "/o/$orgId/reports en-desktop-dark": {
-   "hash": "b271693898d09144",
+   "hash": "38f43ff12989f369",
    "findings": [],
-   "at": "2026-11-12T15:58:54.944Z"
+   "at": "2026-11-23T10:11:21.711Z"
   },
   "/o/$orgId/reports de-phone-light": {
    "hash": "6ba354e6b6e411c5",
@@ -2286,9 +2208,9 @@
    "at": "2026-11-12T15:59:06.442Z"
   },
   "/o/$orgId/reports en-desktop-light": {
-   "hash": "fce86f08f74385eb",
+   "hash": "c291bdc202869e3d",
    "findings": [],
-   "at": "2026-11-12T15:59:08.036Z"
+   "at": "2026-11-23T10:11:23.554Z"
   },
   "/o/$orgId/reports es-phone-light": {
    "hash": "f4e1984398a7c114",
@@ -2306,14 +2228,14 @@
    "at": "2026-11-12T16:01:06.299Z"
   },
   "/o/$orgId/reports/schedules en-desktop-dark": {
-   "hash": "1dc3b5bf7e06ad00",
+   "hash": "d2ea35a9be0e6891",
    "findings": [],
-   "at": "2026-11-12T16:01:27.969Z"
+   "at": "2026-11-23T10:11:50.262Z"
   },
   "/o/$orgId/reports/schedules en-desktop-light": {
-   "hash": "ff3345bd0a019eb5",
+   "hash": "b2ac24189bacfc34",
    "findings": [],
-   "at": "2026-11-12T16:01:40.603Z"
+   "at": "2026-11-23T10:12:22.411Z"
   },
   "/o/$orgId/reports/schedules en-phone-light": {
    "hash": "567c942d34b02c95",
@@ -2326,9 +2248,9 @@
    "at": "2026-11-12T16:02:24.035Z"
   },
   "/o/$orgId/reports/schedules/new en-desktop-dark": {
-   "hash": "21c5a7379ce79fdc",
+   "hash": "3ac516866c8504b1",
    "findings": [],
-   "at": "2026-11-12T16:02:54.182Z"
+   "at": "2026-11-23T10:12:03.922Z"
   },
   "/o/$orgId/reports/schedules/new de-phone-light": {
    "hash": "8501fc189d287494",
@@ -2351,9 +2273,9 @@
    "at": "2026-11-12T16:03:36.882Z"
   },
   "/o/$orgId/reports/schedules/new en-desktop-light": {
-   "hash": "908385201a46746f",
+   "hash": "4ee45f2a4c3a63c8",
    "findings": [],
-   "at": "2026-11-12T16:03:48.418Z"
+   "at": "2026-11-23T10:12:54.461Z"
   },
   "/o/$orgId/reports/schedules/new es-phone-light": {
    "hash": "dfd6f2d7f9520f09",
@@ -2361,9 +2283,9 @@
    "at": "2026-11-12T16:03:48.944Z"
   },
   "/o/$orgId/reports/schedules/$definitionId en-desktop-dark": {
-   "hash": "b7f98f07283be23d",
+   "hash": "ad799d547974d663",
    "findings": [],
-   "at": "2026-11-12T16:04:17.334Z"
+   "at": "2026-11-23T10:13:16.847Z"
   },
   "/o/$orgId/reports/schedules/$definitionId en-phone-light": {
    "hash": "cdc6e804c88cf4cb",
@@ -2371,19 +2293,9 @@
    "at": "2026-11-12T16:05:25.473Z"
   },
   "/o/$orgId/reports/schedules/$definitionId en-desktop-light": {
-   "hash": "baa2d80325e40855",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Action buttons sit on the same row as the page headline. On desktop the h1 should stand alone on one line, with no buttons beside it.",
-     "where": "Top of the main content, to the right of the title",
-     "quote": "Monthly license usage",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:05:51.642Z"
+   "hash": "71f8b4fc07af364a",
+   "findings": [],
+   "at": "2026-11-23T10:14:01.375Z"
   },
   "/o/$orgId/reports/schedules/$definitionId es-phone-light": {
    "hash": "0fe58ca149c4e074",
@@ -2396,39 +2308,29 @@
    "at": "2026-11-12T16:07:15.012Z"
   },
   "/o/$orgId/reports/runs/$runId de-phone-light": {
-   "hash": "e880ba34bcccb74c",
+   "hash": "fbcd687b3e3d3e41",
    "findings": [],
-   "at": "2026-11-12T16:07:33.014Z"
+   "at": "2026-11-23T10:13:09.103Z"
   },
   "/o/$orgId/reports/runs/$runId en-desktop-dark": {
-   "hash": "ab73ccef5ff31112",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The page headline does not stand alone: a status badge sits immediately beside it and action buttons share the same line, while free space remains on the row.",
-     "where": "Top of the main content, the Executive summary heading row",
-     "quote": "Executive summary",
-     "variant": "en-desktop-dark",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:07:59.030Z"
+   "hash": "597f11c44796ff59",
+   "findings": [],
+   "at": "2026-11-23T10:13:49.003Z"
   },
   "/o/$orgId/reports/runs/$runId en-desktop-light": {
-   "hash": "d5d30e2ccd5a9639",
+   "hash": "5ab1d73701b56ecf",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline (h1) has a status badge on the same line beside it. On desktop the h1 should stand alone on one line with nothing beside it.",
-     "where": "Top of the main content area, the page title row",
+     "problem": "The page headline has a status badge beside it. On desktop the h1 should stand alone on one line with nothing next to it.",
+     "where": "Page header, immediately to the right of the Executive summary title",
      "quote": "Ready",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:08:37.038Z"
+   "at": "2026-11-23T10:14:33.190Z"
   },
   "/o/$orgId/reports/runs/$runId en-phone-light": {
    "hash": "0f82be7e71d10146",
@@ -2436,17 +2338,17 @@
    "at": "2026-11-12T16:10:00.666Z"
   },
   "/o/$orgId/w/$workspaceId de-phone-light": {
-   "hash": "823c5adc6f19ee2e",
+   "hash": "9508986b2b5f2333",
    "findings": [],
-   "at": "2026-11-12T16:11:03.474Z"
+   "at": "2026-11-23T10:15:42.918Z"
   },
   "/o/$orgId/w/$workspaceId en-desktop-dark": {
-   "hash": "6d39344365fd857b",
+   "hash": "c22f79d6f0df6265",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline (h1) has a status badge on the same line beside it; on desktop the headline should stand alone with nothing next to it.",
-     "where": "Top of the main content, the Production heading",
+     "problem": "The page headline shares its line with a status badge. On desktop the h1 should stand alone with nothing beside it.",
+     "where": "Main content title row, immediately right of the Production heading",
      "quote": "needs attention",
      "variant": "en-desktop-dark",
      "source": "grok",
@@ -2454,23 +2356,23 @@
     },
     {
      "severity": "low",
-     "problem": "The metric label wraps badly so the closing \"D)\" is orphaned on its own line, split from \"7\".",
-     "where": "Under the Detection activity, 7 days chart, left metric",
+     "problem": "The metric label wraps so the closing \"D)\" is stranded on its own line, pushing the value down and out of alignment with the metric beside it.",
+     "where": "Under the Detection activity chart, left metric",
      "quote": "TIME TO ACKNOWLEDGE (MEDIAN, 7 D)",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:11:33.988Z"
+   "at": "2026-11-23T10:15:31.420Z"
   },
   "/o/$orgId/w/$workspaceId en-desktop-light": {
-   "hash": "e6d271401350dd2c",
+   "hash": "70ae387d434993a9",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline has a status badge on the same line beside it; on desktop the h1 should stand alone with nothing next to it.",
-     "where": "Main content header, the Production title",
+     "problem": "The page headline shares its line with a status badge. On desktop the headline should stand alone on one line with nothing beside it.",
+     "where": "Top of the main content, beside the Production title",
      "quote": "needs attention",
      "variant": "en-desktop-light",
      "source": "grok",
@@ -2478,191 +2380,104 @@
     },
     {
      "severity": "low",
-     "problem": "The metric label wraps so the closing \"D)\" is left alone on the next line, splitting the label before its value.",
-     "where": "Detection activity card, lower-left metric",
+     "problem": "The label wraps so the closing \"D)\" sits alone on the next line, while the matching label beside it fits on one line.",
+     "where": "Under the Detection activity chart, left metric",
      "quote": "TIME TO ACKNOWLEDGE (MEDIAN, 7 D)",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:12:20.796Z"
+   "at": "2026-11-23T10:15:51.316Z"
   },
   "/o/$orgId/w/$workspaceId en-phone-light": {
-   "hash": "2af06fc4cc192e32",
+   "hash": "16643fb63c404fb0",
    "findings": [],
-   "at": "2026-11-12T16:12:47.915Z"
+   "at": "2026-11-23T10:16:38.846Z"
   },
   "/o/$orgId/w/$workspaceId es-phone-light": {
-   "hash": "a305b8a75802e2a2",
-   "findings": [],
-   "at": "2026-11-12T16:14:24.966Z"
-  },
-  "/o/$orgId/reports/runs/$runId es-phone-light": {
-   "hash": "82a5c76df4a64b70",
-   "findings": [],
-   "at": "2026-11-12T16:16:19.604Z"
-  },
-  "/o/$orgId/w/$workspaceId/findings en-desktop-dark": {
-   "hash": "dbaa3a2f280a9353",
+   "hash": "f78307e254b8dc37",
    "findings": [
     {
-     "severity": "medium",
-     "problem": "The status pill is clipped by the right edge of the table, so the badge and its label are cut off.",
-     "where": "Findings table, third row, far right",
-     "quote": "AI SOC fault",
-     "variant": "en-desktop-dark",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:19:17.462Z"
-  },
-  "/o/$orgId/w/$workspaceId/findings de-phone-light": {
-   "hash": "6b52dfd1c83da5ed",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "An error badge is drawn on top of the finding row instead of in the layout flow, overlapping the status area.",
-     "where": "Third finding card, lower left",
-     "quote": "Zeilen nicht dargestellt",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "medium",
-     "problem": "Status text sits in the label column while the value column beside it stays empty, so the row is misaligned and the space to the right is wasted.",
-     "where": "Third finding card, under the Stand label",
-     "quote": "Nur Netzwerkbelege",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:19:22.389Z"
-  },
-  "/o/$orgId/w/$workspaceId/findings en-phone-light": {
-   "hash": "320bd4d57b05d10a",
-   "findings": [
-    {
-     "severity": "high",
-     "problem": "Standing rows failed to render: the Standing label has no value and a fault pill reports the failure, so the card looks broken.",
-     "where": "Third finding card (Antivirus exclusion chain, host ws-dev-031), Standing row and bottom of the card",
-     "quote": "rows not rendered",
-     "variant": "en-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "medium",
-     "problem": "Text is squeezed into a narrow left column and wraps onto two short lines while the space beside it stays empty, so it looks misaligned with the label/value rows.",
-     "where": "Third finding card, directly under the Standing label",
-     "quote": "Network evidence only",
-     "variant": "en-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:20:42.469Z"
-  },
-  "/o/$orgId/w/$workspaceId/findings en-desktop-light": {
-   "hash": "57d7e4e9e6aef1eb",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "An orange fault badge overflows the table's right edge and is clipped, so its label is cut off and cannot be read.",
-     "where": "Findings table, third row (host ws-dev-031), far right of the Placement column",
-     "quote": "AI SOC fault: r",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "medium",
-     "problem": "The Held badge is shifted into the Placement column, leaving the Standing cell empty and misaligning it with the standing values in the other rows.",
-     "where": "Findings table, second row (host srv-file-02), Standing/Placement columns",
-     "quote": "Held",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:20:48.163Z"
-  },
-  "/o/$orgId/w/$workspaceId/findings es-phone-light": {
-   "hash": "9c9bc3b37ea0de63",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Text is squeezed into the narrow left label column and wraps onto a second line, while the value column beside it stays empty.",
-     "where": "Third finding card, left column between the Situación and Ubicación rows",
-     "quote": "Solo evidencia de red",
+     "severity": "low",
+     "problem": "The label wraps mid-parenthesis, leaving \"D)\" alone on the next line.",
+     "where": "Below the detection chart, the second metric label",
+     "quote": "TIEMPO HASTA LA RESOLUCIÓN (MEDIANA, 7 D)",
      "variant": "es-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:22:19.014Z"
+   "at": "2026-11-23T10:17:35.841Z"
+  },
+  "/o/$orgId/reports/runs/$runId es-phone-light": {
+   "hash": "f24ca4617befbc5d",
+   "findings": [],
+   "at": "2026-11-23T10:14:01.127Z"
+  },
+  "/o/$orgId/w/$workspaceId/findings en-desktop-dark": {
+   "hash": "38bcafd75878a04e",
+   "findings": [],
+   "at": "2026-11-23T10:22:32.735Z"
+  },
+  "/o/$orgId/w/$workspaceId/findings de-phone-light": {
+   "hash": "e3ce9b479dbaa49a",
+   "findings": [],
+   "at": "2026-11-23T10:21:51.682Z"
+  },
+  "/o/$orgId/w/$workspaceId/findings en-phone-light": {
+   "hash": "08525116b396c39f",
+   "findings": [],
+   "at": "2026-11-23T10:24:18.185Z"
+  },
+  "/o/$orgId/w/$workspaceId/findings en-desktop-light": {
+   "hash": "d46a0498fedf7414",
+   "findings": [],
+   "at": "2026-11-23T10:22:50.512Z"
+  },
+  "/o/$orgId/w/$workspaceId/findings es-phone-light": {
+   "hash": "3e203dc79d581a32",
+   "findings": [],
+   "at": "2026-11-23T10:24:18.462Z"
   },
   "/o/$orgId/w/$workspaceId/findings/$findingId en-desktop-dark": {
-   "hash": "bc98771b37182b82",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The page headline has a status badge beside it. On desktop the h1 should stand alone on one line with nothing next to it.",
-     "where": "Page headline, immediately to the right of the h1",
-     "quote": "Unlinked",
-     "variant": "en-desktop-dark",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:22:44.717Z"
+   "hash": "b918cc85b800d4f0",
+   "findings": [],
+   "at": "2026-11-23T10:25:28.715Z"
   },
   "/o/$orgId/w/$workspaceId/findings/$findingId en-desktop-light": {
-   "hash": "cbd0de9d65dee121",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The page headline shares its line with a status badge. On desktop the h1 should stand alone on one line with nothing beside it.",
-     "where": "Main content header, directly to the right of the title",
-     "quote": "Unlinked",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "medium",
-     "problem": "Action buttons sit on the same line as the page headline. On desktop the h1 should have no buttons beside it.",
-     "where": "Top-right of the main content, level with the title",
-     "quote": "Open case",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:24:23.226Z"
+   "hash": "3c2064622cf38588",
+   "findings": [],
+   "at": "2026-11-23T10:25:44.608Z"
   },
   "/o/$orgId/w/$workspaceId/findings/$findingId en-phone-light": {
-   "hash": "66ae217c2bd6bc64",
+   "hash": "2d78afc88b274105",
    "findings": [],
-   "at": "2026-11-12T16:25:08.926Z"
+   "at": "2026-11-23T10:27:09.538Z"
   },
   "/o/$orgId/w/$workspaceId/findings/$findingId de-phone-light": {
-   "hash": "b7472ad966e97692",
+   "hash": "47522c2d94c90a06",
    "findings": [
     {
      "severity": "low",
-     "problem": "The metadata label is squeezed into a narrow column and hyphenates so a single syllable sits alone on its own line (Auslösen- / der / Datensatz), which is hard to read.",
-     "where": "Metadata block under the headline, label beside the dataset id",
-     "quote": "Auslösender Datensatz",
+     "problem": "Missing space after the colon, so the two words run together.",
+     "where": "Explanatory paragraph under „Wer und was beteiligt ist“",
+     "quote": "gefunden:Der",
      "variant": "de-phone-light",
      "source": "grok",
-     "onPage": true
+     "onPage": false
+    },
+    {
+     "severity": "medium",
+     "problem": "Interface sentence is broken and unintelligible: after „keine“ a word is missing, so the reason given cannot be read.",
+     "where": "Same paragraph, inside the parentheses",
+     "quote": "gewährt keine auf",
+     "variant": "de-phone-light",
+     "source": "grok",
+     "onPage": false
     }
    ],
-   "at": "2026-11-12T16:25:19.896Z"
+   "at": "2026-11-23T10:26:44.439Z"
   },
   "/o/$orgId/w/$workspaceId/threat-actors de-phone-light": {
    "hash": "70b6774d461e7944",
@@ -2675,19 +2490,9 @@
    "at": "2026-11-12T16:26:20.040Z"
   },
   "/o/$orgId/w/$workspaceId/findings/$findingId es-phone-light": {
-   "hash": "dd8b4705a9361798",
-   "findings": [
-    {
-     "severity": "low",
-     "problem": "The risk level is left in English ('high') inside an otherwise Spanish sentence, so this interface text is not localized.",
-     "where": "Description of signal 01 (Señal · Registro inicial)",
-     "quote": "riesgo high",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T16:26:27.245Z"
+   "hash": "c67b6b813c9df8c9",
+   "findings": [],
+   "at": "2026-11-23T10:28:30.414Z"
   },
   "/o/$orgId/w/$workspaceId/threat-actors en-desktop-light": {
    "hash": "9cb72809f63ea64d",
@@ -2705,64 +2510,74 @@
    "at": "2026-11-12T16:27:07.225Z"
   },
   "/o/$orgId/w/$workspaceId/sources en-desktop-dark": {
-   "hash": "a6d6f6078dd96a92",
+   "hash": "74893a7b527af9ba",
    "findings": [],
-   "at": "2026-11-12T16:28:24.574Z"
+   "at": "2026-11-23T10:28:37.631Z"
   },
   "/o/$orgId/w/$workspaceId/sources en-desktop-light": {
-   "hash": "7c8bd8f41d6f1dc2",
+   "hash": "fec868c248f14c5d",
    "findings": [],
-   "at": "2026-11-12T16:29:04.667Z"
+   "at": "2026-11-23T10:29:42.941Z"
   },
   "/o/$orgId/w/$workspaceId/sources de-phone-light": {
-   "hash": "a54fa34912624a2b",
+   "hash": "3e40819dea84ab53",
    "findings": [],
-   "at": "2026-11-12T16:29:10.055Z"
+   "at": "2026-11-23T10:29:26.026Z"
   },
   "/o/$orgId/w/$workspaceId/sources en-phone-light": {
-   "hash": "4c8f9daddc2821e4",
+   "hash": "d975608111ad43dc",
    "findings": [],
-   "at": "2026-11-12T16:30:29.197Z"
+   "at": "2026-11-23T10:30:14.405Z"
   },
   "/o/$orgId/w/$workspaceId/sources/new de-phone-light": {
-   "hash": "f9cfc2a46a9ced86",
+   "hash": "4e807d67770dac55",
    "findings": [
     {
      "severity": "low",
-     "problem": "The planned-source label wraps immediately after a hyphen, so the first line ends in a dangling \"und -\" and looks truncated.",
-     "where": "Demnächst grid, top-right card",
-     "quote": "Splunk-HEC- und -",
+     "problem": "German interface label is only half translated: the English word \"Incidents\" sits next to German \"und Warnungen\", while the same card's description uses the German \"Vorfälle\".",
+     "where": "Selected source card under Empfohlen für Microsoft Defender",
+     "quote": "Microsoft Defender XDR Incidents und Warnungen",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:31:35.494Z"
+   "at": "2026-11-23T10:32:35.168Z"
   },
   "/o/$orgId/w/$workspaceId/sources/new en-desktop-dark": {
-   "hash": "a13e314ef8d3221b",
+   "hash": "58a60ecb3223a7b9",
    "findings": [],
-   "at": "2026-11-12T16:31:52.112Z"
+   "at": "2026-11-23T10:31:38.381Z"
   },
   "/o/$orgId/w/$workspaceId/sources es-phone-light": {
-   "hash": "91408869851d3cb6",
+   "hash": "a05029b6026c2c50",
    "findings": [],
-   "at": "2026-11-12T16:32:01.876Z"
+   "at": "2026-11-23T10:30:38.036Z"
   },
   "/o/$orgId/w/$workspaceId/sources/new en-desktop-light": {
-   "hash": "2a7360c4baec2405",
+   "hash": "83197aaf6f290bcb",
    "findings": [],
-   "at": "2026-11-12T16:32:33.045Z"
+   "at": "2026-11-23T10:32:15.298Z"
   },
   "/o/$orgId/w/$workspaceId/sources/new es-phone-light": {
-   "hash": "6e0363c9eac02a4c",
+   "hash": "3aa898ccc9102d39",
    "findings": [],
-   "at": "2026-11-12T16:32:59.108Z"
+   "at": "2026-11-23T10:33:14.591Z"
   },
   "/o/$orgId/w/$workspaceId/sources/new en-phone-light": {
-   "hash": "15236a2f55064ebf",
-   "findings": [],
-   "at": "2026-11-12T16:33:20.572Z"
+   "hash": "3d18143c42cb52da",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "The last row of Coming soon source cards is clipped, so the cards and their labels are cut off and not fully readable.",
+     "where": "Bottom of the Coming soon grid, directly above the Cancel and Next buttons",
+     "quote": "File drop",
+     "variant": "en-phone-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T10:34:10.401Z"
   },
   "/o/$orgId/w/$workspaceId/sources/$sourceId en-desktop-dark": {
    "hash": "339fc260b23ad7ff",
@@ -2889,32 +2704,32 @@
    "at": "2026-11-12T16:40:06.900Z"
   },
   "/o/$orgId/w/$workspaceId/notifications/$destinationId de-phone-light": {
-   "hash": "4ef0d1a9853bcfe3",
+   "hash": "4434ac3c367a8fc7",
    "findings": [],
-   "at": "2026-11-12T16:40:50.962Z"
+   "at": "2026-11-23T10:36:24.339Z"
   },
   "/o/$orgId/w/$workspaceId/notifications/$destinationId en-desktop-light": {
-   "hash": "091bbc4c2d7fdfc5",
+   "hash": "a426c1de08b04473",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline shares its line with status badges. On desktop the h1 should stand alone on one line with nothing beside it.",
-     "where": "Top of the main content, beside the SOC channel heading",
+     "problem": "Status badges sit on the same line as the page headline. On desktop the h1 should stand alone with nothing beside it.",
+     "where": "Page header, immediately right of the title",
      "quote": "SOC channel",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:41:19.439Z"
+   "at": "2026-11-23T10:37:30.622Z"
   },
   "/o/$orgId/w/$workspaceId/notifications/$destinationId en-desktop-dark": {
-   "hash": "8e79916cb318642c",
+   "hash": "141f8b1d51164957",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline does not stand alone: status badges sit inline beside it and the Pause and Send test buttons share the same header row. On desktop the h1 should be on one line with nothing beside it.",
-     "where": "Main content header, SOC channel title row",
+     "problem": "The page headline shares its line with status badges (\"delivered\", \"8 failed\") and action buttons (\"Pause\", \"Send test\"). On desktop the h1 should stand alone on one line with nothing beside it.",
+     "where": "Top of the main content, the page title row",
      "quote": "SOC channel",
      "variant": "en-desktop-dark",
      "source": "grok",
@@ -2922,25 +2737,25 @@
     },
     {
      "severity": "low",
-     "problem": "The quiet-hours value is squeezed into a narrow column and wraps badly, splitting the 21:00–07:00 time range across lines, while a large empty area remains to its right inside the card.",
+     "problem": "The quiet-hours value is squeezed into a narrow column: the time range breaks after the dash and \"goes through\" sits alone on the last line, while the right side of the card stays empty.",
      "where": "Bundling and quiet hours card, QUIET HOURS value",
-     "quote": "Sa, Su all day, critical",
+     "quote": "goes through",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T16:41:53.276Z"
+   "at": "2026-11-23T10:38:02.779Z"
   },
   "/o/$orgId/w/$workspaceId/notifications/$destinationId es-phone-light": {
-   "hash": "058b6c9ce2f6700e",
+   "hash": "a01ddad1cfeabb7e",
    "findings": [],
-   "at": "2026-11-12T16:42:11.102Z"
+   "at": "2026-11-23T10:38:30.567Z"
   },
   "/o/$orgId/w/$workspaceId/notifications/$destinationId en-phone-light": {
-   "hash": "6116f3fb670ff3f4",
+   "hash": "d8ccdd99147a36c6",
    "findings": [],
-   "at": "2026-11-12T16:42:16.458Z"
+   "at": "2026-11-23T10:38:06.700Z"
   },
   "/o/$orgId/w/$workspaceId/exports en-desktop-dark": {
    "hash": "d09258dda89b898d",
@@ -3153,9 +2968,9 @@
    "at": "2026-11-12T16:55:55.984Z"
   },
   "/o/$orgId/w/$workspaceId/reports en-desktop-dark": {
-   "hash": "44f5d6141394e0a1",
+   "hash": "9f73a7356d5f92db",
    "findings": [],
-   "at": "2026-11-12T16:57:06.957Z"
+   "at": "2026-11-23T10:39:02.126Z"
   },
   "/o/$orgId/w/$workspaceId/reports de-phone-light": {
    "hash": "ea3e8669a99c73e6",
@@ -3178,9 +2993,9 @@
    "at": "2026-11-12T16:58:05.903Z"
   },
   "/o/$orgId/w/$workspaceId/reports en-desktop-light": {
-   "hash": "ca933928b948f318",
+   "hash": "b163034d9a624b48",
    "findings": [],
-   "at": "2026-11-12T16:58:10.556Z"
+   "at": "2026-11-23T10:38:44.377Z"
   },
   "/o/$orgId/w/$workspaceId/reports es-phone-light": {
    "hash": "aba11549691db842",
@@ -3351,19 +3166,9 @@
    "at": "2026-11-12T17:08:33.530Z"
   },
   "/o/$orgId/w/$workspaceId/access de-phone-light": {
-   "hash": "691c624f0788e6b1",
-   "findings": [
-    {
-     "severity": "low",
-     "problem": "Interface label is English on a German-language page, and it is not one of the product terms meant to stay English.",
-     "where": "Small uppercase eyebrow label directly above the page headline",
-     "quote": "PRODUCTION",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T17:09:30.783Z"
+   "hash": "881609b4bb9a7687",
+   "findings": [],
+   "at": "2026-11-23T10:39:28.771Z"
   },
   "/o/$orgId/w/$workspaceId/reports/runs/$runId de-phone-light": {
    "hash": "01331bfd74b9882b",
@@ -3495,59 +3300,69 @@
    "at": "2026-11-12T17:10:56.049Z"
   },
   "/o/$orgId/w/$workspaceId/access en-desktop-light": {
-   "hash": "d07eab1b97ec54e3",
+   "hash": "06ce75adfc8e3af0",
    "findings": [],
-   "at": "2026-11-12T17:10:56.537Z"
+   "at": "2026-11-23T10:39:51.924Z"
   },
   "/o/$orgId/w/$workspaceId/access en-desktop-dark": {
-   "hash": "a76c93af30bf2728",
+   "hash": "386aef390d3d4178",
    "findings": [],
-   "at": "2026-11-12T17:11:01.262Z"
+   "at": "2026-11-23T10:39:35.134Z"
   },
   "/o/$orgId/w/$workspaceId/access en-phone-light": {
-   "hash": "5456310ee5c8c378",
+   "hash": "e66b9c25c2ac9f5d",
    "findings": [],
-   "at": "2026-11-12T17:11:44.678Z"
+   "at": "2026-11-23T10:40:03.904Z"
   },
   "/o/$orgId/w/$workspaceId/access es-phone-light": {
-   "hash": "2e734e30f3ef1a66",
-   "findings": [],
-   "at": "2026-11-12T17:12:20.493Z"
-  },
-  "/p/$partnerId de-phone-light": {
-   "hash": "fa568ad0f2779140",
-   "findings": [],
-   "at": "2026-11-12T17:16:53.054Z"
-  },
-  "/p/$partnerId en-desktop-dark": {
-   "hash": "72260c042f445704",
-   "findings": [],
-   "at": "2026-11-12T17:18:35.051Z"
-  },
-  "/p/$partnerId en-desktop-light": {
-   "hash": "7211dd24af583dc7",
-   "findings": [],
-   "at": "2026-11-12T17:19:00.204Z"
-  },
-  "/p/$partnerId en-phone-light": {
-   "hash": "129472107a3b3898",
-   "findings": [],
-   "at": "2026-11-12T17:19:08.326Z"
-  },
-  "/p/$partnerId es-phone-light": {
-   "hash": "39a836951839c3ac",
+   "hash": "04f6391bb004b2a3",
    "findings": [
     {
      "severity": "low",
-     "problem": "Interface label is in English on a Spanish page; the sibling label \"Su rol\" is translated, and \"Partner\" is not a product term meant to stay English.",
-     "where": "Meta line under the \"Clientes 3\" count, above the attention heading",
+     "problem": "The list footer label is rendered with excessive letter-spacing, so its characters are spread far apart and the text looks stretched.",
+     "where": "Footer row at the bottom of the access list card",
+     "quote": "Las 8 entradas",
+     "variant": "es-phone-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T10:41:05.958Z"
+  },
+  "/p/$partnerId de-phone-light": {
+   "hash": "935789bd3cee4c7e",
+   "findings": [],
+   "at": "2026-11-23T10:43:40.182Z"
+  },
+  "/p/$partnerId en-desktop-dark": {
+   "hash": "c30d9ae697b77026",
+   "findings": [],
+   "at": "2026-11-23T10:44:35.751Z"
+  },
+  "/p/$partnerId en-desktop-light": {
+   "hash": "fb5586547fd4f3f3",
+   "findings": [],
+   "at": "2026-11-23T10:44:48.265Z"
+  },
+  "/p/$partnerId en-phone-light": {
+   "hash": "19df740165e6ded0",
+   "findings": [],
+   "at": "2026-11-23T10:45:25.282Z"
+  },
+  "/p/$partnerId es-phone-light": {
+   "hash": "b12a114aeaa70278",
+   "findings": [
+    {
+     "severity": "low",
+     "problem": "Interface label is in English on a Spanish page; the label above it (Su rol) is translated.",
+     "where": "Role/status block under the page description, above the heading 3 asuntos requieren su atención",
      "quote": "Partner",
      "variant": "es-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T17:26:40.662Z"
+   "at": "2026-11-23T10:49:35.329Z"
   },
   "/p/$partnerId/channels de-phone-light": {
    "hash": "cedc6485f40aca19",
@@ -3555,14 +3370,14 @@
    "at": "2026-11-12T17:27:50.907Z"
   },
   "/p/$partnerId/channels en-desktop-dark": {
-   "hash": "c4d3f2c1f82da76b",
+   "hash": "3fed6cc364d5127c",
    "findings": [],
-   "at": "2026-11-12T17:28:39.057Z"
+   "at": "2026-11-23T10:52:14.804Z"
   },
   "/p/$partnerId/channels en-desktop-light": {
-   "hash": "753862a290c946da",
+   "hash": "bb9575f3135c0c7d",
    "findings": [],
-   "at": "2026-11-12T17:29:07.193Z"
+   "at": "2026-11-23T10:53:28.735Z"
   },
   "/p/$partnerId/channels en-phone-light": {
    "hash": "dc39c692af679300",
@@ -3575,9 +3390,9 @@
    "at": "2026-11-12T17:30:12.149Z"
   },
   "/p/$partnerId/channels/new en-desktop-dark": {
-   "hash": "c124b225107f2f99",
+   "hash": "031b0a348a6d07cb",
    "findings": [],
-   "at": "2026-11-12T17:30:23.655Z"
+   "at": "2026-11-23T10:52:58.471Z"
   },
   "/p/$partnerId/channels/new en-phone-light": {
    "hash": "f72b92704677dddd",
@@ -3585,9 +3400,9 @@
    "at": "2026-11-12T17:30:51.236Z"
   },
   "/p/$partnerId/channels/new en-desktop-light": {
-   "hash": "fe560afb8a717b38",
+   "hash": "f48dd3fff34f4140",
    "findings": [],
-   "at": "2026-11-12T17:31:11.542Z"
+   "at": "2026-11-23T10:53:34.930Z"
   },
   "/p/$partnerId/channels es-phone-light": {
    "hash": "5981923037add968",
@@ -3610,27 +3425,27 @@
    "at": "2026-11-12T17:31:43.828Z"
   },
   "/p/$partnerId/channels/$destinationId de-phone-light": {
-   "hash": "4d5e885a1aaaebf9",
+   "hash": "276f1ee23c7103a6",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The label is squeezed into a narrow column beside the dropdown and wraps so the final letter sits alone on the next line.",
-     "where": "Kunden card, Alpine Logistics GmbH, label left of the severity dropdown",
+     "problem": "The label is squeezed into a narrow column beside the dropdown and wraps so that only its final letter sits alone on the next line.",
+     "where": "Kunden card, Alpine Logistics GmbH row",
      "quote": "Mindestschweregrad",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T17:32:06.043Z"
+   "at": "2026-11-23T10:54:01.059Z"
   },
   "/p/$partnerId/channels/$destinationId en-desktop-dark": {
-   "hash": "89fa94c1f8acd1ce",
+   "hash": "48944df4b6153209",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline does not stand alone on its line. The status badges \"not tested\" and \"1 failed\" sit immediately beside it, and the \"Pause\" and \"Send test\" buttons share the same row.",
-     "where": "Page header, title row",
+     "problem": "The page headline does not stand alone on desktop: the status badges “not tested” and “1 failed” sit inline beside the h1, and the Pause and Send test buttons share the same header row.",
+     "where": "Page header, headline row",
      "quote": "MSSP on-call",
      "variant": "en-desktop-dark",
      "source": "grok",
@@ -3638,44 +3453,44 @@
     },
     {
      "severity": "medium",
-     "problem": "The webhook URL is squeezed into a narrow left column and wraps badly, breaking after \"secure-\" and leaving \"a91f\" alone on its own line, while the right half of the card stays empty.",
+     "problem": "The webhook URL is squeezed into a narrow column and wraps badly, leaving “secure-” and the trailing “a91f” each on their own line, while most of the Connection card to the right stays empty.",
      "where": "Connection card, URL value",
-     "quote": "a91f",
+     "quote": "mssp.webhook.office.com/",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T17:33:22.065Z"
+   "at": "2026-11-23T10:56:14.623Z"
   },
   "/p/$partnerId/channels/$destinationId en-desktop-light": {
-   "hash": "60735e284d1fdf99",
+   "hash": "4cb15949737ae11b",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Status badges sit on the same line as the page headline; the headline should stand alone with nothing beside it.",
-     "where": "Page header, immediately right of the MSSP on-call title",
-     "quote": "not tested",
+     "problem": "Status badges sit inline beside the page headline. On desktop the h1 should stand alone on its line with nothing beside it.",
+     "where": "Page header, immediately to the right of the title",
+     "quote": "MSSP on-call",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     },
     {
-     "severity": "medium",
-     "problem": "The webhook URL is squeezed into a narrow left column and wraps badly across three lines (splitting after the hyphen, tail on its own line) while the rest of the card to the right is empty.",
+     "severity": "low",
+     "problem": "The webhook URL wraps into a narrow column of about three short lines while most of the Connection card to the right stays empty.",
      "where": "Connection card, URL value",
-     "quote": "a91f",
+     "quote": "mssp.webhook.office.com",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-12T17:33:29.207Z"
+   "at": "2026-11-23T10:56:50.046Z"
   },
   "/p/$partnerId/channels/$destinationId en-phone-light": {
-   "hash": "749db62aa5bc7472",
+   "hash": "a45d100b1b4ca770",
    "findings": [],
-   "at": "2026-11-12T17:33:49.128Z"
+   "at": "2026-11-23T10:54:43.474Z"
   },
   "/p/$partnerId/reports de-phone-light": {
    "hash": "d014657efae0f3ad",
@@ -3683,24 +3498,14 @@
    "at": "2026-11-12T17:34:52.572Z"
   },
   "/p/$partnerId/reports en-desktop-dark": {
-   "hash": "e82969884c463f0d",
+   "hash": "d2b8465af24b395f",
    "findings": [],
-   "at": "2026-11-12T17:35:05.192Z"
+   "at": "2026-11-23T10:56:56.326Z"
   },
   "/p/$partnerId/channels/$destinationId es-phone-light": {
-   "hash": "3ecb8407df64db63",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "A small light badge reading \"T\" overlaps the end of the button label, so the label and the badge collide.",
-     "where": "Dark primary button near the top of the page",
-     "quote": "Enviar prueba",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-12T17:35:40.827Z"
+   "hash": "af365f4c71e7e205",
+   "findings": [],
+   "at": "2026-11-23T10:55:48.915Z"
   },
   "/p/$partnerId/reports en-phone-light": {
    "hash": "1fa20cffdf51ab13",
@@ -3713,9 +3518,158 @@
    "at": "2026-11-12T17:37:02.068Z"
   },
   "/p/$partnerId/reports en-desktop-light": {
-   "hash": "db7ba6eb95682ab7",
+   "hash": "88a7d0d9523a63b9",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "Status text is cut off: both rows show a trailing ellipsis immediately after the Ready badge, truncating the rest of the status before the Requested column.",
+     "where": "Reports table, Status column",
+     "quote": "Ready",
+     "variant": "en-desktop-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T10:58:22.566Z"
+  },
+  "/operator/api-keys de-phone-light": {
+   "hash": "f4b97f2d905bf07c",
    "findings": [],
-   "at": "2026-11-12T17:37:13.471Z"
+   "at": "2026-11-23T09:23:15.524Z"
+  },
+  "/operator/api-keys en-desktop-light": {
+   "hash": "b5132621d7ca6a38",
+   "findings": [],
+   "at": "2026-11-23T09:23:33.903Z"
+  },
+  "/operator/api-keys en-desktop-dark": {
+   "hash": "df76dff78737c927",
+   "findings": [],
+   "at": "2026-11-23T09:23:34.845Z"
+  },
+  "/operator/api-keys en-phone-light": {
+   "hash": "8024510af3fc8f20",
+   "findings": [],
+   "at": "2026-11-23T09:23:51.895Z"
+  },
+  "/operator/api-keys es-phone-light": {
+   "hash": "1ece9f342fee57e4",
+   "findings": [],
+   "at": "2026-11-23T09:24:09.211Z"
+  },
+  "/o/$orgId/credentials en-desktop-dark": {
+   "hash": "0bf2a55cecb75da5",
+   "findings": [],
+   "at": "2026-11-23T09:55:46.594Z"
+  },
+  "/o/$orgId/credentials de-phone-light": {
+   "hash": "f797240fa9297bd5",
+   "findings": [],
+   "at": "2026-11-23T09:56:22.817Z"
+  },
+  "/o/$orgId/credentials en-desktop-light": {
+   "hash": "9ed4ca3206b53a0e",
+   "findings": [],
+   "at": "2026-11-23T09:56:28.089Z"
+  },
+  "/o/$orgId/credentials en-phone-light": {
+   "hash": "bc5497340a8c4757",
+   "findings": [],
+   "at": "2026-11-23T09:56:32.089Z"
+  },
+  "/o/$orgId/credentials es-phone-light": {
+   "hash": "ae89cd99b492b48a",
+   "findings": [],
+   "at": "2026-11-23T09:56:57.672Z"
+  },
+  "/o/$orgId/credentials/$credentialId de-phone-light": {
+   "hash": "b7eaa468c52a680e",
+   "findings": [],
+   "at": "2026-11-23T09:57:58.197Z"
+  },
+  "/o/$orgId/credentials/$credentialId en-desktop-dark": {
+   "hash": "0ae345358ed971de",
+   "findings": [],
+   "at": "2026-11-23T09:57:59.092Z"
+  },
+  "/o/$orgId/credentials/$credentialId en-phone-light": {
+   "hash": "f630d7f63aa400c1",
+   "findings": [],
+   "at": "2026-11-23T09:58:38.840Z"
+  },
+  "/o/$orgId/credentials/$credentialId en-desktop-light": {
+   "hash": "e25f5e1710f4c68d",
+   "findings": [],
+   "at": "2026-11-23T09:58:40.746Z"
+  },
+  "/o/$orgId/credentials/$credentialId es-phone-light": {
+   "hash": "d530ca0bb1970153",
+   "findings": [],
+   "at": "2026-11-23T09:59:04.712Z"
+  },
+  "/o/$orgId/w/$workspaceId/sources/$connectorId/$accessId en-desktop-dark": {
+   "hash": "41423942876607a0",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "The page headline has a status badge beside it on the same line. On desktop the h1 must stand alone with nothing next to it.",
+     "where": "Page headline at the top of the main panel",
+     "quote": "Turned off",
+     "variant": "en-desktop-dark",
+     "source": "grok",
+     "onPage": true
+    },
+    {
+     "severity": "low",
+     "problem": "The field label is forced to wrap inside a narrow column while most of the row to its right stays empty, so the layout looks unbalanced.",
+     "where": "What is collected card, above the value 0",
+     "quote": "DAYS TO READ BACK ON THE FIRST RUN",
+     "variant": "en-desktop-dark",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T10:34:21.929Z"
+  },
+  "/o/$orgId/w/$workspaceId/sources/$connectorId/$accessId de-phone-light": {
+   "hash": "9aa527110dfbe11e",
+   "findings": [],
+   "at": "2026-11-23T10:34:22.319Z"
+  },
+  "/o/$orgId/w/$workspaceId/sources/$connectorId/$accessId en-phone-light": {
+   "hash": "cda85a15a7aeb088",
+   "findings": [],
+   "at": "2026-11-23T10:35:00.000Z"
+  },
+  "/o/$orgId/w/$workspaceId/sources/$connectorId/$accessId es-phone-light": {
+   "hash": "242557ff8499d97a",
+   "findings": [
+    {
+     "severity": "low",
+     "problem": "The uppercase label wraps by splitting the word PRIMERA with a hyphen (PRI- / MERA), so the label reads as broken.",
+     "where": "Qué se recoge card, label above the value 0",
+     "quote": "DÍAS QUE SE LEEN HACIA ATRÁS EN LA PRIMERA EJECUCIÓN",
+     "variant": "es-phone-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T10:36:13.637Z"
+  },
+  "/o/$orgId/w/$workspaceId/sources/$connectorId/$accessId en-desktop-light": {
+   "hash": "bbc94a45e232188c",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "The page headline does not stand alone: a status badge sits on the same line beside the h1, with free space still available.",
+     "where": "Page header, immediately to the right of the title",
+     "quote": "Turned off",
+     "variant": "en-desktop-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-23T10:36:54.180Z"
   }
  },
  "texts": {

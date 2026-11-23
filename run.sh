@@ -95,6 +95,8 @@ web:rw
 web/src:ro
 api:ro
 AGENTS.md:ro
+docs/how-to/develop-the-web-app.md:ro
+docs/explanation/frontend.md:ro
 internal/casework/reports/render/testdata:ro
 internal/casework/reports/httpapi/download.go:ro
 deploy/azure/onboarding.sh:ro
@@ -181,7 +183,7 @@ verdict="no new test files to check"
 if [ -n "$tests" ]; then
   say "Running Grok's tests myself: $(echo $tests)"
   set +e
-  docker run --rm "${hardening[@]}" --shm-size 1g --network none -e COREPACK_ENABLE_NETWORK=0 \
+  docker run --rm "${hardening[@]}" --shm-size 1g --network none -e COREPACK_ENABLE_NETWORK=0 -e E2E_PHONE=1 \
     "${caches[@]}" "${mount_args[@]}" -w /work/web "$IMAGE" \
     corepack pnpm exec playwright test $tests > "$VERIFY" 2>&1
   vstatus=$?

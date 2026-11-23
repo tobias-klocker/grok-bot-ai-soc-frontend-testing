@@ -140,6 +140,19 @@ allow notifications for the run.
 Every report marks findings that are **new** since the previous run with a
 report, and counts them at the top.
 
+## Claude Code skill
+
+`skill/visual-review/SKILL.md` teaches Claude Code this kit: the commands and
+their cost, reading `findings.json` and the screenshots, what to trust (checks
+yes, Grok only after looking), the rules in `review-notes.md`, and fixing by
+root cause under AGENTS.md (a worktree in `.worktrees/`, the project's checks,
+a re-check with `SWEEP_ONLY`, never a push). Link it once, from the project root:
+
+    mkdir -p ~/.claude/skills && ln -s "$PWD/.grok-bot/skill/visual-review" ~/.claude/skills/visual-review
+
+Then `/visual-review` in Claude Code, or just "check the frontend". The skill is
+backed up with the kit.
+
 ## Backup
 
     .grok-bot/backup.sh             commit what changed and push it
