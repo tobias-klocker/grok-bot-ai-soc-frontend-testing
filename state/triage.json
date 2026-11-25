@@ -153,6 +153,69 @@
    "suggest": "fine",
    "why": "A source is named by the person who adds it (the name starts empty); the seed names this one like its type. Sample data, like a case title.",
    "at": "2026-11-25"
+  },
+  "phone-search-placeholder": {
+   "title": "Long search placeholders still cut on phones",
+   "suggest": "fix",
+   "fixIn": "web locales: shorter placeholders (the label keeps the full name); API keys: the allowance pill takes the search's row",
+   "why": "With the actions now icons the field is about 250px: 'Personen und Dienstkonten su…' and, beside the '2 von 200 Schlüsseln' pill, 'Schlüssel s…' still end mid-word (crops of access/grants and access/api-keys, de-phone).",
+   "at": "2026-11-25"
+  },
+  "api-key-rows": {
+   "title": "API key rows: permissions beside a short name on phones",
+   "suggest": "fix",
+   "fixIn": "web/src/features/apikeys/keys KeysTable (stacked row layout)",
+   "why": "On phones 'Ticket sync' has its permissions on its own name line while 'Splunk import' has them under the account line (crop of access/api-keys, de-phone).",
+   "at": "2026-11-25"
+  },
+  "report-run-language": {
+   "title": "A run generated in English keeps its English title on a German page",
+   "suggest": "unsure",
+   "fixIn": "web/src/features/reports (runTitle) if the page should name it by its type",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "at": "2026-11-25"
+  },
+  "audit-op-consistency": {
+   "title": "One English operation name, two German/Spanish ones",
+   "suggest": "fix",
+   "fixIn": "features/audit locales",
+   "why": "getFindingEvidence and getWorkspaceFindingEvidence are both 'View a finding's evidence' but de says 'abrufen'/'ansehen', es 'Consultar'/'Ver'.",
+   "at": "2026-11-25"
+  },
+  "de-small-grammar": {
+   "title": "Small German grammar slips",
+   "suggest": "fix",
+   "fixIn": "locales",
+   "why": "Each is a real slip a German reader notices; low weight.",
+   "at": "2026-11-25"
+  },
+  "es-small-wording": {
+   "title": "Small Spanish wording slips",
+   "suggest": "fix",
+   "fixIn": "locales",
+   "why": "Each is a real slip a Spanish reader notices; low weight.",
+   "at": "2026-11-25"
+  },
+  "grok-misreads-new": {
+   "title": "Grok: correct texts called wrong",
+   "suggest": "wrong",
+   "fixIn": "",
+   "why": "Checked against the English source and the glossary: the texts say what the English says.",
+   "at": "2026-11-25"
+  },
+  "wording-fine": {
+   "title": "Different wording, same meaning",
+   "suggest": "fine",
+   "fixIn": "",
+   "why": "Grok proposes another way to say it; the text is correct and clear as it is.",
+   "at": "2026-11-25"
+  },
+  "ms-terms": {
+   "title": "Microsoft's own German and Spanish names",
+   "suggest": "wrong",
+   "fixIn": "",
+   "why": "Arbeitsbereich / área de trabajo (Log Analytics), Azure Event Hubs-Datenempfänger and An einen Event Hub streamen are what Microsoft's portal shows; the glossary's Workspace is ours.",
+   "at": "2026-11-25"
   }
  },
  "findings": {
@@ -607,21 +670,21 @@
    "at": "2026-11-25"
   },
   "7971d9981309b4c2": {
-   "suggest": "fix",
-   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
-   "cause": "untranslated-api-names",
+   "suggest": "unsure",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "868226437e705ab1": {
-   "suggest": "fix",
-   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
-   "cause": "untranslated-api-names",
+   "suggest": "unsure",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "d2627d8a6e43e4d7": {
-   "suggest": "fix",
-   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
-   "cause": "untranslated-api-names",
+   "suggest": "unsure",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "f9c09dfc5808a66c": {
@@ -643,9 +706,9 @@
    "at": "2026-11-25"
   },
   "793c19f5e4275e71": {
-   "suggest": "fix",
-   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
-   "cause": "untranslated-api-names",
+   "suggest": "unsure",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "077594a79b3c51f8": {
@@ -655,21 +718,21 @@
    "at": "2026-11-25"
   },
   "20b7cd690f55cb25": {
-   "suggest": "fix",
-   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
-   "cause": "untranslated-api-names",
+   "suggest": "unsure",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "6867f5644dbc657b": {
-   "suggest": "fix",
-   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
-   "cause": "untranslated-api-names",
+   "suggest": "unsure",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "b98bef3314ab1ea5": {
-   "suggest": "fix",
-   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
-   "cause": "untranslated-api-names",
+   "suggest": "unsure",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "da950592dc0593a8": {
@@ -1959,6 +2022,720 @@
    "suggest": "fix",
    "why": "'Dateiimport unsigniert nach einem bestätigten' reads unfinished; 'Unsignierter Dateiimport nach einem bestätigten'. Low priority.",
    "at": "2026-11-24"
+  },
+  "b1cd76a135b01165": {
+   "suggest": "fix",
+   "why": "Still cut: 'Search people and service acc…' beside the two icon buttons.",
+   "cause": "phone-search-placeholder",
+   "at": "2026-11-25"
+  },
+  "693dbf8b83748225": {
+   "suggest": "fine",
+   "why": "'Incident responder' is a custom role in the sample data, named by the organization.",
+   "cause": "sample-source-name",
+   "at": "2026-11-25"
+  },
+  "24cdf62db6821ba3": {
+   "suggest": "fix",
+   "why": "Still cut: 'Search people and service acc…' beside the two icon buttons.",
+   "cause": "phone-search-placeholder",
+   "at": "2026-11-25"
+  },
+  "4cb047c41c139170": {
+   "suggest": "fix",
+   "why": "Still cut: 'Personen und Dienstkonten su…' beside ⋯ and +.",
+   "cause": "phone-search-placeholder",
+   "at": "2026-11-25"
+  },
+  "0916e6ad12f21d41": {
+   "suggest": "fix",
+   "why": "Seen in the crop: 'Ticket sync' puts its permissions on its name line.",
+   "cause": "api-key-rows",
+   "at": "2026-11-25"
+  },
+  "642cc7275c9f7529": {
+   "suggest": "fix",
+   "why": "'Schlüssel s…': the '2 von 200 Schlüsseln' pill shares the search's row.",
+   "cause": "phone-search-placeholder",
+   "at": "2026-11-25"
+  },
+  "2c3caf605016b012": {
+   "suggest": "unsure",
+   "why": "A section's description beside its Edit button on phones.",
+   "cause": "section-header-phone",
+   "at": "2026-11-25"
+  },
+  "3440b8ada358d3c4": {
+   "suggest": "unsure",
+   "why": "The assets table scrolls sideways under its edge shade.",
+   "cause": "wide-table",
+   "at": "2026-11-25"
+  },
+  "e6b7d95c690b793d": {
+   "suggest": "unsure",
+   "why": "The assets table scrolls sideways under its edge shade.",
+   "cause": "wide-table",
+   "at": "2026-11-25"
+  },
+  "12f5e15f4c85523e": {
+   "suggest": "wrong",
+   "why": "The headline breaks 'gespei-cherter', which is correct German hyphenation (seen in the screenshot).",
+   "cause": "word-breaks",
+   "at": "2026-11-25"
+  },
+  "d48ea411f81ff2ca": {
+   "suggest": "unsure",
+   "why": "An English run: its title is the report's own.",
+   "cause": "report-run-language",
+   "at": "2026-11-25"
+  },
+  "6f4400a9bf855adc": {
+   "suggest": "unsure",
+   "why": "The preview shows the English report's own contents.",
+   "cause": "report-run-language",
+   "at": "2026-11-25"
+  },
+  "b8128540915cb6ed": {
+   "suggest": "fine",
+   "why": "The no-break space keeps '7 d' together; a label that wraps in its card is ordinary.",
+   "cause": "word-breaks",
+   "at": "2026-11-25"
+  },
+  "e4626a82a3a865db": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column.",
+   "cause": "phone-value-column",
+   "at": "2026-11-25"
+  },
+  "6790d7875edc3601": {
+   "suggest": "fine",
+   "why": "The last fact of a grid of facts keeps its column (crop of the workspace's size section).",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "4c28e01d05637d43": {
+   "suggest": "unsure",
+   "why": "The cores table scrolls sideways under its edge shade (seen: the State column at the edge).",
+   "cause": "wide-table",
+   "at": "2026-11-25"
+  },
+  "1d0ad56a1d663b5a": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the label in its column.",
+   "cause": "phone-value-column",
+   "at": "2026-11-25"
+  },
+  "e73afa150f024c67": {
+   "suggest": "wrong",
+   "why": "'platform' is the name of the command-line tool, as in English and Spanish.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "d599e51519e61881": {
+   "suggest": "fix",
+   "why": "The English is 'Product administrators'; the tab lists people, so 'Produktadministratoren' matches it and the other places.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "6c2749ca8cf4d06c": {
+   "suggest": "wrong",
+   "why": "'die Fälle, die sie enthalten' reads as the cases holding the findings; Grok's 'diese' says the same.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "9b292e8b59696140": {
+   "suggest": "wrong",
+   "why": "The value is a time ('vor 5 Minuten'): 'Collected through' means up to then, so 'Gesammelt bis' is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "0b0d46a34bac0b62": {
+   "suggest": "wrong",
+   "why": "The value is a time: 'Recogido hasta' is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "ea2f0179afebb18d": {
+   "suggest": "wrong",
+   "why": "Collector is the name the German texts use throughout (also onboarding.lede).",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "dd1826bf25508eec": {
+   "suggest": "wrong",
+   "why": "Partner is the product's term for a managed security provider, kept in every language.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "f66d79c1445c7da0": {
+   "suggest": "wrong",
+   "why": "Partner is the product's term, kept in every language.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "ef6ea23b157babc7": {
+   "suggest": "wrong",
+   "why": "Partner is the product's term, kept in every language.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "6a72372c03ee64c3": {
+   "suggest": "wrong",
+   "why": "Partner is the product's term, kept in every language.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "99af2a841e6befa8": {
+   "suggest": "wrong",
+   "why": "'solange Sie sie nicht sperren' (as long as you do not lock them) says exactly 'unless you lock them'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "4aca6718474ac66f": {
+   "suggest": "wrong",
+   "why": "'mientras usted no los bloquee' says exactly 'unless you lock them'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "e30261458a265c3b": {
+   "suggest": "wrong",
+   "why": "'Pool-Knoten, die sich Organisationen teilen' is correct German for nodes the organizations share.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "1f78fbba7a166819": {
+   "suggest": "wrong",
+   "why": "'sie' is the withheld query, not the reader: lowercase is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "d6bea887180a68c7": {
+   "suggest": "wrong",
+   "why": "'sie' is the withheld queries, not the reader: lowercase is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "9696be6e651749c0": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-25"
+  },
+  "5891800a41a3ec48": {
+   "suggest": "fine",
+   "why": "'older than the ingest stream' is how the German says it too and reads the same.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "56a13a3e18156361": {
+   "suggest": "wrong",
+   "why": "'Das kann nur eine angemeldete Person' is correct German (können as a full verb).",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "3492a368816bea61": {
+   "suggest": "wrong",
+   "why": "The English is plural (findings): 'Findings' is the glossary term in the plural.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "f8406bb972004315": {
+   "suggest": "wrong",
+   "why": "Plural in English too: 'Findings' is right.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "975d83b7d3170f3d": {
+   "suggest": "wrong",
+   "why": "Plural in English too: 'Findings' is right.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "7df857b65cdd445a": {
+   "suggest": "wrong",
+   "why": "'des Workspaces' is the glossary term's genitive.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "61c421d19ba75690": {
+   "suggest": "fix",
+   "why": "getWorkspaceFindingEvidence, the same English text, says 'Belege eines Findings ansehen'.",
+   "cause": "audit-op-consistency",
+   "at": "2026-11-25"
+  },
+  "6047522daf433473": {
+   "suggest": "fix",
+   "why": "getWorkspaceFindingEvidence, the same English text, says 'Ver las pruebas de un hallazgo'.",
+   "cause": "audit-op-consistency",
+   "at": "2026-11-25"
+  },
+  "4db5b37be901a867": {
+   "suggest": "wrong",
+   "why": "'Mit … verbinden' is the usual short form of an action name.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "d6a72208599a706a": {
+   "suggest": "fine",
+   "why": "Trying a draft mapping is what the preview does; the text is clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "bed176f40e4564a4": {
+   "suggest": "fine",
+   "why": "Trying a draft mapping is what the preview does; the text is clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "6d24beb6524e78bf": {
+   "suggest": "fix",
+   "why": "The glossary keeps the normal genitive: 'dieses Workspaces' (as everywhere else).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "574eeb75e2c0a327": {
+   "suggest": "wrong",
+   "why": "Microsoft's German portal names it Log-Analytics-Arbeitsbereich.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "4d107d79f33fbaa5": {
+   "suggest": "wrong",
+   "why": "Microsoft's German portal names it Arbeitsbereich.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "9a46af1c70a09c92": {
+   "suggest": "wrong",
+   "why": "Microsoft's Spanish portal names it área de trabajo de Log Analytics.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "68769852c49e3b66": {
+   "suggest": "wrong",
+   "why": "Microsoft's Spanish portal names it área de trabajo.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "ec734d984f3d6158": {
+   "suggest": "fix",
+   "why": "Spanish translates it (Incidentes) and Defender's German UI says Vorfälle; German alone keeps the English.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "8c0243fa6cbea48e": {
+   "suggest": "wrong",
+   "why": "The Log Analytics workspace, Microsoft's Arbeitsbereich.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "482ef35915e51633": {
+   "suggest": "wrong",
+   "why": "The Log Analytics workspace, Microsoft's área de trabajo.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "911d55095e3bc341": {
+   "suggest": "fine",
+   "why": "The portal's label as the English gives it, without quotes.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "6d325d16005e6ec1": {
+   "suggest": "fine",
+   "why": "The portal's label as the English gives it, without quotes.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "354d6284c474f6c4": {
+   "suggest": "wrong",
+   "why": "A compound with a multi-word name takes hyphens: AI-SOC-Größe.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-25"
+  },
+  "9aecb6c63aeb395e": {
+   "suggest": "fine",
+   "why": "'Verificada' is the signature, 'exportado' the file; both agree with what they describe.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "1d4121a54dfeec71": {
+   "suggest": "unsure",
+   "why": "Paired forms for a person (not a role name); your style call.",
+   "cause": "gender-style",
+   "at": "2026-11-25"
+  },
+  "a90cec73c29493f4": {
+   "suggest": "fix",
+   "why": "The glossary gives the article: 'der AI SOC hat {{share}} analysiert'.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "7e61067c514afccb": {
+   "suggest": "fix",
+   "why": "The glossary says der AI SOC: 'Der AI SOC hat noch nicht angegeben, was er liest'.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "94740e86bc40a844": {
+   "suggest": "fix",
+   "why": "A comma belongs after 'Event-Hubs-Namespace'.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "829ab659b30051c6": {
+   "suggest": "fine",
+   "why": "The report hides values, which 'anonimizado' conveys.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "ccd74f0673ee5d85": {
+   "suggest": "fine",
+   "why": "A lede as an infinitive is the German page style; the meaning is the English.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "d6c6daaa33e79ffe": {
+   "suggest": "fine",
+   "why": "The English is the same fragment.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "5a3a466892f69877": {
+   "suggest": "fine",
+   "why": "A short preset label, clear as it is.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "c9b480c8ef6341a7": {
+   "suggest": "fine",
+   "why": "Says that no one is mailed through a permission.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "ca973512abc3264d": {
+   "suggest": "fine",
+   "why": "Clear notification title.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "50e056fa5c85f098": {
+   "suggest": "fine",
+   "why": "A limit's terse label, clear beside its number.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "1318d1e959fc9014": {
+   "suggest": "fine",
+   "why": "Erfasst is the word the licence texts use for ingested data.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "7d2c15ab4f727da3": {
+   "suggest": "wrong",
+   "why": "A list of the template kinds: the plural Fälle is right.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "167f19e5d5a0a7b1": {
+   "suggest": "wrong",
+   "why": "A list of the template kinds: the plural Casos is right.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "8208dbf4672c87ca": {
+   "suggest": "fine",
+   "why": "The same ellipsis as the English ('a gzip-compressed one').",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "8d16bee22bb7aa07": {
+   "suggest": "wrong",
+   "why": "'Bestätigung vereinbart' is 'Attestation agreed'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "9fbbf73e4aaa51f2": {
+   "suggest": "wrong",
+   "why": "'Rücknahme hängt' matches the operator area's 'Hängende Rücknahmen'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "eb6653bc16208dfa": {
+   "suggest": "fix",
+   "why": "'En ningún caso' also means 'under no circumstances', as the German had: 'Sin caso asignado'.",
+   "cause": "es-small-wording",
+   "at": "2026-11-25"
+  },
+  "0ed192e766e3eb91": {
+   "suggest": "unsure",
+   "why": "Paired forms for a person; your style call.",
+   "cause": "gender-style",
+   "at": "2026-11-25"
+  },
+  "240ce587530acc42": {
+   "suggest": "wrong",
+   "why": "Plural in English too: 'Findings' is right.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "9ff5e50ef6a972aa": {
+   "suggest": "fine",
+   "why": "'1 von 1 Taktik' follows the count; it reads fine.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "1bc17cdd54924b5d": {
+   "suggest": "fix",
+   "why": "A button: '{{count}} weitere Rollen anzeigen' is the usual German.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "898c3621ebd571a2": {
+   "suggest": "wrong",
+   "why": "'Woher' is right: from where it collects.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "304517bee4056efa": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-25"
+  },
+  "44089a45c0a2516d": {
+   "suggest": "fix",
+   "why": "'…, mit dieser Größe' trails: '{{taken}} von {{total}} GiB für AI SOCs mit dieser Größe vorgesehen'.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "08a67e81cbf45ac4": {
+   "suggest": "fine",
+   "why": "The fields of a range: first and last day say it, inclusive.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "60aafccbb03a852b": {
+   "suggest": "fine",
+   "why": "The fields of a range: first and last day say it, inclusive.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "90bc4c3b1eab8dda": {
+   "suggest": "fine",
+   "why": "The fields of a range: first and last day say it, inclusive.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "077bf2554ed41be0": {
+   "suggest": "fine",
+   "why": "The fields of a range: first and last day say it, inclusive.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "e8e82e88dbd91aaa": {
+   "suggest": "fine",
+   "why": "The subject may be a person or a service account; Person is fine.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "604dcdc1f6ceb8f0": {
+   "suggest": "wrong",
+   "why": "'Use' is the usted imperative of usar, not English.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "43a8b425a865dfed": {
+   "suggest": "wrong",
+   "why": "'Use' is the usted imperative of usar, not English.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "25699e962978e308": {
+   "suggest": "fix",
+   "why": "'con como máximo' is clumsy: 'con un máximo de {{max}} caracteres'.",
+   "cause": "es-small-wording",
+   "at": "2026-11-25"
+  },
+  "8e8c5f28f4a9e9d8": {
+   "suggest": "unsure",
+   "why": "Paired forms for a person; your style call.",
+   "cause": "gender-style",
+   "at": "2026-11-25"
+  },
+  "061cee56d7fb8138": {
+   "suggest": "wrong",
+   "why": "Anmeldedaten is plural in German, so 'andere' and 'sie' are right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "14db508ae5145b66": {
+   "suggest": "wrong",
+   "why": "Anmeldedaten is plural in German, so 'andere' is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "0006c996f8cb4349": {
+   "suggest": "wrong",
+   "why": "The texts write Administratoren in full.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "e4e57839f7cda6ee": {
+   "suggest": "fine",
+   "why": "Shown among the operating system's facts; clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "d039b4439d42c1d1": {
+   "suggest": "wrong",
+   "why": "A list of added fields: the plural is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "6f8d16821c890229": {
+   "suggest": "wrong",
+   "why": "A list of changed fields: the plural is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "acf3763708c8d57b": {
+   "suggest": "fix",
+   "why": "The glossary keeps the normal genitive: 'eines Workspaces'.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "50f253a4e6ab89ee": {
+   "suggest": "wrong",
+   "why": "'Azure Event Hubs-Datenempfänger' is Microsoft's German role name.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "db5891f868e99369": {
+   "suggest": "wrong",
+   "why": "'Azure Event Hubs-Datenempfänger' is Microsoft's German role name.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "276a102f7353d891": {
+   "suggest": "fix",
+   "why": "'die letzten {{lateness}} Ereigniszeit' lacks its article: 'die letzten {{lateness}} der Ereigniszeit'.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "b7eeb2bda1347f0a": {
+   "suggest": "fine",
+   "why": "Registrierung is the word the site texts use for enrollment.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "134085a140361696": {
+   "suggest": "fine",
+   "why": "A format's notation; the German keeps the notation as written.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "3118f2e4b7564272": {
+   "suggest": "fine",
+   "why": "A format's notation; the German keeps the notation as written.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "09eda8da9ba219bd": {
+   "suggest": "fine",
+   "why": "'mailen' is ordinary German.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "c77de8b0634a864d": {
+   "suggest": "fix",
+   "why": "'würde abgelehnt werden' is the complete form.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "63ceb50a359a3849": {
+   "suggest": "wrong",
+   "why": "A German noun: 'Info' is capitalized.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "adc8386e4703765f": {
+   "suggest": "fine",
+   "why": "The colon avoids agreeing with a section's gender; clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "02156acb72fce914": {
+   "suggest": "fine",
+   "why": "'über {{process}}' (by way of the process) is natural.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "eb34510c8237681e": {
+   "suggest": "fine",
+   "why": "'über {{process}}' (by way of the process) is natural.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "a578bdaa3dd6ccf1": {
+   "suggest": "wrong",
+   "why": "Betreiber is a role name, kept without gender forms by the glossary.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "8ab55b8fa49ed7c1": {
+   "suggest": "wrong",
+   "why": "operador is a role name, kept without gender forms by the glossary.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "9973324c74ab304d": {
+   "suggest": "wrong",
+   "why": "operador is a role name, kept without gender forms by the glossary.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "4f0315455f10c22c": {
+   "suggest": "fix",
+   "why": "'Proponer como benigno' is the complete phrase.",
+   "cause": "es-small-wording",
+   "at": "2026-11-25"
+  },
+  "a4a6b3abc0e38ccc": {
+   "suggest": "wrong",
+   "why": "Severity is feminine (alta, crítica): 'informativa' agrees.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "afdaa573cdc546c0": {
+   "suggest": "wrong",
+   "why": "The line is about one standing term: singular is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "b8499955944ca40d": {
+   "suggest": "unsure",
+   "why": "Paired forms for a person; your style call.",
+   "cause": "gender-style",
+   "at": "2026-11-25"
+  },
+  "683da5f6c06e0bcd": {
+   "suggest": "wrong",
+   "why": "'Zur Übersicht des Workspaces' is correct.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "6eaa21a19364eb9d": {
+   "suggest": "wrong",
+   "why": "A compound with a multi-word name takes hyphens: AI-SOC-Größe.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-25"
+  },
+  "5a2c31dea1def1d0": {
+   "suggest": "wrong",
+   "why": "Correct word order.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
   }
  }
 }
