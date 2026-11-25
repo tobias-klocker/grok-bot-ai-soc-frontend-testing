@@ -68,9 +68,9 @@
   },
   "wide-table": {
    "title": "Wide tables: last column under the edge fade",
-   "suggest": "unsure",
-   "why": "The assets table scrolls sideways with a fade at its edge, so at 1440 px the last column starts under the fade. Intended if wide tables scroll like tab bars; review-notes.md says so only for tab bars.",
-   "at": "2026-11-24"
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a wide table scrolls sideways under its edge shade.",
+   "at": "2026-11-25"
   },
   "section-header-phone": {
    "title": "Section description beside its button on phones",
@@ -144,9 +144,9 @@
   },
   "gender-style": {
    "title": "Paired or participle forms for people",
-   "suggest": "unsure",
-   "why": "'Von einer Analystin oder einem Analysten', 'als Lesende oder Verantwortliche': the glossary rules role names, these name people. Your style decision.",
-   "at": "2026-11-24"
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: paired forms for people are the house style.",
+   "at": "2026-11-25"
   },
   "sample-source-name": {
    "title": "A source named in English in the sample data",
@@ -170,9 +170,9 @@
   },
   "report-run-language": {
    "title": "A run generated in English keeps its English title on a German page",
-   "suggest": "unsure",
+   "suggest": "fine",
    "fixIn": "web/src/features/reports (runTitle) if the page should name it by its type",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "at": "2026-11-25"
   },
   "audit-op-consistency": {
@@ -664,26 +664,26 @@
    "at": "2026-11-24"
   },
   "b1de60e03e241000": {
-   "suggest": "unsure",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "7971d9981309b4c2": {
-   "suggest": "unsure",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "868226437e705ab1": {
-   "suggest": "unsure",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "d2627d8a6e43e4d7": {
-   "suggest": "unsure",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
@@ -706,8 +706,8 @@
    "at": "2026-11-25"
   },
   "793c19f5e4275e71": {
-   "suggest": "unsure",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
@@ -718,20 +718,20 @@
    "at": "2026-11-25"
   },
   "20b7cd690f55cb25": {
-   "suggest": "unsure",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "6867f5644dbc657b": {
-   "suggest": "unsure",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "b98bef3314ab1ea5": {
-   "suggest": "unsure",
-   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
@@ -790,22 +790,22 @@
    "at": "2026-11-24"
   },
   "39c3c0580b17af36": {
-   "suggest": "unsure",
-   "why": "The assets table scrolls sideways with a fade at its edge, so at 1440 px the last column starts under the fade. Intended if wide tables scroll like tab bars; review-notes.md says so only for tab bars.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a wide table scrolls sideways under its edge shade.",
    "cause": "wide-table",
-   "at": "2026-11-24"
+   "at": "2026-11-25"
   },
   "05bc2189faeb34c5": {
-   "suggest": "unsure",
-   "why": "The assets table scrolls sideways with a fade at its edge, so at 1440 px the last column starts under the fade. Intended if wide tables scroll like tab bars; review-notes.md says so only for tab bars.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a wide table scrolls sideways under its edge shade.",
    "cause": "wide-table",
-   "at": "2026-11-24"
+   "at": "2026-11-25"
   },
   "be3d98cdbcd5431c": {
-   "suggest": "unsure",
-   "why": "The assets table scrolls sideways with a fade at its edge, so at 1440 px the last column starts under the fade. Intended if wide tables scroll like tab bars; review-notes.md says so only for tab bars.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a wide table scrolls sideways under its edge shade.",
    "cause": "wide-table",
-   "at": "2026-11-24"
+   "at": "2026-11-25"
   },
   "b7cb7541e9c78666": {
    "suggest": "unsure",
@@ -1488,16 +1488,16 @@
    "at": "2026-11-24"
   },
   "0142d37af739e1de": {
-   "suggest": "unsure",
-   "why": "'Von einer Analystin oder einem Analysten', 'als Lesende oder Verantwortliche': the glossary rules role names, these name people. Your style decision.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: paired forms for people are the house style.",
    "cause": "gender-style",
-   "at": "2026-11-24"
+   "at": "2026-11-25"
   },
   "f45393d6d4aeba89": {
-   "suggest": "unsure",
-   "why": "'Von einer Analystin oder einem Analysten', 'als Lesende oder Verantwortliche': the glossary rules role names, these name people. Your style decision.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: paired forms for people are the house style.",
    "cause": "gender-style",
-   "at": "2026-11-24"
+   "at": "2026-11-25"
   },
   "1961d104c4e49526": {
    "suggest": "wrong",
@@ -2067,14 +2067,14 @@
    "at": "2026-11-25"
   },
   "3440b8ada358d3c4": {
-   "suggest": "unsure",
-   "why": "The assets table scrolls sideways under its edge shade.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a wide table scrolls sideways under its edge shade.",
    "cause": "wide-table",
    "at": "2026-11-25"
   },
   "e6b7d95c690b793d": {
-   "suggest": "unsure",
-   "why": "The assets table scrolls sideways under its edge shade.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a wide table scrolls sideways under its edge shade.",
    "cause": "wide-table",
    "at": "2026-11-25"
   },
@@ -2085,14 +2085,14 @@
    "at": "2026-11-25"
   },
   "d48ea411f81ff2ca": {
-   "suggest": "unsure",
-   "why": "An English run: its title is the report's own.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "6f4400a9bf855adc": {
-   "suggest": "unsure",
-   "why": "The preview shows the English report's own contents.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a run keeps the title of the language it was generated in.",
    "cause": "report-run-language",
    "at": "2026-11-25"
   },
@@ -2115,8 +2115,8 @@
    "at": "2026-11-25"
   },
   "4c28e01d05637d43": {
-   "suggest": "unsure",
-   "why": "The cores table scrolls sideways under its edge shade (seen: the State column at the edge).",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: a wide table scrolls sideways under its edge shade.",
    "cause": "wide-table",
    "at": "2026-11-25"
   },
@@ -2361,8 +2361,8 @@
    "at": "2026-11-25"
   },
   "1d4121a54dfeec71": {
-   "suggest": "unsure",
-   "why": "Paired forms for a person (not a role name); your style call.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: paired forms for people are the house style.",
    "cause": "gender-style",
    "at": "2026-11-25"
   },
@@ -2469,8 +2469,8 @@
    "at": "2026-11-25"
   },
   "0ed192e766e3eb91": {
-   "suggest": "unsure",
-   "why": "Paired forms for a person; your style call.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: paired forms for people are the house style.",
    "cause": "gender-style",
    "at": "2026-11-25"
   },
@@ -2559,8 +2559,8 @@
    "at": "2026-11-25"
   },
   "8e8c5f28f4a9e9d8": {
-   "suggest": "unsure",
-   "why": "Paired forms for a person; your style call.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: paired forms for people are the house style.",
    "cause": "gender-style",
    "at": "2026-11-25"
   },
@@ -2715,8 +2715,8 @@
    "at": "2026-11-25"
   },
   "b8499955944ca40d": {
-   "suggest": "unsure",
-   "why": "Paired forms for a person; your style call.",
+   "suggest": "fine",
+   "why": "Decided on 2026-11-25: paired forms for people are the house style.",
    "cause": "gender-style",
    "at": "2026-11-25"
   },

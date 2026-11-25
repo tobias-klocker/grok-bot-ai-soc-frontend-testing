@@ -51,3 +51,23 @@ wrong page /p/$partnerId/channels/$destinationId "Enviar prueba"   # "T" is the 
 wrong page /o/$orgId/w/$workspaceId/notifications "PRODUCTION"   # workspace name: sample data
 wrong page /o/$orgId/w/$workspaceId/exports "PRODUCTION"
 wrong page /o/$orgId/w/$workspaceId/access "PRODUCTION"
+
+# Decided on 2026-11-25: English report runs, wide tables, paired forms for people
+fine page /o/$orgId/assets "Last seen"   # a wide table scrolls sideways under its edge shade
+fine page /o/$orgId/assets "Not r"   # a wide table scrolls sideways under its edge shade
+fine page /o/$orgId/reports "Executive summary"   # a run keeps the title of the language it was generated in
+fine page /o/$orgId/reports "License usage"   # a run keeps the title of the language it was generated in
+fine page /o/$orgId/reports/runs/$runId "Executive summary"   # a run keeps the title of the language it was generated in
+fine page /o/$orgId/reports/runs/$runId "Summary"   # a run keeps the title of the language it was generated in
+fine page /o/$orgId/w/$workspaceId/assets "Last recorded by the AI SOC"   # a wide table scrolls sideways under its edge shade
+fine page /o/$orgId/w/$workspaceId/assets "Last recorded by the AI S"   # a wide table scrolls sideways under its edge shade
+fine page /o/$orgId/w/$workspaceId/reports "Data source health"   # a run keeps the title of the language it was generated in
+fine page /o/$orgId/w/$workspaceId/reports/runs/$runId "Data source health"   # a run keeps the title of the language it was generated in
+fine page /p/$partnerId/reports "Customer portfolio"   # a run keeps the title of the language it was generated in
+fine page /p/$partnerId/reports "Executive summary"   # a run keeps the title of the language it was generated in
+fine page /operator/cores "1 source pending · 2 queries withheld"   # a wide table scrolls sideways under its edge shade
+fine text features/collection onboarding.lede de "Eine Administratorin oder ein Administrator des Microsoft-Mandanten führt dies einmal aus. Es legt einen Event Hub mit eigener Consumergruppe an, sendet die Entra-ID- und Aktivitätsprotokolle dorthin und registriert eine App mit genau den Leseberechtigungen, die der Collector braucht."   # paired forms for people are the house style
+fine text features/soc mitre.matrix.note de "Jedes Quadrat ist eine Technik der Taktik darüber. Eine Technik steht unter jeder Taktik, zu der sie gehört, sodass eine Kennzeichnung mehrere Spalten füllen kann; welche Taktik ein Schritt gespielt hat, ist die Lesart der Analystin oder des Analysten. Gefüllte Quadrate sind danach gefärbt, wie viele verschiedene Datensätze der AI SOC für die Technik zitiert, nicht nach Schweregrad; in einer Spalte steht die am meisten zitierte Technik zuerst."   # paired forms for people are the house style
+fine text shared/i18n/errors cases.invalid_named de "Nennen Sie jedes Mitglied höchstens einmal, als Lesende oder Verantwortliche, und höchstens {{max}} Personen."   # paired forms for people are the house style
+fine text shared/i18n/errors cases.locks_out de "Behalten Sie sich als Verantwortliche oder Verantwortlicher, sonst könnten Sie diesen Fall nicht mehr ändern."   # paired forms for people are the house style
+fine text features/workspaces empty.ask de "Bitten Sie eine Administratorin oder einen Administrator um Zugriff auf einen Workspace."   # paired forms for people are the house style
