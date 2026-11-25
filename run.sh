@@ -6,11 +6,15 @@
 #   BASE=my-branch .grok-bot/run.sh     test a branch other than the one checked out
 #   .grok-bot/run.sh visual             screenshot every page, have Grok review them (README.md)
 #   .grok-bot/run.sh visual-review      review the last visual run's screenshots again, no new sweep
+#   .grok-bot/run.sh report             the last visual run's report, redrawn and served with working verdict buttons
 #
 # Grok runs in a container that sees only a separate clone's web app, the API
 # contract and the few files the web build reads: no git history, no Go
 # backend, no deploy configuration, nothing else of this Mac. Its changes
 # become a commit on a bot/ branch of that clone, to review and take over.
+# `sh run.sh` on macOS is bash in POSIX mode, which this script is not written for.
+[ -n "${BASH_VERSION:-}" ] || exec bash "$0" "$@"
+case ":${SHELLOPTS:-}:" in *:posix:*) exec bash "$0" "$@" ;; esac
 set -euo pipefail
 
 KIT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -19,7 +23,8 @@ CLONE="$REPO/.worktrees/grok-tests"
 BASE="${BASE:-HEAD}"
 MODE=tests
 if [ "${1:-}" = visual ]; then MODE=visual; TASK=""
-elif [ "${1:-}" = visual-review ]; then MODE=review; TASK=""; else
+elif [ "${1:-}" = visual-review ]; then MODE=review; TASK=""
+elif [ "${1:-}" = report ]; then MODE=report; TASK=""; else
   TASK="${1:-$KIT/tasks/frontend-tests.md}"
   case "$TASK" in /*) ;; *) [ -f "$TASK" ] || TASK="$KIT/$TASK" ;; esac
 fi
@@ -34,14 +39,18 @@ die() { printf '\033[31m✗ %s\033[0m\n' "$*" >&2; exit 1; }
 
 # One run at a time: runs share the clone and the review cache. A lock whose
 # process is gone was left by a run that was stopped, and is taken over.
+# The report's server changes neither, and may stay open during a run.
 RUN_LOCK="$KIT/.lock"
-if ! mkdir "$RUN_LOCK" 2>/dev/null; then
+if [ "$MODE" = report ]; then :
+elif ! mkdir "$RUN_LOCK" 2>/dev/null; then
   other="$(cat "$RUN_LOCK/pid" 2>/dev/null || true)"
   if [ -n "$other" ] && kill -0 "$other" 2>/dev/null; then die "Another run is going (process $other); try again when it is done."; fi
   rm -rf "$RUN_LOCK" && mkdir "$RUN_LOCK"
 fi
-echo $$ > "$RUN_LOCK/pid"
-trap 'rm -rf "$RUN_LOCK"' EXIT
+if [ "$MODE" != report ]; then
+  echo $$ > "$RUN_LOCK/pid"
+  trap 'rm -rf "$RUN_LOCK"' EXIT
+fi
 
 command -v docker >/dev/null || die "Docker is not installed."
 docker info >/dev/null 2>&1 || die "Docker is not running."
@@ -52,15 +61,15 @@ XAI_API_KEY="${XAI_API_KEY:-}"
 if [ -z "$XAI_API_KEY" ] && command -v security >/dev/null; then
   XAI_API_KEY="$(security find-generic-password -s grok-bot-xai -w 2>/dev/null || true)"
 fi
-if [ -z "$XAI_API_KEY" ] && ! { [ "$MODE" != tests ] && [ "${AI:-1}" = 0 ]; }; then
+if [ -z "$XAI_API_KEY" ] && [ "$MODE" != report ] && ! { [ "$MODE" != tests ] && [ "${AI:-1}" = 0 ]; }; then
   die "No xAI key: set XAI_API_KEY or store it in the Keychain (README.md)."
 fi
 export XAI_API_KEY
 
 hardening=(--init --cap-drop ALL --security-opt no-new-privileges --pids-limit 2048)
 
-# Review only: the last sweep's screenshots, as the clone holds them now.
-if [ "$MODE" = review ]; then
+# Review or report only: the last sweep's screenshots, as the clone holds them now.
+if [ "$MODE" = review ] || [ "$MODE" = report ]; then
   [ -f "$CLONE/web/package.json" ] || die "Nothing to review yet: run .grok-bot/run.sh visual first."
   IMAGE="grok-bot-web:pw$(sed -nE 's/.*"@playwright\/test": *"([^"]+)".*/\1/p' "$CLONE/web/package.json")"
   docker image inspect "$IMAGE" >/dev/null 2>&1 || die "The image $IMAGE is gone: run .grok-bot/run.sh visual first."
@@ -142,8 +151,9 @@ fi
 
 # 4. Grok.
 say "Grok is working (container grok-bot-$STAMP); every step goes to .grok-bot/runs/$STAMP.jsonl"
-# xAI's coding model; GROK_MODEL= (empty) leaves the choice to the CLI.
-GROK_MODEL="${GROK_MODEL-grok-build-0.1}"
+# grok-4.3 (grok-build-0.1, used before, left the API on 2026-11-19);
+# GROK_MODEL= (empty) leaves the choice to the CLI.
+GROK_MODEL="${GROK_MODEL-grok-4.3}"
 model_args=()
 [ -n "$GROK_MODEL" ] && model_args=(-m "$GROK_MODEL")
 set +e

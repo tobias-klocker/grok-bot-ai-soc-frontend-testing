@@ -3,22 +3,38 @@
 // the texts, within a budget. Pages and texts that did not change since
 // their last review keep that review and cost nothing.
 //
-// Reads /out/sweep, /out/shots, /src (the app's texts) and /state; writes
-// /out/report.html, /out/findings.json and /state/visual-state.json.
+// Reads /out/sweep, /out/shots, /src (the app's texts), /state, /verdicts.txt
+// and /notes.md; writes /out/report.html, /out/findings.json and
+// /state/visual-state.json.
+//
+// REDRAW=1 (or AI=0) asks Grok nothing: earlier reviews of unchanged
+// screenshots and texts are shown, the rest is marked not reviewed. That is
+// how the report picks up new verdicts and Claude's triage, for free.
 import { createHash } from "node:crypto";
-import { closeSync, existsSync, openSync, readdirSync, readFileSync, readSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
+
+import { mergeVariants } from "./group.mjs";
+import { renderReport } from "./report.mjs";
+import { keyOf, norm, promptBlock, readTriage, readVerdicts, triageOf, verdictOf } from "./verdicts.mjs";
 
 const OUT = process.env.REVIEW_OUT ?? "/out";
 const SRC = process.env.REVIEW_SRC ?? "/src";
 const STATE = process.env.REVIEW_STATE ?? "/state/visual-state.json";
-const AI = process.env.AI !== "0" && Boolean(process.env.XAI_API_KEY);
-// Texts: the coding model is good enough and cheaper. Screenshots: the
-// strongest Grok model for images (Roboflow vision evals, Nov 2026).
-const TEXT_MODEL = process.env.TEXT_MODEL || "grok-build-0.1";
+const TRIAGE = process.env.REVIEW_TRIAGE ?? "/state/triage.json";
+const REDRAW = process.env.REDRAW === "1";
+const AI = !REDRAW && process.env.AI !== "0" && Boolean(process.env.XAI_API_KEY);
+// Texts: a cheaper reasoning model (grok-build-0.1, used before, left the API
+// on 2026-11-19; grok-4.7 left every text review unanswered for 270 s on
+// 2026-11-23, though it reviews screenshots in seconds). Screenshots: the strongest Grok model for images (Roboflow
+// vision evals, Nov 2026).
+const TEXT_MODEL = process.env.TEXT_MODEL || "grok-4.3";
 const PAGE_MODEL = process.env.PAGE_MODEL || process.env.REVIEW_MODEL || "grok-4.7";
 const MAX_USD = Number(process.env.MAX_USD || 2);
-const FULL = process.env.FULL === "1";
+const BUDGET = AI ? MAX_USD : 0;
+// FULL=1 reviews everything again; FULL=texts only the translations, FULL=pages only the screenshots.
+const FULL_TEXTS = ["1", "texts"].includes(process.env.FULL);
+const FULL_PAGES = ["1", "pages"].includes(process.env.FULL);
 // USD per million tokens (input, cached input, output) below 200k tokens per
 // request, from docs.x.ai pricing; used when xAI does not state a request's cost.
 const PRICES = { "grok-build-0.1": [1, 0.2, 2], "grok-4.7": [2, 0.5, 6], "grok-4.6": [2, 0.5, 6], "grok-4.5": [2, 0.3, 6], "grok-4.3": [1.25, 0.2, 2.5] };
@@ -156,46 +172,38 @@ for (const [ns, t] of namespaces) {
 }
 
 // ---------------------------------------------------------------- Grok
-let api = "responses";
+// Chat Completions: proven for text and screenshots alike. Grok 4.7 left text
+// requests over the Responses API unanswered (2026-11-23) while answering the
+// same over Chat Completions in seconds.
+let api = "chat";
 let spent = 0;
 let reserved = 0;
 let calls = 0;
 let imageTokens = 2500; // a first guess; measured on the first page
 const notes = [];
 
-// accepted.txt: findings that are fine as they are. They are hidden from the
-// report and named to Grok so it does not raise them again.
-//   page <route> "<quoted text, or the finding's words>"   # why
-//   text <namespace> <key> <de|es>                          # why
-const ACCEPTED = process.env.REVIEW_ACCEPTED ?? "/accepted.txt";
-const accepted = { page: [], text: [] };
-if (existsSync(ACCEPTED))
-  for (const raw of readFileSync(ACCEPTED, "utf8").split("\n")) {
-    const line = raw.trim();
-    let m;
-    if (!line || line.startsWith("#")) continue;
-    if ((m = /^page\s+(\S+)\s+"((?:[^"\\]|\\.)*)"/.exec(line))) accepted.page.push({ route: m[1], text: m[2].replace(/\\(.)/g, "$1") });
-    else if ((m = /^text\s+(\S+)\s+(\S+)\s+(de|es)\b/.exec(line))) accepted.text.push({ ns: m[1], key: m[2], language: m[3] });
-    else notes.push(`accepted.txt: this line could not be read: ${line}`);
-  }
+// verdicts.txt (verdicts.mjs): fine and wrong hide findings and are named to
+// Grok; fix keeps a finding as known until it is gone.
+const verdicts = readVerdicts(process.env.REVIEW_VERDICTS ?? "/verdicts.txt", notes);
+const triage = readTriage(TRIAGE, notes);
 // review-notes.md: what the person wants Grok to know about the product.
 const NOTES = process.env.REVIEW_NOTES ?? "/notes.md";
 const houseNotes = existsSync(NOTES)
   ? readFileSync(NOTES, "utf8").split("\n").filter((l) => l.trim() && !l.trim().startsWith("#")).join("\n").trim()
   : "";
 const notesBlock = houseNotes ? `\nNotes from the product's owner (they decide what is intended):\n${houseNotes}\n` : "";
-const acceptedFor = (route) => accepted.page.filter((a) => a.route === route).map((a) => a.text);
-const keyOf = (f) => (f.quote && String(f.quote).trim() ? f.quote : f.problem);
-const pageLine = (route, f) => `page ${route} "${String(keyOf(f)).replace(/\s+/g, " ").replace(/["\\]/g, "\\$&")}"`;
-const textLine = (f) => `text ${f.ns} ${f.key} ${f.language}`;
-function pageAccepted(route, f) {
-  return accepted.page.some((a) => {
-    if (a.route !== route) return false;
-    const t = norm(a.text);
-    return t === norm(keyOf(f)) || (t.length >= 6 && (norm(f.quote).includes(t) || norm(f.problem).includes(t)));
-  });
-}
-const textAccepted = (f) => accepted.text.some((a) => a.ns === f.ns && a.key === f.key && a.language === f.language);
+
+// What Grok could not review this run, and models xAI answered "does not exist"
+// for: those get no further requests, and the report and the log say so loudly.
+const failures = [];
+const goneModels = new Set();
+const modelGone = (error) => /does not exist|not have access|model[_ ]not[_ ]found/i.test(error);
+
+// An answer within 270 s, else the request is given up (Node's own limit is
+// 300 s) and not repeated: a slow model would only be slow again, and xAI may
+// bill an answer the connection no longer waits for.
+const ANSWER_WITHIN_MS = Number(process.env.ANSWER_WITHIN_MS) || 270_000;
+const timedOut = (e) => /timeout|aborted/i.test(`${e?.name} ${e?.message} ${e?.cause?.code ?? ""}`);
 
 async function send(model, text, images, maxOut) {
   const responses = api === "responses";
@@ -206,6 +214,7 @@ async function send(model, text, images, maxOut) {
     ? { model, input: [{ role: "user", content }], max_output_tokens: maxOut, store: false }
     : { model, messages: [{ role: "user", content }], max_tokens: maxOut };
   const res = await fetch(`https://api.x.ai/v1/${responses ? "responses" : "chat/completions"}`, {
+    signal: AbortSignal.timeout(ANSWER_WITHIN_MS),
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.XAI_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -213,7 +222,7 @@ async function send(model, text, images, maxOut) {
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     const error = `${res.status} ${JSON.stringify(data).slice(0, 400)}`;
-    if (responses && calls === 0 && [400, 404, 405, 422].includes(res.status)) {
+    if (responses && calls === 0 && [400, 404, 405, 422].includes(res.status) && !modelGone(error)) {
       notes.push(`The Responses API answered ${error}; using Chat Completions.`);
       api = "chat";
       return send(model, text, images, maxOut);
@@ -237,9 +246,20 @@ async function send(model, text, images, maxOut) {
   return { ok: true, answer, input, cost };
 }
 
+// A model that left three requests unanswered this run gets no more: the rest
+// would only wait out the limit too, one after another, and may be billed.
+const silences = new Map();
 async function ask(model, text, images = [], maxOut = 4000) {
+  if (goneModels.has(model)) return { ok: false, retry: false, error: `xAI does not serve the model ${model}` };
+  if ((silences.get(model) ?? 0) >= 3)
+    return { ok: false, retry: false, error: `not sent: ${model} left 3 requests unanswered for ${ANSWER_WITHIN_MS / 1000} s this run` };
   for (let attempt = 0; ; attempt++) {
-    const r = await send(model, text, images, maxOut).catch((e) => ({ ok: false, retry: true, error: String(e) }));
+    const r = await send(model, text, images, maxOut).catch((e) => {
+      if (!timedOut(e)) return { ok: false, retry: true, error: String(e) };
+      silences.set(model, (silences.get(model) ?? 0) + 1);
+      return { ok: false, retry: false, error: `no answer within ${ANSWER_WITHIN_MS / 1000} s (${model}); not repeated` };
+    });
+    if (!r.ok && modelGone(r.error)) goneModels.add(model);
     if (r.ok || !r.retry || attempt >= 3) return r;
     await new Promise((done) => setTimeout(done, 3000 * 2 ** attempt));
   }
@@ -264,7 +284,7 @@ async function within(jobs, estimate, run) {
     while (next < jobs.length) {
       const job = jobs[next++];
       const cost = estimate(job);
-      if (spent + reserved + cost > MAX_USD) {
+      if (spent + reserved + cost > BUDGET) {
         skipped.push(job);
         continue;
       }
@@ -288,16 +308,36 @@ const glossary = `Rules for the German and Spanish texts of this product:
 - Internal names (SOC core, queue subjects, raw slugs, IDs) never appear in texts.
 - {{placeholders}} stay exactly as in English; keys ending _one/_other are plural forms.`;
 
+// A group's texts in parts of about 12,000 characters (en, de and es together):
+// a whole group in one request can take a large model longer than a request may last.
+function partsOf(t, size = 12_000) {
+  const parts = [];
+  let part = { en: {}, de: {}, es: {} };
+  let length = 0;
+  for (const key of Object.keys(t.en)) {
+    const add = JSON.stringify([key, t.en[key], t.de[key], t.es[key]]).length;
+    if (length + add > size && length) {
+      parts.push(part);
+      part = { en: {}, de: {}, es: {} };
+      length = 0;
+    }
+    for (const l of ["en", "de", "es"]) if (t[l][key] !== undefined) part[l][key] = t[l][key];
+    length += add;
+  }
+  if (length) parts.push(part);
+  return parts;
+}
+
 const textPrompt = (ns, t) => `You review the German (de) and Spanish (es) user interface texts of a B2B security product (an AI-assisted SOC) against the English (en) source.
 
 ${glossary}
 ${notesBlock}
-Report real problems only: wrong or missing meaning, English left untranslated, informal address, glossary violations, grammar or spelling errors, wrong plural forms, terms used inconsistently, and wording a native speaker would find clearly unnatural. Do not report matters of taste. At most 40 findings, most important first.
+Report real problems only: wrong or missing meaning, English left untranslated, informal address, glossary violations, grammar or spelling errors, wrong plural forms, terms used inconsistently, and wording a native speaker would find clearly unnatural. Do not report matters of taste. At most 15 findings, most important first.
 
 Answer with JSON only:
 {"findings":[{"key":"<key>","language":"de|es","severity":"high|medium|low","problem":"<what is wrong, in English>","suggestion":"<better text>"}]}
 
-Namespace: ${ns}
+Namespace: ${ns}${t.of > 1 ? ` (part ${t.part} of ${t.of}; the other parts are reviewed separately)` : ""}
 en: ${JSON.stringify(t.en)}
 de: ${JSON.stringify(t.de)}
 es: ${JSON.stringify(t.es)}`;
@@ -313,7 +353,7 @@ Report what a careful designer and tester would flag in THIS screenshot: overlap
 Also report text squeezed into a narrow column while the space beside it stays empty, and other wasted or unbalanced space that makes a layout look broken.
 
 Not defects, do not report: an empty state that says so in words (for example "no score"); hints under form fields; the bottom edge of the screenshot (it is cut there on purpose); a long line wrapping across the full available width; a label next to its value; legends, icons and design choices you merely find unusual. Report only what you would file as a bug with confidence. No findings is a good answer.
-${acceptedFor(p.route).length ? `\nAlready reviewed and fine as it is, do not report again:\n${acceptedFor(p.route).map((t) => `- "${t}"`).join("\n")}\n` : ""}
+${promptBlock(verdicts, p.route)}
 For every finding, "quote" is the exact text in the screenshot the finding is about, copied character for character. For a problem that involves no text (for example two boxes overlapping), quote the text nearest to it, so its place can be marked. Findings are checked against the page's real text; a quote that is not there is discarded.
 
 Answer with JSON only; an empty list if the screenshot looks fine:
@@ -337,7 +377,6 @@ function locate(quote, boxes) {
 }
 
 // Whether Grok's quote is text of that screenshot: true, false, or null when there is no quote to check.
-const norm = (x) => String(x ?? "").toLowerCase().replace(/[\s\u00ad]+/g, " ").replace(/^[\s"'„“”«»‚‘’]+|[\s"'„“”«»‚‘’.…]+$/g, "");
 function quoted(quote, texts) {
   const q = norm(quote);
   if (!q || !texts) return null;
@@ -352,35 +391,48 @@ function addPage(route, part) {
   page.findings.push(...part.findings);
   if (part.reused) page.reused = page.reused && page.reused < part.reused ? page.reused : part.reused;
   if (part.skipped) page.skipped = true;
-  if (!part.reused && !part.skipped) page.fresh = true;
+  if (part.stale) page.stale = true;
+  if (!part.reused && !part.skipped && !part.stale) page.fresh = true;
   aiPages.set(route, page);
 }
 const aiTexts = new Map(); // ns -> { findings, reused, skipped }
 
-if (AI) {
+// Without AI (REDRAW=1, AI=0) the budget is 0: only earlier reviews are shown.
+{
   // Texts first: cheap and complete.
   const textJobs = [];
   for (const [ns, t] of namespaces) {
     const h = hash(t.raw);
     const prev = state.texts[ns];
-    if (!FULL && prev?.hash === h) aiTexts.set(ns, { findings: prev.findings, reused: prev.at });
+    if (!FULL_TEXTS && prev?.hash === h) aiTexts.set(ns, { findings: prev.findings, reused: prev.at });
     else textJobs.push({ ns, t, h });
   }
-  const textEstimate = (j) => ((textPrompt(j.ns, j.t).length / 3) * priceOf(TEXT_MODEL).in + 4000 * priceOf(TEXT_MODEL).out) / 1e6;
+  const textEstimate = (j) => partsOf(j.t).reduce((sum, t) => sum + ((textPrompt(j.ns, t).length / 3) * priceOf(TEXT_MODEL).in + 1500 * priceOf(TEXT_MODEL).out) / 1e6, 0);
   console.log(`Texts: ${textJobs.length} namespaces to review, ${namespaces.size - textJobs.length} unchanged`);
   const textSkipped = await within(textJobs, textEstimate, async (j) => {
-    const r = await ask(TEXT_MODEL, textPrompt(j.ns, j.t), [], 6000);
-    if (!r.ok) {
-      notes.push(`Texts ${j.ns}: ${r.error}`);
-      return;
+    const parts = partsOf(j.t);
+    const findings = [];
+    let cost = 0;
+    for (const [i, t] of parts.entries()) {
+      const r = await ask(TEXT_MODEL, textPrompt(j.ns, { ...t, part: i + 1, of: parts.length }), [], 4000);
+      if (!r.ok) {
+        console.log(`  ${j.ns} part ${i + 1}/${parts.length}: FAILED — ${r.error.slice(0, 200)}`);
+        failures.push({ what: `texts ${j.ns}`, error: r.error });
+        const prev = state.texts[j.ns];
+        aiTexts.set(j.ns, { findings: (prev?.findings ?? []).map((f) => ({ ...f, stale: true })), stale: true });
+        return;
+      }
+      findings.push(...findingsOf(r.answer).map((f) => ({ ...f, source: "grok" })));
+      cost += r.cost;
+      if (parts.length > 1) console.log(`  ${j.ns} part ${i + 1}/${parts.length} ($${r.cost.toFixed(3)})`);
     }
-    const findings = findingsOf(r.answer).map((f) => ({ ...f, source: "grok" }));
     aiTexts.set(j.ns, { findings });
     state.texts[j.ns] = { hash: j.h, findings, at: new Date().toISOString() };
     saveState();
-    console.log(`  ${j.ns}: ${findings.length} findings ($${r.cost.toFixed(3)})`);
+    console.log(`  ${j.ns}: ${findings.length} findings ($${cost.toFixed(3)})`);
   });
   for (const j of textSkipped) aiTexts.set(j.ns, { findings: [], skipped: true });
+  if (!AI && textSkipped.length) notes.push(`${textSkipped.length} text groups changed since Grok last reviewed them and were not reviewed in this run (${REDRAW ? "a redraw" : "AI=0"}).`);
 
   // Then the pages: one screenshot per request, so findings cannot drift between images.
   const pageJobs = [];
@@ -392,7 +444,7 @@ if (AI) {
       const h = hash(Buffer.concat([Buffer.from(`review ${REVIEW_VERSION} ${PAGE_MODEL}`), image]));
       const id = `${p.route} ${v}`;
       const prev = state.pages[id];
-      if (!FULL && prev?.hash === h) {
+      if (!FULL_PAGES && prev?.hash === h) {
         unchanged++;
         addPage(p.route, { findings: prev.findings, reused: prev.at });
       } else if (reviewed(v)) pageJobs.push({ p, v, r, image, h, id });
@@ -404,7 +456,10 @@ if (AI) {
     const prompt = pagePrompt(j.p, j.v);
     const r = await ask(PAGE_MODEL, prompt, [`data:image/png;base64,${j.image.toString("base64")}`], 4000);
     if (!r.ok) {
-      notes.push(`${j.p.route} ${j.v}: ${r.error}`);
+      console.log(`  ${j.p.path} ${j.v}: FAILED — ${r.error.slice(0, 200)}`);
+      failures.push({ what: `${j.p.route} ${j.v}`, error: r.error });
+      const prev = state.pages[j.id];
+      addPage(j.p.route, { findings: (prev?.findings ?? []).map((f) => ({ ...f, stale: true })), stale: true });
       return;
     }
     if (!measured) {
@@ -424,14 +479,17 @@ if (AI) {
   const skipped = first ? await within([first], pageEstimate, runPage) : [];
   skipped.push(...(await within(rest, pageEstimate, runPage)));
   for (const j of skipped) addPage(j.p.route, { findings: [], skipped: true });
-  if (skipped.length) notes.push(`${skipped.length} screenshots were not reviewed: the budget of $${MAX_USD} was reached. Raise it with MAX_USD=…; the next run reviews them first.`);
+  if (skipped.length)
+    notes.push(
+      AI
+        ? `${skipped.length} screenshots were not reviewed: the budget of ${MAX_USD} was reached. Raise it with MAX_USD=…; the next run reviews them first.`
+        : `${skipped.length} screenshots are new or changed since Grok last reviewed them and were not reviewed in this run (${REDRAW ? "a redraw" : "AI=0"}); .grok-bot/run.sh visual-review reviews them.`,
+    );
 }
 
-// ---------------------------------------------------------------- report
+// ---------------------------------------------------------------- findings
 const order = { high: 0, medium: 1, low: 2 };
 const bySeverity = (a, b) => (order[a.severity] ?? 3) - (order[b.severity] ?? 3);
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-const badge = (s) => `<span class="sev ${esc(s)}">${esc(s)}</span>`;
 
 // Judges each Grok finding against its screenshot's real text, also those
 // reused from earlier runs, so a stricter rule costs no new review.
@@ -447,11 +505,22 @@ const wholeWords = (quote, texts) => {
   const words = new RegExp(`(?<![\\p{L}\\p{N}])${q}(?![\\p{L}\\p{N}])`, "u");
   return (texts ?? []).some((t) => words.test(norm(t)));
 };
+// A claim that text is cut off, about text at the edge of a row that scrolls
+// sideways (a tab bar, sweep.spec.ts): intended, as review-notes.md says.
+const cutClaim = /cut off|cut-off|truncat|clipped|partially (visible|hidden|shown)|cropped/i;
+function atScrollEdge(r, quote) {
+  const box = locate(quote, r?.boxes);
+  if (!box) return false;
+  const [x, y, w, h] = box;
+  return (r.scrollers ?? []).some(([sx, sy, sw, sh]) => y >= sy - 4 && y + h <= sy + sh + 4 && (x < sx + 24 || x + w > sx + sw - 24));
+}
 function judge(p, f) {
   if (f.source !== "grok") return f;
   const texts = textsOf(p.records[f.variant] ?? {});
   const onPage = texts ? quoted(f.quote, texts) : f.onPage;
   if (onPage === false) return { ...f, onPage, rejected: "the quoted text is not on the screenshot" };
+  if (onPage && cutClaim.test(f.problem) && atScrollEdge(p.records[f.variant], f.quote))
+    return { ...f, onPage: false, rejected: "it stands at the edge of a row that scrolls sideways (a tab bar): cut off there is intended" };
   const lang = String(f.variant).slice(0, 2);
   if (onPage && languageClaim.test(f.problem) && lang !== "en") {
     if (!wholeWords(f.quote, texts)) return { ...f, onPage: false, rejected: "the quote is only part of a word on the screenshot" };
@@ -461,26 +530,69 @@ function judge(p, f) {
   return { ...f, onPage };
 }
 
+// The text keys whose text in a language is this text: one anchor for the
+// same finding across languages (group.mjs). Plural forms count as one key.
+const byText = Object.fromEntries(LANGS.map((l) => [l, new Map()]));
+for (const [ns, t] of namespaces)
+  for (const l of LANGS)
+    for (const [key, text] of Object.entries(t[l])) {
+      const n = norm(text);
+      if (n) byText[l].set(n, [...(byText[l].get(n) ?? []), `${ns}#${key.replace(/_(zero|one|two|few|many|other)$/, "")}`]);
+    }
+const keysOf = (text, lang) => byText[lang]?.get(norm(text)) ?? [];
+
+// Where a Grok finding stands on its screenshot, found by the text it quotes.
+function withSpot(p, f) {
+  if (f.spots?.length || f.source !== "grok") return f;
+  const box = locate(f.quote, p.records[f.variant]?.boxes);
+  return box ? { ...f, spots: [{ variant: f.variant, box }] } : f;
+}
+
 // New since the previous run: findings that run's findings.json does not hold.
-// A page finding is known by its route, source and quote (or wording), a text
-// finding by its key and language; Grok's wording may change, its quote rarely.
+// A page finding is known by its route, source and quote (or wording), per
+// variant for Grok; a text finding by its key and language. A finding found
+// in several variants is new when none of them was found before.
 const PREVIOUS = process.env.REVIEW_PREVIOUS ?? "/previous.json";
 const previous = existsSync(PREVIOUS) ? JSON.parse(readFileSync(PREVIOUS, "utf8")) : null;
-const pageKey = (route, f) => [route, f.source, f.source === "grok" ? f.variant : "", norm(f.quote || f.problem)].join("|");
+const memberKey = (route, m) => [route, m.source, m.source === "grok" ? m.variant : "", norm(m.quote || m.problem)].join("|");
 const textKey = (f) => [f.ns, f.key, f.language, f.source].join("|");
 const known = new Set([
-  ...(previous?.pages ?? []).flatMap((p) => p.findings.map((f) => pageKey(p.route, f))),
+  ...(previous?.pages ?? []).flatMap((p) => p.findings.flatMap((f) => (f.members ?? [f]).map((m) => memberKey(p.route, { source: f.source, ...m })))),
   ...(previous?.texts ?? []).map(textKey),
 ]);
-const isNew = (key) => Boolean(previous) && !known.has(key);
+
+// Each finding's id (for Claude's triage) is its first member's; a text
+// finding's includes its text, so a triage lapses when the text changes.
+const withIds = (f, keys) => {
+  const ids = keys.map(hash);
+  return { ...f, id: ids[0], ids };
+};
+
+// Open findings, known ones (verdict fix) and the hidden (fine, wrong).
+function sortOut(list, fresh) {
+  const open = [];
+  const knownOnes = [];
+  const hidden = { fine: 0, wrong: 0 };
+  for (const f of list) {
+    const v = verdictOf(verdicts, f);
+    const t = triageOf(triage, f);
+    const add = t ? { triage: t } : {};
+    if (v?.verdict === "fix") knownOnes.push({ ...f, ...add, known: true, decided: v.why || undefined });
+    else if (v) hidden[v.verdict]++;
+    else open.push({ ...f, ...add, isNew: Boolean(previous) && fresh(f) });
+  }
+  return { open, known: knownOnes, hidden };
+}
 
 const pageRows = [...pages.values()].map((p) => {
   const ai = aiPages.get(p.route);
   const judged = (ai?.findings ?? []).map((f) => judge(p, f));
-  const all = [...(auto.get(p.route) ?? []), ...judged.filter((f) => f.onPage !== false)];
-  const findings = all.filter((f) => !pageAccepted(p.route, f)).sort(bySeverity);
   const rejected = judged.filter((f) => f.onPage === false);
-  return { p, ai, findings: findings.map((f) => ({ ...f, isNew: isNew(pageKey(p.route, f)) })), rejected, accepted: all.length - findings.length };
+  const kept = [...(auto.get(p.route) ?? []), ...judged.filter((f) => f.onPage !== false).map((f) => withSpot(p, f))];
+  const merged = mergeVariants(p.route, kept, keysOf)
+    .map((f) => withIds(f, f.members.map((m) => memberKey(p.route, m))))
+    .sort(bySeverity);
+  return { p, ai, rejected, ...sortOut(merged, (f) => !f.members.some((m) => known.has(memberKey(p.route, m)))) };
 });
 const rejectedCount = pageRows.reduce((n, r) => n + r.rejected.length, 0);
 if (rejectedCount) notes.push(`${rejectedCount} of Grok's screenshot findings were rejected against the page's real text (each says why). They are listed, collapsed, under their page.`);
@@ -492,181 +604,98 @@ const realText = (ns, f) => {
   if (!ok) droppedTexts++;
   return ok;
 };
-const textRows = [...namespaces.keys()].flatMap((ns) =>
-  [...(textChecks.get(ns) ?? []), ...(aiTexts.get(ns)?.findings ?? []).filter((f) => realText(ns, f))].map((f) => ({ ns, ...f, current: namespaces.get(ns)?.[f.language]?.[f.key] })),
-).filter((f) => !textAccepted(f)).map((f) => ({ ...f, isNew: isNew(textKey(f)) })).sort(bySeverity);
-if (accepted.page.length + accepted.text.length) notes.push(`${accepted.page.length + accepted.text.length} lines in accepted.txt; findings matching them are hidden.`);
+const texts = sortOut(
+  [...namespaces.keys()]
+    .flatMap((ns) =>
+      [...(textChecks.get(ns) ?? []), ...(aiTexts.get(ns)?.findings ?? []).filter((f) => realText(ns, f))].map((f) => ({ ns, ...f, current: namespaces.get(ns)?.[f.language]?.[f.key] })),
+    )
+    .sort(bySeverity)
+    // Grok may name one key twice; a text is decided once.
+    .filter((f, i, all) => all.findIndex((o) => textKey(o) === textKey(f)) === i)
+    .map((f) => withIds(f, [`${textKey(f)}|${f.current}`])),
+  (f) => !known.has(textKey(f)),
+);
 if (droppedTexts) notes.push(`${droppedTexts} of Grok's text findings were dropped: they name a key that does not exist in that language, or suggest the current text unchanged.`);
+
+// Known defects no longer found: fixed, most likely. Only where this run looked.
+const looked = (v) => (v.kind === "text" ? namespaces.has(v.ns) : pages.has(v.route));
+const gone = verdicts.filter((v) => v.verdict === "fix" && !v.hits && looked(v)).map(({ hits, lapsed, ...v }) => v);
+const unused = verdicts.filter((v) => v.verdict !== "fix" && !v.hits && !v.lapsed && looked(v)).length;
+const lapsed = verdicts.filter((v) => v.lapsed && !v.hits).length;
+const hiddenCount = (k) => pageRows.reduce((n, r) => n + r.hidden[k], 0) + texts.hidden[k];
+if (verdicts.length)
+  notes.push(`verdicts.txt: ${verdicts.length} lines; hidden this run: ${hiddenCount("fine")} fine, ${hiddenCount("wrong")} wrong.${unused ? ` ${unused} fine/wrong lines matched nothing this run (the finding is gone, or its screenshot was not reviewed).` : ""}`);
+if (lapsed) notes.push(`${lapsed} text verdicts no longer apply: the text changed since they were decided, so it is shown for a decision again.`);
+
+const failedTexts = failures.filter((f) => f.what.startsWith("texts ")).length;
+const failedShots = failures.length - failedTexts;
+const failureSummary = [failedTexts && `${failedTexts} translation group${failedTexts === 1 ? "" : "s"}`, failedShots && `${failedShots} screenshot${failedShots === 1 ? "" : "s"}`].filter(Boolean).join(" and ");
 const count = (list) => Object.fromEntries(["high", "medium", "low"].map((s) => [s, list.filter((f) => f.severity === s).length]));
-const pageCount = count(pageRows.flatMap((r) => r.findings));
-const textCount = count(textRows);
-const newPages = pageRows.reduce((n, r) => n + r.findings.filter((f) => f.isNew).length, 0);
-const newTexts = textRows.filter((f) => f.isNew).length;
+const pageCount = count(pageRows.flatMap((r) => r.open));
+const textCount = count(texts.open);
+const newPages = pageRows.reduce((n, r) => n + r.open.filter((f) => f.isNew).length, 0);
+const newTexts = texts.open.filter((f) => f.isNew).length;
 const sinceName = previous?.stamp ?? process.env.PREVIOUS_NAME;
 const since = sinceName ? `the run of ${sinceName}` : "the previous run";
 
-writeFileSync(join(OUT, "findings.json"), JSON.stringify({ stamp: process.env.STAMP, pages: pageRows.map((r) => ({ route: r.p.route, path: r.p.path, findings: r.findings })), texts: textRows, spent, notes }, null, 1));
+// A redraw keeps what the run itself recorded: its stamp, commit and cost.
+const before = REDRAW && existsSync(join(OUT, "findings.json")) ? JSON.parse(readFileSync(join(OUT, "findings.json"), "utf8")) : null;
+if (before) spent = before.spent ?? 0;
+const stamp = process.env.STAMP || before?.stamp || "";
+const commit = process.env.COMMIT || before?.commit || "";
 
-// A screenshot's size, from its PNG header.
-const sizes = new Map();
-function sizeOf(shot) {
-  if (!sizes.has(shot)) {
-    const header = Buffer.alloc(24);
-    const fd = openSync(join(OUT, shot), "r");
-    readSync(fd, header, 0, 24, 0);
-    closeSync(fd);
-    sizes.set(shot, [header.readUInt32BE(16), header.readUInt32BE(20)]);
-  }
-  return sizes.get(shot);
-}
+writeFileSync(
+  join(OUT, "findings.json"),
+  JSON.stringify(
+    {
+      stamp,
+      commit,
+      pages: pageRows.map((r) => ({ route: r.p.route, path: r.p.path, findings: [...r.open, ...r.known] })),
+      texts: [...texts.open, ...texts.known],
+      gone,
+      spent,
+      notes,
+    },
+    null,
+    1,
+  ),
+);
 
-// Where a finding is: a cut-out of its screenshot with the spot outlined; a
-// click shows the whole screenshot with the same mark (the viewer below).
-function spotOf(p, f) {
-  if (f.spots?.length) return f.spots[0];
-  const variant = String(f.variant ?? "").split(",")[0].trim();
-  const r = p.records[variant];
-  const box = locate(f.quote, r?.boxes);
-  return box ? { variant, box } : null;
-}
-function spot(p, f) {
-  const at = spotOf(p, f);
-  const r = at && p.records[at.variant];
-  if (!r?.shot) return "";
-  const [iw, ih] = sizeOf(r.shot);
-  const [x, y, w, h] = at.box;
-  const pad = 6;
-  const s = Math.min(1, 480 / Math.max(w + 2 * pad, 1), 200 / Math.max(h + 2 * pad, 1));
-  const W = Math.min(520, Math.round(iw * s));
-  const H = Math.min(240, Math.round(ih * s));
-  const left = Math.round(Math.min(0, Math.max(W - iw * s, W / 2 - (x + w / 2) * s)));
-  const top = Math.round(Math.min(0, Math.max(H - ih * s, H / 2 - (y + h / 2) * s)));
-  const mark = (unit, l, t, mw, mh) => `<span class="mark" style="left:${l}${unit};top:${t}${unit};width:${mw}${unit};height:${mh}${unit}"></span>`;
-  const pct = (v, of) => ((v / of) * 100).toFixed(2);
-  return `<div class="where">
-    <a class="cut" href="${esc(r.shot)}" data-view="${esc(r.shot)}" data-size="${iw},${ih}" data-mark="${x - pad},${y - pad},${w + 2 * pad},${h + 2 * pad}" title="Whole screenshot (${esc(at.variant)})" style="width:${W}px;height:${H}px"><img loading="lazy" src="${esc(r.shot)}" alt="" style="width:${Math.round(iw * s)}px;left:${left}px;top:${top}px">${mark("px", Math.round(left + (x - pad) * s), Math.round(top + (y - pad) * s), Math.round((w + 2 * pad) * s), Math.round((h + 2 * pad) * s))}</a>
-  </div>`;
-}
+writeFileSync(
+  join(OUT, "report.html"),
+  renderReport({
+    out: OUT,
+    stamp,
+    commit,
+    ai: AI,
+    redraw: REDRAW,
+    models: { text: TEXT_MODEL, page: PAGE_MODEL },
+    spent,
+    maxUsd: MAX_USD,
+    pageTotal: pages.size,
+    variantTotal: sweeps.length,
+    reviewed,
+    failures,
+    failureSummary,
+    notes,
+    pageRows,
+    texts,
+    notReached,
+    since: previous ? since : null,
+    newPages,
+    newTexts,
+    pageCount,
+    textCount,
+    causes: triage.causes,
+    gone,
+  }),
+);
 
-const card = ({ p, ai, findings, rejected, accepted: hidden }) => {
-  const shots = Object.entries(p.records).filter(([, r]) => r.shot).sort(([a], [b]) => (reviewed(b) - reviewed(a)));
-  const status = !AI ? "" : ai?.skipped ? `<span class="warn">partly not reviewed by Grok (budget)</span>` : ai?.fresh ? `<span class="muted">reviewed by Grok</span>` : ai?.reused ? `<span class="muted">review from ${esc(ai.reused.slice(0, 10))}, unchanged</span>` : "";
-  return `<section class="card" id="${esc(p.route)}">
-  <h3><code>${esc(p.path ?? p.route)}</code> ${status}</h3>
-  ${findings.length ? `<ul>${findings.map((f) => `<li>${f.isNew ? `<span class="sev new">new</span> ` : ""}${badge(f.severity)} <span class="who">${f.source === "grok" ? "Grok" : "check"}</span> ${esc(f.problem)}${f.quote && f.source === "grok" ? ` <q>${esc(f.quote)}</q>` : ""}${f.where ? ` <span class="muted">— ${esc(f.where)}</span>` : ""} <span class="muted">[${esc(f.variant)}]</span>${f.source === "grok" && f.onPage === null ? ` <span class="muted">(no text to check)</span>` : ""} <button class="ok" data-line="${esc(pageLine(p.route, f))}">Fine as is</button>${spot(p, f)}</li>`).join("")}</ul>` : `<p class="muted">No findings.</p>`}
-  ${hidden ? `<p class="muted">${hidden} finding${hidden === 1 ? "" : "s"} hidden by accepted.txt.</p>` : ""}
-  ${rejected.length ? `<details><summary class="muted">${rejected.length} rejected Grok claim${rejected.length === 1 ? "" : "s"}</summary><ul>${rejected.map((f) => `<li class="muted">${esc(f.problem)} <q>${esc(f.quote)}</q> [${esc(f.variant)}] — rejected: ${esc(f.rejected ?? "the quoted text is not on the screenshot")}</li>`).join("")}</ul></details>` : ""}
-  <div class="shots">${shots.map(([v, r]) => `<a href="${esc(r.shot)}" data-view="${esc(r.shot)}" data-size="${sizeOf(r.shot).join(",")}" title="${esc(v)}"><img loading="lazy" src="${esc(r.shot)}" alt="${esc(v)}"><span>${esc(v)}</span></a>`).join("")}</div>
-</section>`;
-};
-
-const withFindings = pageRows.filter((r) => r.findings.length).sort((a, b) => bySeverity(a.findings[0], b.findings[0]));
-const clean = pageRows.filter((r) => !r.findings.length);
-const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Visual review ${esc(process.env.STAMP ?? "")}</title>
-<style>
-:root{--bg:#f6f7f9;--card:#fff;--fg:#1d2330;--muted:#667085;--line:#e3e6eb;--high:#c4320a;--medium:#b54708;--low:#475467;--warn:#b54708}
-@media (prefers-color-scheme:dark){:root{--bg:#0f1218;--card:#171b23;--fg:#e6e8ec;--muted:#98a2b3;--line:#2a303b;--high:#f97066;--medium:#fdb022;--low:#98a2b3;--warn:#fdb022}}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
-main{max-width:1200px;margin:0 auto;padding:24px 16px}
-h1{font-size:24px;margin:0 0 4px}h2{margin:32px 0 12px;font-size:19px}h3{font-size:15px;margin:0 0 8px;display:flex;gap:12px;flex-wrap:wrap;align-items:baseline}
-.muted{color:var(--muted)}.warn{color:var(--warn)}.who{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 4px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
-.card ul{margin:0 0 12px;padding-left:18px}.card li{margin:4px 0}
-.sev{display:inline-block;min-width:56px;text-align:center;font-size:12px;font-weight:600;border-radius:4px;padding:0 6px;color:#fff;background:var(--low)}
-.sev.high{background:var(--high)}.sev.medium{background:var(--medium)}.sev.new{background:#2563eb;min-width:0}
-.shots{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}.shots a{flex:none;text-decoration:none;color:var(--muted);font-size:12px;display:flex;flex-direction:column;gap:4px}
-.shots img{height:220px;border:1px solid var(--line);border-radius:6px;object-fit:cover;object-position:top}
-.where{margin:6px 0 14px}.cut{display:block;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:#fff}
-.cut img{position:absolute;max-width:none}.whole{position:relative}.whole img{display:block;width:100%;border:1px solid var(--line);border-radius:6px}
-.mark{position:absolute;border:3px solid #e11d48;border-radius:4px;box-shadow:0 0 0 2px #fff,0 0 0 9999px rgba(0,0,0,.18);pointer-events:none}
-.where details{margin:4px 0 0}
-.stats{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
-td,th{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}th{color:var(--muted);font-weight:600}
-.table{overflow-x:auto}details{margin:12px 0}code{font-size:13px}
-button.ok{font:inherit;font-size:12px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:4px;padding:0 6px;cursor:pointer}
-.marked{opacity:.45}#marked{position:sticky;bottom:0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:16px}
-#viewer{position:fixed;inset:0;z-index:10;background:rgba(10,12,16,.94);overflow:auto;padding:48px 24px}
-#viewer[hidden]{display:none}#viewer .frame{position:relative;margin:0 auto}#viewer img{display:block;width:100%;border-radius:6px}
-#viewer .bar{position:fixed;top:10px;right:16px;left:16px;display:flex;justify-content:space-between;color:#fff;font-size:13px}
-#viewer button{font:inherit;color:#fff;background:rgba(255,255,255,.15);border:0;border-radius:6px;padding:4px 10px;cursor:pointer}
-#marked textarea{width:100%;box-sizing:border-box;font:12px ui-monospace,monospace;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px}
-</style></head><body><main>
-<h1>Visual review</h1>
-<p class="muted">${esc(process.env.COMMIT ?? "")} · ${pages.size} pages, ${sweeps.length} variants · ${AI ? `Grok (texts: ${esc(TEXT_MODEL)}, screenshots: ${esc(PAGE_MODEL)}) cost this run: <strong>$${spent.toFixed(2)}</strong> of $${MAX_USD}` : "without Grok: automatic checks only"}</p>
-<div class="stats">
-${previous ? `<div class="stat"><span class="sev new">new</span> since ${esc(since)}: ${newPages} on pages, ${newTexts} in texts</div>` : ""}
-<div class="stat">Pages: ${badge("high")} ${pageCount.high} ${badge("medium")} ${pageCount.medium} ${badge("low")} ${pageCount.low}</div>
-<div class="stat">Texts: ${badge("high")} ${textCount.high} ${badge("medium")} ${textCount.medium} ${badge("low")} ${textCount.low}</div>
-</div>
-${notes.length ? `<div class="card"><strong>Notes</strong><ul>${notes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul></div>` : ""}
-<p class="muted">"Fine as is" collects a line in the box at the bottom and copies the box. Paste it into <code>.grok-bot/accepted.txt</code>, then <code>.grok-bot/run.sh visual-review</code> redraws this report without those findings (free when nothing else changed).</p>
-<p class="muted">"check" findings are measured in the browser and reliable. "Grok" findings are its reading of one screenshot; the text each one quotes was found on that screenshot, but the judgement can still be wrong: look before acting.</p>
-<h2>Pages with findings (${withFindings.length})</h2>
-${withFindings.map(card).join("\n")}
-<details><summary>Pages without findings (${clean.length})</summary>${clean.map(card).join("\n")}</details>
-${notReached.length ? `<details><summary>Routes the mock has no example for (${notReached.length})</summary><ul>${notReached.map((r) => `<li><code>${esc(r)}</code></li>`).join("")}</ul></details>` : ""}
-<h2>Texts (${textRows.length})</h2>
-<div class="table"><table><tr><th>Severity</th><th>Language</th><th>Key</th><th>Now</th><th>Problem</th><th>Suggestion</th></tr>
-${textRows.map((f) => `<tr><td>${f.isNew ? `<span class="sev new">new</span> ` : ""}${badge(f.severity)} <span class="who">${f.source === "grok" ? "Grok" : "check"}</span></td><td>${esc(f.language)}</td><td><code>${esc(f.ns)}</code><br><code>${esc(f.key)}</code></td><td>${esc(f.current)}</td><td>${esc(f.problem)}</td><td>${esc(f.suggestion)} <button class="ok" data-line="${esc(textLine(f))}">Fine as is</button></td></tr>`).join("\n")}
-</table></div>
-<div id="marked" hidden><strong>Fine as is</strong> <span class="muted">— copied; paste into <code>.grok-bot/accepted.txt</code> (add <code># why</code> after a line if you like)</span>
-<textarea id="lines" rows="4" readonly></textarea><button class="ok" id="copy">Copy again</button></div>
-<div id="viewer" hidden><div class="bar"><span id="viewer-name"></span><button id="viewer-close">Close (Esc)</button></div><div class="frame"><img alt=""><span class="mark"></span></div></div>
-<script>
-// The whole screenshot in place, as wide as fits, with the finding's spot marked and in view.
-const viewer = document.getElementById("viewer");
-const frame = viewer.querySelector(".frame");
-function view(link) {
-  const [iw, ih] = link.dataset.size.split(",").map(Number);
-  viewer.hidden = false; // measured open: a hidden element is 0 px wide
-  const width = Math.min(iw, viewer.clientWidth - 48);
-  frame.style.width = width + "px";
-  frame.querySelector("img").src = link.dataset.view;
-  document.getElementById("viewer-name").textContent = link.title;
-  const mark = frame.querySelector(".mark");
-  mark.hidden = !link.dataset.mark;
-  viewer.scrollTop = 0;
-  if (link.dataset.mark) {
-    const [x, y, w, h] = link.dataset.mark.split(",").map(Number);
-    Object.assign(mark.style, { left: (x / iw) * 100 + "%", top: (y / ih) * 100 + "%", width: (w / iw) * 100 + "%", height: (h / ih) * 100 + "%" });
-    const scale = width / iw;
-    viewer.scrollTop = Math.max(0, (y + h / 2) * scale + 48 - viewer.clientHeight / 2);
-  }
-}
-document.addEventListener("click", (e) => {
-  const link = e.target.closest("a[data-view]");
-  if (link) {
-    e.preventDefault();
-    view(link);
-  } else if (!viewer.hidden && (e.target === viewer || e.target.id === "viewer-close")) viewer.hidden = true;
-});
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") viewer.hidden = true;
-});
-const box = document.getElementById("lines");
-async function copy(text) {
-  try { await navigator.clipboard.writeText(text); } catch { box.select(); document.execCommand("copy"); }
-}
-document.addEventListener("click", async (e) => {
-  const button = e.target.closest("button.ok");
-  if (!button) return;
-  if (button.id !== "copy") {
-    const lines = new Set(box.value.split("\\n").filter(Boolean));
-    lines.add(button.dataset.line);
-    box.value = [...lines].join("\\n") + "\\n";
-    document.getElementById("marked").hidden = false;
-    button.closest("li, tr").classList.add("marked");
-    button.textContent = "Marked";
-  }
-  await copy(box.value);
-});
-</script>
-</main></body></html>`;
-writeFileSync(join(OUT, "report.html"), html);
-
+const triaged = [...pageRows.flatMap((r) => r.open), ...texts.open].filter((f) => f.triage).length;
+const openTotal = pageRows.reduce((n, r) => n + r.open.length, 0) + texts.open.length;
 if (previous) console.log(`\nNew since the previous run: ${newPages} page findings, ${newTexts} text findings (compared with ${since})`);
 console.log(`\nPages: ${pageCount.high} high, ${pageCount.medium} medium, ${pageCount.low} low · Texts: ${textCount.high} high, ${textCount.medium} medium, ${textCount.low} low`);
+console.log(`Open: ${openTotal}, triaged by Claude: ${triaged}, not yet: ${openTotal - triaged} · known, to fix: ${pageRows.reduce((n, r) => n + r.known.length, 0) + texts.known.length} · no longer found: ${gone.length}`);
 if (AI) console.log(`Grok cost this run: $${spent.toFixed(2)} (budget $${MAX_USD})`);
 for (const n of notes) console.log(`Note: ${n}`);
+if (failures.length) console.log(`FAILED: Grok could not review ${failureSummary} (${failures[0].error.slice(0, 160)})`);

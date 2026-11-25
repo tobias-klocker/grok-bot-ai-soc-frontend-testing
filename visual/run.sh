@@ -1,20 +1,52 @@
 # Sourced by ../run.sh for `run.sh visual`: the screenshot sweep, then the
-# review. For `run.sh visual-review` only the review, of the last sweep (or RUN=<folder in runs/>).
+# review. For `run.sh visual-review` only the review, of the last sweep (or
+# RUN=<folder in runs/>). For `run.sh report` the report of the last run (or
+# RUN=…) redrawn and served with working verdict buttons.
 mkdir -p "$KIT/state"
-[ -f "$KIT/accepted.txt" ] || printf '%s\n' \
-  "# Findings that are fine as they are; the report's \"Fine as is\" button copies these lines." \
-  "#   page <route> \"<quoted text>\"     # why" \
-  "#   text <namespace> <key> <de|es>   # why" > "$KIT/accepted.txt"
+[ -f "$KIT/verdicts.txt" ] || printf '%s\n' \
+  "# Verdicts on findings; the report's buttons write these lines (README.md)." \
+  "#   fine  page <route> \"<quoted text>\"              # intended as it is" \
+  "#   wrong page <route> \"<quoted text>\"              # Grok misread the screenshot" \
+  "#   fix   page <route> \"<quoted text>\"              # a real defect, known until it is gone" \
+  "#   fine  text <namespace> <key> <de|es> \"<text>\"   # the text as it was decided on" > "$KIT/verdicts.txt"
 [ -f "$KIT/review-notes.md" ] || printf '%s\n' \
   "# What Grok should know about the product: what is intended, who uses it." \
   "# Every line that is not a comment goes into each review." > "$KIT/review-notes.md"
 COMMIT="$(git -C "$CLONE" log -1 --format='%h %s')"
 
-if [ "$MODE" = review ]; then
+# The newest other run with a report: what "new" is measured against. Sets prev_args.
+previous_args() {
+  local prev
+  prev="$(ls -td "$KIT"/runs/2*-visual 2>/dev/null | while read -r d; do [ "$d" != "$1" ] && [ -f "$d/findings.json" ] && echo "$d" && break; done)"
+  prev_args=()
+  [ -z "$prev" ] || prev_args=(-v "$prev/findings.json:/previous.json:ro" -e "PREVIOUS_NAME=$(basename "$prev")")
+}
+# What review.mjs reads besides the run: the kit's scripts, the verdicts, the
+# notes, the review cache and Claude's triage, the app's texts.
+# Only the report's server writes verdicts.txt.
+review_mounts=(-v "$KIT/visual:/visual:ro" -v "$KIT/review-notes.md:/notes.md:ro" -v "$CLONE/web/src:/src:ro")
+
+if [ "$MODE" = review ] || [ "$MODE" = report ]; then
   if [ -n "${RUN:-}" ]; then OUT="$KIT/runs/${RUN%/}"; else
     OUT="$(ls -td "$KIT"/runs/*-visual 2>/dev/null | while read -r d; do [ -d "$d/sweep" ] && echo "$d" && break; done)"
   fi
   [ -n "$OUT" ] && [ -d "$OUT/sweep" ] || die "No sweep to review: run .grok-bot/run.sh visual first."
+fi
+
+if [ "$MODE" = report ]; then
+  previous_args "$OUT"
+  say "Redrawing .grok-bot/runs/$(basename "$OUT") with verdicts.txt and Claude's triage (no Grok, free)"
+  docker run --rm "${hardening[@]}" --network none -e REDRAW=1 -e PAGE_MODEL -e TEXT_MODEL -e REVIEW_VARIANTS \
+    "${prev_args[@]+"${prev_args[@]}"}" -v "$OUT:/out" -v "$KIT/state:/state:ro" "${review_mounts[@]}" -v "$KIT/verdicts.txt:/verdicts.txt:ro" \
+    "$IMAGE" node /visual/review.mjs | tail -5
+  PORT="${PORT:-7317}"
+  ( sleep 2; command -v open >/dev/null && open "http://127.0.0.1:$PORT/" ) &
+  exec docker run --rm "${hardening[@]}" --name "grok-bot-report-$PORT" -p "127.0.0.1:$PORT:$PORT" -e PORT="$PORT" \
+    -e PAGE_MODEL -e TEXT_MODEL -e REVIEW_VARIANTS "${prev_args[@]+"${prev_args[@]}"}" \
+    -v "$OUT:/out" -v "$KIT/state:/state:ro" "${review_mounts[@]}" -v "$KIT/verdicts.txt:/verdicts.txt" "$IMAGE" node /visual/serve.mjs
+fi
+
+if [ "$MODE" = review ]; then
   say "Reviewing the screenshots of .grok-bot/runs/$(basename "$OUT") again"
 else
 # RUN=<folder in runs/>: add these variants to that run's report.
@@ -37,14 +69,11 @@ fi
 [ "$sweep" -eq 0 ] || say "The sweep did not finish cleanly (sweep.log); reviewing what it captured"
 fi
 
-# The previous run's findings, to mark what is new: the newest other run with a report.
-PREV="$(ls -td "$KIT"/runs/2*-visual 2>/dev/null | while read -r d; do [ "$d" != "$OUT" ] && [ -f "$d/findings.json" ] && echo "$d" && break; done)"
-prev_args=()
-[ -n "$PREV" ] && prev_args=(-v "$PREV/findings.json:/previous.json:ro" -e PREVIOUS_NAME="$(basename "$PREV")")
+previous_args "$OUT"
 
 # Grok sees only what review.mjs sends: the screenshots and the texts.
 if [ "${AI:-1}" = 0 ]; then
-  say "Review: automatic checks only (AI=0)"
+  say "Review: automatic checks and Grok's earlier reviews of unchanged screenshots (AI=0)"
   ai_args=(-e AI=0 --network none)
 else
   say "Review by Grok, budget \$${MAX_USD:-2}"
@@ -53,10 +82,10 @@ fi
 docker run --rm "${hardening[@]}" "${ai_args[@]}" \
   -e REVIEW_MODEL -e PAGE_MODEL -e TEXT_MODEL -e MAX_USD -e FULL -e REVIEW_VARIANTS -e PRICE_IN -e PRICE_OUT -e PRICE_CACHED \
   -e STAMP="$STAMP" -e COMMIT="$COMMIT" "${prev_args[@]+"${prev_args[@]}"}" \
-  -v "$OUT:/out" -v "$KIT/state:/state" -v "$KIT/visual/review.mjs:/review.mjs:ro" -v "$KIT/accepted.txt:/accepted.txt:ro" -v "$KIT/review-notes.md:/notes.md:ro" -v "$CLONE/web/src:/src:ro" \
-  "$IMAGE" node /review.mjs | tee "$OUT/review.log"
+  -v "$OUT:/out" -v "$KIT/state:/state" "${review_mounts[@]}" -v "$KIT/verdicts.txt:/verdicts.txt:ro" \
+  "$IMAGE" node /visual/review.mjs | tee "$OUT/review.log"
 
-say "Report: .grok-bot/runs/$(basename "$OUT")/report.html"
+say "Report: .grok-bot/runs/$(basename "$OUT")/report.html (with working buttons: .grok-bot/run.sh report)"
 # Unattended (scheduled.sh), the caller tells the person; nothing opens.
 if [ -z "${UNATTENDED:-}" ]; then
   command -v open >/dev/null && open "$OUT/report.html" || true

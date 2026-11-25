@@ -1,0 +1,1964 @@
+{
+ "causes": {
+  "headline-badge": {
+   "title": "Status badge (and actions) beside the h1 on desktop",
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "at": "2026-11-25"
+  },
+  "org-root-blank": {
+   "title": "/o/$orgId shows an empty page",
+   "suggest": "fix",
+   "fixIn": "web/src/app/router.tsx: /o/$orgId redirects to its Workspaces page (done, not committed)",
+   "why": "In every variant the sweep found only the navigation's text there; the main area renders nothing.",
+   "at": "2026-11-25"
+  },
+  "phone-search-toolbar": {
+   "title": "Search placeholder cut off on phones",
+   "suggest": "fix",
+   "fixIn": "@data-insights-ai/ui Toolbar: search and actions share one row on phones (propose first)",
+   "why": "At 390 px the search shares its row with the ⋯ and action buttons, so its placeholder ends mid-word ('Search people an').",
+   "at": "2026-11-25"
+  },
+  "option-description-clamp": {
+   "title": "Option descriptions cut after two lines on phones",
+   "suggest": "fix",
+   "fixIn": "@data-insights-ai/ui ChoiceGroup cards (.di-choice-card-desc clamps at 2 lines; propose first)",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "at": "2026-11-25"
+  },
+  "fact-grid-columns": {
+   "title": "Facts in 200 px columns on desktop",
+   "suggest": "fix",
+   "fixIn": "@data-insights-ai/ui FactList (propose first)",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "at": "2026-11-24"
+  },
+  "phone-value-column": {
+   "title": "Values wrap in their column on phones",
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "at": "2026-11-24"
+  },
+  "word-breaks": {
+   "title": "Long words and hostnames break in narrow columns",
+   "suggest": "fine",
+   "why": "Long German and Spanish words and hostnames hyphenate or break on phones; the hyphenation is correct.",
+   "at": "2026-11-24"
+  },
+  "untranslated-api-names": {
+   "title": "Report titles in English on German and Spanish pages",
+   "suggest": "fix",
+   "fixIn": "web/src/mocks/reports/titles.ts (done, not committed)",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "at": "2026-11-25"
+  },
+  "operator-404": {
+   "title": "Operator pages swept as a non-operator",
+   "suggest": "fix",
+   "fixIn": ".grok-bot/visual/sweep.spec.ts: operator pages under the installationAdmin scenario (done)",
+   "why": "The sweep opened /operator as an organization admin, who sees the notice to elevate first; the 404 is the server answer to a non-operator, as intended. The screenshots showed that notice, not the operator pages.",
+   "at": "2026-11-25"
+  },
+  "report-preview-mock": {
+   "title": "The report preview loads nothing in the mock",
+   "suggest": "unsure",
+   "why": "The run page's preview frame loads /downloads/reports/sample; the mock seems to answer with the app itself (its scripts blocked by the sandbox, sometimes a 404). Likely a mock gap, not the app: check in pnpm dev:mock.",
+   "at": "2026-11-24"
+  },
+  "wide-table": {
+   "title": "Wide tables: last column under the edge fade",
+   "suggest": "unsure",
+   "why": "The assets table scrolls sideways with a fade at its edge, so at 1440 px the last column starts under the fade. Intended if wide tables scroll like tab bars; review-notes.md says so only for tab bars.",
+   "at": "2026-11-24"
+  },
+  "section-header-phone": {
+   "title": "Section description beside its button on phones",
+   "suggest": "unsure",
+   "why": "On phones a section's description keeps a narrow column beside its Edit button and wraps to three lines, with the space under the button empty. A design-system layout choice; not looked at in detail.",
+   "at": "2026-11-24"
+  },
+  "glossary-misread": {
+   "title": "Grok: 'Findings', 'des Workspaces' break the glossary",
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "at": "2026-11-24"
+  },
+  "terms-misread": {
+   "title": "Grok: technical terms must stay English",
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "at": "2026-11-24"
+  },
+  "compound-hyphens": {
+   "title": "Grok: 'AI-SOC-Größe' breaks the glossary",
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "at": "2026-11-24"
+  },
+  "es-acronym-plural": {
+   "title": "Grok: 'CPU', 'AI SOC' need a plural s in Spanish",
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "at": "2026-11-24"
+  },
+  "audit-style": {
+   "title": "Grok: the short audit/activity style is incomplete",
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "at": "2026-11-24"
+  },
+  "lowercase-fragments": {
+   "title": "Grok: fragments start lowercase",
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "at": "2026-11-24"
+  },
+  "term-inconsistent": {
+   "title": "One concept, several words",
+   "suggest": "fix",
+   "fixIn": "locales (done, not committed)",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "at": "2026-11-25"
+  },
+  "glossary-breach": {
+   "title": "Finding and Workspace translated against the glossary",
+   "suggest": "fix",
+   "fixIn": "locales (done, not committed)",
+   "why": "'Funde', 'Befund' and 'Arbeitsbereich' where the glossary says Finding and Workspace.",
+   "at": "2026-11-25"
+  },
+  "reihenfolge": {
+   "title": "'in Reihenfolge' is not idiomatic",
+   "suggest": "fix",
+   "fixIn": "locales (done, not committed)",
+   "why": "'manipulationssicher und in Reihenfolge', 'nicht in Reihenfolge': German says 'in fester Reihenfolge' / 'nicht in der richtigen Reihenfolge'.",
+   "at": "2026-11-25"
+  },
+  "erklaeren": {
+   "title": "'Quellen erklären' reads as 'explain sources'",
+   "suggest": "fix",
+   "fixIn": "locales (done, not committed)",
+   "why": "For declaring sources absent, 'Fehlende Quellen erklären' reads as 'explain missing sources'. 'Quellen als fehlend erklären' says it.",
+   "at": "2026-11-25"
+  },
+  "gender-style": {
+   "title": "Paired or participle forms for people",
+   "suggest": "unsure",
+   "why": "'Von einer Analystin oder einem Analysten', 'als Lesende oder Verantwortliche': the glossary rules role names, these name people. Your style decision.",
+   "at": "2026-11-24"
+  },
+  "sample-source-name": {
+   "title": "A source named in English in the sample data",
+   "suggest": "fine",
+   "why": "A source is named by the person who adds it (the name starts empty); the seed names this one like its type. Sample data, like a case title.",
+   "at": "2026-11-25"
+  }
+ },
+ "findings": {
+  "dc4a9ad199db28b0": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "00fe330e38d0dbc8": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "c22cf1aeeea1815f": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "0a99b8ea73a95384": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "82b03e56054d7a6e": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "575fee2290a027de": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "1a710694dea12497": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "5c4f108a9083edcd": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "bc46d85b48094a95": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "8bd9e5ab613267b3": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "e7a7951bd94bf3f4": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "2e04d417651ded23": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "83853ba7693cae71": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "1b05d6834dbec962": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "52c078c780393c7f": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "63e85f0b3d0ca0b3": {
+   "suggest": "fine",
+   "why": "A status badge beside the h1, and actions at the right of its row, are the design system PageHeader as intended (its Detail story); review-notes.md now says so.",
+   "cause": "headline-badge",
+   "at": "2026-11-25"
+  },
+  "e29efdb27a1a2ce4": {
+   "suggest": "fix",
+   "why": "In every variant the sweep found only the navigation's text there; the main area renders nothing.",
+   "cause": "org-root-blank",
+   "at": "2026-11-24"
+  },
+  "49f5f1bf18cd205a": {
+   "suggest": "fix",
+   "why": "In every variant the sweep found only the navigation's text there; the main area renders nothing.",
+   "cause": "org-root-blank",
+   "at": "2026-11-24"
+  },
+  "a679b96fd226165f": {
+   "suggest": "fix",
+   "why": "At 390 px the search shares its row with the ⋯ and action buttons, so its placeholder ends mid-word ('Search people an').",
+   "cause": "phone-search-toolbar",
+   "at": "2026-11-24"
+  },
+  "641e366b1b2848de": {
+   "suggest": "fix",
+   "why": "At 390 px the search shares its row with the ⋯ and action buttons, so its placeholder ends mid-word ('Search people an').",
+   "cause": "phone-search-toolbar",
+   "at": "2026-11-24"
+  },
+  "cfb75e34af5e405e": {
+   "suggest": "fix",
+   "why": "At 390 px the search shares its row with the ⋯ and action buttons, so its placeholder ends mid-word ('Search people an').",
+   "cause": "phone-search-toolbar",
+   "at": "2026-11-24"
+  },
+  "d41f33f0c3312d88": {
+   "suggest": "fix",
+   "why": "At 390 px the search shares its row with the ⋯ and action buttons, so its placeholder ends mid-word ('Search people an').",
+   "cause": "phone-search-toolbar",
+   "at": "2026-11-24"
+  },
+  "b6375ea239a320de": {
+   "suggest": "fix",
+   "why": "At 390 px the search shares its row with the ⋯ and action buttons, so its placeholder ends mid-word ('Search people an').",
+   "cause": "phone-search-toolbar",
+   "at": "2026-11-24"
+  },
+  "8018be5b1b9207ba": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "b4a10b858f21df9c": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "a8fb4d0b9778619f": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "6c1c7a7c7a13b849": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "925787b24e36718f": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "eca34d956dab5b62": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "d21a8c1e276d52d5": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "585816eadcb2b1dd": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "14b9bbf0c96813b4": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "0d3e30b54585006d": {
+   "suggest": "fix",
+   "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
+   "cause": "option-description-clamp",
+   "at": "2026-11-24"
+  },
+  "2004a3abe2297d3b": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "e35b639f94c6cd98": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "d8181c379cd3fd85": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "ca06b68a5e28932a": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "2ff4ec787dd6719f": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "99c69eb36215aa7a": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "91c177d3c1391551": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "c237238be2f531c8": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "2df5c0d2cc16ef38": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "e5a3e704f0a3a9d3": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "b39e180b7479bb06": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "fa20d8604c60cd2a": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "abd75036444ae6b1": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "a56b2717138b7002": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "3443089123847ea4": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "885c193830101ba5": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "fa49568c1caaaed6": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "0c787176c41be8a7": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "159f476969098195": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "f54327d87fa79842": {
+   "suggest": "fix",
+   "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
+   "cause": "fact-grid-columns",
+   "at": "2026-11-24"
+  },
+  "381977807611bf6d": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "ddf88865b3d7e016": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "6dadb4280e4a9a10": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "4e2d852f679aed9b": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "eabd6361383fbf63": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "334bb38f6fc8ed22": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "f6d340e5c62e1408": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "5c2ed27bfa253adc": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "e39372017d944ad1": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "e5b807cd162d6dbe": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "d983a2b8d20ca101": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "1e10780332da01ce": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "1835ede04012466b": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "7dd192c9da746524": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "2c2bd55ed1845911": {
+   "suggest": "fine",
+   "why": "Label/value rows on phones keep the value in its column and wrap it there: that is the layout (seen on the workspace status row).",
+   "cause": "phone-value-column",
+   "at": "2026-11-24"
+  },
+  "ef83558f1a17c76a": {
+   "suggest": "fine",
+   "why": "Long German and Spanish words and hostnames hyphenate or break on phones; the hyphenation is correct.",
+   "cause": "word-breaks",
+   "at": "2026-11-24"
+  },
+  "35b707a1705ab8a9": {
+   "suggest": "fine",
+   "why": "Long German and Spanish words and hostnames hyphenate or break on phones; the hyphenation is correct.",
+   "cause": "word-breaks",
+   "at": "2026-11-24"
+  },
+  "9e33bee41ece3c0d": {
+   "suggest": "fine",
+   "why": "Long German and Spanish words and hostnames hyphenate or break on phones; the hyphenation is correct.",
+   "cause": "word-breaks",
+   "at": "2026-11-24"
+  },
+  "3b2cda8d1ce52bd2": {
+   "suggest": "fine",
+   "why": "Long German and Spanish words and hostnames hyphenate or break on phones; the hyphenation is correct.",
+   "cause": "word-breaks",
+   "at": "2026-11-24"
+  },
+  "5229843d03be148b": {
+   "suggest": "fine",
+   "why": "Long German and Spanish words and hostnames hyphenate or break on phones; the hyphenation is correct.",
+   "cause": "word-breaks",
+   "at": "2026-11-24"
+  },
+  "99d5f97f12e0aedd": {
+   "suggest": "fine",
+   "why": "Long German and Spanish words and hostnames hyphenate or break on phones; the hyphenation is correct.",
+   "cause": "word-breaks",
+   "at": "2026-11-24"
+  },
+  "b1de60e03e241000": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "7971d9981309b4c2": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "868226437e705ab1": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "d2627d8a6e43e4d7": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "f9c09dfc5808a66c": {
+   "suggest": "fine",
+   "why": "A source is named by the person who adds it (the name starts empty); the seed names this one like its type. Sample data, like a case title.",
+   "cause": "sample-source-name",
+   "at": "2026-11-25"
+  },
+  "381d12101f21a5ce": {
+   "suggest": "fine",
+   "why": "A source is named by the person who adds it (the name starts empty); the seed names this one like its type. Sample data, like a case title.",
+   "cause": "sample-source-name",
+   "at": "2026-11-25"
+  },
+  "cd0c4ff4dafc27f1": {
+   "suggest": "fine",
+   "why": "A source is named by the person who adds it (the name starts empty); the seed names this one like its type. Sample data, like a case title.",
+   "cause": "sample-source-name",
+   "at": "2026-11-25"
+  },
+  "793c19f5e4275e71": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "077594a79b3c51f8": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "20b7cd690f55cb25": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "6867f5644dbc657b": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "b98bef3314ab1ea5": {
+   "suggest": "fix",
+   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
+   "cause": "untranslated-api-names",
+   "at": "2026-11-25"
+  },
+  "da950592dc0593a8": {
+   "suggest": "fix",
+   "why": "Every /operator page logs 'Failed to load resource: 404' in every variant: a request the mock does not answer (ADR 0012).",
+   "cause": "operator-404",
+   "at": "2026-11-24"
+  },
+  "1845c8b67e61b2db": {
+   "suggest": "fix",
+   "why": "Every /operator page logs 'Failed to load resource: 404' in every variant: a request the mock does not answer (ADR 0012).",
+   "cause": "operator-404",
+   "at": "2026-11-24"
+  },
+  "b4e1f382a90112ff": {
+   "suggest": "fix",
+   "why": "Every /operator page logs 'Failed to load resource: 404' in every variant: a request the mock does not answer (ADR 0012).",
+   "cause": "operator-404",
+   "at": "2026-11-24"
+  },
+  "800439d5d3bde50c": {
+   "suggest": "fix",
+   "why": "Every /operator page logs 'Failed to load resource: 404' in every variant: a request the mock does not answer (ADR 0012).",
+   "cause": "operator-404",
+   "at": "2026-11-24"
+  },
+  "71a4fadbd695aa8d": {
+   "suggest": "fix",
+   "why": "Every /operator page logs 'Failed to load resource: 404' in every variant: a request the mock does not answer (ADR 0012).",
+   "cause": "operator-404",
+   "at": "2026-11-24"
+  },
+  "8c584f6177c67c13": {
+   "suggest": "fix",
+   "why": "Every /operator page logs 'Failed to load resource: 404' in every variant: a request the mock does not answer (ADR 0012).",
+   "cause": "operator-404",
+   "at": "2026-11-24"
+  },
+  "de750f79768166e0": {
+   "suggest": "unsure",
+   "why": "The run page's preview frame loads /downloads/reports/sample; the mock seems to answer with the app itself (its scripts blocked by the sandbox, sometimes a 404). Likely a mock gap, not the app: check in pnpm dev:mock.",
+   "cause": "report-preview-mock",
+   "at": "2026-11-24"
+  },
+  "f9de2d74ea26ebec": {
+   "suggest": "unsure",
+   "why": "The run page's preview frame loads /downloads/reports/sample; the mock seems to answer with the app itself (its scripts blocked by the sandbox, sometimes a 404). Likely a mock gap, not the app: check in pnpm dev:mock.",
+   "cause": "report-preview-mock",
+   "at": "2026-11-24"
+  },
+  "5ca1b64a26a6b0c9": {
+   "suggest": "unsure",
+   "why": "The run page's preview frame loads /downloads/reports/sample; the mock seems to answer with the app itself (its scripts blocked by the sandbox, sometimes a 404). Likely a mock gap, not the app: check in pnpm dev:mock.",
+   "cause": "report-preview-mock",
+   "at": "2026-11-24"
+  },
+  "39c3c0580b17af36": {
+   "suggest": "unsure",
+   "why": "The assets table scrolls sideways with a fade at its edge, so at 1440 px the last column starts under the fade. Intended if wide tables scroll like tab bars; review-notes.md says so only for tab bars.",
+   "cause": "wide-table",
+   "at": "2026-11-24"
+  },
+  "05bc2189faeb34c5": {
+   "suggest": "unsure",
+   "why": "The assets table scrolls sideways with a fade at its edge, so at 1440 px the last column starts under the fade. Intended if wide tables scroll like tab bars; review-notes.md says so only for tab bars.",
+   "cause": "wide-table",
+   "at": "2026-11-24"
+  },
+  "be3d98cdbcd5431c": {
+   "suggest": "unsure",
+   "why": "The assets table scrolls sideways with a fade at its edge, so at 1440 px the last column starts under the fade. Intended if wide tables scroll like tab bars; review-notes.md says so only for tab bars.",
+   "cause": "wide-table",
+   "at": "2026-11-24"
+  },
+  "b7cb7541e9c78666": {
+   "suggest": "unsure",
+   "why": "On phones a section's description keeps a narrow column beside its Edit button and wraps to three lines, with the space under the button empty. A design-system layout choice; not looked at in detail.",
+   "cause": "section-header-phone",
+   "at": "2026-11-24"
+  },
+  "1aa5d2db61a9c415": {
+   "suggest": "unsure",
+   "why": "On phones a section's description keeps a narrow column beside its Edit button and wraps to three lines, with the space under the button empty. A design-system layout choice; not looked at in detail.",
+   "cause": "section-header-phone",
+   "at": "2026-11-24"
+  },
+  "af6c18ca19fd43cb": {
+   "suggest": "wrong",
+   "why": "The page's text reads 'support engineer' once (sweep text); Grok doubled the word.",
+   "at": "2026-11-24"
+  },
+  "e9bcab73b0e07526": {
+   "suggest": "wrong",
+   "why": "The list continues below the sticky action bar; the screenshot ends there on purpose.",
+   "at": "2026-11-24"
+  },
+  "8da94738aeeb97a3": {
+   "suggest": "wrong",
+   "why": "The list footer is set in the monospace font, like 'All 30 entries' on other lists; no extra letter spacing.",
+   "at": "2026-11-24"
+  },
+  "dbc84eea7f92bf33": {
+   "suggest": "fix",
+   "why": "On phones a key with a short name puts its permissions beside the name, one with a long name below it, so the rows do not line up (seen: 'Ticket sync').",
+   "at": "2026-11-24"
+  },
+  "91060800744f227b": {
+   "suggest": "fix",
+   "why": "Same as on the other API key rows: permissions beside a short name, below a long one.",
+   "at": "2026-11-24"
+  },
+  "6bdcfc1dd650801d": {
+   "suggest": "fix",
+   "why": "The name is cut ('Vulnerability scan…') while the rest of its row is empty. Low priority.",
+   "at": "2026-11-24"
+  },
+  "6de27584cce82aa7": {
+   "suggest": "unsure",
+   "why": "A '…' follows the Ready badge; the screenshot does not show what is cut.",
+   "at": "2026-11-24"
+  },
+  "394838e70cd9bbce": {
+   "suggest": "unsure",
+   "why": "The chip stands beside a two-line question here and below the shorter ones: flex wrapping. Whether it should always go below is a design call.",
+   "at": "2026-11-24"
+  },
+  "18f9d2563ec192ec": {
+   "suggest": "fix",
+   "why": "'(MEDIAN, 7 D)' breaks before 'D)'; a non-breaking space in '7 d' keeps it together. Low priority.",
+   "at": "2026-11-24"
+  },
+  "8dc1b2bcac3ca6db": {
+   "suggest": "fix",
+   "why": "'(MEDIANA, 7 D)' breaks before 'D)'; a non-breaking space keeps it together. Low priority.",
+   "at": "2026-11-24"
+  },
+  "9fd6befb0b469edb": {
+   "suggest": "fix",
+   "why": "features/sites de noLag 'keiner' follows 'Verzögerung' (feminine): it should be 'keine'.",
+   "at": "2026-11-24"
+  },
+  "407945ea82a0c282": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "dc87511493b85682": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "b69d49c808b0c7f5": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "3ed5385a35e20de0": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "40380787e73b1fad": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "287dea7588abc65d": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "b75fa329fdc3beaa": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "2dfc571fd4cc7c1d": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "f23197972f9d0469": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "52ed8bae4efbaa0e": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "227a16a35b83d15b": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "d4c0e028dfa54914": {
+   "suggest": "wrong",
+   "why": "German keeps Finding and Workspace as nouns with normal plural and genitive (die Findings, des Workspaces); 'Casos' is the page's name.",
+   "cause": "glossary-misread",
+   "at": "2026-11-24"
+  },
+  "67418cfd13b3be65": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "5d6cca73acfa4f1f": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "aed26375464de5f1": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "501e676a3b22c8e9": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "84caaabc3acd9650": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "01a50d958b663d98": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "56f5c90f705c377f": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "cf00557d68e5293c": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "69f123f5790d6d58": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "0149f1d69149b67f": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "89bbdc8e0cb92d9a": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "371b9c47d275d7b5": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "47ff496cf24d328f": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "56a05af4b7063fd2": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "355250c660718dc4": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "7fbb0cb3862c5415": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "9a6009484268060a": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "dff08882475a30fc": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "a0f5fd9cc090b28c": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "ad37693bd0dfde74": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "a5b19dce295b0d62": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "e9fd2d4d0c600a14": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "a93d87d6886a6a7c": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "1221c814f29de5a8": {
+   "suggest": "wrong",
+   "why": "review-notes.md says the English terms ('Standing terms', 'Seed record') are intended; Grok reads that as 'do not translate them'. Clarifying that note stops these.",
+   "cause": "terms-misread",
+   "at": "2026-11-24"
+  },
+  "ab4ad1e43854087d": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "606c8d07c67363a0": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "d252975ad8710c6a": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "c29a6451f6315256": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "421a4950b06471d8": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "5a232cee91f10647": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "9430b7712c3fde29": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "af8361e24c387aea": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "a9bdd8291f6ff95a": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "288fb7109e2ac57f": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "18fd46a5cb7dbdaf": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "467cc04fd548f4aa": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "e6332a5e61a9b749": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "c3d8a7afe5271a90": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "ee7e139ea2e2e909": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "919e64b93d0e8516": {
+   "suggest": "wrong",
+   "why": "German compounds with a multi-word name take hyphens (AI-SOC-Größe, Secret-Manager): correct spelling, not a glossary breach.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-24"
+  },
+  "a5146b8a0047519f": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "48345a9f94a98b30": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "bb3b54f162841f8e": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "4834fbcb1bd70fc0": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "ecab7685c0342eed": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "789b9fc323e1e766": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "c85b58103b95aed7": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "d84db8b5ec4dfa8d": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "efca1bdcaaba45bb": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "70a07e086235b07b": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU, los AI SOC).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-24"
+  },
+  "68c64b5a397b9c68": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "6f25a2f7e85bb9c9": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "54ab0ff0e77379ce": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "c87f8d22fce55fb4": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "96e8ec0e8a71c4c1": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "f49b54840450ba19": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "5cec0bff9ac71d69": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "c051fd7e231da3ef": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "e400af3d51b84e23": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "9952abfe6f4323f5": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "c0cb994bba72e9b6": {
+   "suggest": "wrong",
+   "why": "Audit and activity labels use a participle without subject throughout ('Workspace {{name}} angelegt'). Grok's versions break that; some are ungrammatical ('Hat einer Bestätigung … zugestimmt').",
+   "cause": "audit-style",
+   "at": "2026-11-24"
+  },
+  "aea22495d709b7d9": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "4c8473570ad71fbe": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "f0514f97a6cdf46e": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "a86404edce744511": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "a34f5767a0da637a": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "d37ce37d8207a308": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "c5975acaa64d7c55": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "b9646a7cc1aa2c37": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "fadc31b40747b2da": {
+   "suggest": "wrong",
+   "why": "The English source is lowercase too: these are fragments inside a line ('revoked {{at}}', 'reports not available yet').",
+   "cause": "lowercase-fragments",
+   "at": "2026-11-24"
+  },
+  "257b574979f27486": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "231da0ef7937a927": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "e3b626ec4bdc0bb2": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "7cabda4819d60071": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "89eabc5dbcbf0eb4": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "9f54f81b7b828db8": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "c4c8d686966ebe02": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "92bb204bfd047c9e": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "6f05f56ee505c2b7": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "5e6e1611e46a2d9d": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "b483b93842beb4c9": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "df85ccea6e7d9451": {
+   "suggest": "fix",
+   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
+   "cause": "term-inconsistent",
+   "at": "2026-11-24"
+  },
+  "c427994a7137a6b3": {
+   "suggest": "fix",
+   "why": "'Funde', 'Befund' and 'Arbeitsbereich' where the glossary says Finding and Workspace.",
+   "cause": "glossary-breach",
+   "at": "2026-11-24"
+  },
+  "db458f1747eb614d": {
+   "suggest": "fix",
+   "why": "'Funde', 'Befund' and 'Arbeitsbereich' where the glossary says Finding and Workspace.",
+   "cause": "glossary-breach",
+   "at": "2026-11-24"
+  },
+  "c18310b5deb76a29": {
+   "suggest": "fix",
+   "why": "'Funde', 'Befund' and 'Arbeitsbereich' where the glossary says Finding and Workspace.",
+   "cause": "glossary-breach",
+   "at": "2026-11-24"
+  },
+  "defedbfe3690a3d8": {
+   "suggest": "fix",
+   "why": "'Funde', 'Befund' and 'Arbeitsbereich' where the glossary says Finding and Workspace.",
+   "cause": "glossary-breach",
+   "at": "2026-11-24"
+  },
+  "4ed8131892ab3913": {
+   "suggest": "fix",
+   "why": "'manipulationssicher und in Reihenfolge', 'nicht in Reihenfolge': German says 'in fester Reihenfolge' / 'nicht in der richtigen Reihenfolge'.",
+   "cause": "reihenfolge",
+   "at": "2026-11-24"
+  },
+  "b2de8db217cd8538": {
+   "suggest": "fix",
+   "why": "'manipulationssicher und in Reihenfolge', 'nicht in Reihenfolge': German says 'in fester Reihenfolge' / 'nicht in der richtigen Reihenfolge'.",
+   "cause": "reihenfolge",
+   "at": "2026-11-24"
+  },
+  "bf1b1b3e6694437a": {
+   "suggest": "fix",
+   "why": "For declaring sources absent, 'Fehlende Quellen erklären' reads as 'explain missing sources'. 'Quellen als fehlend erklären' says it.",
+   "cause": "erklaeren",
+   "at": "2026-11-24"
+  },
+  "be008bf5fdac30b8": {
+   "suggest": "fix",
+   "why": "For declaring sources absent, 'Fehlende Quellen erklären' reads as 'explain missing sources'. 'Quellen als fehlend erklären' says it.",
+   "cause": "erklaeren",
+   "at": "2026-11-24"
+  },
+  "0142d37af739e1de": {
+   "suggest": "unsure",
+   "why": "'Von einer Analystin oder einem Analysten', 'als Lesende oder Verantwortliche': the glossary rules role names, these name people. Your style decision.",
+   "cause": "gender-style",
+   "at": "2026-11-24"
+  },
+  "f45393d6d4aeba89": {
+   "suggest": "unsure",
+   "why": "'Von einer Analystin oder einem Analysten', 'als Lesende oder Verantwortliche': the glossary rules role names, these name people. Your style decision.",
+   "cause": "gender-style",
+   "at": "2026-11-24"
+  },
+  "1961d104c4e49526": {
+   "suggest": "wrong",
+   "why": "The _one form: 'el 1 cargado' is a correct singular; Grok suggests the plural.",
+   "at": "2026-11-24"
+  },
+  "4ec3a763443a4cb2": {
+   "suggest": "wrong",
+   "why": "The _one form: 'el 1 cargado' is a correct singular; Grok suggests the plural.",
+   "at": "2026-11-24"
+  },
+  "fdc28ffee871e5a7": {
+   "suggest": "wrong",
+   "why": "Object first ('Kritikalität und Tags verwendet auch der AI SOC'): correct German.",
+   "at": "2026-11-24"
+  },
+  "2b0b2782a93b109b": {
+   "suggest": "wrong",
+   "why": "'zustellen' is separable: 'stellt … zu' is correct.",
+   "at": "2026-11-24"
+  },
+  "b243087b3d2d812d": {
+   "suggest": "wrong",
+   "why": "In the export mapping an included field is sent; 'Senden' says what happens.",
+   "at": "2026-11-24"
+  },
+  "a4a37044fa70cf44": {
+   "suggest": "wrong",
+   "why": "In the export mapping an included field is sent; 'Enviar' says what happens.",
+   "at": "2026-11-24"
+  },
+  "5eb13be9a39e7b59": {
+   "suggest": "wrong",
+   "why": "In the export mapping an included field is sent; '{{name}} senden' says what happens.",
+   "at": "2026-11-24"
+  },
+  "59326b78a6f424c0": {
+   "suggest": "wrong",
+   "why": "In the export mapping an included field is sent; 'Enviar {{name}}' says what happens.",
+   "at": "2026-11-24"
+  },
+  "d213064fffaa4f69": {
+   "suggest": "wrong",
+   "why": "'platform' is the name of the command on the host.",
+   "at": "2026-11-24"
+  },
+  "b9a5c5e68b9a34ef": {
+   "suggest": "wrong",
+   "why": "'platform' is the name of the command on the host.",
+   "at": "2026-11-24"
+  },
+  "4575e877d6156d36": {
+   "suggest": "unsure",
+   "why": "'Wartezeit' fits if the column shows how long a customer has waited, 'Wartend' if it is a state. Not checked in the UI.",
+   "at": "2026-11-24"
+  },
+  "2f4f627ef0372678": {
+   "suggest": "wrong",
+   "why": "'braucht Sie' (needs you) is idiomatic and formal, like the English.",
+   "at": "2026-11-24"
+  },
+  "4501930027cc7b51": {
+   "suggest": "wrong",
+   "why": "'brauchen Sie' (need you) is idiomatic and formal, like the English.",
+   "at": "2026-11-24"
+  },
+  "398c597d3ab9ef7f": {
+   "suggest": "wrong",
+   "why": "'braucht Sie' (needs you) is idiomatic and formal, like the English.",
+   "at": "2026-11-24"
+  },
+  "8602d8569c506bc9": {
+   "suggest": "wrong",
+   "why": "'brauchen Sie' (need you) is idiomatic and formal, like the English.",
+   "at": "2026-11-24"
+  },
+  "0edc1d5dd23b5f10": {
+   "suggest": "wrong",
+   "why": "Correct German, same tone as the English.",
+   "at": "2026-11-24"
+  },
+  "ea216cae5213f6e3": {
+   "suggest": "wrong",
+   "why": "'Threat Intelligence' is the usual term in German security texts.",
+   "at": "2026-11-24"
+  },
+  "313b2c75d1c4d87d": {
+   "suggest": "fix",
+   "why": "es 'Indicado' for a stored secret reads as 'indicated'; de says 'Hinterlegt'. 'Guardado' fits. Low priority.",
+   "at": "2026-11-24"
+  },
+  "1dc5b26b4d7894c4": {
+   "suggest": "fix",
+   "why": "Episodes: 'die Episode' is feminine, so the singular is '{{count}} weitere', not 'weiteres'.",
+   "at": "2026-11-24"
+  },
+  "53f5053e24146939": {
+   "suggest": "fix",
+   "why": "'episodio' is masculine: 'repartido'.",
+   "at": "2026-11-24"
+  },
+  "a1d7364c1d568daa": {
+   "suggest": "fix",
+   "why": "'episodios' is masculine: 'repartidos'.",
+   "at": "2026-11-24"
+  },
+  "e37e7abfa28c6a5a": {
+   "suggest": "wrong",
+   "why": "'die sie brauchen' refers to the table: grammatical and clear.",
+   "at": "2026-11-24"
+  },
+  "2e627cd8ddfe76ce": {
+   "suggest": "wrong",
+   "why": "'die sie brauchen' refers to the tables: grammatical and clear.",
+   "at": "2026-11-24"
+  },
+  "b32e0582dedcaa7c": {
+   "suggest": "fix",
+   "why": "English says approvers, es 'aprobaciones' (approvals); 'aprobadores' is closer, de says 'Zustimmenden'. Low priority.",
+   "at": "2026-11-24"
+  },
+  "263224e925ebca49": {
+   "suggest": "wrong",
+   "why": "'1 de 5 seleccionados' agrees with the total: correct.",
+   "at": "2026-11-24"
+  },
+  "c13254506180a869": {
+   "suggest": "wrong",
+   "why": "'1 von 1 Schlüssel' is the correct dative singular.",
+   "at": "2026-11-24"
+  },
+  "5af8de4ec829a3b7": {
+   "suggest": "wrong",
+   "why": "A terse hint, grammatical.",
+   "at": "2026-11-24"
+  },
+  "e9d20650357a8388": {
+   "suggest": "wrong",
+   "why": "'drücken Sie nach jedem Enter oder Komma' is correct.",
+   "at": "2026-11-24"
+  },
+  "30066fed2c777db4": {
+   "suggest": "wrong",
+   "why": "Spanish interfaces title export dialogs 'Exportar'.",
+   "at": "2026-11-24"
+  },
+  "5acd6b0cbf8b7a36": {
+   "suggest": "wrong",
+   "why": "'Protokoll durchsuchen' is clear on the audit log page.",
+   "at": "2026-11-24"
+  },
+  "36dd3bc60f360a6e": {
+   "suggest": "wrong",
+   "why": "Says the same as the English.",
+   "at": "2026-11-24"
+  },
+  "a3657efea3310425": {
+   "suggest": "wrong",
+   "why": "'Nuevo miembro' is a natural label for this event.",
+   "at": "2026-11-24"
+  },
+  "3d76aec68e2477af": {
+   "suggest": "wrong",
+   "why": "'Dem Server vertrauen über' leads into the choice that follows, like 'Trust the server by'.",
+   "at": "2026-11-24"
+  },
+  "2d71fcde93014622": {
+   "suggest": "wrong",
+   "why": "'Inhaber' is a usual German term for a certificate's subject.",
+   "at": "2026-11-24"
+  },
+  "993cf1923d7f51cf": {
+   "suggest": "wrong",
+   "why": "<key> is a placeholder for the reader to fill, not code; translating it is right.",
+   "at": "2026-11-24"
+  },
+  "a4f7d84cf293c060": {
+   "suggest": "wrong",
+   "why": "<key> is a placeholder for the reader to fill, not code; translating it is right.",
+   "at": "2026-11-24"
+  },
+  "d3245b90400c7036": {
+   "suggest": "wrong",
+   "why": "'audit.' is a value prefix (code) and stays as it is.",
+   "at": "2026-11-24"
+  },
+  "53feaacb3dfaa411": {
+   "suggest": "wrong",
+   "why": "'Byte' is the German plural of the unit.",
+   "at": "2026-11-24"
+  },
+  "36ade76d609bb0b2": {
+   "suggest": "fix",
+   "why": "The glossary gives 'el AI SOC' an article: 'los núcleos del AI SOC'. Low priority.",
+   "at": "2026-11-24"
+  },
+  "3abbd2d1cbc8992e": {
+   "suggest": "fix",
+   "why": "The glossary gives 'el AI SOC' an article: 'los núcleos del AI SOC'. Low priority.",
+   "at": "2026-11-24"
+  },
+  "cb1357dd867e484e": {
+   "suggest": "wrong",
+   "why": "Correct and formal.",
+   "at": "2026-11-24"
+  },
+  "75eec57fa0d12333": {
+   "suggest": "wrong",
+   "why": "'Ihre Administration' is a neutral way to name the admins.",
+   "at": "2026-11-24"
+  },
+  "97e2d0fe8886633a": {
+   "suggest": "wrong",
+   "why": "'su administración' is a neutral way to name the admins.",
+   "at": "2026-11-24"
+  },
+  "087be7a681a77a01": {
+   "suggest": "wrong",
+   "why": "'auf Deutsch' is correct: 'auf {{language}}'.",
+   "at": "2026-11-24"
+  },
+  "e0f05fb8cc3e4a52": {
+   "suggest": "wrong",
+   "why": "'auf Deutsch' is correct: 'auf {{language}}'.",
+   "at": "2026-11-24"
+  },
+  "7e215a02b826e3be": {
+   "suggest": "wrong",
+   "why": "'Assets' is the product's word in German.",
+   "at": "2026-11-24"
+  },
+  "35198c132f5982aa": {
+   "suggest": "wrong",
+   "why": "Grammatical: addresses change networks and countries.",
+   "at": "2026-11-24"
+  },
+  "1914558c7ee75367": {
+   "suggest": "wrong",
+   "why": "'die' is the object (sources that only your network reaches): correct.",
+   "at": "2026-11-24"
+  },
+  "972bcc2da185c10d": {
+   "suggest": "wrong",
+   "why": "'que' is the object (sources that only your network reaches): correct.",
+   "at": "2026-11-24"
+  },
+  "761e01feb01358a6": {
+   "suggest": "wrong",
+   "why": "Used for sites (la sede, feminine) on the site page.",
+   "at": "2026-11-24"
+  },
+  "8f9a0a68e9d39233": {
+   "suggest": "wrong",
+   "why": "Used for sites (la sede, feminine) on the site page.",
+   "at": "2026-11-24"
+  },
+  "9590b7750ea929de": {
+   "suggest": "wrong",
+   "why": "Used for sites (la sede, feminine) on the site page.",
+   "at": "2026-11-24"
+  },
+  "2fcd992c07d9d45d": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "509ae36b4fbde2de": {
+   "suggest": "wrong",
+   "why": "A short status label, understandable.",
+   "at": "2026-11-24"
+  },
+  "8c3c40d6919a3d15": {
+   "suggest": "wrong",
+   "why": "A short status label, understandable.",
+   "at": "2026-11-24"
+  },
+  "78c4375b320771b2": {
+   "suggest": "fix",
+   "why": "'Teilen' reads as 'share'; for splitting, 'Aufteilen' is clearer. Low priority.",
+   "at": "2026-11-24"
+  },
+  "c8eae3890e24b1e5": {
+   "suggest": "wrong",
+   "why": "Grammatical.",
+   "at": "2026-11-24"
+  },
+  "995c44ad268037af": {
+   "suggest": "wrong",
+   "why": "The filter picks the date to filter by; 'Fecha' fits.",
+   "at": "2026-11-24"
+  },
+  "24395a47d1855f60": {
+   "suggest": "fix",
+   "why": "'Alle 1 Zeile anzeigen' is awkward; for one line '{{count}} Zeile anzeigen'. Grok's plural is wrong. Low priority.",
+   "at": "2026-11-24"
+  },
+  "f28a0478bb8aa086": {
+   "suggest": "fix",
+   "why": "'In keinem Fall' also means 'under no circumstances'; 'Keinem Fall zugeordnet' avoids that. Low priority.",
+   "at": "2026-11-24"
+  },
+  "a0e0bd988c300990": {
+   "suggest": "fix",
+   "why": "'30 T' is not a usual abbreviation; '30 Tage'. Low priority.",
+   "at": "2026-11-24"
+  },
+  "1be072371ca0d137": {
+   "suggest": "wrong",
+   "why": "A sort option; 'Nach Wert' is clear next to the score.",
+   "at": "2026-11-24"
+  },
+  "f1cf2e9c316b0181": {
+   "suggest": "wrong",
+   "why": "'zerschlagen' is the usual word for a disrupted threat actor or botnet.",
+   "at": "2026-11-24"
+  },
+  "fb7b0fe43d9efcb0": {
+   "suggest": "wrong",
+   "why": "Understandable as it is.",
+   "at": "2026-11-24"
+  },
+  "1bf3e31a2033001e": {
+   "suggest": "unsure",
+   "why": "An entity's 'Standing' is 'Stand' here and standing terms are 'Bedingungen' elsewhere. Whether they are one concept only you know.",
+   "at": "2026-11-24"
+  },
+  "bd34cf48b2fb39f3": {
+   "suggest": "unsure",
+   "why": "An entity's 'Standing' is 'Estado' here and standing terms are 'Condiciones' elsewhere. Whether they are one concept only you know.",
+   "at": "2026-11-24"
+  },
+  "aac997f06d2ba63b": {
+   "suggest": "fix",
+   "why": "'zurückverbunden' is not idiomatic German: 'Hat das Gerät eine Verbindung nach außen aufgebaut?'",
+   "at": "2026-11-24"
+  },
+  "29e85aad7a306026": {
+   "suggest": "wrong",
+   "why": "'solange niemand etwas Eigenes einstellt' means the same as 'unless'.",
+   "at": "2026-11-24"
+  },
+  "a32bf23735bceff6": {
+   "suggest": "wrong",
+   "why": "Grammatical.",
+   "at": "2026-11-24"
+  },
+  "8640f0facf15582a": {
+   "suggest": "wrong",
+   "why": "The same term as in the English.",
+   "at": "2026-11-24"
+  },
+  "a7132c28aaf60e6e": {
+   "suggest": "wrong",
+   "why": "'mehr können' is a full verb: correct.",
+   "at": "2026-11-24"
+  },
+  "5bb760614554ad12": {
+   "suggest": "wrong",
+   "why": "'kein … und kein …' means neither … nor; Grok's 'oder' changes the meaning.",
+   "at": "2026-11-24"
+  },
+  "b50dffcf3a657da8": {
+   "suggest": "wrong",
+   "why": "Normal German compounding; the hyphen in 'Workspace-Admin' comes from the English word.",
+   "at": "2026-11-24"
+  },
+  "4027d51c688e09b5": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "95e9ec68aa43e934": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "f2583e30ba28e394": {
+   "suggest": "wrong",
+   "why": "Next to the selection, 'Leeren' is clear.",
+   "at": "2026-11-24"
+  },
+  "dabb959604ae3f84": {
+   "suggest": "wrong",
+   "why": "Next to the selection, 'Borrar' is clear.",
+   "at": "2026-11-24"
+  },
+  "548d03b73378d760": {
+   "suggest": "fix",
+   "why": "'Letzter 1 Tag' is awkward; the singular can drop the number: 'Letzter Tag'. Low priority.",
+   "at": "2026-11-24"
+  },
+  "6929ead6f1c7064a": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "e9939b2672c9adca": {
+   "suggest": "wrong",
+   "why": "Understandable as it is.",
+   "at": "2026-11-24"
+  },
+  "e0a9849215b2b4b5": {
+   "suggest": "fine",
+   "why": "A field name (ECS event.outcome): the same in every language.",
+   "at": "2026-11-24"
+  },
+  "71f7b20cb934caeb": {
+   "suggest": "fine",
+   "why": "A field name (ECS event.outcome): the same in every language.",
+   "at": "2026-11-24"
+  },
+  "d8e00edcc6cd2fb9": {
+   "suggest": "wrong",
+   "why": "Spanish keeps 'partner' as the product's term (also 'los partners').",
+   "at": "2026-11-24"
+  },
+  "bdda8ec0890c7557": {
+   "suggest": "wrong",
+   "why": "Spanish keeps 'partner' as the product's term.",
+   "at": "2026-11-24"
+  },
+  "18e5068178ad4ece": {
+   "suggest": "wrong",
+   "why": "Names the tab by its German name.",
+   "at": "2026-11-24"
+  },
+  "66388ccd07a6c430": {
+   "suggest": "wrong",
+   "why": "Names the tab by its Spanish name.",
+   "at": "2026-11-24"
+  },
+  "2b4035f7468ea794": {
+   "suggest": "wrong",
+   "why": "Understandable as it is.",
+   "at": "2026-11-24"
+  },
+  "5906c9e6037f5244": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "d940e935104d683c": {
+   "suggest": "fix",
+   "why": "'Erhöhen Sie sich' is unnatural: 'Erhöhen Sie Ihre Rechte, um den Betreiberbereich zu öffnen'.",
+   "at": "2026-11-24"
+  },
+  "0373b1e926384c4e": {
+   "suggest": "wrong",
+   "why": "A heading; dropping the article is normal there.",
+   "at": "2026-11-24"
+  },
+  "fc622b15db0e13d5": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "b1efd9cc6b429b3b": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "7df49c89d7a21d2d": {
+   "suggest": "wrong",
+   "why": "'tippen' also means typing.",
+   "at": "2026-11-24"
+  },
+  "c144caada8207b10": {
+   "suggest": "wrong",
+   "why": "Understandable as it is.",
+   "at": "2026-11-24"
+  },
+  "571a53184d546762": {
+   "suggest": "wrong",
+   "why": "'certificación' is the word for attestation throughout the Spanish texts.",
+   "at": "2026-11-24"
+  },
+  "f60a08db8354d353": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "315d1368124b1272": {
+   "suggest": "wrong",
+   "why": "Elliptical but clear.",
+   "at": "2026-11-24"
+  },
+  "fa3acbde48b08b86": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "6fc2319957d65d2c": {
+   "suggest": "wrong",
+   "why": "Readable; a matter of taste.",
+   "at": "2026-11-24"
+  },
+  "2719a4a2c5691aa4": {
+   "suggest": "wrong",
+   "why": "Readable; a matter of taste.",
+   "at": "2026-11-24"
+  },
+  "be13d204f7c8a32d": {
+   "suggest": "wrong",
+   "why": "Readable; a matter of taste.",
+   "at": "2026-11-24"
+  },
+  "437f98f7394bb28a": {
+   "suggest": "wrong",
+   "why": "'sie' refers to 'Anzahl': correct.",
+   "at": "2026-11-24"
+  },
+  "64bb7cac4cbd1159": {
+   "suggest": "wrong",
+   "why": "'sie' refers to 'Anzahl': correct.",
+   "at": "2026-11-24"
+  },
+  "171144b836efe095": {
+   "suggest": "wrong",
+   "why": "Correct as it is.",
+   "at": "2026-11-24"
+  },
+  "266960ae01d3bf9b": {
+   "suggest": "fix",
+   "why": "'Dateiimport unsigniert nach einem bestätigten' reads unfinished; 'Unsignierter Dateiimport nach einem bestätigten'. Low priority.",
+   "at": "2026-11-24"
+  }
+ }
+}

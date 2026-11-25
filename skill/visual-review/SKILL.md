@@ -1,6 +1,6 @@
 ---
 name: visual-review
-description: Run, read and act on the Grok frontend bot of ai-soc-platform (.grok-bot/) — screenshot sweep of every page, automatic checks, Grok's review of screenshots and German/Spanish texts, the report, triage, fixes and re-checks. Use for /visual-review, "check the frontend", "review the screenshots", "what did the bot find", "fix the findings", or anything about .grok-bot runs, findings, accepted.txt, review-notes.md, the weekly schedule or the backup.
+description: Run, read and act on the Grok frontend bot of ai-soc-platform (.grok-bot/) — screenshot sweep of every page, automatic checks, Grok's review of screenshots and German/Spanish texts, the report, Claude's triage, verdicts, fixes and re-checks. Use for /visual-review, "check the frontend", "review the screenshots", "what did the bot find", "triage the report", "fix the findings", or anything about .grok-bot runs, findings, verdicts.txt, triage.json, review-notes.md, the weekly schedule or the backup.
 ---
 
 # Visual review with the Grok bot
@@ -21,9 +21,11 @@ this skill is how to use it well.
   $0.04–0.05 per screenshot (grok-4.7); a first review of every page in 5
   variants about $20; later runs pay only for changed screenshots and text files.
 - **Docker must run** (Docker Desktop). Runs take a lock: one at a time.
-- Do not change the kit's scripts, `accepted.txt`, `review-notes.md` or
+- Do not change the kit's scripts, `verdicts.txt`, `review-notes.md` or
   `schedule.conf`, and do not switch the schedule on, unless the user asks.
-  After the user's changes to `accepted.txt` or `review-notes.md`, offer
+  Verdicts are the user's: you suggest (`state/triage.json`), they decide
+  (the report's buttons write `verdicts.txt`). After changes to
+  `verdicts.txt`, `review-notes.md` or `state/triage.json`, offer
   `.grok-bot/backup.sh`.
 - The bot tests **committed** code only: the last commit of the checked-out
   branch, or `BASE=<branch>`. Uncommitted changes are never in a run.
@@ -40,6 +42,7 @@ this skill is how to use it well.
 | `REVIEW_VARIANTS='en-desktop-light en-phone-light'` | which screenshots Grok reviews now | — |
 | `RUN=<runs folder> …` | `visual`: add variants to that run; `visual-review`: review that run | — |
 | `BASE=<branch> …` | test that branch instead of the checked-out one | — |
+| `.grok-bot/run.sh report` (`RUN=…`) | redraws the last run's report with `verdicts.txt` and `state/triage.json`, serves it on http://127.0.0.1:7317 with working verdict buttons, opens it; runs until stopped | free |
 | `.grok-bot/run.sh` | Grok writes Playwright tests on a `bot/tests-<time>` branch of its clone; the script re-runs them | ~$1 |
 | `.grok-bot/schedule.sh status` (or `install`, `uninstall`, `test`) | the weekly run (launchd); `AI=0 .grok-bot/schedule.sh test` is free | — |
 | `.grok-bot/backup.sh` | push the kit to its GitHub repository | — |
@@ -56,56 +59,95 @@ A sweep takes 15–25 minutes: start it in the background (Bash with
 
 Each run is `.grok-bot/runs/<YYYYMMDD-HHMMSS>-visual/`:
 
-- `report.html` — for the user: findings with marked cut-outs, a whole-screenshot
-  viewer, "Fine as is" buttons. Open it for them with `open`.
-- `findings.json` — for you:
-  - `pages[]`: `{route, path, findings[]}`; each finding has `source`
-    (`"check"` or `"grok"`), `severity`, `problem`, `variant` (e.g.
-    `de-phone-light`; checks may list several), `quote` (the text it is about),
-    `where`, `spots[{variant, box:[x,y,w,h]}]` (checks), `isNew`.
-  - `texts[]`: `{ns, key, language, source, severity, problem, suggestion, current, isNew}`.
-  - `notes[]`, `spent`, `stamp`. Rejected Grok claims are not in it (only,
-    collapsed, in the report).
+- `report.html` — for the user: Claude's causes, then findings by page with
+  marked cut-outs, Claude's suggestion and Fine / Wrong / Fix buttons, a filter,
+  "Known, to fix" and "No longer found". Opened as a file the buttons copy
+  lines; `.grok-bot/run.sh report` serves it so they save at once. Start that
+  for the user (in the background) rather than `open`ing the file.
+- `findings.json` — for you (open findings and known ones; fine and wrong are hidden):
+  - `pages[]`: `{route, path, findings[]}`; each finding has `id`, `ids`,
+    `source` (`"check"` or `"grok"`), `severity`, `problem`, `quote`,
+    `where`, `variant` (all variants it was found in), `members[]` (the same
+    finding per variant: `{variant, severity, problem, quote, where}`, one
+    for each language and theme it was found in), `spots[{variant, box:[x,y,w,h]}]`,
+    `isNew`, `known` (verdict fix), `triage` (your earlier suggestion).
+  - `texts[]`: `{id, ns, key, language, source, severity, problem, suggestion, current, isNew, known, triage}`.
+  - `gone[]`: fix verdicts whose finding was not found this run.
+  - `notes[]`, `spent`, `stamp`, `commit`. Rejected Grok claims are not in
+    it (only, collapsed, in the report).
 - `shots/<slug>/<variant>.png` — slug: the route without the leading `/`,
   without `$`, `/` as `__`; `/` itself is `root`
   (`/o/$orgId/w/$workspaceId/cases` → `o__orgId__w__workspaceId__cases`).
   Windows are two screens tall (desktop 1440×1800, phone 390×1688); nothing
   below that is covered.
-- `review.log` — Grok's cost, counts, "New since the previous run".
+- `review.log` — Grok's cost, counts, "New since the previous run", and
+  "Open: n, triaged by Claude: n, not yet: n".
 
 ## Triage: what to trust
 
 1. **Start with what is new** (`isNew`) unless the user wants everything.
-2. **`check` findings are measured in the browser and reliable.**
+2. **`check` findings are measured in the browser and reliable.** Whether what
+   they measure is a defect is still a judgement (a 200 px column may be a design).
 3. **Grok findings are a lead, not a fact.** In this project about half of
    Grok's serious screenshot claims turned out wrong (badges "overlapping" that
    do not, "English" buttons that say "Editar", correct bars called too short).
-   Before reporting or fixing one, open its screenshot with Read and look at the
-   spot yourself. Wrong ones: say so, and offer to add them to `accepted.txt`
-   with a `# checked: wrong` comment.
+   Look at the spot yourself before suggesting anything. Crops are cheaper than
+   whole screenshots: `sips -c <h> <w> --cropOffset <y> <x> <shot> --out <crop>`
+   around the finding's `spots[0].box`. A quote can match elsewhere on the page
+   (the sidebar has the page's name): crop the top of the page for headline findings.
 4. **The user's rules** are in `.grok-bot/review-notes.md` (views are for
    technicians; ms timestamps and terms like "Standing terms" are intended; tab
    bars scroll; the h1 stands on one line with nothing beside it on desktop; the
    uppercase line above a title is the workspace name, i.e. sample data).
-   `accepted.txt` holds single findings marked fine. Sample data (case titles,
-   names of people, customers, workspaces, hosts) is never a finding.
+   Sample data (case titles, names of people, customers, workspaces, hosts) is
+   never a finding.
 5. **Text findings are suggestions.** Check each against the locale files
-   (`web/src/**/locales/{en,de,es}.json`) and the glossary in
-   `docs/how-to/develop-the-web-app.md`: formal "Sie"/"usted"; the AI SOC (de "der
-   AI SOC", es "el AI SOC"); Workspace (de "Workspace", es "espacio de trabajo");
-   Finding (de "Finding", es "hallazgo"); Case (de "Fall", es "caso"); roles
-   without gender forms. Grok over-rates severity.
-6. **Group by root cause.** Many findings share one cause (28 "headline shares
-   its line" findings were one design-system component). Report causes, not
-   findings: what is wrong, how many pages and variants, one or two screenshots
-   as evidence, where the fix belongs. Then ask the user which causes to fix,
-   and which to accept as fine.
+   (`web/src/**/locales/{en,de,es}.json`, `web/src/shared/i18n/locales/errors.*.json`)
+   and the glossary in `docs/how-to/develop-the-web-app.md`: formal
+   "Sie"/"usted"; the AI SOC (de "der AI SOC", es "el AI SOC"); Workspace (de
+   "Workspace", es "espacio de trabajo"); Finding (de "Finding", es "hallazgo");
+   Case (de "Fall", es "caso"); roles without gender forms. Grok over-rates
+   severity and misreads the glossary as banning German plurals and genitives
+   (die Findings, des Workspaces are correct), compound hyphens (AI-SOC-Größe is
+   correct) and Spanish invariant acronyms (las CPU). Count a term across the
+   locale files before calling a text inconsistent.
+6. **Group by root cause.** Many findings share one cause. Report causes, not
+   findings: what is wrong, how many pages and variants, one or two crops as
+   evidence, where the fix belongs.
 
-Accepting a finding is a line in `.grok-bot/accepted.txt` (only with the user's
-yes); `.grok-bot/run.sh visual-review` then redraws the report for free:
+### Writing the triage
 
-    page <route> "<quoted text, or the finding's words>"   # why
-    text <namespace> <key> <de|es>                          # why
+After every run (asked for, or the weekly one when the user opens it), suggest
+a verdict for every open finding without `triage` and write it to
+`.grok-bot/state/triage.json`, merging with what is there:
+
+    { "causes":   { "<cause-slug>": { "title", "suggest", "why", "fixIn", "at" } },
+      "findings": { "<finding id>": { "suggest", "why", "cause", "at" } } }
+
+- `suggest`: `fix` (a real defect), `fine` (intended, by the user's rules or
+  the design), `wrong` (Grok's claim is false: say what is really there),
+  `unsure` (say what would decide it: the user's call, or a look in `pnpm dev:mock`).
+- `why`: one sentence the user can check, naming the evidence. `fixIn`: where
+  the fix belongs. A cause's `suggest`/`why` apply to all its findings.
+- Key by `id` from `findings.json` (a text's id includes its text, so a
+  suggestion lapses when the text changes). Write with a small node script;
+  then redraw for free with `.grok-bot/run.sh report`, and check
+  `review.log`'s "not yet: 0".
+- Never write `verdicts.txt` yourself unless the user tells you to: they
+  decide in the report. Agreeing with your suggestion keeps your `why` as the
+  line's comment.
+
+### Verdicts (verdicts.txt, the user's)
+
+    fine  page <route> "<quoted text>"              # intended: hidden
+    wrong page <route> "<quoted text>"              # Grok misread it: hidden, and Grok is told
+    fix   page <route> "<quoted text>"              # a real defect: stays as known until gone
+    fine  text <namespace> <key> <de|es> "<text>"   # lapses when the text changes
+
+A line without a verdict word is `fine`. A line hides findings on its route
+whose quote is its text, or contains it (6 characters or more). "No longer
+found" lists fix lines that matched nothing: fixed, most likely; the user
+removes the line from the report.
 
 ## Fixing
 
@@ -142,5 +184,12 @@ Follow AGENTS.md. Per root cause:
   page in `pnpm dev:mock` (`http://localhost:5174`) before blaming the app; the
   sweep follows `web/e2e/routes.ts`, `e2e/app.ts` and the mock scenarios
   `admin` and `partner`, so changes there can break it.
-- Grok's model or API changed: `PAGE_MODEL` / `TEXT_MODEL` switch models; the
-  errors are in the report's notes.
+- The report opens with a red "Grok could not review …" (the log has a
+  `FAILED:` line): often a model xAI no longer serves (grok-build-0.1 left the
+  API on 2026-11-19). Check docs.x.ai/developers/release-notes, then rerun with
+  `TEXT_MODEL=` / `PAGE_MODEL=` (defaults grok-4.3 / grok-4.7, set in
+  `visual/review.mjs`; the test-writing bot's `GROK_MODEL` in `run.sh`).
+  Do not use grok-4.7 for texts: it left every text review unanswered for
+  270 s (2026-11-23), though it reviews screenshots in seconds.
+  Until then the earlier results stay in the report, marked "not re-checked":
+  a drop in findings after such a run is that failure, not fixes.

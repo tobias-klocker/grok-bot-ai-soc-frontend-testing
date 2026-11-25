@@ -47,6 +47,8 @@ OUT="$(ls -td "$KIT"/runs/2*-visual 2>/dev/null | head -1)"
 new="$(sed -nE 's/^New since the previous run: ([0-9]+) page findings, ([0-9]+) text findings.*/\1 new on pages, \2 in texts/p' "$OUT/review.log")"
 cost="$(sed -nE 's/^Grok cost this run: (\$[0-9.]+).*/\1/p' "$OUT/review.log")"
 left="$(grep -c 'were not reviewed: the budget' "$OUT/review.log" || true)"
+failed="$(sed -nE 's/^FAILED: (Grok could not review [^(]*).*/\1/p' "$OUT/review.log")"
+[ -z "$failed" ] || notify "Weekly review incomplete" "$failed; earlier results are marked not re-checked. Report: .grok-bot/runs/$(basename "$OUT")/report.html"
 notify "Weekly review ready" "${new:-first run, nothing to compare}; Grok ${cost:-\$0}$([ "${left:-0}" -gt 0 ] && echo ', budget reached'). Report: .grok-bot/runs/$(basename "$OUT")/report.html"
 
 # Older runs go, the newest KEEP_RUNS stay.
@@ -57,7 +59,7 @@ if [ "${KEEP_RUNS:-0}" -gt 0 ]; then
   done
   ls -t "$KIT"/runs/scheduled-*.log 2>/dev/null | tail -n +$((KEEP_RUNS + 1)) | while read -r f; do rm -f "$f"; done
 fi
-# The kit to GitHub (backup.sh): notes, accepted findings, the review cache.
+# The kit to GitHub (backup.sh): notes, verdicts, the review cache and the triage.
 if [ "${BACKUP:-0}" = 1 ]; then
   "$KIT/backup.sh" "Weekly run $STAMP" || notify "Backup failed" "The review ran; the push to GitHub did not. Log: .grok-bot/runs/$(basename "$LOGFILE")"
 fi

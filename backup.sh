@@ -1,6 +1,6 @@
 #!/bin/bash
 # Backs up this kit to its private GitHub repository: scripts, settings,
-# accepted findings, notes and the review cache. runs/ (screenshots, reports,
+# verdicts, notes, the review cache and the triage. runs/ (screenshots, reports,
 # logs) stays on this Mac. Pushes with your own Git sign-in.
 #
 #   .grok-bot/backup.sh             commit what changed and push it

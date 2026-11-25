@@ -60,16 +60,20 @@ repo root:
 2. **Free text checks**: missing German or Spanish texts, placeholders that
    differ from English, informal address (du / tú), sentences left in English.
 3. **Grok** reviews the German and Spanish texts of every feature against
-   the English (grok-build-0.1), then each screenshot on its own (grok-4.7,
+   the English (grok-4.3), then each screenshot on its own (grok-4.7,
    5 variants per page by default). Every finding must quote the text it is
-   about; a quote that is not on that screenshot is rejected. Grok sees only
-   what `visual/review.mjs` sends it: the screenshots and the texts.
+   about; a quote that is not on that screenshot is rejected, and so is a
+   claim that text is cut off at the edge of a row that scrolls sideways (a
+   tab bar). Grok sees only what `visual/review.mjs` sends it: the
+   screenshots and the texts.
 4. **Report**: `runs/<time>-visual/report.html` opens by itself. Each
    finding shows a cut-out of its screenshot with the spot outlined (and the
    whole screenshot, marked, one click away): checks mark the element they
    measured, Grok's findings are found by the text they quote. "check"
    findings are measured and reliable; "Grok" findings are its reading of the
-   screenshots, so compare with the screenshot before acting on one.
+   screenshots, so compare with the screenshot before acting on one. The same
+   finding in several languages or themes of one device is shown once, naming
+   every variant (`visual/group.mjs`).
 
 Costs: with grok-4.7 a screenshot costs about $0.01, so reviewing every page
 in 5 variants for the first time is about $5 (3 variants: `REVIEW_VARIANTS`,
@@ -82,14 +86,14 @@ budget; pages left over are reviewed first on the next run.
 | Setting | Effect |
 |---|---|
 | `MAX_USD=1` | budget for Grok this run (default 2) |
-| `AI=0` | sweep and free checks only, no key needed, $0 |
+| `AI=0` | sweep and free checks, and Grok's earlier reviews of screenshots that did not change; no key needed, $0 |
 | `SWEEP_ONLY='inbox\|cases'` | only routes matching this expression (quick checks) |
 | `SWEEP_VARIANTS='tablet'` | which variants to sweep, by name or part of one: `tablet` (820 px), `wide` (1920 px), `qhd` (2560 px), `de-`, `all`; default the 8 basic ones (desktop 1440 px, phone 390 px) |
 | `RUN=<folder in runs/>` | with `visual`: add the swept variants to that run's report |
 | `REVIEW_VARIANTS='...'` | which screenshots Grok reviews now, by name or part of one (default: en-desktop-light en-phone-light en-desktop-dark de-phone-light es-phone-light); earlier reviews of other variants stay in the report |
-| `FULL=1` | review everything again, changed or not |
+| `FULL=1` | review everything again, changed or not; `FULL=texts` only the translations, `FULL=pages` only the screenshots |
 | `PAGE_MODEL=...` | model for screenshots (default grok-4.7); changing it reviews them again |
-| `TEXT_MODEL=...` | model for the texts (default grok-build-0.1) |
+| `TEXT_MODEL=...` | model for the texts (default grok-4.3; grok-build-0.1 left the API on 2026-11-19; grok-4.7 answers no text review within 270 s, tested 2026-11-23) |
 | `RUN=<folder in runs/>` | with `visual-review`: which earlier sweep to review |
 
 ### Review again without a new sweep
@@ -97,23 +101,52 @@ budget; pages left over are reviewed first on the next run.
     .grok-bot/run.sh visual-review
 
 Reviews the last sweep's screenshots again: free for what was reviewed
-before with the same model, so it also just redraws the report after you
-change `accepted.txt`. `PAGE_MODEL=grok-4.6 .grok-bot/run.sh visual-review`
+before with the same model. `PAGE_MODEL=grok-4.6 .grok-bot/run.sh visual-review`
 compares another model on the same screenshots.
 
-### Findings that are fine as they are
+### The report with working buttons
 
-In the report, "Fine as is" next to a finding collects a line in a box at the
-bottom and copies the box. Paste the lines into `.grok-bot/accepted.txt`
-(add `# why` after a line if you like):
+    .grok-bot/run.sh report            # the last run; RUN=<folder in runs/> for another
 
-    page /o/$orgId/w/$workspaceId/cases "ws-fin-014"   # part of the case title
-    text features/access productAdmins.title de        # wording is intended
+Redraws the report with `verdicts.txt` and Claude's triage (no Grok, free),
+serves it on http://127.0.0.1:7317 (`PORT=` for another) and opens it. Its
+buttons save your verdicts into `verdicts.txt` at once; "Redraw with the new
+verdicts" applies them. Ctrl-C ends it. It runs in the kit's image, published
+on 127.0.0.1 only, and accepts writes only from the report itself. Opened as
+a file instead, the buttons copy the lines to paste into `verdicts.txt`.
 
-Matching findings are hidden from later reports, and when a page's
-screenshot changes and is reviewed again, Grok is told they are fine. A `page`
-line hides findings on that route whose quoted text (or wording) contains the
-text in quotes.
+### Verdicts: fine, wrong, fix
+
+Each finding has three buttons; the one Claude suggests is outlined:
+
+- **Fine**: intended as it is. Hidden from later reports; Grok is told.
+- **Wrong**: Grok misread the screenshot or text. Hidden; Grok is told it was wrong.
+- **Fix**: a real defect. It stays in the report, under "Known, to fix" and
+  not counted as new, until a run no longer finds it; then it is listed under
+  "No longer found", where one click removes the line.
+
+A cause's buttons decide all its findings at once. The lines in `verdicts.txt`:
+
+    fine  page /o/$orgId/w/$workspaceId/cases "ws-fin-014"   # part of the case title
+    wrong page /o/$orgId/sites "Dedicated node nbg1-07"      # the badge stands beside the title
+    fix   page /o/$orgId "12"                                # the page is empty
+    fine  text features/access productAdmins.title de "Produktadministratoren"
+
+A `page` line matches findings on that route whose quoted text is, or
+contains (6 characters or more), the text in quotes. A `text` line with the
+text in quotes lapses when that text changes, so a changed text is decided
+again; without the quotes it never lapses. A line without a verdict word is
+`fine` (the older `accepted.txt` form).
+
+### Claude's triage
+
+Claude (the `visual-review` skill) suggests a verdict for each open finding,
+with one sentence of evidence and where the fix belongs, and groups findings
+by cause. It writes `state/triage.json`; the report shows the suggestions,
+"By cause" and a filter (new, Claude suggests fix, fine or wrong, unsure, not
+triaged). Suggestions are keyed by a finding's id, so an unchanged finding
+keeps its suggestion in later runs. You decide: Claude does not write
+`verdicts.txt`.
 
 ## Weekly run (prepared, off until you switch it on)
 
@@ -159,8 +192,8 @@ backed up with the kit.
     .grok-bot/backup.sh "message"   with your own message
 
 Pushes this folder to github.com/tobias-klocker/grok-bot-ai-soc-frontend-testing
-(private) with your own Git sign-in: scripts, settings, `accepted.txt`,
-`review-notes.md` and the review cache in `state/`. `runs/` stays on this Mac
+(private) with your own Git sign-in: scripts, settings, `verdicts.txt`,
+`review-notes.md`, the review cache and Claude's triage in `state/`. `runs/` stays on this Mac
 (`.gitignore`). The weekly run backs up after each run (`BACKUP=1` in
 `schedule.conf`). To restore on another Mac: clone the repository into
 `<project>/.grok-bot`, then exclude it there as here (`.git/info/exclude`).

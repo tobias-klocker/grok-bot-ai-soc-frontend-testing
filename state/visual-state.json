@@ -3677,262 +3677,150 @@
    "hash": "cd77002e5dccda5d",
    "findings": [
     {
-     "key": "lede",
+     "key": "bulk.selectAll_one",
      "language": "es",
      "severity": "high",
-     "problem": "Incorrect sentence structure changes the meaning; the relative clause does not properly modify both 've el AI SOC' and the inventory part.",
-     "suggestion": "Hosts, cuentas y servicios que ve el AI SOC y que notifica el inventario de Microsoft, fusionados por sus identificadores, con lo que su organización sabe de ellos.",
-     "source": "grok"
-    },
-    {
-     "key": "lede",
-     "language": "de",
-     "severity": "high",
-     "problem": "Grammatically incorrect sentence structure; missing relative pronoun makes the second part of the clause unparallel and unclear.",
-     "suggestion": "Hosts, Konten und Dienste, die der AI SOC sieht und die das Microsoft-Inventar meldet, über ihre Kennungen zusammengeführt, mit dem, was Ihre Organisation über sie weiß.",
-     "source": "grok"
-    },
-    {
-     "key": "context.tagsHint",
-     "language": "de",
-     "severity": "high",
-     "problem": "The instruction is incomplete and does not make sense; missing reference to what to press after.",
-     "suggestion": "Bis zu 20 Tags mit je bis zu 40 Zeichen; drücken Sie nach jedem Tag Enter oder Komma.",
+     "problem": "Incorrect and unnatural Spanish wording that does not handle the count correctly.",
+     "suggestion": "Seleccionar los {{count}} cargados",
      "source": "grok"
     },
     {
      "key": "bulk.tagHint",
      "language": "de",
      "severity": "medium",
-     "problem": "Sentence fragment that reads unnaturally and is missing the verb for a complete clause.",
-     "suggestion": "Ein Tag, der jedem ausgewählten Asset hinzugefügt oder davon entfernt wird",
+     "problem": "Grammatically incomplete sentence; missing verb, resulting in unnatural German.",
+     "suggestion": "Ein Tag, der bei jedem ausgewählten Asset hinzugefügt oder entfernt wird",
      "source": "grok"
     },
     {
-     "key": "bulk.selectAll_one",
-     "language": "es",
+     "key": "context.lede",
+     "language": "de",
+     "severity": "high",
+     "problem": "Grammatically incorrect German sentence structure and word order; does not convey the intended meaning.",
+     "suggestion": "Kritikalität und Tags werden ebenfalls vom AI SOC verwendet.",
+     "source": "grok"
+    },
+    {
+     "key": "context.tagsHint",
+     "language": "de",
      "severity": "medium",
-     "problem": "Unnatural wording with singular article before the count placeholder; will render incorrectly (e.g. 'el 1 cargado').",
-     "suggestion": "Seleccionar {{count}} cargado",
+     "problem": "Unnatural German wording and incorrect word order.",
+     "suggestion": "Bis zu 20 Tags mit je bis zu 40 Zeichen; nach jedem Tag die Eingabetaste oder ein Komma drücken.",
+     "source": "grok"
+    },
+    {
+     "key": "findings.standing",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Translates the technical term 'Standing' (intended to remain as-is) to 'Bedingungen', changing the meaning.",
+     "suggestion": "Standing",
+     "source": "grok"
+    },
+    {
+     "key": "findings.noStanding",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Translates the technical term 'standing terms' (intended to remain as-is) to 'Bedingungen', changing the meaning.",
+     "suggestion": "Keine Standing Terms",
      "source": "grok"
     },
     {
      "key": "history.days_one",
      "language": "de",
-     "severity": "medium",
-     "problem": "Wrong plural form; renders unnaturally as 'Letzter 1 Tag' instead of proper German singular handling.",
-     "suggestion": "Letzten Tag",
-     "source": "grok"
-    },
-    {
-     "key": "history.days_one",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Wrong plural form; renders unnaturally as 'Último 1 día'.",
-     "suggestion": "Último día",
-     "source": "grok"
-    },
-    {
-     "key": "title",
-     "language": "de",
      "severity": "low",
-     "problem": "English left untranslated while Spanish translates the term.",
-     "suggestion": "Assets",
-     "source": "grok"
-    },
-    {
-     "key": "empty",
-     "language": "de",
-     "severity": "low",
-     "problem": "English left untranslated ('Assets').",
-     "suggestion": "Noch keine Assets",
-     "source": "grok"
-    },
-    {
-     "key": "noMatches",
-     "language": "de",
-     "severity": "low",
-     "problem": "English left untranslated ('Asset').",
-     "suggestion": "Kein Asset passt",
+     "problem": "Awkward German for a count of one; 'Letzter 1 Tag' is not idiomatic.",
+     "suggestion": "Letzter Tag",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T08:53:47.829Z"
+   "at": "2026-11-23T14:37:53.296Z"
   },
   "features/apikeys": {
-   "hash": "26dcc70d8473ae34",
+   "hash": "021419984821f199",
    "findings": [
     {
-     "key": "reference.eyebrow",
-     "language": "de",
-     "severity": "high",
-     "problem": "Translated as 'Entwicklung' (development) instead of 'Developers'.",
-     "suggestion": "Entwickler",
-     "source": "grok"
-    },
-    {
-     "key": "issue.permissionsHint",
-     "language": "de",
-     "severity": "high",
-     "problem": "Uses gendered forms 'Inhaberin oder sein Inhaber' for the owner, violating the rule against gender forms for roles/people. Inconsistent with 'Besitzer' used elsewhere like in allPermissions.",
-     "suggestion": "Wählen Sie, was der Schlüssel darf; er handelt nur im Rahmen dessen, was sein Besitzer darf, und erhält später hinzukommende Berechtigungen nie. Zugriffe, Schlüssel oder die Lizenz zu ändern erfordert immer eine angemeldete Person.",
-     "source": "grok"
-    },
-    {
-     "key": "personal.disabledBody",
-     "language": "de",
-     "severity": "high",
-     "problem": "Uses gendered forms 'eine Administratorin oder einen Administrator' for the role, violating the rule to use roles without gender forms.",
-     "suggestion": "Bitten Sie einen Administrator um einen Schlüssel für ein Dienstkonto.",
-     "source": "grok"
-    },
-    {
-     "key": "accounts.deleteBody",
+     "key": "allowance_one",
      "language": "de",
      "severity": "medium",
-     "problem": "Translates 'grants' as 'Berechtigungen', which is the same word used for 'permissions' elsewhere and does not accurately convey the source meaning of 'grants' (distinct from permissions/roles).",
-     "suggestion": "Das Dienstkonto wird mit seinen Schlüsseln und Zuweisungen gelöscht. Das kann nicht rückgängig gemacht werden.",
+     "problem": "Wrong plural/dative form for count=1 case",
+     "suggestion": "{{active}} von {{count}} Schlüsseln",
      "source": "grok"
     },
     {
-     "key": "rotate.body",
+     "key": "accounts.createLede",
      "language": "de",
      "severity": "medium",
-     "problem": "Unnatural German: 'mit gleichem Namen, gleichen Berechtigungen und gleicher Gültigkeitsdauer' is missing articles and uses incorrect forms (should be 'demselben' etc.).",
-     "suggestion": "Sie erhalten einen neuen Schlüssel mit demselben Namen, denselben Berechtigungen und derselben Gültigkeitsdauer. Der alte Schlüssel funktioniert noch für die gewählte Zeit, damit Clients umstellen können.",
-     "source": "grok"
-    },
-    {
-     "key": "token.body",
-     "language": "de",
-     "severity": "low",
-     "problem": "'Secret-Manager' left untranslated (English), which is unnatural in German.",
-     "suggestion": "Der Schlüssel wird nur dieses eine Mal angezeigt. Bewahren Sie ihn in einem Secret Manager auf; datAInsights speichert nur einen Fingerabdruck.",
-     "source": "grok"
-    },
-    {
-     "key": "reference.lede",
-     "language": "de",
-     "severity": "low",
-     "problem": "'Bearer-Token' left untranslated (English).",
-     "suggestion": "Alle Operationen der öffentlichen API mit ihrer Berechtigung. Senden Sie einen API-Schlüssel als Bearer-Token. Die Beschreibungen der Operationen sind auf Englisch.",
+     "problem": "Grammatical error: possessive for neuter noun 'Dienstkonto' is wrong.",
+     "suggestion": "Danach stellen Sie auf seiner Seite einen Schlüssel aus und erteilen ihm Zugriff.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T08:55:14.532Z"
+   "at": "2026-11-23T14:37:36.939Z"
   },
   "features/access": {
-   "hash": "897770ca2606de18",
+   "hash": "610ee1ab17aec4a1",
    "findings": [
-    {
-     "key": "productAdmins.title",
-     "language": "de",
-     "severity": "high",
-     "problem": "Wrong meaning: 'Produktadministration' refers to the activity, not the people (administrators).",
-     "suggestion": "Produktadministratoren",
-     "source": "grok"
-    },
     {
      "key": "permissions.intel.read",
      "language": "de",
-     "severity": "high",
-     "problem": "Glossary violation: 'Funde' instead of the required term 'Finding'.",
+     "severity": "medium",
+     "problem": "Glossary violation: uses 'Funde' instead of mandated term 'Finding'.",
      "suggestion": "Fälle und Findings als STIX über TAXII lesen, für Threat-Intelligence-Plattformen",
      "source": "grok"
     },
     {
-     "key": "permissions.apikeys.manage",
+     "key": "permissions.cases.read",
      "language": "de",
-     "severity": "high",
-     "problem": "Inconsistent term: 'Dienstzugänge' instead of 'Dienstkonten' used elsewhere (lede, holders.kinds.service).",
-     "suggestion": "API-Schlüssel und Dienstkonten verwalten",
-     "source": "grok"
-    },
-    {
-     "key": "productAdmins.lede",
-     "language": "de",
-     "severity": "high",
-     "problem": "Internal name 'SOC' appears; should use 'AI SOC' per product terminology.",
-     "suggestion": "Organisations-Admins ernennen Produkt-Admins. Sie selbst haben dadurch keinen Zugriff auf AI-SOC-Daten.",
-     "source": "grok"
-    },
-    {
-     "key": "productAdmins.lede",
-     "language": "es",
-     "severity": "high",
-     "problem": "Internal name 'SOC' appears; should use 'AI SOC' per product terminology.",
-     "suggestion": "Los administradores de la organización nombran a los administradores del producto. Nombrarlos no les da a ellos mismos acceso a los datos del AI SOC.",
-     "source": "grok"
-    },
-    {
-     "key": "productAdmins.emptyBody",
-     "language": "es",
-     "severity": "high",
-     "problem": "Internal name 'SOC' appears; should use 'AI SOC' per product terminology.",
-     "suggestion": "Nombre al menos a una persona para dirigir el AI SOC.",
-     "source": "grok"
-    },
-    {
-     "key": "productAdmins.removeBody",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent terminology: 'Produktadministration' here but 'Produkt-Admin' and 'Produkt-Admins' elsewhere.",
-     "suggestion": "Die Person verliert sofort die Rechte des Produkt-Admin. Ihre übrigen Vergaben bleiben bestehen.",
-     "source": "grok"
-    },
-    {
-     "key": "productAdmins.removeConfirm",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent terminology: 'Produktadministration' here but 'Produkt-Admin' and 'Produkt-Admins' elsewhere.",
-     "suggestion": "{{name}} verliert sofort die Rechte des Produkt-Admin. Übrige Vergaben bleiben bestehen.",
-     "source": "grok"
-    },
-    {
-     "key": "productAdmins.search",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent terminology: 'Administratoren' here but 'Admin' / 'Produkt-Admin' elsewhere.",
-     "suggestion": "Admins durchsuchen",
-     "source": "grok"
-    },
-    {
-     "key": "support.lede",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural wording for a native speaker: 'keinen Platz der Lizenz' (awkward phrasing for 'no seat').",
-     "suggestion": "Lassen Sie einen datAInsights-Supporttechniker für einige Stunden in Ihre Organisation, damit er Ihnen helfen kann. Er erhält eine eingebaute Rolle und keinen Lizenzplatz; alles, was er tut, wird im Audit-Log festgehalten. Sie können den Zugang jederzeit beenden.",
-     "source": "grok"
-    },
-    {
-     "key": "support.reasonHint",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unclear/unnatural reference: 'Er wird' after 'die Ticketnummer' (feminine) makes the antecedent unclear.",
-     "suggestion": "Zum Beispiel die Ticketnummer. Dies wird im Audit-Log festgehalten.",
+     "severity": "low",
+     "problem": "Inconsistent terminology: uses 'Findings' here but 'Funde' elsewhere.",
+     "suggestion": "Findings und Fälle lesen",
      "source": "grok"
     },
     {
      "key": "roles.org_admin",
      "language": "de",
      "severity": "low",
-     "problem": "Inconsistent formatting with other role names: 'Organisationsadmin' vs 'Workspace-Admin'.",
+     "problem": "Inconsistent term formatting for role names: 'Organisationsadmin' lacks hyphen used in 'Workspace-Admin'.",
      "suggestion": "Organisations-Admin",
      "source": "grok"
     },
     {
-     "key": "permissionNames.intel.read",
+     "key": "productAdmins.lede",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent term formatting: 'Organisations-Admins' vs 'Workspace-Admin'.",
+     "suggestion": "Organisations-Admins ernennen Produkt-Admins. Sie selbst haben dadurch keinen Zugriff auf SOC-Daten.",
+     "source": "grok"
+    },
+    {
+     "key": "support.roleHint",
+     "language": "de",
+     "severity": "low",
+     "problem": "Uses gendered masculine forms 'Mitarbeiter' and 'er' when referring to the engineer.",
+     "suggestion": "Der Supporttechniker erhält zusätzlich die einzelne Berechtigung, Beispielzeilen nicht verarbeiteter Ereignisse zu lesen, damit dieser sieht, warum ein Log nicht gelesen wurde. Sie endet mit dem Zugang.",
+     "source": "grok"
+    },
+    {
+     "key": "support.roleHint",
      "language": "es",
      "severity": "low",
-     "problem": "English left untranslated: 'feed' should be translated.",
-     "suggestion": "Leer el flujo TAXII",
+     "problem": "Uses gendered masculine form 'El técnico' when referring to the engineer.",
+     "suggestion": "El ingeniero de soporte recibe además el permiso individual para leer las líneas de muestra de eventos no procesados, para ver por qué no se leyó un registro. Termina con el acceso.",
+     "source": "grok"
+    },
+    {
+     "key": "selectedCount",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Hardcoded masculine plural form is grammatically incorrect for count=1.",
+     "suggestion": "{{count}} de {{total}} seleccionado(s)",
      "source": "grok"
     },
     {
      "key": "clearSelection",
      "language": "de",
      "severity": "low",
-     "problem": "Wording a native speaker would find slightly unnatural: 'Leeren' as standalone button text for clearing a selection.",
+     "problem": "Single word \"Leeren\" is terse and less natural than common UI wording for clearing a selection.",
      "suggestion": "Auswahl leeren",
      "source": "grok"
     },
@@ -3940,130 +3828,274 @@
      "key": "clearSelection",
      "language": "es",
      "severity": "low",
-     "problem": "Wording a native speaker would find slightly unnatural: 'Borrar' as standalone button text for clearing a selection (can imply deletion).",
+     "problem": "\"Borrar\" can imply permanent deletion rather than clearing a temporary selection.",
      "suggestion": "Borrar selección",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T08:55:17.100Z"
+   "at": "2026-11-23T14:37:46.915Z"
   },
   "features/audit": {
-   "hash": "c2b1209b319f0fde",
+   "hash": "4b999cef260cd8c0",
    "findings": [
     {
-     "key": "fields.subject",
+     "key": "lede",
      "language": "de",
-     "severity": "high",
-     "problem": "Wrong meaning: 'Betroffen' is an adjective ('affected') rather than a noun for 'Subject' in the context of audit entries.",
-     "suggestion": "Betroffener",
-     "source": "grok"
-    },
-    {
-     "key": "actions.access.grant_revoked",
-     "language": "es",
-     "severity": "high",
-     "problem": "Wrong meaning: 'a {{subject}}' implies 'to {{subject}}' but English is 'from {{subject}}' (revoked from).",
-     "suggestion": "Revocó {{what}} de {{subject}} en {{scope}}",
+     "severity": "medium",
+     "problem": "Wording is unnatural; 'in Reihenfolge' is not idiomatic German.",
+     "suggestion": "Jede Änderung und jeder abgelehnte Versuch, manipulationssicher und in der richtigen Reihenfolge.",
      "source": "grok"
     },
     {
      "key": "actions.settings.mail_test_sent",
      "language": "de",
+     "severity": "low",
+     "problem": "Wrong preposition; 'auf {{language}}' does not convey 'in the language {{language}}'.",
+     "suggestion": "Test der Mailvorlagen in {{language}} gesendet",
+     "source": "grok"
+    },
+    {
+     "key": "actions.collection.absent_declared",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Unnatural and incomplete phrasing; 'erklärt' is not the right term and word order does not convey the English meaning clearly.",
+     "suggestion": "Deklarierte Quellen, die der Workspace nicht hat",
+     "source": "grok"
+    },
+    {
+     "key": "actions.apikeys.key_scoped",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Grammatically incomplete sentence; missing verb and awkward word order.",
+     "suggestion": "API-Schlüssel {{name}} von {{owner}} eine explizite Berechtigungsliste zugewiesen",
+     "source": "grok"
+    },
+    {
+     "key": "actions.case.unrestricted",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Grammatically incorrect phrasing; missing genitive article and case ending.",
+     "suggestion": "Einschränkung des Falls #{{number}} {{title}} aufgehoben",
+     "source": "grok"
+    },
+    {
+     "key": "actions.intel.indicator_matched",
+     "language": "de",
+     "severity": "low",
+     "problem": "English word \"Asset\" left untranslated while surrounding text is German.",
+     "suggestion": "Der Indikator {{indicatorValue}} des Feeds {{feed}} trifft auf das Asset {{name}} zu",
+     "source": "grok"
+    },
+    {
+     "key": "actions.case.attestation_approved",
+     "language": "de",
      "severity": "high",
-     "problem": "Wrong preposition and unnatural: 'auf {{language}}' does not correctly convey 'in {{language}}'.",
-     "suggestion": "Testmail der Mailvorlagen in {{language}} gesendet",
+     "problem": "Grammatically incomplete and unnatural wording; does not convey 'Approved an attestation on case'.",
+     "suggestion": "Hat einer Bestätigung in Fall #{{number}} {{title}} zugestimmt",
      "source": "grok"
     },
     {
-     "key": "operations.uploadIntelBundle",
+     "key": "actions.case.attestation_rejected",
      "language": "de",
      "severity": "high",
-     "problem": "Grammar error: verb form is past participle 'hochgeladen' instead of infinitive 'hochladen' to match all other operation names.",
-     "suggestion": "STIX-Bundle hochladen",
+     "problem": "Grammatically incomplete and unnatural wording; does not convey 'Rejected an attestation on case'.",
+     "suggestion": "Hat eine Bestätigung in Fall #{{number}} {{title}} abgelehnt",
      "source": "grok"
     },
     {
-     "key": "operations.downloadCaseStix",
+     "key": "actions.case.attestation_proposed",
      "language": "de",
      "severity": "high",
-     "problem": "Grammar error: verb form is past participle 'heruntergeladen' instead of infinitive 'herunterladen' to match all other operation names.",
-     "suggestion": "Fall als STIX herunterladen",
+     "problem": "Grammatically incomplete and unnatural wording; does not convey 'Proposed an attestation on case'.",
+     "suggestion": "Hat eine Bestätigung in Fall #{{number}} {{title}} vorgeschlagen",
      "source": "grok"
     },
     {
-     "key": "actions.session.org_entered",
+     "key": "actions.case.attestation_withdrawn",
      "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural wording and incomplete: starts with 'Hat' without explicit subject, unlike other action descriptions and the matching actionName.",
-     "suggestion": "Organisation betreten",
+     "severity": "high",
+     "problem": "Grammatically incomplete and unnatural wording; does not convey 'Withdrew an attestation on case'.",
+     "suggestion": "Hat eine Bestätigung in Fall #{{number}} {{title}} zurückgezogen",
      "source": "grok"
     },
     {
-     "key": "actions.session.ended",
+     "key": "actions.case.attestation_met",
      "language": "de",
      "severity": "medium",
-     "problem": "Unnatural wording and incomplete: starts with 'Hat' without explicit subject, unlike other action descriptions and the matching actionName.",
-     "suggestion": "Organisation verlassen: {{sessionEndLabel}}",
+     "problem": "Unnatural and unclear phrasing; does not clearly convey 'The policy of case ... is met for an attestation'.",
+     "suggestion": "Die Freigabe für eine Bestätigung in Fall #{{number}} {{title}} ist erreicht",
      "source": "grok"
     },
     {
-     "key": "actions.intel.feed_created",
+     "key": "actionNames.core.certificate_issued",
      "language": "de",
      "severity": "medium",
-     "problem": "English left untranslated: 'Threat-Intelligence-Feed' instead of a German term.",
-     "suggestion": "Bedrohungsintelligenz-Feed {{name}} hinzugefügt",
+     "problem": "Uses hyphenated \"AI-SOC\" instead of required \"AI SOC\" per glossary.",
+     "suggestion": "AI SOC Zertifikat ausgestellt",
      "source": "grok"
     },
     {
-     "key": "actions.intel.feed_updated",
+     "key": "actionNames.core.annotations_resent",
      "language": "de",
      "severity": "medium",
-     "problem": "English left untranslated: 'Threat-Intelligence-Feed' instead of a German term.",
-     "suggestion": "Bedrohungsintelligenz-Feed {{name}} geändert",
+     "problem": "Uses hyphenated \"AI-SOC\" instead of required \"AI SOC\" per glossary.",
+     "suggestion": "AI SOC Annotationen erneut gesendet",
      "source": "grok"
     },
     {
-     "key": "actions.intel.feed_deleted",
+     "key": "actionNames.core.inventory_read",
      "language": "de",
      "severity": "medium",
-     "problem": "English left untranslated: 'Threat-Intelligence-Feed' instead of a German term.",
-     "suggestion": "Bedrohungsintelligenz-Feed {{name}} entfernt",
+     "problem": "Uses hyphenated \"AI-SOC\" instead of required \"AI SOC\" per glossary.",
+     "suggestion": "AI SOC Antworten für eine Bestandsaufnahme gelesen",
      "source": "grok"
     },
     {
-     "key": "resources.intel-feed",
+     "key": "actionNames.core.inventory_ended",
      "language": "de",
      "severity": "medium",
-     "problem": "English left untranslated: 'Threat-Intelligence-Feed' instead of a German term.",
-     "suggestion": "Bedrohungsintelligenz-Feed {{name}}",
+     "problem": "Uses hyphenated \"AI-SOC\" instead of required \"AI SOC\" per glossary.",
+     "suggestion": "AI SOC Bestandsaufnahme beendet",
      "source": "grok"
     },
     {
-     "key": "actionNames.intel.feed_created",
+     "key": "actionNames.core.size_changed",
      "language": "de",
      "severity": "medium",
-     "problem": "English left untranslated: 'Threat-Intelligence-Feed' instead of a German term.",
-     "suggestion": "Bedrohungsintelligenz-Feed hinzugefügt",
+     "problem": "Inconsistent spelling of product name: uses hyphenated 'AI-SOC' while all other strings use 'AI SOC' (with space) per glossary.",
+     "suggestion": "AI SOC-Größe geändert",
      "source": "grok"
     },
     {
-     "key": "actionNames.intel.feed_updated",
+     "key": "actionNames.collection.import_unsigned",
      "language": "de",
      "severity": "medium",
-     "problem": "English left untranslated: 'Threat-Intelligence-Feed' instead of a German term.",
-     "suggestion": "Bedrohungsintelligenz-Feed geändert",
+     "problem": "Incomplete and unnatural German phrasing that is missing a noun or verb and does not clearly convey the English meaning.",
+     "suggestion": "Dateiimport unsigniert nach einem verifizierten",
      "source": "grok"
     },
     {
-     "key": "actionNames.intel.feed_deleted",
+     "key": "fields.coreSize",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent hyphenation of product name compared to other strings using 'AI SOC'.",
+     "suggestion": "AI SOC-Größe",
+     "source": "grok"
+    },
+    {
+     "key": "fields.cpus",
+     "language": "es",
+     "severity": "low",
+     "problem": "Plural form does not match English source.",
+     "suggestion": "CPUs",
+     "source": "grok"
+    },
+    {
+     "key": "export.title",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Translated as verb instead of noun matching English and German.",
+     "suggestion": "Exportación",
+     "source": "grok"
+    },
+    {
+     "key": "filter.search",
      "language": "de",
      "severity": "medium",
-     "problem": "English left untranslated: 'Threat-Intelligence-Feed' instead of a German term.",
-     "suggestion": "Bedrohungsintelligenz-Feed entfernt",
+     "problem": "Uses generic 'Protokoll' instead of consistent term 'Audit-Log' used elsewhere (e.g. filter.label).",
+     "suggestion": "Audit-Log durchsuchen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.listPlacements",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Translation does not match English meaning ('List where the organization may run an AI SOC').",
+     "suggestion": "Auflisten, wo die Organisation einen AI SOC ausführen darf",
+     "source": "grok"
+    },
+    {
+     "key": "resources.finding",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording 'Finding zu Fall' is unnatural in German.",
+     "suggestion": "Finding des Falls #{{number}}",
+     "source": "grok"
+    },
+    {
+     "key": "values.placements.graph",
+     "language": "de",
+     "severity": "low",
+     "problem": "'Sein' assumes masculine gender; neutral wording would be better.",
+     "suggestion": "Sein Angriffsdiagramm",
+     "source": "grok"
+    },
+    {
+     "key": "operations.declareAbsentSources",
+     "language": "de",
+     "severity": "high",
+     "problem": "Wrong meaning: 'erklären' means 'explain', not 'declare'.",
+     "suggestion": "Fehlende Quellen deklarieren",
+     "source": "grok"
+    },
+    {
+     "key": "operations.getWorkspaceCore",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Glossary violation: 'Workspaces' instead of 'Workspace'.",
+     "suggestion": "AI SOC des Workspace abrufen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.getWorkspaceAnalysis",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Glossary violation: 'Workspaces' instead of 'Workspace'.",
+     "suggestion": "Analysestand des AI SOC des Workspace abrufen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.listWorkspaceEvents",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent casing/grammar with glossary term 'Workspace'.",
+     "suggestion": "Änderungen eines Workspace nachholen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.markCaseStep",
+     "language": "es",
+     "severity": "low",
+     "problem": "Unnatural wording: 'un siguiente paso' should be 'el siguiente paso'.",
+     "suggestion": "Marcar el siguiente paso de un caso",
+     "source": "grok"
+    },
+    {
+     "key": "operations.approveCaseAttestation",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Wording is grammatically incomplete and unnatural; 'zustimmen' requires a dative object.",
+     "suggestion": "Bestätigung genehmigen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.getNewWorkspaceCoreSizes",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent hyphenation of 'AI SOC' (AI-SOC here vs. AI SOC elsewhere).",
+     "suggestion": "AI-SOC-Größen für einen neuen Workspace abrufen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.listCoreFigures",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent hyphenation of 'AI SOC' (AI-SOC here vs. AI SOC elsewhere).",
+     "suggestion": "Kennzahlen der laufenden AI-SOC-Kerne auflisten",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T08:56:36.600Z"
+   "at": "2026-11-23T14:40:36.102Z"
   },
   "features/inbox": {
    "hash": "2284baaf7a637e00",
@@ -4072,216 +4104,280 @@
      "key": "lede",
      "language": "de",
      "severity": "high",
-     "problem": "The clause 'geschieht unter Fälle' is grammatically incorrect and does not convey the meaning 'happens in Cases'. 'unter' is the wrong preposition and the structure is unnatural.",
-     "suggestion": "geschieht in Fällen",
+     "problem": "Uses English 'Findings' and German 'Fälle' instead of required glossary terms 'Finding' and 'Fall'.",
+     "suggestion": "Was dort geschehen ist, wo Sie Zugriff haben, das Neueste zuerst. Gelesen und Erledigt ändern nur Ihre eigene Liste; die gemeinsame Arbeit an Finding – zuweisen und abschließen – geschieht im Fall.",
      "source": "grok"
     },
     {
      "key": "lede",
      "language": "es",
      "severity": "high",
-     "problem": "'Leída y Hecha solo cambian su propia lista' is grammatically incorrect and unnatural. 'Leída' and 'Hecha' function as adjectives with no proper subject structure or agreement for the intended meaning.",
-     "suggestion": "Marcar como leída y hecha solo cambian su propia lista",
-     "source": "grok"
-    },
-    {
-     "key": "retention_one",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Missing equivalent of 'for' and unnatural sentence structure. 'Benachrichtigungen werden {{count}} Tag aufbewahrt' does not read as proper German for duration.",
-     "suggestion": "Benachrichtigungen werden für {{count}} Tag aufbewahrt.",
-     "source": "grok"
-    },
-    {
-     "key": "retention_other",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Missing equivalent of 'for' and unnatural sentence structure. 'Benachrichtigungen werden {{count}} Tage aufbewahrt' does not read as proper German for duration.",
-     "suggestion": "Benachrichtigungen werden für {{count}} Tage aufbewahrt.",
-     "source": "grok"
-    },
-    {
-     "key": "markAllRead",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Incorrect gender and number: 'todo' (masculine singular) and 'leído' (masculine singular) instead of agreeing with feminine plural 'notificaciones'.",
-     "suggestion": "Marcar todas como leídas",
-     "source": "grok"
-    },
-    {
-     "key": "empty.openBody",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Wrong preposition: 'für die Sie Zugriff haben' instead of the correct idiom 'auf die Sie Zugriff haben'.",
-     "suggestion": "Neue Ereignisse, auf die Sie Zugriff haben, erscheinen hier, sobald sie geschehen.",
-     "source": "grok"
-    },
-    {
-     "key": "empty.allBody",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Wrong preposition: 'für die Sie Zugriff haben' instead of the correct idiom 'auf die Sie Zugriff haben'.",
-     "suggestion": "Ereignisse der letzten 90 Tage, auf die Sie Zugriff haben, erscheinen hier.",
-     "source": "grok"
-    },
-    {
-     "key": "preferences.lede",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses 'und' instead of 'oder'. English uses 'or' to mean the categories no longer appear in either location.",
-     "suggestion": "Ausgeschaltete Kategorien erscheinen hier oder in der Anzahl nicht mehr.",
+     "problem": "Uses 'Casos' instead of required glossary term 'caso'.",
+     "suggestion": "Lo que ha ocurrido donde usted tiene acceso, lo más reciente primero. Leída y Hecha solo cambian su propia lista; el trabajo compartido sobre los hallazgos —asignarlos y cerrarlos— se hace en caso.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T08:57:02.511Z"
+   "at": "2026-11-23T14:38:08.475Z"
   },
   "features/collection": {
-   "hash": "669f32c6531d1af5",
+   "hash": "5923b1b3d7653ca1",
    "findings": [
     {
-     "key": "absent.lede",
+     "key": "collectedThrough",
      "language": "de",
      "severity": "high",
-     "problem": "English word 'Findings' left untranslated instead of using the specified glossary term 'Finding'.",
-     "suggestion": "Der AI SOC wartet auf Firewall-Protokolle, Flow-Datensätze und Cloud-API-Aufrufprotokolle, bis eine Quelle sie liefert, und hält die Finding zurück, die von ihrem Fehlen abhängen.",
+     "problem": "Wrong meaning: 'Gesammelt bis' means 'collected until', not 'collected through'.",
+     "suggestion": "Gesammelt über",
      "source": "grok"
     },
     {
-     "key": "absent.confirm.waiting",
-     "language": "de",
+     "key": "collectedThrough",
+     "language": "es",
      "severity": "high",
-     "problem": "English word 'Findings' left untranslated instead of using the specified glossary term 'Finding'.",
-     "suggestion": "Der AI SOC wartet nicht mehr auf diese Quellen und gibt die Finding frei, die von ihrem Fehlen abhängen.",
+     "problem": "Wrong meaning: 'Recogido hasta' means 'collected until', not 'collected through'.",
+     "suggestion": "Recogido a través de",
      "source": "grok"
     },
     {
-     "key": "absent.feedsDeclared.body",
+     "key": "absent.contradicted",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Grammar error: 'dieses Workspace' is missing the required genitive -s.",
+     "suggestion": "dieses Workspaces",
+     "source": "grok"
+    },
+    {
+     "key": "absent.confirm.body",
+     "language": "es",
+     "severity": "high",
+     "problem": "English word 'Declare' left untranslated at start of sentence.",
+     "suggestion": "Declara solo lo que sea cierto de forma permanente. El AI SOC lo recibe una vez y conserva la declaración.",
+     "source": "grok"
+    },
+    {
+     "key": "options.incidents",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English left untranslated",
+     "suggestion": "Vorfälle",
+     "source": "grok"
+    },
+    {
+     "key": "options.earliest",
      "language": "de",
      "severity": "high",
-     "problem": "English word 'Findings' left untranslated instead of using the specified glossary term 'Finding'.",
-     "suggestion": "Der Workspace hat erklärt, dass er keine {{sources}} hat. Der AI SOC behält diese Erklärung und lehnt solche Daten bis zu seiner nächsten Version ab; die Quelle sammelt, aber Finding, die darauf beruhen, fehlen bis dahin.",
+     "problem": "Grammatically incorrect fragment (wrong case, incomplete)",
+     "suggestion": "Das älteste aufbewahrte Ereignis",
+     "source": "grok"
+    },
+    {
+     "key": "advice.not_found",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Uses 'Arbeitsbereich' instead of the required glossary term 'Workspace'.",
+     "suggestion": "Der Namespace, der Event Hub, die Consumergruppe, der Workspace oder das Abonnement existiert nicht.",
+     "source": "grok"
+    },
+    {
+     "key": "advice.not_found",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses 'área de trabajo' instead of the required glossary term 'espacio de trabajo'.",
+     "suggestion": "El espacio de nombres, el event hub, el grupo de consumidores, el espacio de trabajo o la suscripción no existe.",
+     "source": "grok"
+    },
+    {
+     "key": "advice.license_expired",
+     "language": "de",
+     "severity": "low",
+     "problem": "Uses 'AI-SOC-Lizenz' instead of the required 'AI SOC'.",
+     "suggestion": "Die Lizenz des AI SOC der Organisation ist abgelaufen und die Kulanzzeit vorbei. Die Sammlung ist angehalten, die Konfiguration der Quelle bleibt erhalten; nach einer Verlängerung sammelt sie ab diesem Zeitpunkt wieder.",
+     "source": "grok"
+    },
+    {
+     "key": "guide.entra_id.why",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English term 'Collector' left untranslated.",
+     "suggestion": "der Sammler liest",
+     "source": "grok"
+    },
+    {
+     "key": "guide.azure_activity_log.why",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English term 'Collector' left untranslated.",
+     "suggestion": "der Sammler liest",
+     "source": "grok"
+    },
+    {
+     "key": "guide.entra_id.step2",
+     "language": "de",
+     "severity": "low",
+     "problem": "UI label 'Stream to an event hub' left untranslated.",
+     "suggestion": "Streamen zu einem Event Hub",
+     "source": "grok"
+    },
+    {
+     "key": "guide.azure_activity_log.step2",
+     "language": "de",
+     "severity": "low",
+     "problem": "UI label 'Stream to an event hub' left untranslated.",
+     "suggestion": "Streamen zu einem Event Hub",
+     "source": "grok"
+    },
+    {
+     "key": "create.size.change",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Uses hyphenated 'AI-SOC' while other strings in the same namespace consistently use 'AI SOC' (glossary violation, inconsistent terms).",
+     "suggestion": "AI SOC-Größe ändern",
+     "source": "grok"
+    },
+    {
+     "key": "detail.status.import.reading",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English internal term 'Collector' left untranslated.",
+     "suggestion": "Der Sammler liest das Verzeichnis noch.",
      "source": "grok"
     },
     {
      "key": "detail.status.import.waiting",
      "language": "de",
-     "severity": "high",
-     "problem": "Wrong meaning: 'bis auf die letzte Spanne' can be read as 'except for the last span' instead of 'up to the last span'.",
-     "suggestion": "Der AI SOC hat die Datensätze bis zur letzten Spanne Ereigniszeit analysiert, die er für verspätete Datensätze offen hält.",
+     "severity": "low",
+     "problem": "Grammatically unnatural phrasing ('Spanne Ereigniszeit').",
+     "suggestion": "Der AI SOC hat die Datensätze bis zur letzten Spanne der Ereigniszeit analysiert, die er für verspätete Datensätze offen hält.",
      "source": "grok"
     },
     {
      "key": "onboarding.lede",
      "language": "de",
      "severity": "medium",
-     "problem": "Role name uses gender form 'Administratorin', violating the rule that role names must be without gender forms.",
+     "problem": "Uses gendered role forms (Administratorin oder ein Administrator), violating the rule that role names must appear without gender forms.",
      "suggestion": "Ein Administrator des Microsoft-Mandanten führt dies einmal aus.",
      "source": "grok"
     },
     {
-     "key": "notes.defender_incidents.body",
+     "key": "onboarding.step1",
      "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent terminology: uses English 'Incident' here, while 'Vorfälle' is used for the same concept in create.recommendedShort and 'Incidents' appears in options.",
-     "suggestion": "Ein Vorfall oder eine Warnung wird bei jeder Änderung erneut gesammelt (Status, Klassifizierung, neue Beweise), sodass die Analyse den ganzen Verlauf sieht.",
-     "source": "grok"
-    },
-    {
-     "key": "create.testPanel.idleBody",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural wording: 'Wählen Sie' sounds like selecting from options rather than pressing the button (en 'Press Test connection').",
-     "suggestion": "Klicken Sie auf „Verbindung testen“, um zu sehen, ob die Quelle antwortet und was sie enthält.",
+     "severity": "low",
+     "problem": "Uses gendered form Globaler Administrator for the role.",
+     "suggestion": "als Besitzer des Abonnements und Global Administrator des Mandanten",
      "source": "grok"
     },
     {
      "key": "analysis.waiting",
      "language": "de",
      "severity": "medium",
-     "problem": "Grammar error: 'die letzten {{lateness}} Ereigniszeit' is missing 'der' and is not a natural phrasing.",
+     "problem": "German phrasing is grammatically incomplete and unnatural; missing preposition and awkward word order.",
      "suggestion": "Analysiert bis {{through}} · die letzten {{lateness}} der Ereigniszeit schließen um {{closesAt}}",
      "source": "grok"
     },
     {
-     "key": "test.empty",
-     "language": "de",
+     "key": "analysis.waiting",
+     "language": "es",
      "severity": "low",
-     "problem": "Slightly unnatural wording: 'am letzten Tag' is imprecise for 'in the last day'.",
-     "suggestion": "Verbunden, keine Daten im letzten Tag",
+     "problem": "Spanish phrasing is slightly unnatural and does not fully match the English structure.",
+     "suggestion": "Analizado hasta {{through}} · las últimas {{lateness}} del tiempo de eventos se cierran a las {{closesAt}}",
      "source": "grok"
     },
     {
-     "key": "create.testPanel.emptyTitle",
+     "key": "replay.lede",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Inconsistent terminology: 'Zugangs' used instead of the established term 'Zugriffs' (used throughout the rest of the file for 'access').",
+     "suggestion": "Senden Sie die archivierten Daten dieses Zugriffs aus einem gewählten Zeitraum erneut an den AI SOC, etwa nachdem er neu eingerichtet wurde. Erneut gesendete Datensätze zählen als Duplikate und sind innerhalb des Tagesanteils frei.",
+     "source": "grok"
+    },
+    {
+     "key": "replay.body",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Wording is unnatural for a native speaker ('Je Zugang').",
+     "suggestion": "Pro Zugang läuft nur ein erneutes Senden gleichzeitig.",
+     "source": "grok"
+    },
+    {
+     "key": "fieldMapping.formats.kv.name",
      "language": "de",
      "severity": "low",
-     "problem": "Slightly unnatural wording: 'am letzten Tag' is imprecise for 'in the last day'.",
-     "suggestion": "Verbunden, aber keine Daten im letzten Tag",
+     "problem": "English left untranslated.",
+     "suggestion": "Schlüssel=Wert",
+     "source": "grok"
+    },
+    {
+     "key": "fieldMapping.formats.kv_colon.name",
+     "language": "de",
+     "severity": "low",
+     "problem": "English left untranslated.",
+     "suggestion": "Schlüssel:\"Wert\"-Paare",
+     "source": "grok"
+    },
+    {
+     "key": "survey.startBody",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English internal term 'Collector' left untranslated.",
+     "suggestion": "Der Sammler liest die Dateien dieses Zugangs und hält nur die Form ihrer Zeilen fest.",
+     "source": "grok"
+    },
+    {
+     "key": "survey.lede",
+     "language": "es",
+     "severity": "low",
+     "problem": "Mistranslation: 'anonimizado' does not match 'redacted'.",
+     "suggestion": "El informe redactado ayuda a escribir asignaciones.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-12T12:51:05.083Z"
+   "at": "2026-11-23T14:42:19.719Z"
   },
   "features/licensing": {
-   "hash": "744d309f8b4a899a",
+   "hash": "bb743872c2b2c359",
    "findings": [
-    {
-     "key": "lede",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Incorrect German sentence structure. The text reads as an incomplete subordinate clause with the verb at the end but no main clause.",
-     "suggestion": "Welche Funktionen, Grenzen und Plätze geben die Lizenzen dieser Organisation im AI SOC?",
-     "source": "grok"
-    },
-    {
-     "key": "licenses.lede",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'ergänzen sich' does not match the meaning of 'add up'; it suggests mutual completion rather than accumulation.",
-     "suggestion": "Ihre Funktionen addieren sich, ebenso die Plätze der gültigen Lizenzen.",
-     "source": "grok"
-    },
     {
      "key": "manage",
      "language": "es",
      "severity": "medium",
-     "problem": "Inconsistent term: 'portal de cuenta' (singular) instead of 'portal de cuentas' used in all other strings.",
+     "problem": "Inconsistent term: 'portal de cuenta' (singular) while all other keys use 'portal de cuentas' (plural).",
      "suggestion": "Gestionar en el portal de cuentas",
+     "source": "grok"
+    },
+    {
+     "key": "facts.graceEndsAt",
+     "language": "es",
+     "severity": "low",
+     "problem": "Inconsistent spelling of 'período' (missing accent and form differs from other keys).",
+     "suggestion": "Fin del período de gracia",
+     "source": "grok"
+    },
+    {
+     "key": "states.grace",
+     "language": "es",
+     "severity": "low",
+     "problem": "Inconsistent spelling of 'período' compared with other keys using the accented form.",
+     "suggestion": "En período de gracia",
+     "source": "grok"
+    },
+    {
+     "key": "lifecycle.grace.body",
+     "language": "es",
+     "severity": "low",
+     "problem": "Inconsistent spelling of 'periodo' (no accent) compared with other keys.",
+     "suggestion": "Caducó el {{expiresAt}}. Todo sigue funcionando hasta el {{graceEndsAt}}; instale antes una licencia renovada en el portal de cuentas; de lo contrario, la recopilación de datos y la detección se detienen.",
      "source": "grok"
     },
     {
      "key": "ingestMonth.paused",
      "language": "de",
      "severity": "low",
-     "problem": "Inconsistent terminology: uses 'Grenze' while parallel strings use 'Limit' (e.g. ingest.paused.body).",
-     "suggestion": "{{used}} GB von {{limit}} GB in diesem Monat (UTC) aufgenommen. Neue Telemetrie wartet in der Warteschlange bis zum nächsten Monat oder einer Lizenz mit höherem Limit.",
-     "source": "grok"
-    },
-    {
-     "key": "ingestMonth.exceeded",
-     "language": "es",
-     "severity": "low",
-     "problem": "Inconsistent wording: 'avisa' instead of 'advierte' used in the parallel string ingest.exceeded.body.",
-     "suggestion": "{{used}} GB de {{limit}} GB ingeridos este mes (UTC). La licencia solo advierte: la ingesta y el análisis continúan.",
-     "source": "grok"
-    },
-    {
-     "key": "lifecycle.expired.body",
-     "language": "de",
-     "severity": "low",
-     "problem": "'die Erfassung' is abbreviated and inconsistent with 'Datenerfassung' used earlier in the same string and in other lifecycle texts.",
-     "suggestion": "Die Kulanzfrist endete am {{graceEndsAt}}. Datenerfassung und Erkennung sind gestoppt. Inhaber und Administratoren der Organisation können weiterhin ansehen und exportieren, ändern lässt sich nichts. Eine Verlängerung der Lizenz im Kontoportal startet die Datenerfassung ab dann wieder.",
-     "source": "grok"
-    },
-    {
-     "key": "lifecycle.grace.body",
-     "language": "de",
-     "severity": "low",
-     "problem": "Uses 'Datenerfassung' while the ingest.* strings use 'Datenaufnahme' for the same underlying concept of data intake.",
-     "suggestion": "Sie ist am {{expiresAt}} abgelaufen. Bis {{graceEndsAt}} funktioniert alles weiter; installieren Sie vorher im Kontoportal eine verlängerte Lizenz, sonst werden Datenerfassung und Erkennung gestoppt.",
+     "problem": "Inconsistent terminology: 'Grenze' used here instead of 'Limit' as in the other ingest strings.",
+     "suggestion": "… oder einer Lizenz mit höherem Limit installieren.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-12T12:51:22.879Z"
+   "at": "2026-11-23T14:40:50.705Z"
   },
   "features/org": {
    "hash": "fd52b48cfa1ba6c6",
@@ -4289,147 +4385,107 @@
     {
      "key": "emptyBody",
      "language": "de",
-     "severity": "high",
-     "problem": "The sentence has an awkward structure that mixes a general declarative statement with a direct address to the reader, and uses plural 'Inhaber fügen' where English uses singular 'An owner adds'. This does not read naturally and could confuse users.",
-     "suggestion": "Ein Inhaber fügt ihn mit einer Lizenz im Kontoportal hinzu, oder bitten Sie darum, in eine Organisation eingeladen zu werden, die ihn hat.",
-     "source": "grok"
-    },
-    {
-     "key": "operatorAreaBody",
-     "language": "de",
      "severity": "medium",
-     "problem": "Literal translation of 'elevated' as 'erhöht' is unnatural in German when describing an administrator role or privileges.",
-     "suggestion": "Sie sind als Administrator dieser Installation mit erweiterten Rechten ausgestattet: Die Knoten der Installation werden im Betreiberbereich verwaltet.",
-     "source": "grok"
-    },
-    {
-     "key": "operatorAreaBody",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Literal translation of 'elevated' as 'está elevado' is unnatural in Spanish when describing an administrator role or privileges.",
-     "suggestion": "Usted tiene privilegios de administrador para esta instalación: sus nodos se administran en el área de operador.",
-     "source": "grok"
-    },
-    {
-     "key": "partner",
-     "language": "es",
-     "severity": "medium",
-     "problem": "English word 'Partner' left untranslated.",
-     "suggestion": "Socio",
-     "source": "grok"
-    },
-    {
-     "key": "emptyBody",
-     "language": "de",
-     "severity": "low",
-     "problem": "Preposition 'in eine Organisation' is slightly off; 'zu einer Organisation' or a rephrased passive is more natural for 'invited to an organization'.",
-     "suggestion": "Ein Inhaber fügt ihn mit einer Lizenz im Kontoportal hinzu, oder bitten Sie darum, zu einer Organisation eingeladen zu werden, die ihn hat.",
+     "problem": "Wording is unnatural and slightly ungrammatical; the shift from third-person to imperative and the preposition 'in eine Einladung' do not sound native.",
+     "suggestion": "Keine Ihrer Organisationen hat den AI SOC. Ein Inhaber fügt ihn mit einer Lizenz im Kontoportal hinzu, oder bitten Sie darum, in eine Organisation eingeladen zu werden, die ihn hat.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T08:59:37.889Z"
+   "at": "2026-11-23T14:41:10.094Z"
   },
   "features/operator": {
-   "hash": "d66d181d57350874",
+   "hash": "bfe8d1a254a3d596",
    "findings": [
     {
-     "key": "keys.lede",
+     "key": "nav.cores",
      "language": "de",
-     "severity": "high",
-     "problem": "Grammar error: formal 'Sie' used for first verb but dropped for the second imperative verb.",
-     "suggestion": "stellen Sie einen neuen Schlüssel an den Anfang seiner Geheimnisdatei und starten Sie die Plattform neu",
-     "source": "grok"
-    },
-    {
-     "key": "cores.licenseDays_one",
-     "language": "de",
-     "severity": "high",
-     "problem": "'Tag Bestand' is unnatural German wording and does not correctly convey 'day of estate'.",
-     "suggestion": "{{count}} Tag des Bestands",
-     "source": "grok"
-    },
-    {
-     "key": "cores.licenseDays_other",
-     "language": "de",
-     "severity": "high",
-     "problem": "'Tage Bestand' is unnatural German wording and does not correctly convey 'days of estate'.",
-     "suggestion": "{{count}} Tage des Bestands",
-     "source": "grok"
-    },
-    {
-     "key": "cores.licenseDays_one",
-     "language": "es",
-     "severity": "high",
-     "problem": "'día de historial' has wrong meaning; 'historial' (history/record) does not match 'estate'.",
-     "suggestion": "{{count}} día de estate",
-     "source": "grok"
-    },
-    {
-     "key": "cores.licenseDays_other",
-     "language": "es",
-     "severity": "high",
-     "problem": "'días de historial' has wrong meaning; 'historial' (history/record) does not match 'estate'.",
-     "suggestion": "{{count}} días de estate",
+     "severity": "medium",
+     "problem": "Inconsistent product name spelling (hyphenated AI-SOC vs unhyphenated AI SOC elsewhere and in glossary)",
+     "suggestion": "AI SOC Kerne",
      "source": "grok"
     },
     {
      "key": "stuck.lede",
      "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent product name: 'AI SOCs' here vs 'AI-SOC-Kerne' (nav.cores, cores.title) and 'AI-SOC-Kern' (cores.lede); also 'AI SOC' in stuck.noneBody.",
-     "suggestion": "Use consistent form per glossary, e.g. 'die AI-SOCs' or 'der AI SOC'",
+     "severity": "low",
+     "problem": "Product name spelling inconsistent with glossary (AI SOCs)",
+     "suggestion": "die AI SOCs",
      "source": "grok"
     },
     {
-     "key": "stuck.lede",
+     "key": "cores.title",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent product name spelling (AI-SOC-Kerne)",
+     "suggestion": "AI SOC Kerne",
+     "source": "grok"
+    },
+    {
+     "key": "elevation.title",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording is unnatural for native German speakers in admin context",
+     "suggestion": "Erhöhen Sie Ihre Berechtigungen, um den Betreiberbereich zu öffnen",
+     "source": "grok"
+    },
+    {
+     "key": "apiKeys.note",
+     "language": "de",
+     "severity": "high",
+     "problem": "English word \"platform\" left untranslated.",
+     "suggestion": "Die Platform-Befehle auf dem Host brauchen keinen Schlüssel.",
+     "source": "grok"
+    },
+    {
+     "key": "apiKeys.note",
+     "language": "es",
+     "severity": "high",
+     "problem": "English word \"platform\" left untranslated.",
+     "suggestion": "Los comandos de la plataforma en el host no necesitan clave.",
+     "source": "grok"
+    },
+    {
+     "key": "apiKeys.empty.body",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Violates required term \"der AI SOC\"; uses hyphenated \"AI-SOC-Kerne\" instead.",
+     "suggestion": "Legen Sie einen Schlüssel für ein Skript oder einen Agenten an, der die Knoten oder die Kerne des AI SOC über die API beobachtet.",
+     "source": "grok"
+    },
+    {
+     "key": "apiKeys.permission.operator.cores.read",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Violates required term \"der AI SOC\"; uses hyphenated \"AI-SOC-Kerne\" instead.",
+     "suggestion": "Kerne des AI SOC und ihre Metriken lesen",
+     "source": "grok"
+    },
+    {
+     "key": "apiKeys.empty.body",
      "language": "es",
      "severity": "medium",
-     "problem": "'los AI SOC' does not follow 'el AI SOC'; 'no han recibido' changes 'have not taken'; 'un día después de acordarse' is awkward and unnatural.",
-     "suggestion": "los AI SOCs no han tomado un día después de que se acordaran",
+     "problem": "Violates required term \"el AI SOC\"; missing \"del\".",
+     "suggestion": "Cree una clave para un script o agente que supervise los nodos o los núcleos del AI SOC a través de la API.",
      "source": "grok"
     },
     {
-     "key": "cores.queued",
-     "language": "de",
+     "key": "apiKeys.permission.operator.cores.read",
+     "language": "es",
      "severity": "medium",
-     "problem": "English word 'Batches' left untranslated.",
-     "suggestion": "Wartende Stapel",
+     "problem": "Violates required term \"el AI SOC\"; missing \"del\".",
+     "suggestion": "Leer los núcleos del AI SOC y sus métricas",
      "source": "grok"
     },
     {
-     "key": "cores.waiting",
-     "language": "de",
-     "severity": "medium",
-     "problem": "English word 'Cuts' left untranslated.",
-     "suggestion": "Wartende Cuts",
-     "source": "grok"
-    },
-    {
-     "key": "cores.commit",
+     "key": "apiKeys.token.body",
      "language": "de",
      "severity": "low",
-     "problem": "English word 'Commit' left untranslated.",
-     "suggestion": "Mittlerer Commit",
-     "source": "grok"
-    },
-    {
-     "key": "cores.advance",
-     "language": "de",
-     "severity": "low",
-     "problem": "English word 'Advance' left untranslated.",
-     "suggestion": "Mittlerer Advance",
-     "source": "grok"
-    },
-    {
-     "key": "keys.stateLabel",
-     "language": "de",
-     "severity": "low",
-     "problem": "Inconsistent translation of 'State': 'Stand' here but 'Zustand' in cores.state.",
-     "suggestion": "Zustand",
+     "problem": "Unnatural hyphenation of English term.",
+     "suggestion": "Der Schlüssel wird nur dieses eine Mal angezeigt. Bewahren Sie ihn in einem Secret Manager auf; die Installation speichert nur einen Fingerabdruck.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:00:27.946Z"
+   "at": "2026-11-23T14:41:17.486Z"
   },
   "features/partners": {
    "hash": "c88564c83cc1fbd4",
@@ -4438,7 +4494,7 @@
      "key": "overview.columns.waiting",
      "language": "de",
      "severity": "high",
-     "problem": "The translation 'Wartezeit' means 'waiting time' and does not match the source meaning of 'Waiting' (likely a column for waiting cases or items); this is clearly wrong.",
+     "problem": "Wrong meaning: 'Wartezeit' means 'waiting time' rather than the status 'Waiting'.",
      "suggestion": "Wartend",
      "source": "grok"
     },
@@ -4446,453 +4502,300 @@
      "key": "attention.title_one",
      "language": "de",
      "severity": "high",
-     "problem": "Literal and unnatural phrasing '{{count}} Punkt braucht Sie' for 'thing needs you'; does not adapt the English idiom meaning 'requires your attention'.",
-     "suggestion": "{{count}} Punkt erfordert Ihre Aufmerksamkeit",
+     "problem": "Grammatically incorrect and unnatural wording; 'braucht Sie' misuses the formal address and does not convey 'needs your attention'.",
+     "suggestion": "{{count}} Punkt braucht Ihre Aufmerksamkeit",
+     "source": "grok"
+    },
+    {
+     "key": "attention.title_other",
+     "language": "de",
+     "severity": "high",
+     "problem": "Grammatically incorrect and unnatural wording; 'brauchen Sie' misuses the formal address and does not convey 'need your attention'.",
+     "suggestion": "{{count}} Punkte brauchen Ihre Aufmerksamkeit",
      "source": "grok"
     },
     {
      "key": "attention.clear",
      "language": "de",
-     "severity": "high",
-     "problem": "'Gerade braucht Sie bei Ihren Kunden nichts.' is awkward and unnatural German for 'Nothing needs you right now across your customers.'",
-     "suggestion": "Nichts erfordert gerade Ihre Aufmerksamkeit bei Ihren Kunden.",
-     "source": "grok"
-    },
-    {
-     "key": "attention.severity.critical",
-     "language": "es",
-     "severity": "high",
-     "problem": "Inconsistent severity terms: 'Crítica' (feminine) here but 'crítico' in overview.severityCount.critical and 'críticos' elsewhere; same for 'Alta' vs 'alto' and 'Media' vs 'medio'.",
-     "suggestion": "Crítico",
-     "source": "grok"
-    },
-    {
-     "key": "overview.mine_one",
-     "language": "de",
      "severity": "medium",
-     "problem": "'{{count}} Ihnen' is semantically unclear and unnatural for 'yours'; 'Ihnen' (dative 'to you') does not properly indicate possession or assignment in this abbreviated format.",
-     "suggestion": "{{count}} Ihre",
-     "source": "grok"
-    },
-    {
-     "key": "overview.sourcesHealthy_one",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses finite verb 'sammelt'/'sammeln' instead of a participle matching the English gerund 'collecting'; reads unnaturally as a statement rather than a descriptor (same issue in _other).",
-     "suggestion": "{{count}} Quelle sammelnd",
-     "source": "grok"
-    },
-    {
-     "key": "attention.licensesReason",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent terminology for the same concept: 'Datenlimit' here but 'Ingest-Limit' in totals.overIngest (also 'Tageslimit' elsewhere).",
-     "suggestion": "über dem Ingest-Limit",
-     "source": "grok"
-    },
-    {
-     "key": "inbox.lede",
-     "language": "es",
-     "severity": "medium",
-     "problem": "'guarda qué está leído y hecho' uses incorrect 'qué'; should use 'lo que' for 'what is read and done'.",
-     "suggestion": "Cada cliente guarda lo que está leído y lo que está hecho.",
-     "source": "grok"
-    },
-    {
-     "key": "overview.retrying_one",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'mit Wiederholung' is unnatural wording for 'retrying' (sounds like 'with repetition' rather than the ongoing process); same in totals.retrying.",
-     "suggestion": "{{count}} wiederholend",
-     "source": "grok"
-    },
-    {
-     "key": "totals.overIngest",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'Ingest' left untranslated in 'Ingest-Limit' while 'ingest' is rendered as German terms like 'Datenlimit' in other strings.",
-     "suggestion": "Über dem Datenaufnahme-Limit",
-     "source": "grok"
-    },
-    {
-     "key": "overview.emptyBody",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'Account-Portal' leaves English 'Account' untranslated (also in refusals.not_assigned); es fully translates to 'portal de cuentas'.",
-     "suggestion": "Kontenportal",
-     "source": "grok"
-    },
-    {
-     "key": "overview.columns.waiting",
-     "language": "es",
-     "severity": "low",
-     "problem": "'Espera' is vague and does not clearly convey 'Waiting' as a column for waiting cases; sounds like 'wait' or 'expectation'.",
-     "suggestion": "En espera",
-     "source": "grok"
-    },
-    {
-     "key": "overview.mine_one",
-     "language": "es",
-     "severity": "low",
-     "problem": "'{{count}} suyo' for one item is slightly awkward shorthand for 'yours' (though 'suyos' for plural is better).",
-     "suggestion": "{{count}} suyo",
+     "problem": "Unnatural and grammatically awkward phrasing; 'braucht Sie' does not correctly convey 'needs your attention'.",
+     "suggestion": "Gerade braucht nichts Ihre Aufmerksamkeit bei Ihren Kunden.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:01:31.248Z"
+   "at": "2026-11-23T14:41:49.400Z"
   },
   "features/preferences": {
    "hash": "4dcccc8b78e3a32f",
-   "findings": [
-    {
-     "key": "lede",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Uses singular 'Configuración que se aplica a usted.' without a definite article, while English uses plural 'Settings that apply to you.' The phrasing is grammatically awkward and unnatural in Spanish.",
-     "suggestion": "Las configuraciones que se aplican a usted. El idioma, la hora y los formatos le acompañan a cada organización y a cada aplicación de datAInsights; las claves de API solo se aplican en esta organización.",
-     "source": "grok"
-    },
-    {
-     "key": "regional.lede",
-     "language": "es",
-     "severity": "low",
-     "problem": "Inconsistent possessives: 'su espacio de trabajo, su organización o la instalación' does not match the English 'your workspace, organization or installation' where the possessive applies to all items in the list.",
-     "suggestion": "Lo que deje abierto sigue a su espacio de trabajo, su organización o su instalación, también cuando cambian. Los correos para usted se escriben en su idioma.",
-     "source": "grok"
-    },
-    {
-     "key": "regional.lede",
-     "language": "de",
-     "severity": "low",
-     "problem": "Inconsistent possessives: 'Ihrem Workspace, Ihrer Organisation oder der Installation' does not match the English 'your workspace, organization or installation' where the possessive applies to all items in the list.",
-     "suggestion": "Was Sie offen lassen, folgt Ihrem Workspace, Ihrer Organisation oder Ihrer Installation, auch wenn sich diese ändern. E-Mails an Sie werden in Ihrer Sprache geschrieben.",
-     "source": "grok"
-    }
-   ],
-   "at": "2026-11-11T09:02:08.669Z"
+   "findings": [],
+   "at": "2026-11-23T14:41:34.270Z"
   },
   "features/reports": {
-   "hash": "ee39c59d8d20e9bd",
+   "hash": "37d52070f7f8152d",
    "findings": [
     {
-     "key": "review.members_many",
-     "language": "es",
-     "severity": "high",
-     "problem": "Translation contains a key 'review.members_many' that does not exist in the English source. The source only defines review.members_one and review.members_other for plural handling.",
-     "suggestion": "Remove the key (use review.members_other for the plural form)",
-     "source": "grok"
-    },
-    {
-     "key": "links.opened_many",
-     "language": "es",
-     "severity": "high",
-     "problem": "Translation contains a key 'links.opened_many' that does not exist in the English source. The source only defines links.opened_one and links.opened_other.",
-     "suggestion": "Remove the key (use links.opened_other for the plural form)",
-     "source": "grok"
-    },
-    {
-     "key": "formats.pdfHint",
+     "key": "failures.renderer_unavailable",
      "language": "de",
      "severity": "medium",
-     "problem": "Grammatical error: 'wird E-Mails angehängt' is missing the required preposition 'an'.",
-     "suggestion": "wird an E-Mails angehängt",
-     "source": "grok"
-    },
-    {
-     "key": "share.body",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural and grammatically awkward German: 'einen einige Tage gültigen Link' is not correct phrasing.",
-     "suggestion": "einen Link, der einige Tage gültig ist",
-     "source": "grok"
-    },
-    {
-     "key": "share.body",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Unnatural wording: 'un enlace válido unos días' is missing a preposition.",
-     "suggestion": "un enlace válido por unos días",
-     "source": "grok"
-    },
-    {
-     "key": "create.state.upcoming",
-     "language": "es",
-     "severity": "low",
-     "problem": "'pendiente' does not accurately convey 'upcoming' in a multi-step wizard context (implies 'pending' rather than 'next').",
-     "suggestion": "próximo",
-     "source": "grok"
-    },
-    {
-     "key": "recipients.channel",
-     "language": "es",
-     "severity": "low",
-     "problem": "Wording is awkward and not natural for a native speaker: 'Enviar a direcciones mediante'.",
-     "suggestion": "Enviar direcciones mediante",
-     "source": "grok"
-    },
-    {
-     "key": "definitions.saved",
-     "language": "es",
-     "severity": "low",
-     "problem": "Added colon not present in the source, altering the structure from '{{section}} saved'.",
-     "suggestion": "{{section}} guardado",
+     "problem": "Uses 'Administration' (department) instead of the role 'Administrator'.",
+     "suggestion": "Bitten Sie Ihren Administrator, die Installation zu prüfen.",
      "source": "grok"
     },
     {
      "key": "failures.renderer_unavailable",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses 'administración' (department) instead of the role 'administrador'.",
+     "suggestion": "Pida a su administrador que revise la instalación.",
+     "source": "grok"
+    },
+    {
+     "key": "unavailable.core_unreachable",
      "language": "de",
      "severity": "low",
-     "problem": "'Bitten Sie Ihre Administration' is slightly unnatural (sounds like referring to a department rather than a person).",
-     "suggestion": "Bitten Sie Ihren Administrator",
+     "problem": "Missing article before product name; other strings use 'Der AI SOC'.",
+     "suggestion": "Der AI SOC antwortet nicht",
+     "source": "grok"
+    },
+    {
+     "key": "coverage.title",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Glossary violation: uses 'Workspaces' instead of the specified term 'Workspace'",
+     "suggestion": "{{included}} von {{total}} Workspace enthalten",
+     "source": "grok"
+    },
+    {
+     "key": "links.revoked",
+     "language": "de",
+     "severity": "high",
+     "problem": "Starts with lowercase letter, inconsistent with other similar keys like links.sent.",
+     "suggestion": "Widerrufen {{at}}",
+     "source": "grok"
+    },
+    {
+     "key": "links.revoked",
+     "language": "es",
+     "severity": "high",
+     "problem": "Starts with lowercase letter, inconsistent with other similar keys like links.sent.",
+     "suggestion": "Revocado {{at}}",
+     "source": "grok"
+    },
+    {
+     "key": "coverage.reason.core_unsupported",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Starts with lowercase letter unlike German and English equivalents.",
+     "suggestion": "Informes aún no disponibles",
+     "source": "grok"
+    },
+    {
+     "key": "coverage.reason.core_refused",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Starts with lowercase letter unlike German and English equivalents.",
+     "suggestion": "El AI SOC rechazó el informe",
+     "source": "grok"
+    },
+    {
+     "key": "coverage.reason.core_timeout",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Starts with lowercase letter unlike German and English equivalents.",
+     "suggestion": "El AI SOC tardó demasiado",
+     "source": "grok"
+    },
+    {
+     "key": "coverage.reason.content_invalid",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Starts with lowercase letter unlike German and English equivalents; wording \"fuera del formato\" is unnatural.",
+     "suggestion": "Informe no tiene el formato acordado",
+     "source": "grok"
+    },
+    {
+     "key": "coverage.reason.internal",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Starts with lowercase letter unlike German and English equivalents.",
+     "suggestion": "Error inesperado",
+     "source": "grok"
+    },
+    {
+     "key": "links.opened_one",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Starts with lowercase letter unlike German equivalent.",
+     "suggestion": "Abierto {{count}} de {{max}} veces",
+     "source": "grok"
+    },
+    {
+     "key": "links.opened_other",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Starts with lowercase letter unlike German equivalent.",
+     "suggestion": "Abierto {{count}} de {{max}} veces",
+     "source": "grok"
+    },
+    {
+     "key": "mailed.body",
+     "language": "de",
+     "severity": "low",
+     "problem": "\"wählen\" is unnatural for selecting a button.",
+     "suggestion": "Der Bericht wurde Ihnen als Link gesendet. Er wird heruntergeladen, sobald Sie die Schaltfläche auswählen.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:02:45.697Z"
+   "at": "2026-11-23T14:42:51.514Z"
   },
   "features/session": {
    "hash": "f66ee6e907309fec",
    "findings": [
     {
-     "key": "picker.empty",
+     "key": "nav.acrossWorkspaces",
      "language": "de",
      "severity": "medium",
-     "problem": "The translation \"Niemand gefunden\" does not accurately reflect \"Nobody matches\". It suggests that nobody was found rather than that there are no matches to the search criteria.",
+     "problem": "Glossary violation: term 'Workspace' must remain 'Workspace' in German; plural form and phrasing also deviate from source intent.",
+     "suggestion": "Über alle Workspaces",
+     "source": "grok"
+    },
+    {
+     "key": "picker.empty",
+     "language": "de",
+     "severity": "low",
+     "problem": "Slightly wrong meaning and unnatural wording compared to 'Nobody matches'.",
      "suggestion": "Niemand passt",
      "source": "grok"
     },
     {
-     "key": "nav.workQueue",
+     "key": "picker.start",
      "language": "de",
-     "severity": "medium",
-     "problem": "\"Arbeitsvorrat\" is an unnatural translation for \"Work queue\". It conveys a work supply or inventory rather than a queue of tasks.",
-     "suggestion": "Arbeitswarteschlange",
+     "severity": "low",
+     "problem": "Unnatural wording: 'tippen' implies touch input while English 'Type to search' refers to keyboard entry.",
+     "suggestion": "Zum Suchen eingeben",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:04:06.966Z"
+   "at": "2026-11-23T14:42:16.172Z"
   },
   "features/settings": {
-   "hash": "ad60e43513edcbaa",
+   "hash": "669c869295216bcc",
    "findings": [
     {
      "key": "groups.intel.lede",
      "language": "de",
-     "severity": "high",
-     "problem": "Uses 'Funde' instead of the required glossary term 'Finding'; also mixes with 'Fälle' while 'Finding' is used elsewhere in the file.",
+     "severity": "medium",
+     "problem": "Uses 'Fälle und Funde' instead of the glossary terms 'Fall' and 'Finding'.",
      "suggestion": "Wie Fälle und Findings gekennzeichnet werden, wenn sie als STIX hinausgehen, und ob Partner den TAXII-Feed lesen dürfen.",
      "source": "grok"
     },
     {
-     "key": "groups.cases.lede",
-     "language": "de",
-     "severity": "high",
-     "problem": "Grammar error: the first clause is missing the verb 'wird' to match the parallel structure and English meaning.",
-     "suggestion": "Wie viele Personen zustimmen, bevor ein Finding dem AI SOC als nachweislich harmlos bestätigt wird und bevor eine Bestätigung zurückgezogen wird.",
+     "key": "groups.intel.lede",
+     "language": "es",
+     "severity": "low",
+     "problem": "English word 'partners' left untranslated.",
+     "suggestion": "Cómo se marcan los casos y hallazgos cuando salen como STIX, y si los socios pueden leer el feed TAXII.",
      "source": "grok"
     },
     {
-     "key": "groups.reports.lede",
-     "language": "es",
+     "key": "groups.cases.title",
+     "language": "de",
+     "severity": "low",
+     "problem": "Uses 'Fällen' instead of the glossary term 'Fall'.",
+     "suggestion": "Bestätigungen in Fällen",
+     "source": "grok"
+    },
+    {
+     "key": "templates.kinds.workspaces",
+     "language": "de",
      "severity": "high",
-     "problem": "Missing meaning: 'el color de los informes' does not convey 'the colour reports lead with'.",
-     "suggestion": "Cuánto tiempo se conservan los informes, cuánto tiempo valen los enlaces enviados y el color con el que comienzan los informes.",
+     "problem": "English left untranslated",
+     "suggestion": "Workspaces",
+     "source": "grok"
+    },
+    {
+     "key": "templates.unsavedMessage",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Wrong preposition; unnatural wording",
+     "suggestion": "Die Vorlage für {{kind}} in {{language}} wurde geändert",
+     "source": "grok"
+    },
+    {
+     "key": "enrichment.kinds.intel",
+     "language": "de",
+     "severity": "high",
+     "problem": "English left untranslated",
+     "suggestion": "Bedrohungsintelligenz",
      "source": "grok"
     },
     {
      "key": "intel.lede",
      "language": "de",
      "severity": "medium",
-     "problem": "'Assets' and 'Bundles' left untranslated (English terms).",
-     "suggestion": "STIX-Indikatoren, die ein Workspace von TAXII-2.1-Servern bezieht, etwa von MISP, OpenCTI oder einem ISAC, oder aus STIX-Bündeln, die Sie hochladen, wo der AI SOC keinen Internetzugang hat. Der AI SOC gleicht sie mit den Assets und Fällen des Workspaces ab, auch mit später hinzukommenden, und nutzt sie in seiner Analyse.",
+     "problem": "English term \"Assets\" left untranslated",
+     "suggestion": "Assets und Fällen",
      "source": "grok"
     },
     {
-     "key": "templates.unsavedMessage",
+     "key": "enrichment.staleHint",
      "language": "de",
      "severity": "medium",
-     "problem": "Wrong preposition 'auf' for language reference; should be 'in' to match English and natural German.",
-     "suggestion": "Die Vorlage für {{kind}} in {{language}} wurde geändert",
+     "problem": "Unnatural wording and missing preposition; native speakers would rephrase for clarity",
+     "suggestion": "Ersetzen Sie sie durch eine aktuelle Datei: Adressen wechseln jede Woche zwischen Netzen und Ländern.",
      "source": "grok"
     },
     {
-     "key": "templates.unsavedMessage",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Wording is awkward and does not clearly convey the English meaning (sounds like an instruction rather than a status).",
-     "suggestion": "La plantilla de {{kind}} en {{language}} cambió",
-     "source": "grok"
-    },
-    {
-     "key": "templates.lede",
-     "language": "es",
-     "severity": "medium",
-     "problem": "'la imagen de su organización' is unnatural wording for 'branding'.",
-     "suggestion": "Asunto y texto de los correos de notificación por tipo de evento e idioma. Los eventos y sus detalles siguen al texto sin cambios; la plataforma de cuentas añade el branding de su organización.",
-     "source": "grok"
-    },
-    {
-     "key": "attestation.summary_one",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Word order is reversed and unnatural compared to English structure and other summaries in the file.",
-     "suggestion": "{{value}} persona certifica",
-     "source": "grok"
-    },
-    {
-     "key": "attestation.summary_other",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Word order is reversed and unnatural compared to English structure.",
-     "suggestion": "Certifican {{value}} personas",
-     "source": "grok"
-    },
-    {
-     "key": "attestation.withdrawalSummary_one",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Starts with lowercase letter and has reversed word order making it unnatural.",
-     "suggestion": "{{value}} persona retira",
-     "source": "grok"
-    },
-    {
-     "key": "attestation.withdrawalSummary_other",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Starts with lowercase and has reversed word order.",
-     "suggestion": "{{value}} personas retiran",
-     "source": "grok"
-    },
-    {
-     "key": "groups.intel.lede",
-     "language": "es",
-     "severity": "medium",
-     "problem": "'partners' left untranslated.",
-     "suggestion": "Cómo se marcan los casos y hallazgos cuando salen como STIX, y si los socios pueden leer el feed TAXII.",
-     "source": "grok"
-    },
-    {
-     "key": "keys.intel.taxii_partners.label",
-     "language": "es",
-     "severity": "medium",
-     "problem": "'partners' left untranslated.",
-     "suggestion": "Los socios pueden leer el feed TAXII",
-     "source": "grok"
-    },
-    {
-     "key": "groups.enrichment.title",
+     "key": "intel.list.state",
      "language": "de",
      "severity": "low",
-     "problem": "'Threat Intelligence' left untranslated.",
-     "suggestion": "Anreicherung und Bedrohungsinformationen",
+     "problem": "Inconsistent term for \"state\" (\"Zustand\" vs \"Status\" elsewhere)",
+     "suggestion": "Status",
      "source": "grok"
     },
     {
-     "key": "groups.intel.title",
+     "key": "intel.provided",
+     "language": "es",
+     "severity": "high",
+     "problem": "Wrong meaning: 'Indicado' does not match 'Provided' (status of a stored/provided secret); compare de 'Hinterlegt'.",
+     "suggestion": "Proporcionado",
+     "source": "grok"
+    },
+    {
+     "key": "keys.retention.cases_days.hint",
      "language": "de",
-     "severity": "low",
-     "problem": "'Threat Intelligence' left untranslated.",
-     "suggestion": "Teilen von Bedrohungsinformationen",
-     "source": "grok"
-    },
-    {
-     "key": "enrichment.about.virustotal",
-     "language": "de",
-     "severity": "low",
-     "problem": "'Domains' left untranslated.",
-     "suggestion": "Reputation von Adressen, Domänen und Datei-Hashes.",
-     "source": "grok"
-    },
-    {
-     "key": "saved",
-     "language": "es",
-     "severity": "low",
-     "problem": "Includes colon not present in English source and uses different structure.",
-     "suggestion": "{{section}} guardado",
-     "source": "grok"
-    },
-    {
-     "key": "days_many",
-     "language": "es",
-     "severity": "low",
-     "problem": "Introduces _many plural key; source uses only _one/_other for plurals per rules.",
-     "suggestion": "Remove extra plural keys and use only _one/_other as in English",
-     "source": "grok"
-    },
-    {
-     "key": "minutes_many",
-     "language": "es",
-     "severity": "low",
-     "problem": "Introduces _many plural key; source uses only _one/_other for plurals per rules.",
-     "suggestion": "Remove extra plural keys and use only _one/_other as in English",
-     "source": "grok"
-    },
-    {
-     "key": "keys_many",
-     "language": "es",
-     "severity": "low",
-     "problem": "Introduces _many plural key; source uses only _one/_other for plurals per rules.",
-     "suggestion": "Remove extra plural keys and use only _one/_other as in English",
-     "source": "grok"
-    },
-    {
-     "key": "notifications_many",
-     "language": "es",
-     "severity": "low",
-     "problem": "Introduces _many plural key; source uses only _one/_other for plurals per rules.",
-     "suggestion": "Remove extra plural keys and use only _one/_other as in English",
-     "source": "grok"
-    },
-    {
-     "key": "attestation.people_many",
-     "language": "es",
-     "severity": "low",
-     "problem": "Introduces _many plural key; source uses only _one/_other for plurals per rules.",
-     "suggestion": "Remove extra plural keys and use only _one/_other as in English",
-     "source": "grok"
-    },
-    {
-     "key": "attestation.summary_many",
-     "language": "es",
-     "severity": "low",
-     "problem": "Introduces _many plural key; source uses only _one/_other for plurals per rules.",
-     "suggestion": "Remove extra plural keys and use only _one/_other as in English",
-     "source": "grok"
-    },
-    {
-     "key": "attestation.withdrawalSummary_many",
-     "language": "es",
-     "severity": "low",
-     "problem": "Introduces _many plural key; source uses only _one/_other for plurals per rules.",
-     "suggestion": "Remove extra plural keys and use only _one/_other as in English",
+     "severity": "medium",
+     "problem": "Uses English plural 'Findings' instead of the glossary term 'Finding'.",
+     "suggestion": "Tage nach der Lösung, die gelöste und geschlossene Fälle mit ihren Finding aufbewahrt werden; 0 bewahrt sie unbegrenzt auf.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:05:12.987Z"
+   "at": "2026-11-23T14:44:00.957Z"
   },
   "features/integrations": {
-   "hash": "8d5951510ebc7320",
+   "hash": "1d59c8258848e43e",
    "findings": [
     {
-     "key": "organization.export.emptyBody",
+     "key": "partner.emptyBody",
      "language": "de",
      "severity": "high",
-     "problem": "Incorrect pronoun 'ihn' used for the neuter noun 'Ziel' (target).",
-     "suggestion": "Legen Sie ein Ziel an und prüfen Sie mit einem Testdatensatz, ob Ihr SIEM es erhält.",
+     "problem": "Sentence is incomplete and ungrammatical (ends abruptly with \"zu.\").",
+     "suggestion": "Ein Partnerkanal stellt die Ereignisse aller Kunden, die der Partner betreut, in einem Discord-, Teams-, Slack- oder E-Mail-Kanal bereit.",
      "source": "grok"
     },
     {
-     "key": "workspace.export.emptyBody",
-     "language": "de",
-     "severity": "high",
-     "problem": "Incorrect pronoun 'ihn' used for the neuter noun 'Ziel' (target).",
-     "suggestion": "Legen Sie ein Ziel an und prüfen Sie mit einem Testdatensatz, ob Ihr SIEM es erhält.",
+     "key": "fields.group",
+     "language": "es",
+     "severity": "low",
+     "problem": "English word \"partner\" left untranslated.",
+     "suggestion": "Personas del socio",
      "source": "grok"
     },
     {
      "key": "kinds.access.product_admin_appointed",
      "language": "de",
      "severity": "high",
-     "problem": "'Produktadministration' does not correctly translate the role 'product administrator'; should be 'Produktadministrator'. Inconsistent with 'Produktadministrator' used elsewhere (e.g. noAccess.body).",
+     "problem": "Wrong meaning: 'Produktadministration' means 'product administration' instead of 'product administrator'.",
      "suggestion": "Produktadministrator ernannt",
      "source": "grok"
     },
@@ -4900,872 +4803,1119 @@
      "key": "kinds.access.product_admin_removed",
      "language": "de",
      "severity": "high",
-     "problem": "'Produktadministration' does not correctly translate the role 'product administrator'; should be 'Produktadministrator'.",
+     "problem": "Wrong meaning: 'Produktadministration' means 'product administration' instead of 'product administrator'.",
      "suggestion": "Produktadministrator entfernt",
+     "source": "grok"
+    },
+    {
+     "key": "kinds.identity.member_joined",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Wrong meaning: 'Nuevo miembro' means 'New member' instead of 'Member joined'.",
+     "suggestion": "Miembro unido",
+     "source": "grok"
+    },
+    {
+     "key": "email.noPermission",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Unnatural wording: 'Nadie por permiso' is not idiomatic.",
+     "suggestion": "Nadie por permiso",
+     "source": "grok"
+    },
+    {
+     "key": "failures.mapping_invalid",
+     "language": "de",
+     "severity": "low",
+     "problem": "Partial translation of 'Format & fields' while other terms stay English; inconsistent with source style.",
+     "suggestion": "die Exportzuordnung funktioniert nicht mehr; prüfen Sie Format & fields",
+     "source": "grok"
+    },
+    {
+     "key": "failures.mapping_invalid",
+     "language": "es",
+     "severity": "low",
+     "problem": "Partial translation of 'Format & fields' while other terms stay English; inconsistent with source style.",
+     "suggestion": "la asignación de exportación ya no funciona; revise Format & fields",
+     "source": "grok"
+    },
+    {
+     "key": "kinds.case.attestation_approved",
+     "language": "de",
+     "severity": "high",
+     "problem": "Unnatural and grammatically awkward wording that does not correctly convey 'approved'.",
+     "suggestion": "Bestätigung genehmigt",
+     "source": "grok"
+    },
+    {
+     "key": "tls.trust",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Unnatural wording and wrong preposition; 'über' does not fit the intended meaning of 'by'.",
+     "suggestion": "Dem Server vertrauen durch",
+     "source": "grok"
+    },
+    {
+     "key": "tls.subject",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Wrong term for certificate subject; 'Inhaber' is not the standard technical term.",
+     "suggestion": "Betreff",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.presetHints.ocsf",
+     "language": "de",
+     "severity": "low",
+     "problem": "English term 'Findings' left untranslated instead of using the glossary term.",
+     "suggestion": "Finding, Vorfälle, Konto- und Zugriffsänderungen in ihren Klassen",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.presetHints.stix",
+     "language": "de",
+     "severity": "low",
+     "problem": "Glossary violation: 'Workspace' translated and pluralized instead of kept as 'Workspace'.",
+     "suggestion": "Jedes Ereignis als STIX-2.1-Bundle in einer eigenen Anfrage. Das TLP des Workspace ist die Mindestkennzeichnung; das Feld tlp kann sie nur erhöhen.",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.fields.include",
+     "language": "de",
+     "severity": "high",
+     "problem": "Wrong meaning: 'Include' translated as 'Senden' (send).",
+     "suggestion": "Einbeziehen",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.fields.include",
+     "language": "es",
+     "severity": "high",
+     "problem": "Wrong meaning: 'Include' translated as 'Enviar' (send).",
+     "suggestion": "Incluir",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.fields.includeRow",
+     "language": "de",
+     "severity": "high",
+     "problem": "Wrong meaning: 'Include {{name}}' translated as '{{name}} senden'.",
+     "suggestion": "{{name}} einbeziehen",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.fields.includeRow",
+     "language": "es",
+     "severity": "high",
+     "problem": "Wrong meaning: 'Include {{name}}' translated as 'Enviar {{name}}'.",
+     "suggestion": "Incluir {{name}}",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.fields.detailHint",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Placeholder changed from <key> to <Schlüssel>.",
+     "suggestion": "Kein solches Feld. details.<key> liest ein Detail.",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.fields.detailHint",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Placeholder changed from <key> to <clave>.",
+     "suggestion": "No existe ese campo. details.<key> lee un detalle.",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.transforms.kind_base",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English word 'audit.' left untranslated.",
+     "suggestion": "Art ohne Audit.",
+     "source": "grok"
+    },
+    {
+     "key": "mapping.transforms.kind_base",
+     "language": "es",
+     "severity": "medium",
+     "problem": "English word 'audit.' left untranslated.",
+     "suggestion": "tipo sin audit.",
      "source": "grok"
     },
     {
      "key": "mapping.preview.bytes_other",
      "language": "de",
      "severity": "medium",
-     "problem": "Wrong plural form: 'Byte' used instead of 'Bytes'.",
+     "problem": "Wrong plural form; 'Byte' used for plural instead of 'Bytes'.",
      "suggestion": "{{count}} Bytes",
-     "source": "grok"
-    },
-    {
-     "key": "kinds.finding.dead_lettered",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'nicht übernommen' does not accurately match 'not taken in'.",
-     "suggestion": "Finding nicht aufgenommen",
-     "source": "grok"
-    },
-    {
-     "key": "create.lede.notification",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Wording 'speichern Sie mit einem Test' is ambiguous and does not clearly convey 'save and send a test'.",
-     "suggestion": "Wählen Sie die Art, verbinden Sie ihn, legen Sie fest, was er erhält und wie gebündelt wird, dann speichern Sie und senden Sie einen Test.",
-     "source": "grok"
-    },
-    {
-     "key": "create.lede.export",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Wording 'speichern Sie mit einem Testdatensatz' is ambiguous and does not clearly convey 'save and send a test record'.",
-     "suggestion": "Wählen Sie die Art, verbinden Sie es und speichern Sie, dann senden Sie einen Testdatensatz.",
-     "source": "grok"
-    },
-    {
-     "key": "mapping.fields.include",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'Senden' does not accurately translate 'Include' in the field mapping context (implies sending rather than including the field).",
-     "suggestion": "Einbeziehen",
-     "source": "grok"
-    },
-    {
-     "key": "mapping.fields.includeRow",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'{{name}} senden' does not accurately translate 'Include {{name}}' in the field mapping context.",
-     "suggestion": "{{name}} einbeziehen",
-     "source": "grok"
-    },
-    {
-     "key": "create.lede.notification",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Wording 'guarde con una prueba' is ambiguous and does not clearly convey 'save and send a test'.",
-     "suggestion": "Elija el tipo, conéctelo, elija qué recibe y cómo se agrupan los eventos, y guarde y envíe una prueba.",
-     "source": "grok"
-    },
-    {
-     "key": "create.lede.export",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Wording 'guarde con un registro de prueba' is ambiguous and does not clearly convey 'save and send a test record'.",
-     "suggestion": "Elija el tipo, conéctelo y guarde, luego envíe un registro de prueba.",
-     "source": "grok"
-    },
-    {
-     "key": "categories.collection",
-     "language": "es",
-     "severity": "low",
-     "problem": "'Recogida' is not the most natural term for 'Collection' in a data/ingest context.",
-     "suggestion": "Colección",
-     "source": "grok"
-    },
-    {
-     "key": "mapping.fields.include",
-     "language": "es",
-     "severity": "medium",
-     "problem": "'Enviar' does not accurately translate 'Include' in the field mapping context (implies sending rather than including the field).",
-     "suggestion": "Incluir",
-     "source": "grok"
-    },
-    {
-     "key": "mapping.fields.includeRow",
-     "language": "es",
-     "severity": "medium",
-     "problem": "'Enviar {{name}}' does not accurately translate 'Include {{name}}' in the field mapping context.",
-     "suggestion": "Incluir {{name}}",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:05:57.754Z"
+   "at": "2026-11-23T14:40:08.831Z"
   },
   "features/sites": {
-   "hash": "8b5769fa56341f33",
+   "hash": "00df29ebead4675c",
    "findings": [
+    {
+     "key": "empty.body",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Verb agreement error: plural subject 'Quellen' with singular verb 'erreicht'.",
+     "suggestion": "Fügen Sie einen Standort hinzu, um Quellen zu sammeln, die nur Ihr Netzwerk erreichen, etwa Dateiablagen und interne Systeme.",
+     "source": "grok"
+    },
+    {
+     "key": "empty.body",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Verb agreement error: plural subject 'fuentes' with singular verb 'alcanza'.",
+     "suggestion": "Añada una sede para recoger fuentes que solo alcancen su red, como carpetas de ficheros y sistemas internos.",
+     "source": "grok"
+    },
     {
      "key": "detail.enrolled",
      "language": "es",
-     "severity": "high",
-     "problem": "Uses feminine 'Registrada' but the key is shared for nodes ('nodo' is masculine). English source and German are neutral.",
+     "severity": "medium",
+     "problem": "Feminine form used for both sites and nodes; nodes require masculine form.",
      "suggestion": "Registrado",
      "source": "grok"
     },
     {
      "key": "detail.revoked",
      "language": "es",
-     "severity": "high",
-     "problem": "Uses feminine 'Revocada' but the key is shared for nodes ('nodo' is masculine). English source and German are neutral.",
+     "severity": "medium",
+     "problem": "Feminine form used for both sites and nodes; nodes require masculine form.",
      "suggestion": "Revocado",
      "source": "grok"
     },
     {
      "key": "detail.created",
      "language": "es",
-     "severity": "high",
-     "problem": "Uses feminine 'Creada' but the key is shared for nodes ('nodo' is masculine). English source and German are neutral.",
+     "severity": "medium",
+     "problem": "Feminine form used for both sites and nodes; nodes require masculine form.",
      "suggestion": "Creado",
-     "source": "grok"
-    },
-    {
-     "key": "status.active",
-     "language": "es",
-     "severity": "high",
-     "problem": "Feminine 'activa' but status labels are shared for nodes ('nodo' is masculine). English source and German use neutral forms.",
-     "suggestion": "activo",
-     "source": "grok"
-    },
-    {
-     "key": "status.revoked",
-     "language": "es",
-     "severity": "high",
-     "problem": "Feminine 'revocada' but status labels are shared for nodes ('nodo' is masculine). English source and German use neutral forms.",
-     "suggestion": "revocado",
      "source": "grok"
     },
     {
      "key": "detail.cores",
      "language": "es",
-     "severity": "high",
-     "problem": "Singular 'AI SOC' instead of plural 'AI SOCs' to match English and German.",
+     "severity": "low",
+     "problem": "Missing plural: English has 'AI SOCs'.",
      "suggestion": "AI SOCs",
-     "source": "grok"
-    },
-    {
-     "key": "aiSocs_other",
-     "language": "es",
-     "severity": "high",
-     "problem": "Plural form is 'AI SOC' without 's', unlike English 'AI SOCs' and German.",
-     "suggestion": "{{count}} AI SOCs",
-     "source": "grok"
-    },
-    {
-     "key": "aiSocs_many",
-     "language": "es",
-     "severity": "high",
-     "problem": "Plural form is 'AI SOC' without 's', unlike English 'AI SOCs' and German.",
-     "suggestion": "{{count}} AI SOCs",
-     "source": "grok"
-    },
-    {
-     "key": "detail.coresRunning_other",
-     "language": "es",
-     "severity": "high",
-     "problem": "Plural form is 'AI SOC' without 's', unlike English 'AI SOCs' and German.",
-     "suggestion": "Ejecuta {{count}} AI SOCs · supervisor {{version}}",
-     "source": "grok"
-    },
-    {
-     "key": "detail.coresRunning_many",
-     "language": "es",
-     "severity": "high",
-     "problem": "Plural form is 'AI SOC' without 's', unlike English 'AI SOCs' and German.",
-     "suggestion": "Ejecuta {{count}} AI SOCs · supervisor {{version}}",
      "source": "grok"
     },
     {
      "key": "empty.body_node",
      "language": "es",
-     "severity": "medium",
-     "problem": "Uses singular 'AI SOC' instead of plural 'AI SOCs' to match English and German.",
+     "severity": "low",
+     "problem": "Missing plural: English has 'AI SOCs'.",
      "suggestion": "Añada un nodo para ejecutar en él AI SOCs de esta instalación.",
      "source": "grok"
     },
     {
-     "key": "revoked.body_node",
+     "key": "enroll.serviceBody",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Missing article makes wording unnatural.",
+     "suggestion": "Führen Sie ihn als root für einen Systemdienst aus oder als ein anderer Benutzer für dessen eigenen Dienst, ohne root.",
+     "source": "grok"
+    },
+    {
+     "key": "rename.done",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording is slightly unnatural; standard phrasing uses \"in\" for renaming.",
+     "suggestion": "Standort in {{name}} umbenannt",
+     "source": "grok"
+    },
+    {
+     "key": "rename.done_node",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording is slightly unnatural; standard phrasing uses \"in\" for renaming.",
+     "suggestion": "Knoten in {{name}} umbenannt",
+     "source": "grok"
+    },
+    {
+     "key": "aiSocs_other",
      "language": "es",
      "severity": "medium",
-     "problem": "Uses singular 'AI SOC' instead of plural 'AI SOCs' to match English and German.",
-     "suggestion": "Su certificado ya no se acepta. Para volver a ejecutar AI SOCs allí, añada un nodo nuevo.",
-     "source": "grok"
-    },
-    {
-     "key": "node.dedicated",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses 'Dedizierter Knoten' while other 'dedicate'/'dedicated' translations use 'reservieren'/'reserviert' (e.g. dedicate.title, columns.dedicatedTo, node.operated.title). Inconsistent terms.",
-     "suggestion": "Reservierter Knoten",
-     "source": "grok"
-    },
-    {
-     "key": "dedicate.title",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses 'reservieren' while 'node.dedicated' uses 'Dedizierter'. Inconsistent terminology for the same concept.",
-     "suggestion": "{{name}} dedizieren",
-     "source": "grok"
-    },
-    {
-     "key": "detail.coresRunning_one",
-     "language": "de",
-     "severity": "low",
-     "problem": "Capitalized 'Supervisor' but English source and Spanish use lowercase 'supervisor' (not a proper noun).",
-     "suggestion": "Betreibt {{count}} AI SOC · supervisor {{version}}",
-     "source": "grok"
-    },
-    {
-     "key": "detail.coresRunning_other",
-     "language": "de",
-     "severity": "low",
-     "problem": "Capitalized 'Supervisor' but English source and Spanish use lowercase 'supervisor' (not a proper noun).",
-     "suggestion": "Betreibt {{count}} AI SOCs · supervisor {{version}}",
-     "source": "grok"
-    },
-    {
-     "key": "columns.dedicatedTo",
-     "language": "de",
-     "severity": "low",
-     "problem": "Uses 'Reserviert für' while 'node.dedicated' uses 'Dedizierter'. Inconsistent terms for 'dedicated'.",
-     "suggestion": "Dediziert für",
+     "problem": "Plural form is identical to singular; English source distinguishes singular/plural and German does too.",
+     "suggestion": "{{count}} AI SOCs",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:06:59.386Z"
+   "at": "2026-11-23T14:43:33.585Z"
   },
   "features/soc/cases": {
-   "hash": "334ce127803f5a63",
+   "hash": "6c423fdbc12954de",
    "findings": [
     {
-     "key": "findingsView.lede",
+     "key": "finding.seed",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Technical term \"Seed record\" translated instead of kept as intended.",
+     "suggestion": "Seed record",
+     "source": "grok"
+    },
+    {
+     "key": "finding.seed",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Technical term \"Seed record\" translated instead of kept as intended.",
+     "suggestion": "Seed record",
+     "source": "grok"
+    },
+    {
+     "key": "activity.kinds.attestation_approved",
      "language": "de",
      "severity": "high",
-     "problem": "Grammar error: plural 'Findings' paired with singular verb 'enthält' (subject-verb agreement failure).",
-     "suggestion": "Findings, die noch in keinem Fall enthalten sind: Der AI SOC hat sie noch keinem Angriffsgraphen zugeordnet, oder sie wurden aus einem Fall herausgenommen.",
+     "problem": "Unnatural and grammatically incorrect phrasing.",
+     "suggestion": "Bestätigung genehmigt",
+     "source": "grok"
+    },
+    {
+     "key": "activity.kinds.attestation_stuck",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Unnatural wording for native speaker.",
+     "suggestion": "Zurückziehen blockiert",
+     "source": "grok"
+    },
+    {
+     "key": "activity.kinds.attestation_stuck",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Unnatural wording for native speaker.",
+     "suggestion": "Retirada bloqueada",
+     "source": "grok"
+    },
+    {
+     "key": "split.confirm",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Teilen is the common term for share; split findings uses a different verb.",
+     "suggestion": "Aufteilen",
+     "source": "grok"
+    },
+    {
+     "key": "evidence.sentences.registry",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Double auf and unnatural word order for a native speaker.",
+     "suggestion": "{{process}} hat auf {{device}} {{key}}\\{{name}} auf {{data}} gesetzt.",
+     "source": "grok"
+    },
+    {
+     "key": "evidence.sentences.registryDeleted",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Missing verb structure and wrong preposition; reads incomplete.",
+     "suggestion": "{{process}} hat {{key}}\\{{name}} auf {{device}} entfernt.",
+     "source": "grok"
+    },
+    {
+     "key": "activity.lapsed.refused",
+     "language": "es",
+     "severity": "low",
+     "problem": "certificación does not match attestation in security context.",
+     "suggestion": "el AI SOC rechazó la attestación",
+     "source": "grok"
+    },
+    {
+     "key": "evidence.lede",
+     "language": "de",
+     "severity": "low",
+     "problem": "hält is not the natural verb for stored records.",
+     "suggestion": "wie sie der AI SOC speichert.",
+     "source": "grok"
+    },
+    {
+     "key": "tabs.findings_one",
+     "language": "de",
+     "severity": "high",
+     "problem": "English word \"Findings\" left untranslated",
+     "suggestion": "Finding ({{count}})",
+     "source": "grok"
+    },
+    {
+     "key": "tabs.findings_other",
+     "language": "de",
+     "severity": "high",
+     "problem": "English word \"Findings\" left untranslated",
+     "suggestion": "Finding ({{count}})",
+     "source": "grok"
+    },
+    {
+     "key": "filters.dateField",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Wrong meaning: \"Fecha\" means Date, source is Time",
+     "suggestion": "Hora",
+     "source": "grok"
+    },
+    {
+     "key": "roles.seed",
+     "language": "de",
+     "severity": "low",
+     "problem": "Does not match intended technical term Seed record",
+     "suggestion": "Seed-Datensatz",
+     "source": "grok"
+    },
+    {
+     "key": "roles.seed",
+     "language": "es",
+     "severity": "low",
+     "problem": "Does not match intended technical term Seed record",
+     "suggestion": "Registro semilla",
+     "source": "grok"
+    },
+    {
+     "key": "findingsView.title",
+     "language": "de",
+     "severity": "high",
+     "problem": "English left untranslated",
+     "suggestion": "Findings",
+     "source": "grok"
+    },
+    {
+     "key": "findingsView.columns.finding",
+     "language": "de",
+     "severity": "high",
+     "problem": "English left untranslated",
+     "suggestion": "Finding",
+     "source": "grok"
+    },
+    {
+     "key": "findingsView.notFound",
+     "language": "de",
+     "severity": "high",
+     "problem": "English left untranslated",
+     "suggestion": "Finding nicht gefunden",
+     "source": "grok"
+    },
+    {
+     "key": "findingsView.back",
+     "language": "de",
+     "severity": "high",
+     "problem": "English left untranslated",
+     "suggestion": "Zurück zu den Findings",
+     "source": "grok"
+    },
+    {
+     "key": "findingsView.count_one",
+     "language": "de",
+     "severity": "high",
+     "problem": "English left untranslated",
+     "suggestion": "{{count}} Finding",
+     "source": "grok"
+    },
+    {
+     "key": "findingsView.count_other",
+     "language": "de",
+     "severity": "high",
+     "problem": "English left untranslated",
+     "suggestion": "{{count}} Findings",
+     "source": "grok"
+    },
+    {
+     "key": "story.showAllLines_one",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Grammatically incorrect German (\"Alle {{count}} Zeile\")",
+     "suggestion": "Alle {{count}} Zeilen anzeigen",
      "source": "grok"
     },
     {
      "key": "placement.heldHint",
      "language": "de",
-     "severity": "high",
-     "problem": "Uses gendered forms 'Analystin oder einem Analysten' for the role 'analyst', violating the rule to use gender-neutral role names without gender forms.",
+     "severity": "medium",
+     "problem": "Role name uses gendered forms, violating glossary rule",
      "suggestion": "Von einem Analysten platziert: Der Angriffsgraph verschiebt es nicht.",
      "source": "grok"
     },
     {
-     "key": "detailUnavailable.reasons.graph_unshowable",
-     "language": "de",
-     "severity": "high",
-     "problem": "Wrong meaning: 'Bedingungen' (conditions) is incorrect for 'standing'; does not match glossary or other uses of 'standing' as 'Stand'.",
-     "suggestion": "Der AI SOC konnte die Zeilen des Angriffsgraphen dieses Findings nicht darstellen. Das ist ein Fehler des AI SOC, benannt in seinem Hinweis über dem Workspace und auf der Core-Seite des Betriebs; das Finding behält seinen Platz und was seine Liste zeigt (Stand, Markierungen, Startdatensatz) und wird bei seiner nächsten Änderung erneut gelesen.",
-     "source": "grok"
-    },
-    {
-     "key": "detailUnavailable.reasons.graph_unshowable",
-     "language": "es",
-     "severity": "high",
-     "problem": "Wrong meaning: 'condiciones' (conditions) is incorrect for 'standing'; does not match 'Situación' used elsewhere for the term.",
-     "suggestion": "El AI SOC no pudo representar las filas del grafo de ataque de este hallazgo. Es un fallo del AI SOC, indicado en su aviso sobre el espacio de trabajo y en la página del núcleo para operadores; el hallazgo conserva su lugar y lo que muestra su lista (situación, marcas, registro inicial) y se vuelve a leer cuando cambie.",
-     "source": "grok"
-    },
-    {
-     "key": "findingsView.columns.host",
-     "language": "de",
-     "severity": "medium",
-     "problem": "English left untranslated ('Host'), while parallel terms like 'device' are translated to 'Gerät'; inconsistent terminology.",
-     "suggestion": "Host",
-     "source": "grok"
-    },
-    {
-     "key": "findingsView.columns.host",
+     "key": "findingsView.selectAll_one",
      "language": "es",
      "severity": "medium",
-     "problem": "English left untranslated ('Host'), while parallel terms like 'device' are translated to 'Dispositivo'; inconsistent terminology.",
-     "suggestion": "Host",
+     "problem": "Unnatural wording and incorrect agreement (\"el {{count}} cargado\")",
+     "suggestion": "Seleccionar los {{count}} cargados",
      "source": "grok"
     },
     {
-     "key": "attest.proposeBody_one",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural wording: 'Sie sind die erste Zustimmung' treats the approver as the approval itself rather than a person giving approval.",
-     "suggestion": "Der Kunde erklärt, dass das Finding harmlos ist. Sie sind die erste Person, die zustimmt; die Richtlinie verlangt insgesamt {{count}} Person, bevor die Bestätigung an den AI SOC geht.",
-     "source": "grok"
-    },
-    {
-     "key": "attest.proposeBody_other",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural wording: 'Sie sind die erste Zustimmung' treats the approver as the approval itself rather than a person giving approval.",
-     "suggestion": "Der Kunde erklärt, dass das Finding harmlos ist. Sie sind die erste Person, die zustimmt; die Richtlinie verlangt insgesamt {{count}} Personen, bevor die Bestätigung an den AI SOC geht.",
-     "source": "grok"
-    },
-    {
-     "key": "attest.proposeBody_one",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Unnatural wording: 'Usted es la primera aprobación' treats the approver as the approval itself rather than a person giving approval (same issue in _other and _many variants).",
-     "suggestion": "El cliente declara que el hallazgo es benigno. Usted es la primera persona que aprueba; la política exige {{count}} persona en total antes de enviarlo al AI SOC.",
-     "source": "grok"
-    },
-    {
-     "key": "activity.kinds.attestation_stuck",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Possible wrong meaning: translated as 'Zurückziehen hängt' (withdrawal stuck), but English source is 'Attestation stuck'; inconsistent with other 'attestation' vs 'withdrawal' distinctions.",
-     "suggestion": "Bestätigung hängt",
-     "source": "grok"
-    },
-    {
-     "key": "activity.kinds.attestation_stuck",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Possible wrong meaning: translated as 'Retirada atascada' (withdrawal stuck), but English source is 'Attestation stuck'; inconsistent with other 'attestation' vs 'withdrawal' distinctions.",
-     "suggestion": "Certificación atascada",
-     "source": "grok"
-    },
-    {
-     "key": "triage.title",
-     "language": "de",
-     "severity": "low",
-     "problem": "Missing meaning: 'Bearbeitung' (processing/handling) is too generic for the specific SOC term 'Triage'.",
-     "suggestion": "Triagierung",
-     "source": "grok"
-    },
-    {
-     "key": "triage.title",
+     "key": "findingsView.selectAll_other",
      "language": "es",
      "severity": "low",
-     "problem": "Missing meaning: 'Tratamiento' (treatment) is too generic for the specific SOC term 'Triage'.",
-     "suggestion": "Triaje",
+     "problem": "Unnatural wording (\"los {{count}} cargados\")",
+     "suggestion": "Seleccionar los {{count}} cargados",
+     "source": "grok"
+    },
+    {
+     "key": "detailUnavailable.reasons.graph_unshowable",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Translated intended technical terms (standing, flags, seed record) instead of keeping them in English.",
+     "suggestion": "Der AI SOC konnte die Zeilen des Angriffsgraphen dieses Findings nicht darstellen. Das ist ein Fehler des AI SOC, benannt in seinem Hinweis über dem Workspace und auf der Core-Seite des Betriebs; das Finding behält seinen Platz und was seine Liste zeigt (standing, flags, seed record) und wird bei seiner nächsten Änderung erneut gelesen.",
+     "source": "grok"
+    },
+    {
+     "key": "detailUnavailable.reasons.graph_unshowable",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Translated intended technical terms (standing, flags, seed record) instead of keeping them in English.",
+     "suggestion": "El AI SOC no pudo representar las filas del grafo de ataque de este hallazgo. Es un fallo del AI SOC, indicado en su aviso sobre el espacio de trabajo y en la página del núcleo para operadores; el hallazgo conserva su lugar y lo que muestra su lista (standing, flags, seed record) y se vuelve a leer cuando cambie.",
+     "source": "grok"
+    },
+    {
+     "key": "attest.stuckBody_other",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent term for withdrawal (Rücknahmen) instead of using Zurückziehen/Zurückziehungen.",
+     "suggestion": "Der AI SOC hat {{count}} Zurückziehungen seit einem Tag nicht übernommen und zeigt die Findings womöglich noch als harmlos. Sie werden weiter versucht; auch der Betreiber sieht sie.",
+     "source": "grok"
+    },
+    {
+     "key": "scope.inNoCase",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Wording is ambiguous and matches the common German idiom meaning 'by no means', which a native speaker would find unnatural in this context.",
+     "suggestion": "In keinem Case",
+     "source": "grok"
+    },
+    {
+     "key": "scope.inNoCase",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Wording matches the common Spanish idiom meaning 'never' or 'under no circumstances', which a native speaker would find unnatural here.",
+     "suggestion": "En ningún caso",
+     "source": "grok"
+    },
+    {
+     "key": "scope.via.seat",
+     "language": "de",
+     "severity": "low",
+     "problem": "Translates the technical term 'seat' while similar terms like 'Finding' are kept in English per glossary and owner notes.",
+     "suggestion": "Teilt einen Seat mit Finding {{n}}",
+     "source": "grok"
+    },
+    {
+     "key": "scope.via.seat",
+     "language": "es",
+     "severity": "low",
+     "problem": "Translates the technical term 'seat' while 'Finding' is kept per glossary.",
+     "suggestion": "Comparte un seat con el hallazgo {{n}}",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:07:45.480Z"
+   "at": "2026-11-23T14:45:07.403Z"
   },
   "features/workspaces": {
-   "hash": "fcbd8c2f49d9e408",
+   "hash": "a2cb3f28e6cedca0",
    "findings": [
     {
-     "key": "core.waiting.body_one",
-     "language": "es",
-     "severity": "high",
-     "problem": "English word 'Declare' left untranslated (also appears in body_many and body_other).",
-     "suggestion": "Marque una fuente como ausente en Fuentes si este espacio de trabajo nunca la tiene.",
-     "source": "grok"
-    },
-    {
-     "key": "core.waiting.body_many",
-     "language": "es",
-     "severity": "high",
-     "problem": "English word 'Declare' left untranslated.",
-     "suggestion": "Marque una fuente como ausente en Fuentes si este espacio de trabajo nunca la tiene.",
-     "source": "grok"
-    },
-    {
-     "key": "core.waiting.body_other",
-     "language": "es",
-     "severity": "high",
-     "problem": "English word 'Declare' left untranslated.",
-     "suggestion": "Marque una fuente como ausente en Fuentes si este espacio de trabajo nunca la tiene.",
-     "source": "grok"
-    },
-    {
-     "key": "size.figures",
-     "language": "es",
-     "severity": "high",
-     "problem": "Uses singular 'CPU' instead of plural 'CPUs' to match {{cpus}} placeholder and English source.",
-     "suggestion": "{{cpus}} CPUs, {{memory}} GiB",
-     "source": "grok"
-    },
-    {
-     "key": "size.capacity",
-     "language": "es",
-     "severity": "high",
-     "problem": "Uses singular 'AI SOC' and 'CPU' instead of plurals 'AI SOCs' and 'CPUs' as in the English source.",
-     "suggestion": "{{taken}} de {{total}} GiB reservados para AI SOCs, {{freeCpus}} de {{cpus}} CPUs libres junto a los demás espacios de trabajo",
-     "source": "grok"
-    },
-    {
-     "key": "size.title",
+     "key": "overview.coverageGaps_one",
      "language": "de",
-     "severity": "medium",
-     "problem": "Uses hyphenated 'AI-SOC' inconsistent with 'AI SOC' (with space) used throughout the rest of the German texts.",
-     "suggestion": "Größe des AI SOC",
+     "severity": "high",
+     "problem": "Wrong meaning: relative clause implies detections need something else instead of needing the missing table.",
+     "suggestion": "{{count}} Tabelle, die der AI SOC liest, kommt nicht an oder ist verstummt; die Erkennungen, die darauf angewiesen sind, sind nicht möglich.",
      "source": "grok"
     },
     {
-     "key": "size.legend",
+     "key": "overview.coverageGaps_other",
      "language": "de",
-     "severity": "medium",
-     "problem": "Uses hyphenated 'AI-SOC' inconsistent with 'AI SOC' used elsewhere in German.",
-     "suggestion": "Größe des AI SOC",
-     "source": "grok"
-    },
-    {
-     "key": "size.changed",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses hyphenated 'AI-SOC' inconsistent with 'AI SOC' used elsewhere in German.",
-     "suggestion": "AI SOC-Größe geändert",
-     "source": "grok"
-    },
-    {
-     "key": "overview.mtta",
-     "language": "es",
-     "severity": "medium",
-     "problem": "'toma' does not accurately convey 'acknowledge' (MTTA); wording is unclear or incorrect.",
-     "suggestion": "Tiempo hasta el reconocimiento (mediana, 7 d)",
-     "source": "grok"
-    },
-    {
-     "key": "attention.clear",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'Gerade braucht Sie nichts' is awkward and unnatural German phrasing.",
-     "suggestion": "Gerade gibt es nichts, das Ihre Aufmerksamkeit erfordert: Kein schwerer Fall ist offen und alle Daten kommen an.",
-     "source": "grok"
-    },
-    {
-     "key": "attention.clearLimited",
-     "language": "de",
-     "severity": "medium",
-     "problem": "'Gerade braucht Sie nichts' is awkward and unnatural German phrasing.",
-     "suggestion": "Gerade gibt es nichts, das Ihre Aufmerksamkeit erfordert, in den Bereichen, die Sie sehen.",
+     "severity": "high",
+     "problem": "Wrong meaning: relative clause implies detections need something else instead of needing the missing tables.",
+     "suggestion": "{{count}} Tabellen, die der AI SOC liest, kommen nicht an oder sind verstummt; die Erkennungen, die darauf angewiesen sind, sind nicht möglich.",
      "source": "grok"
     },
     {
      "key": "settings.tabs.general",
      "language": "de",
      "severity": "medium",
-     "problem": "'Standards' is inconsistent with 'Vorgaben' used for 'defaults' in nearby keys.",
+     "problem": "Inconsistent term: uses 'Standards' while all other strings in the namespace use 'Vorgaben' for 'defaults'.",
      "suggestion": "Workspace und Vorgaben",
      "source": "grok"
     },
     {
-     "key": "empty.ask",
+     "key": "settings.defaultsLede",
      "language": "de",
      "severity": "medium",
-     "problem": "Uses gendered forms 'Administratorin oder Administrator', violating the rule that role names appear without gender forms.",
-     "suggestion": "Bitten Sie einen Administrator um Zugriff auf einen Workspace.",
+     "problem": "Slightly wrong meaning: 'solange' implies a time-limited condition, unlike the English 'unless' (i.e. apply unless overridden).",
+     "suggestion": "Gelten in diesem Workspace, außer wenn eine Person eigene einstellt.",
+     "source": "grok"
+    },
+    {
+     "key": "attention.title_one",
+     "language": "de",
+     "severity": "high",
+     "problem": "Grammatically incorrect and unnatural German; verb does not agree with structure and object is wrong.",
+     "suggestion": "{{count}} Punkt erfordert Ihre Aufmerksamkeit",
+     "source": "grok"
+    },
+    {
+     "key": "attention.title_other",
+     "language": "de",
+     "severity": "high",
+     "problem": "Grammatically incorrect and unnatural German; verb does not agree with structure and object is wrong.",
+     "suggestion": "{{count}} Punkte erfordern Ihre Aufmerksamkeit",
+     "source": "grok"
+    },
+    {
+     "key": "analysis.why.waiting",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Incomplete/ungrammatical phrasing; missing preposition or article before \"Ereigniszeit\".",
+     "suggestion": "Alle Datensätze wurden gesendet. Der AI SOC hält die letzten {{lateness}} an Ereigniszeit für verspätete Datensätze offen; dieses Fenster schließt, sobald der Fortschritt der Quellen {{closesAt}} erreicht.",
+     "source": "grok"
+    },
+    {
+     "key": "core.waiting.body_one",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent capitalization of glossary term \"Finding\" (should remain exactly \"Finding\").",
+     "suggestion": "Bis {{sources}} Datensätze liefert, hält der AI SOC {{count}} Abfrage der Regeln zurück; Findings, die sie brauchen, bleiben offen. Erklären Sie eine Quelle unter Quellen als fehlend, wenn dieser Workspace sie nie hat.",
+     "source": "grok"
+    },
+    {
+     "key": "core.waiting.body_other",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent capitalization of glossary term \"Finding\" (should remain exactly \"Finding\").",
+     "suggestion": "Bis {{sources}} Datensätze liefern, hält der AI SOC {{count}} Abfragen der Regeln zurück; Findings, die sie brauchen, bleiben offen. Erklären Sie eine Quelle unter Quellen als fehlend, wenn dieser Workspace sie nie hat.",
+     "source": "grok"
+    },
+    {
+     "key": "size.missingCpus_other",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs'.",
+     "suggestion": "{{count}} CPU",
+     "source": "grok"
+    },
+    {
+     "key": "size.figures",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs'.",
+     "suggestion": "{{cpus}} CPUs, {{memory}} GiB",
+     "source": "grok"
+    },
+    {
+     "key": "size.here",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs'.",
+     "suggestion": "Dónde se ejecuta: {{cpus}} CPUs, {{memory}} GiB para AI SOC · libre junto a los demás espacios de trabajo: {{freeCpus}} CPUs, {{freeMemory}} GiB",
+     "source": "grok"
+    },
+    {
+     "key": "size.custom.range",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs'.",
+     "suggestion": "elija aquí {{cpus}} CPUs y {{memory}} GiB",
+     "source": "grok"
+    },
+    {
+     "key": "size.title",
+     "language": "de",
+     "severity": "low",
+     "problem": "Uses hyphenated 'AI-SOC' instead of 'AI SOC' per glossary.",
+     "suggestion": "AI SOC Größe",
+     "source": "grok"
+    },
+    {
+     "key": "size.legend",
+     "language": "de",
+     "severity": "low",
+     "problem": "Uses hyphenated 'AI-SOC' instead of 'AI SOC' per glossary.",
+     "suggestion": "AI SOC Größe",
+     "source": "grok"
+    },
+    {
+     "key": "size.changed",
+     "language": "de",
+     "severity": "low",
+     "problem": "Uses hyphenated 'AI-SOC' instead of 'AI SOC' per glossary.",
+     "suggestion": "AI SOC Größe geändert",
+     "source": "grok"
+    },
+    {
+     "key": "corePlacement.lost.body",
+     "language": "de",
+     "severity": "high",
+     "problem": "English word 'Findings' left untranslated (twice).",
+     "suggestion": "Der Graph des AI SOC: Findings, die er aus Daten älter als der Ingest-Stream abgeleitet hatte, kommen möglicherweise nicht zurück. Fälle, Bewertungen und bereits übernommene Findings bleiben erhalten.",
+     "source": "grok"
+    },
+    {
+     "key": "corePlacement.lost.body",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Internal term 'Ingest-Stream' appears in UI text.",
+     "suggestion": "Der Graph des AI SOC: Findings, die er aus Daten älter als das Alter des Eingabe-Streams abgeleitet hatte, kommen möglicherweise nicht zurück. Fälle, Bewertungen und bereits übernommene Findings bleiben erhalten.",
+     "source": "grok"
+    },
+    {
+     "key": "corePlacement.moveLede",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording is awkward and repetitive ('neu ... neu').",
+     "suggestion": "Der AI SOC endet an seiner jetzigen Platzierung und startet neu und leer an der neuen.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:08:40.768Z"
+   "at": "2026-11-23T14:45:45.229Z"
   },
   "features/soc": {
-   "hash": "46fbbf5062cade54",
+   "hash": "a5e0b66fc68e2574",
    "findings": [
     {
-     "key": "mitre.matrix.note",
+     "key": "case.downloadStixHint",
      "language": "de",
      "severity": "high",
-     "problem": "Uses gendered forms \"Analystin oder des Analysten\" for the analyst role, violating the rule to use role names without gender forms.",
-     "suggestion": "der Analysten",
+     "problem": "English words \"Findings\" and \"Workspace\" left untranslated instead of using glossary terms \"Finding\" and \"Workspace\".",
+     "suggestion": "Der Fall mit seinen Findings, Bewertungen und Kommentaren als STIX-2.1-Bundle, gekennzeichnet mit dem TLP des Workspace.",
+     "source": "grok"
+    },
+    {
+     "key": "actors.col.sightings",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Inconsistent abbreviation \"30 T\" (should match English \"30 d\" style or use \"30 Tage\").",
+     "suggestion": "Sichtungen, 30 d",
+     "source": "grok"
+    },
+    {
+     "key": "actors.sort.threat",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Inconsistent term \"Wert\" (elsewhere \"Bedrohungswert\" for score).",
+     "suggestion": "Nach Bedrohungswert",
+     "source": "grok"
+    },
+    {
+     "key": "actor.status.disrupted",
+     "language": "de",
+     "severity": "medium",
+     "problem": "\"zerschlagen\" is unnatural wording for the status term.",
+     "suggestion": "gestört",
      "source": "grok"
     },
     {
      "key": "actor.activity.label",
      "language": "de",
-     "severity": "high",
-     "problem": "Sentence is incomplete and grammatically incorrect: ends with \"in der stärksten.\" (missing reference to \"Woche\").",
-     "suggestion": "in der stärksten Woche.",
+     "severity": "low",
+     "problem": "\"in der stärksten\" is incomplete/awkward compared to English \"in the busiest\".",
+     "suggestion": "Sichtungen pro Woche in den letzten {{weeks}} Wochen: {{total}} insgesamt, {{latest}} in der letzten Woche, {{peak}} in der stärksten Woche.",
      "source": "grok"
     },
     {
-     "key": "error.unavailable",
-     "language": "de",
-     "severity": "high",
-     "problem": "Translates \"triage\" as \"Bewertung\", which is incorrect and inconsistent with \"Triage der Plattform\" in case.facts.triage.",
-     "suggestion": "seine Triage und sein Verlauf",
-     "source": "grok"
-    },
-    {
-     "key": "error.unavailable",
-     "language": "es",
-     "severity": "high",
-     "problem": "Translates \"triage\" as \"evaluación\", which is incorrect and inconsistent with \"Triaje de la plataforma\" in case.facts.triage.",
-     "suggestion": "su triaje y su historial",
-     "source": "grok"
-    },
-    {
-     "key": "derivation.standing",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent translation of \"standing\" across the UI (\"Bedingungen\" here, \"Standing-Terme\" in case.facts.standing, \"Bestand\" in overview.standing, \"Stand\" in overview.entities.standing).",
-     "suggestion": "Standing-Terme",
-     "source": "grok"
-    },
-    {
-     "key": "case.facts.standing",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent translation of \"standing\" across the UI (\"Standing-Terme\" here, \"Bedingungen\" in derivation.standing, \"Bestand\" in overview.standing).",
-     "suggestion": "Standing-Terme",
-     "source": "grok"
-    },
-    {
-     "key": "derivation.standing",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Inconsistent translation of \"standing\" across the UI (\"Condiciones\" here, \"Términos de standing\" in case.facts.standing, \"estado\" in overview.standing.byStanding).",
-     "suggestion": "Términos de standing",
-     "source": "grok"
-    },
-    {
-     "key": "case.facts.standing",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Inconsistent translation of \"standing\" across the UI (\"Términos de standing\" here, \"Condiciones\" in derivation.standing).",
-     "suggestion": "Términos de standing",
-     "source": "grok"
-    },
-    {
-     "key": "actor.score",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Translated as \"Wert\" while other score labels use \"Bedrohungswert\" or \"Schweregrad-Score\", creating inconsistent terminology.",
-     "suggestion": "Score",
-     "source": "grok"
-    },
-    {
-     "key": "actor.score",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Translated as \"Puntuación\" while other score labels use \"Puntuación de amenaza\", creating inconsistent terminology.",
-     "suggestion": "Puntuación",
-     "source": "grok"
-    },
-    {
-     "key": "signals.empty.title",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses \"zugeordnet\" while other signal-related strings use \"korreliert\" (e.g. signals.caption), creating inconsistent terminology.",
-     "suggestion": "Diesem Fall sind keine Signale korreliert.",
-     "source": "grok"
-    },
-    {
-     "key": "story.timelineUnavailable",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Refers to the story section as \"Verlauf\" but case.tab.story uses \"Hergang\", creating inconsistent terminology.",
-     "suggestion": "Der Hergang unten umfasst weiterhin den gesamten Fall.",
-     "source": "grok"
-    },
-    {
-     "key": "story.event.decided",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Uses feminine \"decidida\" but \"término\" is masculine (and other state values should be neutral or consistent).",
-     "suggestion": "{{term}} decidido: {{state}}",
-     "source": "grok"
-    },
-    {
-     "key": "story.episodes.kind.burst",
+     "key": "case.severity.info",
      "language": "de",
      "severity": "low",
-     "problem": "\"Spitze\" is unclear or unnatural for \"burst\" of activity (compare \"Ráfaga\" in es).",
-     "suggestion": "Burst",
-     "source": "grok"
-    },
-    {
-     "key": "cases.shared.notMerged",
-     "language": "de",
-     "severity": "low",
-     "problem": "\"kein Zusammenführungsmerkmal\" is unnatural wording for \"not merged on\".",
-     "suggestion": "nicht zusammengeführt auf: {{values}}",
+     "problem": "Inconsistent capitalization \"Info\" (other severities are lowercase).",
+     "suggestion": "info",
      "source": "grok"
     },
     {
      "key": "cases.shared.notMerged",
      "language": "es",
-     "severity": "low",
-     "problem": "\"no fusionado por\" does not clearly convey \"not merged on\".",
+     "severity": "medium",
+     "problem": "\"no fusionado por\" does not convey the English meaning of \"not merged on\".",
      "suggestion": "no fusionado en: {{values}}",
      "source": "grok"
     },
     {
-     "key": "actor.role.access_broker",
-     "language": "de",
+     "key": "actor.sighting.kind.paste",
+     "language": "es",
      "severity": "low",
-     "problem": "Translated as plural \"Netzwerkzugänge\" while English source is singular \"Network access\".",
-     "suggestion": "Netzwerkzugang",
+     "problem": "English term \"Paste\" left untranslated (German also keeps it, but Spanish should translate or match intent).",
+     "suggestion": "Paste",
      "source": "grok"
     },
     {
-     "key": "actors.lede",
+     "key": "story.seed",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Technical term \"Seed record\" translated instead of kept in English as intended.",
+     "suggestion": "Seed record",
+     "source": "grok"
+    },
+    {
+     "key": "story.seed",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Technical term \"Seed record\" translated instead of kept in English as intended.",
+     "suggestion": "Seed record",
+     "source": "grok"
+    },
+    {
+     "key": "story.episodes.between_one",
+     "language": "de",
+     "severity": "high",
+     "problem": "Wrong grammatical gender: \"weiteres\" does not agree with feminine noun \"Episode\".",
+     "suggestion": "{{count}} weitere verteilt dazwischen",
+     "source": "grok"
+    },
+    {
+     "key": "story.episodes.between_one",
+     "language": "es",
+     "severity": "high",
+     "problem": "Wrong grammatical gender: \"repartida\" does not agree with masculine noun \"episodio\".",
+     "suggestion": "{{count}} más repartido entre ellos",
+     "source": "grok"
+    },
+    {
+     "key": "story.episodes.between_other",
+     "language": "es",
+     "severity": "high",
+     "problem": "Wrong grammatical gender: \"repartidas\" does not agree with masculine noun \"episodios\".",
+     "suggestion": "{{count}} más repartidos entre ellos",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.standing",
+     "language": "de",
+     "severity": "high",
+     "problem": "Technical term \"Standing terms\" translated instead of kept as intended.",
+     "suggestion": "Standing terms",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.standing",
+     "language": "es",
+     "severity": "high",
+     "problem": "Technical term \"Standing terms\" translated instead of kept as intended.",
+     "suggestion": "Standing terms",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.col.terms",
+     "language": "de",
+     "severity": "high",
+     "problem": "Technical term translated instead of kept as intended.",
+     "suggestion": "Terms",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.col.terms",
+     "language": "es",
+     "severity": "high",
+     "problem": "Technical term translated instead of kept as intended.",
+     "suggestion": "Terms",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.seed",
+     "language": "de",
+     "severity": "high",
+     "problem": "Technical term \"Seed record\" translated instead of kept as intended.",
+     "suggestion": "Seed record",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.seed",
+     "language": "es",
+     "severity": "high",
+     "problem": "Technical term \"Seed record\" translated instead of kept as intended.",
+     "suggestion": "Seed record",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.link.seat",
+     "language": "de",
+     "severity": "high",
+     "problem": "Technical term \"Same account seat\" translated instead of kept as intended.",
+     "suggestion": "Same account seat",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.link.seat",
+     "language": "es",
+     "severity": "high",
+     "problem": "Technical term \"Same account seat\" translated instead of kept as intended.",
+     "suggestion": "Same account seat",
+     "source": "grok"
+    },
+    {
+     "key": "story.rows.other.finding_other",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Inconsistent plural form for glossary term \"Finding\".",
+     "suggestion": "{{count}} weitere Finding",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.term.outside-seat",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Technical term translated instead of kept as intended.",
+     "suggestion": "Seat outside the estate",
+     "source": "grok"
+    },
+    {
+     "key": "finding.standing.title",
+     "language": "de",
+     "severity": "high",
+     "problem": "Technical term \"Standing terms\" translated instead of kept as intended.",
+     "suggestion": "Standing terms",
+     "source": "grok"
+    },
+    {
+     "key": "finding.standing.title",
+     "language": "es",
+     "severity": "high",
+     "problem": "Technical term \"Standing terms\" translated instead of kept as intended.",
+     "suggestion": "Standing terms",
+     "source": "grok"
+    },
+    {
+     "key": "finding.seed",
+     "language": "de",
+     "severity": "high",
+     "problem": "Technical term \"Seed record\" translated instead of kept as intended.",
+     "suggestion": "Seed record",
+     "source": "grok"
+    },
+    {
+     "key": "finding.seed",
+     "language": "es",
+     "severity": "high",
+     "problem": "Technical term \"Seed record\" translated instead of kept as intended.",
+     "suggestion": "Seed record",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.context.shares.seat",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Technical term \"Account seat\" translated instead of kept as intended.",
+     "suggestion": "Account seat",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.context.shares.seat",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Technical term \"Account seat\" translated instead of kept as intended.",
+     "suggestion": "Account seat",
+     "source": "grok"
+    },
+    {
+     "key": "summary.entities.standing",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Inconsistent translation of standing-related term; uses \"Stand\" while standing title uses \"Bedingungen\".",
+     "suggestion": "Standing",
+     "source": "grok"
+    },
+    {
+     "key": "summary.entities.standing",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Inconsistent translation of standing-related term; uses \"Estado\" while standing title uses \"Condiciones\".",
+     "suggestion": "Standing",
+     "source": "grok"
+    },
+    {
+     "key": "finding.pin",
      "language": "de",
      "severity": "low",
-     "problem": "\"Darkweb-Kollektoren\" leaves English \"Darkweb\" untranslated (es uses \"dark web\").",
-     "suggestion": "Dark-Web-Kollektoren",
+     "problem": "Technical phrase \"AI SOC cut\" translated; should remain as product-specific term.",
+     "suggestion": "AI SOC cut",
+     "source": "grok"
+    },
+    {
+     "key": "finding.pin",
+     "language": "es",
+     "severity": "low",
+     "problem": "Technical phrase \"AI SOC cut\" translated; should remain as product-specific term.",
+     "suggestion": "AI SOC cut",
+     "source": "grok"
+    },
+    {
+     "key": "summary.checks.question.return",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Unnatural German wording; 'zurückverbunden' is not idiomatic.",
+     "suggestion": "Hat das Gerät eine Verbindung nach außen hergestellt?",
+     "source": "grok"
+    },
+    {
+     "key": "summary.truncated",
+     "language": "de",
+     "severity": "low",
+     "problem": "Awkward phrasing and questionable term choice for 'fold'.",
+     "suggestion": "Über seine Grenzen hinaus ließ die Ansicht aus: {{what}}.",
+     "source": "grok"
+    },
+    {
+     "key": "summary.truncated",
+     "language": "es",
+     "severity": "low",
+     "problem": "'consolidación' does not clearly convey the meaning of 'fold'.",
+     "suggestion": "Más allá de sus límites, el resumen omitió: {{what}}.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:08:49.444Z"
+   "at": "2026-11-23T14:45:03.114Z"
   },
   "shared/i18n": {
    "hash": "40f8e866a3389cd4",
-   "findings": [
-    {
-     "key": "list.range.fromDate",
-     "language": "de",
-     "severity": "medium",
-     "problem": "\"From date\" translated as \"Erster Tag\" (\"First day\") instead of conveying the starting date of the range. Inconsistent with \"Von\" used for fromTime.",
-     "suggestion": "Von Datum",
-     "source": "grok"
-    },
-    {
-     "key": "list.range.toDate",
-     "language": "de",
-     "severity": "medium",
-     "problem": "\"Through date\" translated as \"Letzter Tag\" (\"Last day\") instead of conveying the end date of the range.",
-     "suggestion": "Bis Datum",
-     "source": "grok"
-    },
-    {
-     "key": "list.range.fromDate",
-     "language": "es",
-     "severity": "medium",
-     "problem": "\"From date\" translated as \"Primer día\" (\"First day\") instead of indicating the starting date of the range.",
-     "suggestion": "Fecha inicial",
-     "source": "grok"
-    },
-    {
-     "key": "list.range.toDate",
-     "language": "es",
-     "severity": "medium",
-     "problem": "\"Through date\" translated as \"Último día\" (\"Last day\") instead of indicating the end date of the range.",
-     "suggestion": "Fecha final",
-     "source": "grok"
-    },
-    {
-     "key": "list.all_many",
-     "language": "es",
-     "severity": "medium",
-     "problem": "\"All {{count}} entries\" translated as \"Las {{count}} entradas\" (\"The {{count}} entries\"), losing the meaning of \"all\".",
-     "suggestion": "Todas las {{count}} entradas",
-     "source": "grok"
-    },
-    {
-     "key": "list.all_other",
-     "language": "es",
-     "severity": "medium",
-     "problem": "\"All {{count}} entries\" translated as \"Las {{count}} entradas\" (\"The {{count}} entries\"), losing the meaning of \"all\".",
-     "suggestion": "Todas las {{count}} entradas",
-     "source": "grok"
-    },
-    {
-     "key": "list.range.setTimes",
-     "language": "es",
-     "severity": "low",
-     "problem": "\"Set times\" translated as \"Indicar horas\", which is unnatural wording (\"indicar\" implies \"indicate\" rather than configure or specify).",
-     "suggestion": "Establecer horas",
-     "source": "grok"
-    },
-    {
-     "key": "list.range.any",
-     "language": "es",
-     "severity": "low",
-     "problem": "\"Any time\" translated as \"Cualquier fecha\" (\"Any date\"), imprecise and inconsistent with other time-related terms such as \"horas\".",
-     "suggestion": "Cualquier momento",
-     "source": "grok"
-    },
-    {
-     "key": "notFound.toWorkspace",
-     "language": "de",
-     "severity": "low",
-     "problem": "Inconsistent terminology for workspace references: uses \"des Workspaces\" while error.toWorkspace uses \"Workspace-Übersicht\".",
-     "suggestion": "Zur Workspace-Übersicht",
-     "source": "grok"
-    }
-   ],
-   "at": "2026-11-11T09:09:15.147Z"
+   "findings": [],
+   "at": "2026-11-23T14:45:27.226Z"
   },
   "shared/i18n/errors": {
-   "hash": "6431208090e5bd89",
+   "hash": "7b58540c0546e3d3",
    "findings": [
     {
-     "key": "cases.attestation_approvers_full",
+     "key": "access.unknown_subject",
      "language": "de",
-     "severity": "high",
-     "problem": "Wrong meaning: 'Zustimmung' refers to approval, but English 'approver' refers to the person approving.",
-     "suggestion": "Kein weiterer Zustimmender passt: Der AI SOC bewahrt höchstens 8192 Bytes aus Erklärung und Zustimmenden auf. Kürzen Sie die Erklärung in einem neuen Vorschlag.",
+     "severity": "medium",
+     "problem": "Inconsistent term for service account compared to other strings in the same file (Dienstzugang vs. Dienstkonten).",
+     "suggestion": "Dieser Benutzer oder Dienstkonto gehört nicht zur Organisation.",
+     "source": "grok"
+    },
+    {
+     "key": "apikeys.escalation",
+     "language": "de",
+     "severity": "medium",
+     "problem": "sentence is incomplete and misses the verb present in English",
+     "suggestion": "Der Schlüssel könnte mehr tun als Sie selbst.",
+     "source": "grok"
+    },
+    {
+     "key": "license.limit_unset_workspaces",
+     "language": "de",
+     "severity": "low",
+     "problem": "awkward and ambiguous pronoun reference",
+     "suggestion": "Bitten Sie datAInsights um eine Lizenz, die eine festlegt.",
+     "source": "grok"
+    },
+    {
+     "key": "license.limit_unset_service_accounts",
+     "language": "de",
+     "severity": "low",
+     "problem": "awkward and ambiguous pronoun reference",
+     "suggestion": "Bitten Sie datAInsights um eine Lizenz, die eine festlegt.",
+     "source": "grok"
+    },
+    {
+     "key": "collection.core_size_too_small",
+     "language": "de",
+     "severity": "low",
+     "problem": "wording is unnatural and deviates from English structure",
+     "suggestion": "die AI-SOC-Größe {{size}} ist darauf ausgelegt, etwa {{sizeHolds}} Datensätze zu halten",
+     "source": "grok"
+    },
+    {
+     "key": "collection.core_size_unknown",
+     "language": "de",
+     "severity": "low",
+     "problem": "inconsistent term for product name (hyphenated instead of \"AI SOC\")",
+     "suggestion": "die Größe des AI SOC {{size}}",
      "source": "grok"
     },
     {
      "key": "cases.attestation_approvers_full",
      "language": "es",
      "severity": "high",
-     "problem": "Wrong meaning: 'aprobación'/'aprobaciones' refers to approval, but English 'approver'/'approvers' refers to the person/people approving.",
-     "suggestion": "No cabe ningún aprobador más: el AI SOC conserva como máximo 8192 bytes de declaración y aprobadores. Acorte la declaración en una nueva propuesta.",
+     "problem": "Wrong meaning: 'aprobaciones' means approvals, not the people (approvers).",
+     "suggestion": "declaración y aprobadores",
+     "source": "grok"
+    },
+    {
+     "key": "cases.unknown_finding",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Glossary violation: 'Arbeitsbereich' used instead of 'Workspace'.",
+     "suggestion": "Dieser Workspace enthält kein solches Finding.",
+     "source": "grok"
+    },
+    {
+     "key": "core.size_invalid",
+     "language": "es",
+     "severity": "low",
+     "problem": "Unnatural wording: 'CPU' should be plural to match English and other strings.",
+     "suggestion": "{{minCpus}} CPUs",
+     "source": "grok"
+    },
+    {
+     "key": "core.size_not_licensed",
+     "language": "es",
+     "severity": "low",
+     "problem": "Unnatural wording: 'CPU' should be plural to match English and other strings.",
+     "suggestion": "{{maxCpus}} CPUs",
+     "source": "grok"
+    },
+    {
+     "key": "core.size_no_capacity",
+     "language": "es",
+     "severity": "low",
+     "problem": "Unnatural wording: 'CPU' should be plural to match English and other strings.",
+     "suggestion": "{{needCpus}} CPUs",
+     "source": "grok"
+    },
+    {
+     "key": "core.size_no_capacity",
+     "language": "es",
+     "severity": "low",
+     "problem": "Unnatural wording: 'CPU' should be plural to match English and other strings.",
+     "suggestion": "{{freeCpus}} CPUs",
+     "source": "grok"
+    },
+    {
+     "key": "integrations.invalid_pem",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Uses 'und' (and) instead of 'oder' (or), changing the meaning.",
+     "suggestion": "Das ist kein gültiges PEM-Zertifikat oder kein gültiger PEM-Schlüssel.",
+     "source": "grok"
+    },
+    {
+     "key": "integrations.certificate_chain",
+     "language": "de",
+     "severity": "low",
+     "problem": "Unnatural wording: 'nicht in Reihenfolge'.",
+     "suggestion": "Die Zertifikate sind nicht in der richtigen Reihenfolge: Jedes muss vom nächsten signiert sein.",
+     "source": "grok"
+    },
+    {
+     "key": "reports.period_invalid",
+     "language": "es",
+     "severity": "low",
+     "problem": "Wording is unclear and does not fully match the English meaning.",
+     "suggestion": "Elija un período ya terminado que abarque como máximo 400 días.",
      "source": "grok"
     },
     {
      "key": "soc.record_not_in_case",
      "language": "de",
      "severity": "high",
-     "problem": "Glossary violation: 'Befund' used instead of 'Finding'.",
+     "problem": "Glossary violation: 'Finding' must remain 'Finding' in German, not translated to 'Befund'.",
      "suggestion": "Kein Finding dieses Falls verweist auf diesen Datensatz.",
-     "source": "grok"
-    },
-    {
-     "key": "cases.unknown_finding",
-     "language": "de",
-     "severity": "high",
-     "problem": "Glossary violation: 'Arbeitsbereich' used instead of 'Workspace'.",
-     "suggestion": "Dieser Workspace enthält kein solches Finding.",
-     "source": "grok"
-    },
-    {
-     "key": "partner.not_found",
-     "language": "es",
-     "severity": "high",
-     "problem": "English left untranslated: 'partner' appears instead of Spanish term.",
-     "suggestion": "Este socio no existe o usted no trabaja para él.",
-     "source": "grok"
-    },
-    {
-     "key": "collection.secret_required",
-     "language": "de",
-     "severity": "high",
-     "problem": "English left untranslated: 'Namespace' appears (internal name should not).",
-     "suggestion": "Diese Zugangsdaten wurden für einen anderen Mandanten, Namensraum oder Standort gespeichert. Geben Sie sie erneut ein.",
-     "source": "grok"
-    },
-    {
-     "key": "workspace.new_estate_not_accepted",
-     "language": "de",
-     "severity": "high",
-     "problem": "English left untranslated: 'Graph' appears (internal name should not).",
-     "suggestion": "Beim Verschieben startet der AI SOC an der neuen Platzierung neu. Bestätigen Sie, dass sein Graph verloren geht.",
-     "source": "grok"
-    },
-    {
-     "key": "intel.bundle_too_large",
-     "language": "de",
-     "severity": "high",
-     "problem": "Grammar error: sentence structure is unnatural and incorrect ('ist komprimiert oder entpackt größer').",
-     "suggestion": "Das Bundle ist, komprimiert oder entpackt, größer als {{max}} MiB.",
-     "source": "grok"
-    },
-    {
-     "key": "access.invalid_subject",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Terms used inconsistently: 'Person' here but 'Benutzer' for the same concept elsewhere.",
-     "suggestion": "Ungültiger Benutzer.",
-     "source": "grok"
-    },
-    {
-     "key": "seats.required",
-     "language": "de",
-     "severity": "medium",
-     "problem": "English left untranslated/inconsistent: 'Admin' abbreviation here but 'Administratoren' elsewhere.",
-     "suggestion": "Sie brauchen einen Platz, um das Produkt zu nutzen. Wenden Sie sich an einen Inhaber oder Administrator der Organisation.",
-     "source": "grok"
-    },
-    {
-     "key": "collection.core_size_too_small",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Terms used inconsistently: 'AI-SOC-Größe' (hyphen) but 'AI SOC' elsewhere; also unnatural wording 'ist für etwa {{sizeHolds}} gemessen' instead of 'measured to hold'.",
-     "suggestion": "Dieser Import enthält schätzungsweise etwa {{estimatedRecords}} Datensätze; die AI-SOC-Größe {{size}} ist darauf ausgelegt, etwa {{sizeHolds}} zu halten. Wählen Sie {{needs}} oder starten Sie ihn trotzdem.",
-     "source": "grok"
-    },
-    {
-     "key": "collection.core_size_unknown",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Terms used inconsistently: 'AI-SOC-Größe' (hyphen) but 'AI SOC' elsewhere.",
-     "suggestion": "In einer Stichprobe dieses Imports ließ sich kein Datensatz zählen. Ob die AI-SOC-Größe {{size}} (etwa {{sizeHolds}} Datensätze) ihn fasst, ist daher offen. Wählen Sie eine Größe oder starten Sie ihn trotzdem.",
-     "source": "grok"
-    },
-    {
-     "key": "core.size_not_licensed",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Terms used inconsistently: 'AI-SOC-Größe' (hyphen) but 'AI SOC' elsewhere.",
-     "suggestion": "Die Lizenz erlaubt diese AI-SOC-Größe nicht. Wählen Sie eine kleinere oder erweitern Sie die Lizenz.",
-     "source": "grok"
-    },
-    {
-     "key": "core.size_no_capacity",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Terms used inconsistently: 'AI SOCs' (space) but 'AI-SOC' elsewhere.",
-     "suggestion": "Diese Größe passt nicht neben die AI SOCs der anderen Workspaces. Wählen Sie eine kleinere Größe.",
-     "source": "grok"
-    },
-    {
-     "key": "license.limit_reached_core_size",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Terms used inconsistently: 'AI-SOC-Größe' (hyphen) but 'AI SOC' elsewhere.",
-     "suggestion": "Die Lizenz erlaubt keine größere AI-SOC-Größe.",
      "source": "grok"
     },
     {
      "key": "cases.invalid_named",
      "language": "de",
      "severity": "medium",
-     "problem": "Uses gender forms 'Lesende oder Verantwortliche' against rule requiring role names without gender forms.",
+     "problem": "Role names use gendered forms ('Lesende', 'Verantwortliche'), violating the rule to use gender-neutral role names without gender forms.",
      "suggestion": "Nennen Sie jedes Mitglied höchstens einmal, als Leser oder Manager, und höchstens {{max}} Personen.",
      "source": "grok"
     },
     {
-     "key": "cases.locks_out",
+     "key": "collection.survey_unsupported",
      "language": "de",
      "severity": "medium",
-     "problem": "Uses gender forms 'Verantwortliche oder Verantwortlicher' against rule requiring role names without gender forms.",
-     "suggestion": "Behalten Sie sich als Manager, sonst könnten Sie diesen Fall nicht mehr ändern.",
-     "source": "grok"
-    },
-    {
-     "key": "integrations.invalid_pem",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses 'und' (and) instead of 'oder' (or), altering the meaning from English.",
-     "suggestion": "Das ist kein gültiges PEM-Zertifikat oder PEM-Schlüssel.",
-     "source": "grok"
-    },
-    {
-     "key": "collection.invalid_name",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Inconsistent wording: 'Use de 1 a {{max}} caracteres' here but 'Use entre 1 y {{max}} caracteres' in other similar keys (e.g. workspace.invalid_name).",
-     "suggestion": "Use entre 1 y {{max}} caracteres.",
-     "source": "grok"
-    },
-    {
-     "key": "sites.invalid_name",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Inconsistent wording: 'Use de 1 a 80 caracteres' here but 'Use entre 1 y {{max}} caracteres' in other similar keys.",
-     "suggestion": "Use entre 1 y 80 caracteres.",
-     "source": "grok"
-    },
-    {
-     "key": "cases.invalid_title",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Inconsistent wording: 'Use de 1 a 200 caracteres' here but 'Use entre 1 y {{max}} caracteres' in other similar keys.",
-     "suggestion": "Use entre 1 y 200 caracteres.",
-     "source": "grok"
-    },
-    {
-     "key": "integrations.invalid_pem",
-     "language": "de",
-     "severity": "low",
-     "problem": "Slightly unnatural: 'und kein gültiger' could be clearer as 'oder'.",
-     "suggestion": "Das ist kein gültiges PEM-Zertifikat oder gültiger PEM-Schlüssel.",
+     "problem": "Wording is awkward and the relative clause is misplaced, making the sentence hard to parse for a native speaker.",
+     "suggestion": "Derzeit lässt sich nur ein Dateiimport von Syslog-Dateien erheben, den die Plattform sammelt.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-11T09:10:16.480Z"
+   "at": "2026-11-23T14:46:51.234Z"
   }
  }
 }

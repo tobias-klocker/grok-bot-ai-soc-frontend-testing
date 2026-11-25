@@ -31,7 +31,8 @@ const web = join(import.meta.dirname, "..");
 // A fixed clock: the mock's "5 minutes ago" data stays the same between runs,
 // so an unchanged page gives an unchanged screenshot and is not reviewed again.
 const time = new Date("2026-11-02T09:30:00+01:00");
-const skip = new Set(["/step-up-complete"]);
+// The others only redirect, to a page the sweep visits anyway.
+const skip = new Set(["/step-up-complete", "/operator", "/o/$orgId"]);
 const locales: Record<Lang, string> = { en: "en-US", de: "de-AT", es: "es-ES" };
 
 const all: Variant[] = [
@@ -212,6 +213,15 @@ function inspect(limit: number) {
     if (el.scrollWidth > el.clientWidth + 2 || el.scrollHeight > el.clientHeight + 2)
       clipped.push({ text: `${el.tagName.toLowerCase()}: ${el.textContent!.trim().slice(0, 80)}`, box: at(box) });
   }
+  // Rows that scroll sideways (tab bars): text cut off at their edge is
+  // intended (review-notes.md), so Grok's claims about it are rejected.
+  const scrollers: [number, number, number, number][] = [];
+  for (const el of document.body.querySelectorAll<HTMLElement>("*")) {
+    if (scrollers.length >= 20 || ignored(el) || el.scrollWidth <= el.clientWidth + 2) continue;
+    if (!/auto|scroll/.test(getComputedStyle(el).overflowX)) continue;
+    const box = el.getBoundingClientRect();
+    if (box.width && box.height && box.height < 120 && box.top + window.scrollY < limit) scrollers.push(at(box));
+  }
   // Text squeezed into a narrow column while the space beside it stays empty:
   // it runs over 2+ lines, its row (the ancestors about as tall as it) is at
   // least twice as wide, and nothing with content stands to its right there.
@@ -265,6 +275,7 @@ function inspect(limit: number) {
     texts: [...shown],
     boxes,
     clipped,
+    scrollers,
   };
 }
 
@@ -297,12 +308,15 @@ for (const v of variants)
     const records: Record<string, unknown>[] = [];
     const done = new Set<string>();
 
-    for (const scenario of ["admin", "partner"]) {
+    // The operator area opens only for an installation's administrator: any other
+    // scenario sees its "elevate first" notice.
+    for (const scenario of ["admin", "partner", "installationAdmin"]) {
       await open(page, scenario);
       await setLanguage(page, v.lang);
       const paths = await resolve(page);
       for (const route of routes) {
         const path = paths.get(route);
+        if ((scenario === "installationAdmin") !== route.startsWith("/operator")) continue;
         if (done.has(route) || skip.has(route) || !path || (only && !only.test(route))) continue;
         done.add(route);
         const record: Record<string, unknown> = { route, path, scenario };
@@ -319,6 +333,7 @@ for (const v of variants)
           if (seen.overflowX > 1) record.overflowX = seen.overflowX;
           if (seen.clipped.length) record.clipped = seen.clipped;
           if (seen.squeezed.length) record.squeezed = seen.squeezed;
+          if (seen.scrollers.length) record.scrollers = seen.scrollers;
           const rawKeys = seen.texts.filter((t) => keyNames.has(t.replace(/^[\w/-]+:/, "")));
           if (rawKeys.length) record.rawKeys = rawKeys.slice(0, 10);
           const placeholders = seen.texts.filter((t) => /\{\{|\}\}/.test(t));

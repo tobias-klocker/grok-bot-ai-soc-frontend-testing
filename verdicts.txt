@@ -1,0 +1,53 @@
+# Verdicts on findings; the report's buttons write these lines (README.md).
+#   fine  page <route> "<quoted text>"              # intended as it is
+#   wrong page <route> "<quoted text>"              # Grok misread the screenshot
+#   fix   page <route> "<quoted text>"              # a real defect, known until it is gone
+#   fine  text <namespace> <key> <de|es> "<text>"   # the text as it was decided on
+# fine and wrong hide a finding; fix keeps it as known. A line without a verdict word is fine.
+
+
+# Tab bars scroll sideways on narrow screens; a tab cut off at the screen edge is intended (2026-11-13).
+fine  page /o/$orgId/access "API-Schlüssel"
+fine  page /o/$orgId/access "Cla"
+fine  page /o/$orgId/access/grants "API-Schlüs"
+fine  page /o/$orgId/access/grants "Cuentas de servicio"
+fine  page /o/$orgId/access/roles "API-Schlüss"
+fine  page /o/$orgId/access/roles "Cla"
+fine  page /o/$orgId/access/service-accounts "API-Schlüs"
+fine  page /o/$orgId/access/service-accounts "Cla"
+fine  page /o/$orgId/access/api-keys "rgaben"
+fine  page /o/$orgId/access/api-keys "es"
+fine  page /o/$orgId/access/administrators "vice accounts"
+fine  page /o/$orgId/access/administrators "stkonten"
+fine  page /o/$orgId/access/administrators "io"
+fine  page /o/$orgId/access/support "hlüssel"
+fine  page /o/$orgId/access/support "PI keys"
+fine  page /o/$orgId/exports/$destinationId "Zustellungen"
+fine  page /o/$orgId/settings "Sicherhe"
+fine  page /o/$orgId/settings "Seguridad y datos"
+fine  page /o/$orgId/settings/notifications "Sicherheit"
+fine  page /o/$orgId/settings/notifications "Seguridad y datos"
+fine  page /o/$orgId/settings/security "nguage and time"
+fine  page /o/$orgId/settings/security "Benachrichtigungen"
+fine  page /o/$orgId/settings/reports "Anreicherung"
+fine  page /o/$orgId/settings/reports "Reports"
+fine  page /o/$orgId/settings/reports "Enriquecimiento"
+fine  page /o/$orgId/settings/reports "Informes"
+fine  page /o/$orgId/settings/enrichment "ie"
+fine  page /o/$orgId/settings/enrichment "Notificaciones"
+fine  page /o/$orgId/settings/enrichment "Sicherheit und Daten"
+fine  page /o/$orgId/settings/installation "Platform defaults"
+fine  page /o/$orgId/settings/installation "rheit und Daten"
+fine  page /o/$orgId/settings/installation "y datos"
+fine  page /o/$orgId/settings/installation "Valores de la plataform"
+fine  page /o/$orgId/w/$workspaceId/exports/$destinationId "Zustellungen"
+fine  page /o/$orgId/w/$workspaceId/settings "Benachrichtigungs-E-M"
+fine  page /o/$orgId/w/$workspaceId/settings "Corr"
+# Grok findings checked against the screenshot and wrong (2026-11-13).
+wrong page /o/$orgId/sites "Dedicated node nbg1-07"   # the badge stands beside the title, no overlap
+wrong page /o/$orgId/license "55 von 250"   # the bar is filled 22%, as it should be
+wrong page /o/$orgId/w/$workspaceId/findings "Held"   # Held is a placement: it belongs in that column
+wrong page /p/$partnerId/channels/$destinationId "Enviar prueba"   # "T" is the keyboard-shortcut hint, no overlap
+wrong page /o/$orgId/w/$workspaceId/notifications "PRODUCTION"   # workspace name: sample data
+wrong page /o/$orgId/w/$workspaceId/exports "PRODUCTION"
+wrong page /o/$orgId/w/$workspaceId/access "PRODUCTION"
