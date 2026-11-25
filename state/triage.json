@@ -9,30 +9,30 @@
   "org-root-blank": {
    "title": "/o/$orgId shows an empty page",
    "suggest": "fix",
-   "fixIn": "web/src/app/router.tsx: /o/$orgId redirects to its Workspaces page (done, not committed)",
+   "fixIn": "web/src/app/router.tsx: /o/$orgId redirects to its Workspaces page (a193b07e9)",
    "why": "In every variant the sweep found only the navigation's text there; the main area renders nothing.",
    "at": "2026-11-25"
   },
   "phone-search-toolbar": {
    "title": "Search placeholder cut off on phones",
    "suggest": "fix",
-   "fixIn": "@data-insights-ai/ui Toolbar: search and actions share one row on phones (propose first)",
+   "fixIn": "ToolbarAction (design system 0.44.0) in every list toolbar, app commit 343f038aa",
    "why": "At 390 px the search shares its row with the ⋯ and action buttons, so its placeholder ends mid-word ('Search people an').",
    "at": "2026-11-25"
   },
   "option-description-clamp": {
    "title": "Option descriptions cut after two lines on phones",
    "suggest": "fix",
-   "fixIn": "@data-insights-ai/ui ChoiceGroup cards (.di-choice-card-desc clamps at 2 lines; propose first)",
+   "fixIn": "@data-insights-ai/ui 0.44.0 (cards show the whole description), in the app since f36be6017",
    "why": "The option cards end their description with '…' and nothing shows the rest (seen: 'mediante su propio servidor de…'). The check measured the same overflow.",
    "at": "2026-11-25"
   },
   "fact-grid-columns": {
    "title": "Facts in 200 px columns on desktop",
    "suggest": "fix",
-   "fixIn": "@data-insights-ai/ui FactList (propose first)",
+   "fixIn": "@data-insights-ai/ui 0.44.0 (FactList columns auto-fit), in the app since f36be6017",
    "why": "Labels and values wrap in fixed 200 px columns while 450–900 px beside them stay empty; a subscription ID breaks over two lines at 1440 px.",
-   "at": "2026-11-24"
+   "at": "2026-11-25"
   },
   "phone-value-column": {
    "title": "Values wrap in their column on phones",
@@ -49,7 +49,7 @@
   "untranslated-api-names": {
    "title": "Report titles in English on German and Spanish pages",
    "suggest": "fix",
-   "fixIn": "web/src/mocks/reports/titles.ts (done, not committed)",
+   "fixIn": "web/src/mocks/reports/titles.ts (a193b07e9)",
    "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
    "at": "2026-11-25"
   },
@@ -117,28 +117,28 @@
   "term-inconsistent": {
    "title": "One concept, several words",
    "suggest": "fix",
-   "fixIn": "locales (done, not committed)",
+   "fixIn": "locales, a193b07e9",
    "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
    "at": "2026-11-25"
   },
   "glossary-breach": {
    "title": "Finding and Workspace translated against the glossary",
    "suggest": "fix",
-   "fixIn": "locales (done, not committed)",
+   "fixIn": "locales, a193b07e9",
    "why": "'Funde', 'Befund' and 'Arbeitsbereich' where the glossary says Finding and Workspace.",
    "at": "2026-11-25"
   },
   "reihenfolge": {
    "title": "'in Reihenfolge' is not idiomatic",
    "suggest": "fix",
-   "fixIn": "locales (done, not committed)",
+   "fixIn": "locales, a193b07e9",
    "why": "'manipulationssicher und in Reihenfolge', 'nicht in Reihenfolge': German says 'in fester Reihenfolge' / 'nicht in der richtigen Reihenfolge'.",
    "at": "2026-11-25"
   },
   "erklaeren": {
    "title": "'Quellen erklären' reads as 'explain sources'",
    "suggest": "fix",
-   "fixIn": "locales (done, not committed)",
+   "fixIn": "locales, a193b07e9",
    "why": "For declaring sources absent, 'Fehlende Quellen erklären' reads as 'explain missing sources'. 'Quellen als fehlend erklären' says it.",
    "at": "2026-11-25"
   },
