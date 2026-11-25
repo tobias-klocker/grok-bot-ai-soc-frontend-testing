@@ -13,8 +13,9 @@ this skill is how to use it well.
 
 ## Ground rules
 
-- **Never push, merge, tag or deploy** anything of ai-soc-platform or the design
-  system (AGENTS.md). Fixes end as commits on a branch in a worktree, for the user.
+- **Commit only when the user asks, and push, tag, release or deploy only when
+  they say so in that message** (AGENTS.md and the user's own rules). The
+  user's commits go straight on `main`: no branch, no worktree.
 - **Money:** Grok costs real money. Runs with `AI=0` are free. Before any run
   that may spend more than $3 (`MAX_USD` above 3, or a review of many changed
   screenshots), tell the user the estimate and wait for a yes. Prices: about
@@ -95,10 +96,13 @@ Each run is `.grok-bot/runs/<YYYYMMDD-HHMMSS>-visual/`:
    whole screenshots: `sips -c <h> <w> --cropOffset <y> <x> <shot> --out <crop>`
    around the finding's `spots[0].box`. A quote can match elsewhere on the page
    (the sidebar has the page's name): crop the top of the page for headline findings.
-4. **The user's rules** are in `.grok-bot/review-notes.md` (views are for
-   technicians; ms timestamps and terms like "Standing terms" are intended; tab
-   bars scroll; the h1 stands on one line with nothing beside it on desktop; the
-   uppercase line above a title is the workspace name, i.e. sample data).
+4. **The user's rules** are in `.grok-bot/review-notes.md`; read it, it is the
+   source (among them: views are for technicians; terms like "Standing terms"
+   and their translations are intended; tab bars and wide tables scroll
+   sideways; a status badge beside the h1 is intended, a headline that wraps
+   while space is free is not; a report run keeps the language it was generated
+   in; paired forms for people are the house style; the uppercase line above a
+   title is the workspace name, i.e. sample data).
    Sample data (case titles, names of people, customers, workspaces, hosts) is
    never a finding.
 5. **Text findings are suggestions.** Check each against the locale files
@@ -109,8 +113,11 @@ Each run is `.grok-bot/runs/<YYYYMMDD-HHMMSS>-visual/`:
    Case (de "Fall", es "caso"); roles without gender forms. Grok over-rates
    severity and misreads the glossary as banning German plurals and genitives
    (die Findings, des Workspaces are correct), compound hyphens (AI-SOC-Größe is
-   correct) and Spanish invariant acronyms (las CPU). Count a term across the
-   locale files before calling a text inconsistent.
+   correct) and Spanish invariant acronyms (las CPU). Microsoft's own names
+   are correct as they are (Log-Analytics-Arbeitsbereich, área de trabajo,
+   Azure Event Hubs-Datenempfänger), "Use" is Spanish (usted), Partner is the
+   product's term. Count a term across the locale files before calling a text
+   inconsistent.
 6. **Group by root cause.** Many findings share one cause. Report causes, not
    findings: what is wrong, how many pages and variants, one or two crops as
    evidence, where the fix belongs.
@@ -153,24 +160,26 @@ removes the line from the report.
 
 Follow AGENTS.md. Per root cause:
 
-1. A worktree only under `.worktrees/<branch>` in the repository (never next to
-   it), one at a time, removed after the user merged it.
-2. Where the fix belongs:
+1. Where the fix belongs:
    - The app: `web/src/…`.
    - Translations: the locale JSON files; `pnpm test` fails on a missing key or
      placeholder.
-   - The design system `@data-insights-ai/ui` (`~/Developer/di`; e.g.
-     `PageHeader`, `FactList`): propose it to the user first. Its releases and
-     pins follow AGENTS.md, and the app only gets the change through a release.
-3. Check like the project does (`docs/how-to/develop-the-web-app.md`): in
+   - The design system `@data-insights-ai/ui` (on this Mac `~/code/storybook`;
+     e.g. `PageHeader`, `FactList`): propose it to the user first. Read its
+     `AGENTS.md` and `docs/` before changing it; it is a public repository.
+     The app only gets the change through a release (its
+     `docs/how-to/release.md`, on the user's word), and the app's pin moves in
+     a commit of its own.
+2. Check like the project does (`docs/how-to/develop-the-web-app.md`): in
    `web/`, `pnpm typecheck`, `pnpm test`, `pnpm lint`, `pnpm format`.
-4. Commit on the worktree's branch (the bot only sees commits), then re-check
-   just the affected pages, free first:
-   `BASE=<branch> SWEEP_ONLY='<routes>' AI=0 .grok-bot/run.sh visual`.
+3. Once the user asked for the commit, commit on `main` (the bot only sees
+   commits), then re-check just the affected pages, free first:
+   `SWEEP_ONLY='<routes>' AI=0 .grok-bot/run.sh visual`.
    The `check` findings must be gone. For Grok findings, look at the new
    screenshot yourself, or with the user's yes run the same with Grok (only
    changed screenshots cost).
-5. Report to the user: the branch, what changed, the before/after evidence. No push.
+4. Report to the user: the commit, what changed, the before/after evidence.
+   Push only when they say so.
 
 ## When something fails
 

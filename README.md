@@ -178,8 +178,8 @@ report, and counts them at the top.
 `skill/visual-review/SKILL.md` teaches Claude Code this kit: the commands and
 their cost, reading `findings.json` and the screenshots, what to trust (checks
 yes, Grok only after looking), the rules in `review-notes.md`, and fixing by
-root cause under AGENTS.md (a worktree in `.worktrees/`, the project's checks,
-a re-check with `SWEEP_ONLY`, never a push). Link it once, from the project root:
+root cause under AGENTS.md (the project's checks, a commit on main once you
+ask for it, a re-check with `SWEEP_ONLY`, a push only on your word). Link it once, from the project root:
 
     mkdir -p ~/.claude/skills && ln -s "$PWD/.grok-bot/skill/visual-review" ~/.claude/skills/visual-review
 
