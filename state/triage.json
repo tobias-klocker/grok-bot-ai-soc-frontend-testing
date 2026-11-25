@@ -63,8 +63,8 @@
   "report-preview-mock": {
    "title": "The report preview loads nothing in the mock",
    "suggest": "unsure",
-   "why": "The run page's preview frame loads /downloads/reports/sample; the mock seems to answer with the app itself (its scripts blocked by the sandbox, sometimes a 404). Likely a mock gap, not the app: check in pnpm dev:mock.",
-   "at": "2026-11-24"
+   "why": "The run page frames /downloads/reports/sample; the static mock build answers it with the app or a 404. Neither the dev mock nor the preview build answers 404 on the schedule or run pages alone: in the sweep they follow a run page, whose frame request lands on them (2 of 8 variants, 25 Nov).",
+   "at": "2026-11-25"
   },
   "wide-table": {
    "title": "Wide tables: last column under the edge fade",
@@ -2736,6 +2736,30 @@
    "suggest": "wrong",
    "why": "Correct word order.",
    "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "49b0b7e0e364aedb": {
+   "suggest": "unsure",
+   "why": "The run page frames /downloads/reports/sample; the static mock build answers it with the app or a 404. Neither the dev mock nor the preview build answers 404 on the schedule or run pages alone: in the sweep they follow a run page, whose frame request lands on them (2 of 8 variants, 25 Nov).",
+   "cause": "report-preview-mock",
+   "at": "2026-11-25"
+  },
+  "43bf6e4ed3837404": {
+   "suggest": "fix",
+   "why": "The card name and its note said Incidents while the option said Vorfälle; all are Vorfälle since 695352c27, as Defender says in German.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "7a6310af893d2f47": {
+   "suggest": "unsure",
+   "why": "The run page frames /downloads/reports/sample; the static mock build answers it with the app or a 404. Neither the dev mock nor the preview build answers 404 on the schedule or run pages alone: in the sweep they follow a run page, whose frame request lands on them (2 of 8 variants, 25 Nov).",
+   "cause": "report-preview-mock",
+   "at": "2026-11-25"
+  },
+  "531903af2bae4fc8": {
+   "suggest": "unsure",
+   "why": "The run page frames /downloads/reports/sample; the static mock build answers it with the app or a 404. Neither the dev mock nor the preview build answers 404 on the schedule or run pages alone: in the sweep they follow a run page, whose frame request lands on them (2 of 8 variants, 25 Nov).",
+   "cause": "report-preview-mock",
    "at": "2026-11-25"
   }
  }
