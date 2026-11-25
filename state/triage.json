@@ -157,14 +157,14 @@
   "phone-search-placeholder": {
    "title": "Long search placeholders still cut on phones",
    "suggest": "fix",
-   "fixIn": "web locales: shorter placeholders (the label keeps the full name); API keys: the allowance pill takes the search's row",
+   "fixIn": "web locales: shorter placeholders (the label keeps the full name); API keys: the allowance pill takes the search's row; done in c7aa703b6",
    "why": "With the actions now icons the field is about 250px: 'Personen und Dienstkonten su…' and, beside the '2 von 200 Schlüsseln' pill, 'Schlüssel s…' still end mid-word (crops of access/grants and access/api-keys, de-phone).",
    "at": "2026-11-25"
   },
   "api-key-rows": {
    "title": "API key rows: permissions beside a short name on phones",
    "suggest": "fix",
-   "fixIn": "web/src/features/apikeys/keys KeysTable (stacked row layout)",
+   "fixIn": "web/src/features/apikeys/keys KeysTable (stacked row layout); done in c7aa703b6",
    "why": "On phones 'Ticket sync' has its permissions on its own name line while 'Splunk import' has them under the account line (crop of access/api-keys, de-phone).",
    "at": "2026-11-25"
   },
@@ -178,21 +178,21 @@
   "audit-op-consistency": {
    "title": "One English operation name, two German/Spanish ones",
    "suggest": "fix",
-   "fixIn": "features/audit locales",
+   "fixIn": "features/audit locales; done in c7aa703b6",
    "why": "getFindingEvidence and getWorkspaceFindingEvidence are both 'View a finding's evidence' but de says 'abrufen'/'ansehen', es 'Consultar'/'Ver'.",
    "at": "2026-11-25"
   },
   "de-small-grammar": {
    "title": "Small German grammar slips",
    "suggest": "fix",
-   "fixIn": "locales",
+   "fixIn": "locales; done in c7aa703b6",
    "why": "Each is a real slip a German reader notices; low weight.",
    "at": "2026-11-25"
   },
   "es-small-wording": {
    "title": "Small Spanish wording slips",
    "suggest": "fix",
-   "fixIn": "locales",
+   "fixIn": "locales; done in c7aa703b6",
    "why": "Each is a real slip a Spanish reader notices; low weight.",
    "at": "2026-11-25"
   },
@@ -664,9 +664,9 @@
    "at": "2026-11-24"
   },
   "b1de60e03e241000": {
-   "suggest": "fix",
-   "why": "The server writes a report title in the run language; the mock gave runs marked German the English title. Runs generated in English keep their English title, as on the server.",
-   "cause": "untranslated-api-names",
+   "suggest": "unsure",
+   "why": "These runs are marked English in the mock, and their title and contents are the report's own, as the server writes them; the German type name shows below. Your call whether the page heading should be the type's name in the reader's language.",
+   "cause": "report-run-language",
    "at": "2026-11-25"
   },
   "7971d9981309b4c2": {
@@ -837,7 +837,8 @@
   "dbc84eea7f92bf33": {
    "suggest": "fix",
    "why": "On phones a key with a short name puts its permissions beside the name, one with a long name below it, so the rows do not line up (seen: 'Ticket sync').",
-   "at": "2026-11-24"
+   "at": "2026-11-25",
+   "cause": "api-key-rows"
   },
   "91060800744f227b": {
    "suggest": "fix",
@@ -1433,10 +1434,10 @@
    "at": "2026-11-24"
   },
   "df85ccea6e7d9451": {
-   "suggest": "fix",
-   "why": "Seed record: 'Ausgangsdatensatz', 'Auslösender Datensatz', 'Startdatensatz'; seat: 'Kontositz' and 'Arbeitsplatz' (es 'asiento', 'puesto'); also Produktadministration/-administrator (7×/7×), Dienstzugang/Dienstkonto, Rücknahme/Zurückziehen, Standards/Vorgaben, es periodo/período (20×/18×) and portal de cuenta/cuentas. Grok's reasons are often wrong, the inconsistencies are real.",
-   "cause": "term-inconsistent",
-   "at": "2026-11-24"
+   "suggest": "wrong",
+   "why": "The text already says Rücknahmen, the noun used throughout; Grok suggests Zurückziehungen.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
   },
   "c427994a7137a6b3": {
    "suggest": "fix",
