@@ -7,6 +7,7 @@
 #   .grok-bot/run.sh visual             screenshot every page, have Grok review them (README.md)
 #   .grok-bot/run.sh visual-review      review the last visual run's screenshots again, no new sweep
 #   .grok-bot/run.sh report             the last visual run's report, redrawn and served with working verdict buttons
+#   .grok-bot/run.sh redraw             the same report redrawn, not served
 #
 # Grok runs in a container that sees only a separate clone's web app, the API
 # contract and the few files the web build reads: no git history, no Go
@@ -24,7 +25,8 @@ BASE="${BASE:-HEAD}"
 MODE=tests
 if [ "${1:-}" = visual ]; then MODE=visual; TASK=""
 elif [ "${1:-}" = visual-review ]; then MODE=review; TASK=""
-elif [ "${1:-}" = report ]; then MODE=report; TASK=""; else
+elif [ "${1:-}" = report ]; then MODE=report; TASK=""
+elif [ "${1:-}" = redraw ]; then MODE=report; SERVE=0; TASK=""; else
   TASK="${1:-$KIT/tasks/frontend-tests.md}"
   case "$TASK" in /*) ;; *) [ -f "$TASK" ] || TASK="$KIT/$TASK" ;; esac
 fi

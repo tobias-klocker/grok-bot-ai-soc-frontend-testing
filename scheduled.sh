@@ -62,7 +62,9 @@ cost="$(sed -nE 's/^Grok cost this run: (\$[0-9.]+).*/\1/p' "$OUT/review.log")"
 left="$(grep -c 'were not reviewed: the budget' "$OUT/review.log" || true)"
 failed="$(sed -nE 's/^FAILED: (Grok could not review [^(]*).*/\1/p' "$OUT/review.log")"
 [ -z "$failed" ] || notify "Weekly review incomplete" "$failed; earlier results are marked not re-checked. Report: .grok-bot/runs/$(basename "$OUT")/report.html"
-notify "Weekly review ready" "${new:-first run, nothing to compare}${source_note}; Grok ${cost:-\$0}$([ "${left:-0}" -gt 0 ] && echo ', budget reached'). Report: .grok-bot/runs/$(basename "$OUT")/report.html"
+triaged=""
+grep -qE "^Triaged [1-9]" "$OUT/triage.log" 2>/dev/null && triaged=", triaged by Claude"
+notify "Weekly review ready" "${new:-first run, nothing to compare}${source_note}${triaged}; Grok ${cost:-\$0}$([ "${left:-0}" -gt 0 ] && echo ', budget reached'). Report: .grok-bot/runs/$(basename "$OUT")/report.html"
 
 # Older runs go, the newest KEEP_RUNS stay.
 if [ "${KEEP_RUNS:-0}" -gt 0 ]; then

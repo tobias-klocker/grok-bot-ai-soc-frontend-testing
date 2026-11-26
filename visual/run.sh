@@ -39,6 +39,7 @@ if [ "$MODE" = report ]; then
   docker run --rm "${hardening[@]}" --network none -e REDRAW=1 -e PAGE_MODEL -e TEXT_MODEL -e REVIEW_VARIANTS \
     "${prev_args[@]+"${prev_args[@]}"}" -v "$OUT:/out" -v "$KIT/state:/state:ro" "${review_mounts[@]}" -v "$KIT/verdicts.txt:/verdicts.txt:ro" \
     "$IMAGE" node /visual/review.mjs | tail -5
+  [ "${SERVE:-1}" = 1 ] || exit 0
   PORT="${PORT:-7317}"
   ( sleep 2; command -v open >/dev/null && open "http://127.0.0.1:$PORT/" ) &
   exec docker run --rm "${hardening[@]}" --name "grok-bot-report-$PORT" -p "127.0.0.1:$PORT:$PORT" -e PORT="$PORT" \
@@ -84,6 +85,12 @@ docker run --rm "${hardening[@]}" "${ai_args[@]}" \
   -e STAMP="$STAMP" -e COMMIT="$COMMIT" "${prev_args[@]+"${prev_args[@]}"}" \
   -v "$OUT:/out" -v "$KIT/state:/state" "${review_mounts[@]}" -v "$KIT/verdicts.txt:/verdicts.txt:ro" \
   "$IMAGE" node /visual/review.mjs | tee "$OUT/review.log"
+
+# Claude suggests a verdict for each new finding (triage.sh); TRIAGE=0 leaves that to you.
+if [ "${TRIAGE:-1}" = 1 ] && grep -qE "not yet: [1-9]" "$OUT/review.log"; then
+  say "Claude triages the new findings"
+  "$KIT/triage.sh" "$OUT" || say "Claude's triage did not finish: ask Claude to triage the last run"
+fi
 
 say "Report: .grok-bot/runs/$(basename "$OUT")/report.html (with working buttons: .grok-bot/run.sh report)"
 # Unattended (scheduled.sh), the caller tells the person; nothing opens.

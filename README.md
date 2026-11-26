@@ -104,7 +104,21 @@ Reviews the last sweep's screenshots again: free for what was reviewed
 before with the same model. `PAGE_MODEL=grok-4.6 .grok-bot/run.sh visual-review`
 compares another model on the same screenshots.
 
-### The report with working buttons
+### Claude's triage after each review
+
+After every review (`run.sh visual`, `run.sh visual-review`, the weekly run)
+`triage.sh` starts Claude Code once, unattended, when there are open findings
+without a suggestion: it follows `skill/visual-review/SKILL.md`, looks at the
+screenshots and the three languages, and writes a suggestion per finding into
+`state/triage.json`; the report is redrawn with them. The session can only
+read files, write `state/triage-new.json` and run `visual/untriaged.mjs` and
+`visual/triage-merge.mjs` (no other command, no network tool, no change to
+the app or to `verdicts.txt`); the merge takes only findings of that run that
+have no suggestion yet. It uses your Claude Code sign-in and its usage; its
+answer is in `<run>/triage.log`. `TRIAGE=0` skips it, `.grok-bot/triage.sh`
+runs it for the last run.
+
+## The report with working buttons
 
     .grok-bot/run.sh report            # the last run; RUN=<folder in runs/> for another
 

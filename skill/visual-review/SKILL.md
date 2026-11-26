@@ -44,6 +44,7 @@ this skill is how to use it well.
 | `RUN=<runs folder> …` | `visual`: add variants to that run; `visual-review`: review that run | — |
 | `BASE=<branch> …` | test that branch instead of the checked-out one | — |
 | `.grok-bot/run.sh report` (`RUN=…`) | redraws the last run's report with `verdicts.txt` and `state/triage.json`, serves it on http://127.0.0.1:7317 with working verdict buttons, opens it; runs until stopped | free |
+| `.grok-bot/triage.sh` (`runs/<folder>`) | Claude's unattended triage of the last run (each review already runs it; `TRIAGE=0` skips that) | your Claude usage |
 | `.grok-bot/run.sh` | Grok writes Playwright tests on a `bot/tests-<time>` branch of its clone; the script re-runs them | ~$1 |
 | `.grok-bot/schedule.sh status` (or `install`, `uninstall`, `test`) | the weekly run (launchd); `AI=0 .grok-bot/schedule.sh test` is free | — |
 | `.grok-bot/backup.sh` | push the kit to its GitHub repository | — |
@@ -124,6 +125,11 @@ Each run is `.grok-bot/runs/<YYYYMMDD-HHMMSS>-visual/`:
 
 ### Writing the triage
 
+After each review `triage.sh` runs this triage unattended (a Claude Code
+session limited to reading files and `visual/untriaged.mjs` /
+`visual/triage-merge.mjs`; README.md). In a session with the user, check
+`<run>/triage.log` and `review.log`'s "not yet"; triage what is left by hand.
+
 After every run (asked for, or the weekly one when the user opens it), suggest
 a verdict for every open finding without `triage` and write it to
 `.grok-bot/state/triage.json`, merging with what is there:
@@ -135,7 +141,10 @@ a verdict for every open finding without `triage` and write it to
   the design), `wrong` (Grok's claim is false: say what is really there),
   `unsure` (say what would decide it: the user's call, or a look in `pnpm dev:mock`).
 - `why`: one sentence the user can check, naming the evidence. `fixIn`: where
-  the fix belongs. A cause's `suggest`/`why` apply to all its findings.
+  the fix belongs, by the code you read (the file and what in it); where you
+  have not read the code, it starts with "Guess:", since a symptom on a page
+  often has its cause in a shared component of the design system
+  (`~/code/storybook`). A cause's `suggest`/`why` apply to all its findings.
 - Key by `id` from `findings.json` (a text's id includes its text, so a
   suggestion lapses when the text changes). Write with a small node script;
   then redraw for free with `.grok-bot/run.sh report`, and check
