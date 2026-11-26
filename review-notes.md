@@ -7,4 +7,4 @@ Tab bars scroll sideways when their tabs do not fit (on phones and tablets): a t
 The small uppercase line above a page title (for example "PRODUCTION") is the workspace's or organization's name: sample data, not interface text.
 Wide tables scroll sideways under an edge shade, like tab bars: a last column under the shade or at the screen edge is intended.
 A report run's title is in the language the report was generated in: an English run may show its English title and contents on a German or Spanish page.
-Paired forms for people ("eine Administratorin oder ein Administrator", "als Lesende oder Verantwortliche") are the house style; only role names (Analyst, Betrachter, Betreiber) go without gender forms.
+Where a text names people with paired forms ("eine Administratorin oder ein Administrator", "als Lesende oder Verantwortliche"), that is intended; so is a text that does not ("ein Administrator", "un administrador", "propietario"). Do not ask for paired forms or for their removal. Role names (Analyst, Betrachter, Betreiber) go without gender forms.

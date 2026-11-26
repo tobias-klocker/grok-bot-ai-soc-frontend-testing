@@ -216,6 +216,20 @@
    "fixIn": "",
    "why": "Arbeitsbereich / área de trabajo (Log Analytics), Azure Event Hubs-Datenempfänger and An einen Event Hub streamen are what Microsoft's portal shows; the glossary's Workspace is ours.",
    "at": "2026-11-25"
+  },
+  "paired-forms-asked": {
+   "title": "Grok asks for paired forms for people",
+   "suggest": "wrong",
+   "fixIn": "review-notes.md now says paired forms are neither required nor wrong",
+   "why": "Your decision was that paired forms are fine where used, not required; my note in review-notes.md said 'house style' and Grok read it as a rule. Corrected.",
+   "at": "2026-11-25"
+  },
+  "inbox-role-key": {
+   "title": "Partner inbox shows a role's raw key",
+   "suggest": "fix",
+   "fixIn": "web/src/features/inbox/useInboxText.ts (not committed yet)",
+   "why": "Without an organization's role list, a built-in role showed its id ('erhielt analyst'); it is now named by its id ('erhielt Analyst', checked in the mock).",
+   "at": "2026-11-25"
   }
  },
  "findings": {
@@ -2760,6 +2774,462 @@
    "suggest": "unsure",
    "why": "The run page frames /downloads/reports/sample; the static mock build answers it with the app or a 404. Neither the dev mock nor the preview build answers 404 on the schedule or run pages alone: in the sweep they follow a run page, whose frame request lands on them (2 of 8 variants, 25 Nov).",
    "cause": "report-preview-mock",
+   "at": "2026-11-25"
+  },
+  "e7bafbb0916c3767": {
+   "suggest": "fix",
+   "why": "Without an organization's role list, a built-in role showed its id ('erhielt analyst'); it is now named by its id ('erhielt Analyst', checked in the mock).",
+   "cause": "inbox-role-key",
+   "at": "2026-11-25"
+  },
+  "08c1db7f3ea2813f": {
+   "suggest": "wrong",
+   "why": "'Declare' is the usted imperative of declarar, not English.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "0cf0923d2ed31451": {
+   "suggest": "fix",
+   "why": "Its sibling option is 'Jetzt': the label is nominative, 'Das älteste aufbewahrte Ereignis' (not committed yet).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "e7299ced54ef6354": {
+   "suggest": "fix",
+   "why": "'erreicht es nichts' said 'it reaches nothing'; now 'erreicht ihn nichts', and 'Die Datensätze' so it does not read as 'your records' (not committed yet).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "5b53dade6fd51fb6": {
+   "suggest": "wrong",
+   "why": "Says the English: reading does not allow using; only the ticked workspaces may.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "d1874785d061d0bb": {
+   "suggest": "fix",
+   "why": "Finding is neuter: 'kein Finding' (not committed yet).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "712256b5cf66a5ad": {
+   "suggest": "wrong",
+   "why": "'más que usted' says 'more than you'; complete.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "da984c341c1e5458": {
+   "suggest": "fix",
+   "why": "'Zustimmung' is an approval, the English an approver: 'Keine weitere zustimmende Person passt' (not committed yet).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "308045f4cac06a21": {
+   "suggest": "wrong",
+   "why": "Plural in English too.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "c8f5419d46e81259": {
+   "suggest": "wrong",
+   "why": "Plural in English too.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "b350a3a652126089": {
+   "suggest": "wrong",
+   "why": "Plural in English too.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "dc4b9d17613893cb": {
+   "suggest": "wrong",
+   "why": "Plural in English too.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "571fe1fbddbccb68": {
+   "suggest": "fix",
+   "why": "Besitzer here, Inhaber everywhere else in apikeys: 'Alles, was sein Inhaber darf' (not committed yet).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "1daf63a2d4609cf7": {
+   "suggest": "wrong",
+   "why": "propietario without a paired form is fine.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "fae6010b69ecc17f": {
+   "suggest": "wrong",
+   "why": "propietario without a paired form is fine.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "6ee22ca48d10a047": {
+   "suggest": "fine",
+   "why": "A section's eyebrow: Entwicklung (development) names it as well as Developers.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "1793c03ded78a316": {
+   "suggest": "wrong",
+   "why": "A compound with a multi-word name takes hyphens: AI-SOC-Metriken.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-25"
+  },
+  "c8a043b3a45bfb7f": {
+   "suggest": "fine",
+   "why": "A search field in the audit log: 'Buscar en el registro' is clear there.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "a653633308bf8314": {
+   "suggest": "wrong",
+   "why": "Anmeldedaten is the German word for a credential (plural form).",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "c3676d2c112f1a2f": {
+   "suggest": "wrong",
+   "why": "Anmeldedaten is the German word for a credential (plural form).",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "74c7d854aae9f511": {
+   "suggest": "wrong",
+   "why": "Anmeldedaten is the German word for a credential (plural form).",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "6886017a1f1fde14": {
+   "suggest": "wrong",
+   "why": "Anmeldedaten is the German word for a credential (plural form).",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "568f541292a455a3": {
+   "suggest": "wrong",
+   "why": "Plural in English too.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "9aaa0f42cd2c67bf": {
+   "suggest": "fine",
+   "why": "Correct as written.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "4eb9fcad57bcf352": {
+   "suggest": "wrong",
+   "why": "Event Hub is the Azure product's name.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "7e1d782ac594bc69": {
+   "suggest": "wrong",
+   "why": "Event Hub is the Azure product's name.",
+   "cause": "ms-terms",
+   "at": "2026-11-25"
+  },
+  "a123707074d0fbbf": {
+   "suggest": "wrong",
+   "why": "un administrador without a paired form is fine.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "bfc45defb66eba56": {
+   "suggest": "wrong",
+   "why": "'jemanden, der' is ordinary German.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "87757baa78876fc7": {
+   "suggest": "fine",
+   "why": "'in die App-Registrierung und die Anmeldedaten' carries the preposition over; correct.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "d6a2f09b9e266498": {
+   "suggest": "wrong",
+   "why": "Both say entregas: consistent.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "7b8cf0383672cebe": {
+   "suggest": "wrong",
+   "why": "Both say entregas: consistent.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "9446a7777bff5a4a": {
+   "suggest": "fine",
+   "why": "Clear as it is.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "fbdb7e2aca8456dd": {
+   "suggest": "fine",
+   "why": "Correct German word order.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "f9da66c81e9f7253": {
+   "suggest": "wrong",
+   "why": "'die noch kein Fall enthält': kein Fall is the singular subject; correct.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "a9d9c3e9d1cc3a98": {
+   "suggest": "fix",
+   "why": "Its siblings say 'sie' (the attestation, feminine): 'hat sie seit einem Tag nicht übernommen' (not committed yet).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "44f355e25a54b143": {
+   "suggest": "wrong",
+   "why": "del analista without a paired form is fine.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "6bd61938f2c77e82": {
+   "suggest": "fix",
+   "why": "'{{count}} Geräten' is dative where '{{count}} Gerät' is nominative: 'Geräte' (not committed yet).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "ed6910b245f17b3c": {
+   "suggest": "wrong",
+   "why": "'und 1 weiterer' (Datensatz) is the right form for one.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "e23adfc45588d0e9": {
+   "suggest": "wrong",
+   "why": "'Citada' agrees with la técnica.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "571336ed02ea5663": {
+   "suggest": "wrong",
+   "why": "un administrador without a paired form is fine.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "f5719c8dc3389714": {
+   "suggest": "wrong",
+   "why": "un administrador without a paired form is fine.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "e1dd270cee06f28b": {
+   "suggest": "wrong",
+   "why": "propietarios o administradores is fine.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "c5b892ecd86fdd40": {
+   "suggest": "wrong",
+   "why": "'nombrada' agrees with una persona; correct.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "888ec2ebff153682": {
+   "suggest": "fine",
+   "why": "Clear as it is.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "e02370441639fb3a": {
+   "suggest": "fine",
+   "why": "Supporttechniker is one compound; correct.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "f4291652147010c0": {
+   "suggest": "wrong",
+   "why": "un administrador without a paired form is fine.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "9a775d070c24c364": {
+   "suggest": "fine",
+   "why": "The audit style; correct.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "fec5f40a7531bf75": {
+   "suggest": "fine",
+   "why": "Clear as it is.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "7c1494b2ac4d20ec": {
+   "suggest": "fine",
+   "why": "A terse action name, in the audit style.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "b5479f0945702c83": {
+   "suggest": "fine",
+   "why": "A terse action name, in the audit style.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "dd2c6207272619d0": {
+   "suggest": "wrong",
+   "why": "'hängt' matches 'Hängende Rücknahmen'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "0293a1f5db6422d4": {
+   "suggest": "fine",
+   "why": "Arbeitsspeicher is the precise word.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "2702014c3867f78c": {
+   "suggest": "wrong",
+   "why": "Partner is the product's term.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "a54a6d1eb7720003": {
+   "suggest": "fine",
+   "why": "abrufen is used for several View operations; clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "c0c298bdea9bdea4": {
+   "suggest": "fine",
+   "why": "Consultar is used for several View operations; clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "b39737bb1b074a0a": {
+   "suggest": "fine",
+   "why": "Says what it does.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "88483f75a23d95e5": {
+   "suggest": "wrong",
+   "why": "'Größe des AI SOC' is the glossary's form.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "079eb4998642a700": {
+   "suggest": "fix",
+   "why": "The glossary says der AI SOC: 'Lesen, was der AI SOC liest' (not committed yet).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-25"
+  },
+  "284ef5669a7ba5aa": {
+   "suggest": "wrong",
+   "why": "A compound with a multi-word name takes hyphens: AI-SOC-Lizenz.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-25"
+  },
+  "5c499e4f74795b98": {
+   "suggest": "fine",
+   "why": "Correct as written.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "c05de26b9d1740a8": {
+   "suggest": "wrong",
+   "why": "propietario and administrador global are Microsoft's role names.",
+   "cause": "paired-forms-asked",
+   "at": "2026-11-25"
+  },
+  "7a460c5ac0722537": {
+   "suggest": "fine",
+   "why": "The same ellipsis as the English.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "7fd2bce6d7c0f891": {
+   "suggest": "fine",
+   "why": "The same ellipsis as the English.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "03e804e62ac6b16e": {
+   "suggest": "fine",
+   "why": "Clear as it is.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "edc68b8901b30522": {
+   "suggest": "fine",
+   "why": "The colon avoids agreeing with a section's gender.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "20e589c5f621a81b": {
+   "suggest": "wrong",
+   "why": "The English is lowercase too: a fragment.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "40ff77f6a19cec01": {
+   "suggest": "wrong",
+   "why": "'dieses Findings' is the glossary term's genitive.",
+   "cause": "glossary-misread",
+   "at": "2026-11-25"
+  },
+  "f64592d6d5e860ca": {
+   "suggest": "fine",
+   "why": "Shown beside the list; clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "2872c8ce49f5b3d1": {
+   "suggest": "wrong",
+   "why": "Bedingung is the German word for a standing term throughout.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "ec990323d4b66ea0": {
+   "suggest": "wrong",
+   "why": "The term is una condición: 'decidida' agrees.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "c7a51a2041da0b20": {
+   "suggest": "wrong",
+   "why": "Counts condiciones: 'descartada' agrees.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "b42e02915f9131d8": {
+   "suggest": "fine",
+   "why": "A compact trend label; clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "aa5013f0713a1f8b": {
+   "suggest": "fine",
+   "why": "A compact trend label; clear.",
+   "cause": "wording-fine",
+   "at": "2026-11-25"
+  },
+  "ce54bbe0cd8e9ffb": {
+   "suggest": "wrong",
+   "why": "Spanish leaves acronyms unchanged in the plural (las CPU).",
+   "cause": "es-acronym-plural",
+   "at": "2026-11-25"
+  },
+  "c25f0847973a9899": {
+   "suggest": "wrong",
+   "why": "'AI SOCs' is the glossary's plural.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-25"
+  },
+  "3a9efe980d9c1395": {
+   "suggest": "fine",
+   "why": "Says the English.",
+   "cause": "wording-fine",
    "at": "2026-11-25"
   }
  }

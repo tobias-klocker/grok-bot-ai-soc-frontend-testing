@@ -101,7 +101,7 @@ Each run is `.grok-bot/runs/<YYYYMMDD-HHMMSS>-visual/`:
    and their translations are intended; tab bars and wide tables scroll
    sideways; a status badge beside the h1 is intended, a headline that wraps
    while space is free is not; a report run keeps the language it was generated
-   in; paired forms for people are the house style; the uppercase line above a
+   in; paired forms for people are fine where a text uses them, and never required; the uppercase line above a
    title is the workspace name, i.e. sample data).
    Sample data (case titles, names of people, customers, workspaces, hosts) is
    never a finding.

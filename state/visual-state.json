@@ -222,14 +222,14 @@
    "at": "2026-11-23T09:44:54.906Z"
   },
   "/o/$orgId/inbox es-phone-light": {
-   "hash": "1bf244ca70ae08d6",
+   "hash": "e76372475c058307",
    "findings": [],
-   "at": "2026-11-25T11:11:00.806Z"
+   "at": "2026-11-25T13:44:35.506Z"
   },
   "/o/$orgId/inbox de-phone-light": {
-   "hash": "88925f15b16362cf",
+   "hash": "ee8a47ffa7c1c636",
    "findings": [],
-   "at": "2026-11-25T11:10:33.120Z"
+   "at": "2026-11-25T13:44:38.682Z"
   },
   "/o/$orgId/w/$workspaceId/cases en-desktop-light": {
    "hash": "caaa10e3698fe4e2",
@@ -257,34 +257,34 @@
    "at": "2026-11-23T10:18:36.982Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId en-desktop-light": {
-   "hash": "951f4e7eae0aebcd",
+   "hash": "a1afc851c5072b40",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline (h1) wraps onto a second line even though its row still has free horizontal space to the right, before the status badge and the Restrict access action. On desktop the h1 should stand on one line.",
-     "where": "Case header, main title row",
+     "problem": "The page headline wraps onto two lines while a wide gap remains free to its right, before the Current badge and the Restrict access action. On desktop the h1 should stay on one line.",
+     "where": "Case page headline, top of the main column",
      "quote": "Suspicious sign-in and lateral movement from ws-fin-014",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-25T11:32:49.647Z"
+   "at": "2026-11-25T13:49:34.258Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId en-desktop-dark": {
-   "hash": "d1475448542b2247",
+   "hash": "f0e4590bbc42a1e0",
    "findings": [
     {
      "severity": "medium",
-     "problem": "The page headline wraps onto two lines while free space remains to its right, and a status badge and a button sit beside it instead of the title standing alone on one line.",
-     "where": "Top of the main content, the case title row",
+     "problem": "The page headline wraps onto a second line even though free horizontal space remains on its row, between the end of the first line and the Current badge and the Restrict access action. On desktop the h1 should stand on one line.",
+     "where": "Case page header",
      "quote": "Suspicious sign-in and lateral movement from ws-fin-014",
      "variant": "en-desktop-dark",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-23T10:20:03.961Z"
+   "at": "2026-11-25T13:48:57.882Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId en-phone-light": {
    "hash": "7cecd36c55e4cc1a",
@@ -292,9 +292,9 @@
    "at": "2026-11-23T10:22:46.993Z"
   },
   "/p/$partnerId/cases en-desktop-light": {
-   "hash": "761a913722886672",
+   "hash": "32914ebc73c65543",
    "findings": [],
-   "at": "2026-11-23T10:48:20.177Z"
+   "at": "2026-11-25T13:53:38.102Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId de-phone-light": {
    "hash": "526705988974a7e9",
@@ -312,9 +312,9 @@
    "at": "2026-11-25T11:32:25.918Z"
   },
   "/p/$partnerId/cases en-desktop-dark": {
-   "hash": "380515948e745e65",
+   "hash": "5678faa67fb9d12d",
    "findings": [],
-   "at": "2026-11-23T10:46:30.292Z"
+   "at": "2026-11-25T13:54:05.064Z"
   },
   "/o/$orgId/w/$workspaceId/cases/$caseId es-phone-light": {
    "hash": "a0629cd11bc5b114",
@@ -398,14 +398,24 @@
    "at": "2026-11-23T10:50:51.778Z"
   },
   "/p/$partnerId/inbox es-phone-light": {
-   "hash": "a8f43fa7f669bb9e",
+   "hash": "80fa1dffccbc22aa",
    "findings": [],
-   "at": "2026-11-23T10:52:14.816Z"
+   "at": "2026-11-25T13:55:05.608Z"
   },
   "/p/$partnerId/inbox de-phone-light": {
-   "hash": "0ad81f443c646651",
-   "findings": [],
-   "at": "2026-11-23T10:50:34.820Z"
+   "hash": "e00b14aa9edda04d",
+   "findings": [
+    {
+     "severity": "medium",
+     "problem": "Raw role key shown lowercase in the notification title instead of the role name Analyst.",
+     "where": "Third notification title under Letzte 24 Stunden",
+     "quote": "Sam Analyst erhielt analyst in",
+     "variant": "de-phone-light",
+     "source": "grok",
+     "onPage": true
+    }
+   ],
+   "at": "2026-11-25T13:54:38.444Z"
   },
   "/o/$orgId/license en-desktop-light": {
    "hash": "1b92f6e7f86929c8",
@@ -852,9 +862,9 @@
    "at": "2026-11-23T09:25:14.390Z"
   },
   "/o/$orgId/workspaces en-desktop-light": {
-   "hash": "9ee7ed25b7d3c1a7",
+   "hash": "29e6be885245c07a",
    "findings": [],
-   "at": "2026-11-23T09:25:53.999Z"
+   "at": "2026-11-25T13:29:48.396Z"
   },
   "/o/$orgId/workspaces en-phone-light": {
    "hash": "14aab662bc1a561e",
@@ -877,98 +887,49 @@
    "at": "2026-11-23T09:26:56.160Z"
   },
   "/o/$orgId/access en-desktop-dark": {
-   "hash": "538a571af1183463",
+   "hash": "179a08c009573ec2",
    "findings": [],
-   "at": "2026-11-25T10:52:25.331Z"
+   "at": "2026-11-25T13:31:08.358Z"
   },
   "/o/$orgId/access en-desktop-light": {
-   "hash": "9fde08e00b21bb5f",
+   "hash": "c8ba8e7ff831649c",
    "findings": [],
-   "at": "2026-11-25T10:53:00.984Z"
+   "at": "2026-11-25T13:30:56.998Z"
   },
   "/o/$orgId/access en-phone-light": {
-   "hash": "04c52269a912e369",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Search placeholder is clipped mid-word inside the field, with no ellipsis, so the full hint cannot be read.",
-     "where": "Search field in the toolbar under the tabs",
-     "quote": "Search people and service acc",
-     "variant": "en-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T10:53:37.216Z"
+   "hash": "cd009d64857ddc23",
+   "findings": [],
+   "at": "2026-11-25T13:32:05.675Z"
   },
   "/o/$orgId/access de-phone-light": {
-   "hash": "c6d16ca5a2645cf1",
+   "hash": "e5b2bc334d9078cb",
    "findings": [],
-   "at": "2026-11-25T10:53:54.539Z"
+   "at": "2026-11-25T13:31:08.620Z"
   },
   "/o/$orgId/access es-phone-light": {
-   "hash": "8c0eecee46e2d785",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The search field placeholder is clipped at the input's right edge, so the hint ends mid-phrase and the rest of the text is cut off with no ellipsis.",
-     "where": "Search field below the tabs, left of the more and add buttons",
-     "quote": "Buscar personas y cuentas de",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "This role label is left in English on a Spanish page, while the other role labels in the list (Analista, Observador, Administrador, Leer casos) are translated.",
-     "where": "Second role badge in the Sam Analyst row",
-     "quote": "Incident responder",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T10:54:52.469Z"
+   "hash": "44be2ed6964afb25",
+   "findings": [],
+   "at": "2026-11-25T13:33:12.314Z"
   },
   "/o/$orgId/access/grants en-desktop-dark": {
-   "hash": "4b1a980de6d29bbf",
+   "hash": "179a08c009573ec2",
    "findings": [],
-   "at": "2026-11-25T10:54:39.103Z"
+   "at": "2026-11-25T13:33:33.431Z"
   },
   "/o/$orgId/access/grants en-desktop-light": {
-   "hash": "9fde08e00b21bb5f",
+   "hash": "7718b8096df0ec5d",
    "findings": [],
-   "at": "2026-11-25T10:55:40.392Z"
+   "at": "2026-11-25T13:34:35.624Z"
   },
   "/o/$orgId/access/grants en-phone-light": {
-   "hash": "04c52269a912e369",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Placeholder text in the search field is clipped mid-word, so the end of the label is unreadable.",
-     "where": "Search field under the tab bar, left of the more and add buttons",
-     "quote": "Search people and service acc",
-     "variant": "en-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T10:55:26.602Z"
+   "hash": "cd009d64857ddc23",
+   "findings": [],
+   "at": "2026-11-25T13:34:42.256Z"
   },
   "/o/$orgId/access/grants de-phone-light": {
-   "hash": "c6d16ca5a2645cf1",
-   "findings": [
-    {
-     "severity": "low",
-     "problem": "Search placeholder is clipped at the right edge of the input, so the last word is incomplete.",
-     "where": "Search field under the tab bar",
-     "quote": "Personen und Dienstkonten si",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T10:54:44.786Z"
+   "hash": "e5b2bc334d9078cb",
+   "findings": [],
+   "at": "2026-11-25T13:33:16.763Z"
   },
   "/o/$orgId/access/roles en-desktop-dark": {
    "hash": "8f5f805d722c01e5",
@@ -986,19 +947,9 @@
    "at": "2026-11-23T09:31:12.725Z"
   },
   "/o/$orgId/access/grants es-phone-light": {
-   "hash": "8c0eecee46e2d785",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Search placeholder is cut off at the right edge of the field, so the hint ends mid-phrase instead of showing the full label.",
-     "where": "Search field under the tabs, left of the more and add buttons",
-     "quote": "Buscar personas y cuentas de",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T10:57:31.567Z"
+   "hash": "44be2ed6964afb25",
+   "findings": [],
+   "at": "2026-11-25T13:35:43.257Z"
   },
   "/o/$orgId/access/roles en-phone-light": {
    "hash": "7c8916b64eeaf122",
@@ -1026,9 +977,9 @@
    "at": "2026-11-25T10:58:02.638Z"
   },
   "/o/$orgId/access/service-accounts en-desktop-light": {
-   "hash": "e212c4b2cea053cb",
+   "hash": "4d912f56ba15f9e7",
    "findings": [],
-   "at": "2026-11-25T10:59:14.971Z"
+   "at": "2026-11-25T13:35:28.611Z"
   },
   "/o/$orgId/access/service-accounts es-phone-light": {
    "hash": "0d0352f122cda848",
@@ -1036,53 +987,24 @@
    "at": "2026-11-25T10:59:19.274Z"
   },
   "/o/$orgId/access/api-keys en-desktop-dark": {
-   "hash": "9f25fada09c0afb8",
+   "hash": "8ab4d2d7c0c3406c",
    "findings": [],
-   "at": "2026-11-25T11:00:06.184Z"
+   "at": "2026-11-25T13:36:24.579Z"
   },
   "/o/$orgId/access/api-keys en-desktop-light": {
-   "hash": "f393704053cfaf3e",
+   "hash": "76e6b6cc029658ef",
    "findings": [],
-   "at": "2026-11-23T09:33:57.686Z"
+   "at": "2026-11-25T13:36:18.385Z"
   },
   "/o/$orgId/access/api-keys de-phone-light": {
-   "hash": "6d1aa3ad71b7c95c",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The permission text is pulled up onto the same line as the key name, to its right, instead of on its own line below the account name as in the entry above. The permission sits in the wrong row and this entry's layout is broken and inconsistent.",
-     "where": "Second entry in the API-key list card",
-     "quote": "Ticket sync",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "The search field's placeholder is clipped mid-word, so the hint cannot be read. The input is squeezed by the count badge, icon and add button sharing its row.",
-     "where": "Search row above the key list",
-     "quote": "Schlüssel s",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T11:01:00.586Z"
+   "hash": "333e26db7164bab3",
+   "findings": [],
+   "at": "2026-11-25T13:36:19.013Z"
   },
   "/o/$orgId/access/api-keys en-phone-light": {
-   "hash": "15a93d7be1463f06",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The permissions text is placed on the same line as the key title, to its right, instead of on its own line below the account name as in the card above. The entry's layout looks broken and inconsistent.",
-     "where": "Second API key card, title row",
-     "quote": "Read findings and cases",
-     "variant": "en-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T11:00:59.157Z"
+   "hash": "2ed41e60abffd566",
+   "findings": [],
+   "at": "2026-11-25T13:37:47.511Z"
   },
   "/o/$orgId/access/administrators en-desktop-dark": {
    "hash": "4ad92af13af8c525",
@@ -1090,24 +1012,14 @@
    "at": "2026-11-23T09:33:06.673Z"
   },
   "/o/$orgId/access/administrators de-phone-light": {
-   "hash": "7aa6c1aa1a6d9ee9",
+   "hash": "edeb982a14ebd5f2",
    "findings": [],
-   "at": "2026-11-25T11:01:56.113Z"
+   "at": "2026-11-25T13:37:03.096Z"
   },
   "/o/$orgId/access/api-keys es-phone-light": {
-   "hash": "27c970b167e360c5",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The permission text sits on the same line as the account name, pushed to the right, instead of on its own full-width line below as in the entry above. The row looks broken and the permission reads as if it belongs to the name.",
-     "where": "Second API key row, under the title Ticket sync",
-     "quote": "Leer hallazgos y casos",
-     "variant": "es-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T11:01:41.989Z"
+   "hash": "4440317a1e158c0e",
+   "findings": [],
+   "at": "2026-11-25T13:37:15.885Z"
   },
   "/o/$orgId/access/administrators en-desktop-light": {
    "hash": "592000bce0402b6f",
@@ -1125,9 +1037,9 @@
    "at": "2026-11-23T09:34:54.819Z"
   },
   "/o/$orgId/access/support de-phone-light": {
-   "hash": "b1a82bf7cf5c6a8a",
+   "hash": "ca94c2f869ac1605",
    "findings": [],
-   "at": "2026-11-25T11:03:10.725Z"
+   "at": "2026-11-25T13:37:58.692Z"
   },
   "/o/$orgId/access/administrators es-phone-light": {
    "hash": "8c28df6a7e88bd70",
@@ -1140,9 +1052,9 @@
    "at": "2026-11-25T11:02:29.674Z"
   },
   "/o/$orgId/access/support es-phone-light": {
-   "hash": "00e1dd8eab0ca838",
+   "hash": "7f6c520ad983af39",
    "findings": [],
-   "at": "2026-11-25T11:03:10.611Z"
+   "at": "2026-11-25T13:38:31.824Z"
   },
   "/o/$orgId/access/support en-desktop-light": {
    "hash": "57014943a3e72bf6",
@@ -1160,61 +1072,41 @@
    "at": "2026-11-23T09:35:10.663Z"
   },
   "/o/$orgId/access/service-accounts/$accountId en-desktop-dark": {
-   "hash": "ae6af6c86f2c73ec",
+   "hash": "b11f122fc4882263",
    "findings": [],
-   "at": "2026-11-25T11:03:50.970Z"
+   "at": "2026-11-25T13:38:58.666Z"
   },
   "/o/$orgId/access/service-accounts/$accountId de-phone-light": {
-   "hash": "09e53253ff19eced",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Helper text is locked into a narrow column and wraps after roughly 30 characters, while a large empty area remains to its right under the Bearbeiten button. The same card’s other text and the cards below use the full width.",
-     "where": "Allgemein card, description under the heading",
-     "quote": "Name und Beschreibung erscheinen überall, wo das Dienstkonto angezeigt wird.",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T11:04:10.239Z"
+   "hash": "2b832ff68b86b18b",
+   "findings": [],
+   "at": "2026-11-25T13:38:22.642Z"
   },
   "/o/$orgId/access/service-accounts/$accountId en-desktop-light": {
-   "hash": "c9e26f08432181c8",
+   "hash": "48c9b7a9d1ec7d05",
    "findings": [],
-   "at": "2026-11-25T11:04:12.917Z"
+   "at": "2026-11-25T13:39:37.618Z"
   },
   "/o/$orgId/access/service-accounts/$accountId en-phone-light": {
-   "hash": "c87f957c3f968800",
+   "hash": "467cd1ba338cffe2",
    "findings": [],
-   "at": "2026-11-25T11:04:52.188Z"
+   "at": "2026-11-25T13:39:15.674Z"
   },
   "/o/$orgId/access/service-accounts/$accountId es-phone-light": {
-   "hash": "ee1c45a84ba5237d",
+   "hash": "c844b397d5dc333b",
    "findings": [],
-   "at": "2026-11-25T11:05:07.969Z"
+   "at": "2026-11-25T13:39:42.765Z"
   },
   "/o/$orgId/assets en-desktop-dark": {
-   "hash": "c1f80401aa514c35",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The table's last column is clipped at the right edge of the screen: its header (beginning \"Last\") and the cell values are cut off mid-word, so that column is unreadable, with no visible scrollbar or fade to show there is more.",
-     "where": "Assets table, far right edge, immediately after the Last seen column",
-     "quote": "Last seen",
-     "variant": "en-desktop-dark",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T11:07:24.641Z"
+   "hash": "63e920852d3a1a84",
+   "findings": [],
+   "at": "2026-11-25T13:40:51.359Z"
   },
   "/o/$orgId/assets de-phone-light": {
-   "hash": "325bbc59557f426a",
+   "hash": "5bdf1066b83b9833",
    "findings": [
     {
      "severity": "medium",
-     "problem": "Page headline is English on a German screen and is not one of the product terms that stay English.",
+     "problem": "Page headline is English on a German page and is not one of the product terms kept in English.",
      "where": "Page title under the small uppercase line",
      "quote": "Assets",
      "variant": "de-phone-light",
@@ -1223,30 +1115,20 @@
     },
     {
      "severity": "low",
-     "problem": "Field label is English on a German screen and is not one of the product terms that stay English.",
-     "where": "Asset rows, label next to the tag values",
+     "problem": "Field label is English on a German page and is not one of the product terms kept in English.",
+     "where": "Left label column in the asset list",
      "quote": "Tags",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-23T09:39:02.801Z"
+   "at": "2026-11-25T13:41:18.804Z"
   },
   "/o/$orgId/assets en-desktop-light": {
-   "hash": "9055443f92a2a41f",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The rightmost table column is clipped at the viewport edge: its header and cell values are cut off mid-word with no ellipsis and no visible horizontal scroll, so that column cannot be read.",
-     "where": "Assets table, far-right column at the screen edge",
-     "quote": "Not r",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-25T11:07:27.176Z"
+   "hash": "bbe0b22e15a29143",
+   "findings": [],
+   "at": "2026-11-25T13:41:12.781Z"
   },
   "/o/$orgId/assets en-phone-light": {
    "hash": "dd68739aa9fb5528",
@@ -1274,52 +1156,24 @@
    "at": "2026-11-23T09:40:07.781Z"
   },
   "/o/$orgId/assets/$assetId de-phone-light": {
-   "hash": "5a9dc04f6ba419ba",
+   "hash": "16a834d99c61ad41",
    "findings": [
     {
-     "severity": "medium",
-     "problem": "The page headline wraps after “srv-vie-” while a large part of the first line is empty, so more of the hostname would fit before the break.",
-     "where": "Page headline under the top bar",
-     "quote": "srv-vie-212.corp.example.com",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "medium",
-     "problem": "Field label is English in a German interface; the other labels in the same card are German.",
-     "where": "Identität card, label in the device-details list",
+     "severity": "low",
+     "problem": "Interface label is English on a German page. The other field labels in this list are German, and Onboarding is not one of the terms the product keeps in English.",
+     "where": "Identität card, device-details row, label to the left of the value Onboarded",
      "quote": "Onboarding",
      "variant": "de-phone-light",
      "source": "grok",
      "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "The label is squeezed into a narrow column and breaks awkwardly as “Betriebssystemver-” / “sion”, while the short value leaves empty space beside it.",
-     "where": "Identität card, Betriebssystemversion row",
-     "quote": "Betriebssystemversion",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
     }
    ],
-   "at": "2026-11-23T09:43:33.399Z"
+   "at": "2026-11-25T13:43:12.446Z"
   },
   "/o/$orgId/assets/$assetId en-desktop-light": {
-   "hash": "9e7dd3c8e633e914",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The page headline shares its line with a 'Not rated' badge. On desktop the h1 must stand alone on one line with nothing beside it.",
-     "where": "Top of the main content, page title",
-     "quote": "srv-vie-212.corp.example.com",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-23T09:40:52.522Z"
+   "hash": "c90a01b13974395e",
+   "findings": [],
+   "at": "2026-11-25T13:42:15.956Z"
   },
   "/o/$orgId/assets/$assetId en-phone-light": {
    "hash": "37261e1ba3529de9",
@@ -1327,9 +1181,9 @@
    "at": "2026-11-12T15:12:10.389Z"
   },
   "/o/$orgId/audit en-desktop-dark": {
-   "hash": "b88599ded96154f2",
+   "hash": "16d7cccae3144f10",
    "findings": [],
-   "at": "2026-11-25T11:08:58.719Z"
+   "at": "2026-11-25T13:42:37.043Z"
   },
   "/o/$orgId/assets/$assetId es-phone-light": {
    "hash": "fdb5deaf9490413b",
@@ -1342,9 +1196,9 @@
    "at": "2026-11-25T11:09:16.499Z"
   },
   "/o/$orgId/audit en-desktop-light": {
-   "hash": "8a93b5153aa4b40a",
+   "hash": "f48326ff77a17dc6",
    "findings": [],
-   "at": "2026-11-25T11:09:38.027Z"
+   "at": "2026-11-25T13:43:48.902Z"
   },
   "/o/$orgId/audit en-phone-light": {
    "hash": "1caafdca6e960ab9",
@@ -1747,19 +1601,19 @@
    "at": "2026-11-23T10:05:02.418Z"
   },
   "/o/$orgId/preferences/api-keys de-phone-light": {
-   "hash": "084dabbebcc8f0e6",
+   "hash": "d0ec07529d1e5d34",
    "findings": [],
-   "at": "2026-11-25T11:20:23.428Z"
+   "at": "2026-11-25T13:46:13.246Z"
   },
   "/o/$orgId/preferences/api-keys es-phone-light": {
-   "hash": "e9b13d6afc1b26af",
+   "hash": "270ce6b0ee37bbbc",
    "findings": [],
-   "at": "2026-11-25T11:20:29.947Z"
+   "at": "2026-11-25T13:46:37.354Z"
   },
   "/o/$orgId/preferences/api-keys en-phone-light": {
-   "hash": "b2e5e492b8e872e5",
+   "hash": "ddc25ed3bcf5e6f8",
    "findings": [],
-   "at": "2026-11-25T11:20:41.394Z"
+   "at": "2026-11-25T13:45:50.385Z"
   },
   "/o/$orgId/settings/notifications en-desktop-light": {
    "hash": "1e525139237e7e4f",
@@ -2033,9 +1887,9 @@
    "at": "2026-11-12T15:58:19.166Z"
   },
   "/o/$orgId/reports en-desktop-dark": {
-   "hash": "38f43ff12989f369",
+   "hash": "8522b7237a745997",
    "findings": [],
-   "at": "2026-11-23T10:11:21.711Z"
+   "at": "2026-11-25T13:46:36.799Z"
   },
   "/o/$orgId/reports de-phone-light": {
    "hash": "6ba354e6b6e411c5",
@@ -2128,9 +1982,9 @@
    "at": "2026-11-12T16:05:25.473Z"
   },
   "/o/$orgId/reports/schedules/$definitionId en-desktop-light": {
-   "hash": "92caa037e88fd693",
+   "hash": "19ed0769324cef0e",
    "findings": [],
-   "at": "2026-11-25T11:26:30.210Z"
+   "at": "2026-11-25T13:46:52.879Z"
   },
   "/o/$orgId/reports/schedules/$definitionId es-phone-light": {
    "hash": "0fe58ca149c4e074",
@@ -2138,123 +1992,14 @@
    "at": "2026-11-12T16:06:20.988Z"
   },
   "/o/$orgId/reports/schedules/$definitionId de-phone-light": {
-   "hash": "b1af576f7099fe6b",
+   "hash": "0b5ce3ed3960ec18",
    "findings": [],
-   "at": "2026-11-12T16:07:15.012Z"
+   "at": "2026-11-25T13:46:30.902Z"
   },
   "/o/$orgId/reports/runs/$runId de-phone-light": {
-   "hash": "e880ba34bcccb74c",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Page title is English on a German interface. The same report type is already labeled in German as \"Management-Zusammenfassung\" in the metadata below.",
-     "where": "Top app bar and page headline",
-     "quote": "Executive summary",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "Report preview heading is English on a German page.",
-     "where": "Report preview card heading",
-     "quote": "Executive summary",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "Boilerplate label is English on a German page.",
-     "where": "Report preview, under the logo",
-     "quote": "Prepared for Contoso Ltd",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Field label is English on a German page.",
-     "where": "Report preview metadata",
-     "quote": "PERIOD",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Field label is English on a German page.",
-     "where": "Report preview metadata",
-     "quote": "ORGANIZATION",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Field label is English on a German page.",
-     "where": "Report preview metadata",
-     "quote": "GENERATED",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Section label is English on a German page.",
-     "where": "Report preview contents",
-     "quote": "CONTENTS",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English on a German page.",
-     "where": "Report preview contents list",
-     "quote": "Summary",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English on a German page.",
-     "where": "Report preview contents list",
-     "quote": "At a glance",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English on a German page.",
-     "where": "Report preview contents list",
-     "quote": "Cases",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English on a German page.",
-     "where": "Report preview contents list",
-     "quote": "Techniques observed",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English on a German page.",
-     "where": "Report preview contents list",
-     "quote": "Evidence",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    }
-   ],
-   "at": "2026-11-25T11:30:01.866Z"
+   "hash": "fbcd687b3e3d3e41",
+   "findings": [],
+   "at": "2026-11-25T13:46:51.202Z"
   },
   "/o/$orgId/reports/runs/$runId en-desktop-dark": {
    "hash": "294625890df79f7f",
@@ -2282,19 +2027,19 @@
    "at": "2026-11-25T11:29:54.116Z"
   },
   "/o/$orgId/w/$workspaceId en-desktop-light": {
-   "hash": "bffc9c89d2e35058",
+   "hash": "ab2fbbc6bed9f04a",
    "findings": [
     {
      "severity": "low",
-     "problem": "The metric label wraps so the closing \"7 D)\" is stranded on its own line, which pushes the value \"2.9h\" a line below the paired metric's value \"1d\"; the two median values are not horizontally aligned.",
-     "where": "Below the Detection activity chart, the two median metrics",
+     "problem": "The metric label wraps so that \"7 D)\" sits alone on a second line, pushing the value 2.9h down so it no longer lines up with the paired value 1d beside it.",
+     "where": "Bottom of the Detection activity, 7 days card, left metric",
      "quote": "TIME TO ACKNOWLEDGE (MEDIAN, 7 D)",
      "variant": "en-desktop-light",
      "source": "grok",
      "onPage": true
     }
    ],
-   "at": "2026-11-25T11:30:16.911Z"
+   "at": "2026-11-25T13:49:10.664Z"
   },
   "/o/$orgId/w/$workspaceId en-phone-light": {
    "hash": "16643fb63c404fb0",
@@ -2815,9 +2560,9 @@
    "at": "2026-11-12T16:55:55.984Z"
   },
   "/o/$orgId/w/$workspaceId/reports en-desktop-dark": {
-   "hash": "0850d12a61e00302",
+   "hash": "665182930b0ecb3d",
    "findings": [],
-   "at": "2026-11-25T11:42:56.845Z"
+   "at": "2026-11-25T13:50:01.225Z"
   },
   "/o/$orgId/w/$workspaceId/reports de-phone-light": {
    "hash": "35729e4fa438404c",
@@ -2840,9 +2585,9 @@
    "at": "2026-11-12T16:58:05.903Z"
   },
   "/o/$orgId/w/$workspaceId/reports en-desktop-light": {
-   "hash": "5dcbf989ed8c4b27",
+   "hash": "335e0d9491b384aa",
    "findings": [],
-   "at": "2026-11-25T11:42:46.605Z"
+   "at": "2026-11-25T13:50:27.735Z"
   },
   "/o/$orgId/w/$workspaceId/reports es-phone-light": {
    "hash": "74c9d9f18072a245",
@@ -2860,9 +2605,9 @@
    "at": "2026-11-25T11:45:36.818Z"
   },
   "/o/$orgId/w/$workspaceId/reports/schedules en-desktop-dark": {
-   "hash": "0103ab6fe32cf0d6",
+   "hash": "5aceb8aba568b12e",
    "findings": [],
-   "at": "2026-11-25T11:45:33.376Z"
+   "at": "2026-11-25T13:51:17.132Z"
   },
   "/o/$orgId/w/$workspaceId/reports/schedules en-desktop-light": {
    "hash": "1469a8e2399cae99",
@@ -2905,14 +2650,14 @@
    "at": "2026-11-25T11:48:37.033Z"
   },
   "/o/$orgId/w/$workspaceId/reports/schedules/$definitionId de-phone-light": {
-   "hash": "89ed8a9e3786cdec",
+   "hash": "0b5ce3ed3960ec18",
    "findings": [],
-   "at": "2026-11-12T17:04:01.189Z"
+   "at": "2026-11-25T13:50:32.806Z"
   },
   "/o/$orgId/w/$workspaceId/reports/schedules/$definitionId en-desktop-light": {
-   "hash": "f7eaa3cd65e87ad6",
+   "hash": "73656cc6341f964d",
    "findings": [],
-   "at": "2026-11-25T11:49:13.261Z"
+   "at": "2026-11-25T13:50:54.251Z"
   },
   "/o/$orgId/w/$workspaceId/reports/schedules/$definitionId en-desktop-dark": {
    "hash": "c54ae5e884717df2",
@@ -2945,28 +2690,9 @@
    "at": "2026-11-12T17:07:05.872Z"
   },
   "/o/$orgId/w/$workspaceId/reports/runs/$runId en-desktop-light": {
-   "hash": "eb030136964ca774",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "The page headline does not stand alone on its line: a status badge sits immediately beside it and a Send button shares the same row, with free space still available.",
-     "where": "Main content header, the h1 row",
-     "quote": "Data source health",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "medium",
-     "problem": "The bar chart is clipped by its own container: the lower part of the bars is cut off at the bottom border, and the baseline and day labels of the x-axis are not visible.",
-     "where": "At a glance section, Cases opened per day chart",
-     "quote": "Cases opened per day",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": false
-    }
-   ],
-   "at": "2026-11-12T17:07:26.821Z"
+   "hash": "c9bbe1c600c12a37",
+   "findings": [],
+   "at": "2026-11-25T13:51:15.174Z"
   },
   "/o/$orgId/w/$workspaceId/reports/runs/$runId en-phone-light": {
    "hash": "f7704ee269a0c3b7",
@@ -2974,123 +2700,14 @@
    "at": "2026-11-12T17:08:33.530Z"
   },
   "/o/$orgId/w/$workspaceId/access de-phone-light": {
-   "hash": "a69cb2bce3da45e4",
+   "hash": "37c8e4de1156c6d4",
    "findings": [],
-   "at": "2026-11-25T11:49:11.775Z"
+   "at": "2026-11-25T13:51:55.496Z"
   },
   "/o/$orgId/w/$workspaceId/reports/runs/$runId de-phone-light": {
-   "hash": "01331bfd74b9882b",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Page title and headline are English on a German interface. The German name for this report is already shown underneath.",
-     "where": "App bar and h1",
-     "quote": "Data source health",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": true
-    },
-    {
-     "severity": "medium",
-     "problem": "Report cover label is English, not German.",
-     "where": "Report card, under the logo",
-     "quote": "Prepared for Contoso Ltd",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "medium",
-     "problem": "Report heading is English, not German.",
-     "where": "Report card, main heading",
-     "quote": "Executive summary",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Field label is English, not German.",
-     "where": "Report metadata block",
-     "quote": "PERIOD",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Field label is English, not German.",
-     "where": "Report metadata block, left column",
-     "quote": "ORGANIZATION",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Field label is English, not German.",
-     "where": "Report metadata block",
-     "quote": "GENERATED",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Section label is English, not German.",
-     "where": "Above the contents list",
-     "quote": "CONTENTS",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English, not German.",
-     "where": "Contents list",
-     "quote": "01 Summary",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English, not German.",
-     "where": "Contents list",
-     "quote": "02 At a glance",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English, not German.",
-     "where": "Contents list",
-     "quote": "03 Cases",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English, not German.",
-     "where": "Contents list",
-     "quote": "04 Techniques observed",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    },
-    {
-     "severity": "low",
-     "problem": "Contents entry is English, not German.",
-     "where": "Contents list",
-     "quote": "05 Evidence",
-     "variant": "de-phone-light",
-     "source": "grok",
-     "onPage": false
-    }
-   ],
-   "at": "2026-11-12T17:09:41.755Z"
+   "hash": "fbcd687b3e3d3e41",
+   "findings": [],
+   "at": "2026-11-25T13:50:47.278Z"
   },
   "/o/$orgId/w/$workspaceId/reports/runs/$runId es-phone-light": {
    "hash": "6ee96063111d7946",
@@ -3108,24 +2725,24 @@
    "at": "2026-11-12T17:10:56.049Z"
   },
   "/o/$orgId/w/$workspaceId/access en-desktop-light": {
-   "hash": "06ce75adfc8e3af0",
+   "hash": "d9af45b878735f00",
    "findings": [],
-   "at": "2026-11-23T10:39:51.924Z"
+   "at": "2026-11-25T13:52:15.853Z"
   },
   "/o/$orgId/w/$workspaceId/access en-desktop-dark": {
-   "hash": "386aef390d3d4178",
+   "hash": "5fa5abc31d217b23",
    "findings": [],
-   "at": "2026-11-23T10:39:35.134Z"
+   "at": "2026-11-25T13:52:00.386Z"
   },
   "/o/$orgId/w/$workspaceId/access en-phone-light": {
-   "hash": "22f293d01ef0ea1b",
+   "hash": "1934b87e1aa56c46",
    "findings": [],
-   "at": "2026-11-25T11:49:15.365Z"
+   "at": "2026-11-25T13:52:27.595Z"
   },
   "/o/$orgId/w/$workspaceId/access es-phone-light": {
-   "hash": "d646b3b6fdbaddab",
+   "hash": "5672bb9e37d10f90",
    "findings": [],
-   "at": "2026-11-25T11:49:53.858Z"
+   "at": "2026-11-25T13:52:57.710Z"
   },
   "/p/$partnerId de-phone-light": {
    "hash": "935789bd3cee4c7e",
@@ -3268,19 +2885,9 @@
    "at": "2026-11-12T17:37:02.068Z"
   },
   "/p/$partnerId/reports en-desktop-light": {
-   "hash": "88a7d0d9523a63b9",
-   "findings": [
-    {
-     "severity": "medium",
-     "problem": "Status text is cut off: both rows show a trailing ellipsis immediately after the Ready badge, truncating the rest of the status before the Requested column.",
-     "where": "Reports table, Status column",
-     "quote": "Ready",
-     "variant": "en-desktop-light",
-     "source": "grok",
-     "onPage": true
-    }
-   ],
-   "at": "2026-11-23T10:58:22.566Z"
+   "hash": "c94576089020725c",
+   "findings": [],
+   "at": "2026-11-25T13:55:23.779Z"
   },
   "/operator/api-keys de-phone-light": {
    "hash": "35c71c2551b5b171",
@@ -3298,9 +2905,9 @@
    "at": "2026-11-25T12:05:14.233Z"
   },
   "/operator/api-keys en-desktop-light": {
-   "hash": "3507b8ff9b5d312f",
+   "hash": "84582290d794213e",
    "findings": [],
-   "at": "2026-11-25T12:05:00.077Z"
+   "at": "2026-11-25T13:55:51.750Z"
   },
   "/operator/api-keys en-desktop-dark": {
    "hash": "26ded99fb3b3dd74",
@@ -3318,9 +2925,9 @@
    "at": "2026-11-25T12:06:53.691Z"
   },
   "/o/$orgId/credentials en-desktop-dark": {
-   "hash": "0bf2a55cecb75da5",
+   "hash": "d395659b873e04dc",
    "findings": [],
-   "at": "2026-11-23T09:55:46.594Z"
+   "at": "2026-11-25T13:44:53.825Z"
   },
   "/o/$orgId/credentials de-phone-light": {
    "hash": "f797240fa9297bd5",
@@ -3328,9 +2935,9 @@
    "at": "2026-11-23T09:56:22.817Z"
   },
   "/o/$orgId/credentials en-desktop-light": {
-   "hash": "9ed4ca3206b53a0e",
+   "hash": "351e645c0c476ba4",
    "findings": [],
-   "at": "2026-11-23T09:56:28.089Z"
+   "at": "2026-11-25T13:45:58.273Z"
   },
   "/o/$orgId/credentials en-phone-light": {
    "hash": "bc5497340a8c4757",
@@ -3499,105 +3106,161 @@
    "at": "2026-11-25T10:40:59.033Z"
   },
   "features/apikeys": {
-   "hash": "021419984821f199",
+   "hash": "bb6fb0035ef33bbc",
    "findings": [
     {
-     "key": "allowance_one",
+     "key": "allPermissions",
      "language": "de",
      "severity": "medium",
-     "problem": "Wrong plural/dative form for count=1 case",
-     "suggestion": "{{active}} von {{count}} Schlüsseln",
+     "problem": "Uses 'Besitzer' while the rest of the file consistently uses the paired form 'Inhaberin oder Inhaber' for the owner role.",
+     "suggestion": "Alles, was seine Inhaberin oder sein Inhaber darf",
      "source": "grok"
     },
     {
-     "key": "accounts.createLede",
+     "key": "allPermissions",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses masculine-only 'propietario' instead of the required paired gender form for people.",
+     "suggestion": "Todo lo que puede hacer su propietaria o su propietario",
+     "source": "grok"
+    },
+    {
+     "key": "issue.permissionsHint",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses masculine-only 'propietario' instead of the required paired gender form for people.",
+     "suggestion": "Elija lo que puede hacer la clave; solo actúa dentro de lo que puede hacer su propietaria o su propietario, nunca recibe permisos añadidos más tarde y no concede accesos ni emite claves más allá de los suyos.",
+     "source": "grok"
+    },
+    {
+     "key": "personal.disabledBody",
+     "language": "es",
+     "severity": "low",
+     "problem": "Uses masculine-only 'administrador' instead of the required paired gender form for people.",
+     "suggestion": "Su organización solo permite que las cuentas de servicio usen la API. Pida a una administradora o un administrador una clave de cuenta de servicio.",
+     "source": "grok"
+    },
+    {
+     "key": "reference.eyebrow",
      "language": "de",
      "severity": "medium",
-     "problem": "Grammatical error: possessive for neuter noun 'Dienstkonto' is wrong.",
-     "suggestion": "Danach stellen Sie auf seiner Seite einen Schlüssel aus und erteilen ihm Zugriff.",
+     "problem": "Translation does not match English meaning or consistent terminology with the Spanish version.",
+     "suggestion": "Entwickler",
      "source": "grok"
     }
    ],
-   "at": "2026-11-23T14:37:36.939Z"
+   "at": "2026-11-25T13:20:55.217Z"
   },
   "features/access": {
-   "hash": "df2dcd6ca8de6ab9",
+   "hash": "3b4a3598f76b2324",
    "findings": [
     {
-     "key": "productAdmins.title",
-     "language": "de",
-     "severity": "high",
-     "problem": "Wrong meaning: 'Produktadministration' means 'product administration' instead of 'product administrators'.",
-     "suggestion": "Produktadministratoren",
-     "source": "grok"
-    },
-    {
-     "key": "productAdmins.title",
+     "key": "permissions.cases.read",
      "language": "de",
      "severity": "medium",
-     "problem": "Terminology inconsistent with other keys that use 'Produkt-Admin' or 'Produktadministrator'.",
-     "suggestion": "Produktadministratoren",
+     "problem": "Glossary violation: uses 'Findings' and 'Fälle' instead of specified terms 'Finding' and 'Fall'",
+     "suggestion": "Finding und Fall lesen",
      "source": "grok"
     },
     {
-     "key": "productAdmins.search",
+     "key": "permissions.cases.manage",
      "language": "de",
-     "severity": "low",
-     "problem": "Terminology inconsistent: uses full 'Administratoren' while other keys use abbreviated 'Admin'.",
-     "suggestion": "Admins durchsuchen",
+     "severity": "medium",
+     "problem": "Glossary violation: uses 'Fälle' instead of specified term 'Fall'",
+     "suggestion": "Fall bearbeiten: Zuweisung, Status, Bewertung, Kommentare",
      "source": "grok"
     },
     {
      "key": "permissions.cases.read",
-     "language": "de",
-     "severity": "low",
-     "problem": "Uses English 'Findings' while glossary specifies de term 'Finding'.",
-     "suggestion": "Findings und Fälle lesen",
-     "source": "grok"
-    },
-    {
-     "key": "permissions.intel.read",
-     "language": "de",
-     "severity": "low",
-     "problem": "Uses English 'Findings' while glossary specifies de term 'Finding'.",
-     "suggestion": "Fälle und Findings als STIX über TAXII lesen, für Threat-Intelligence-Plattformen",
-     "source": "grok"
-    },
-    {
-     "key": "selectedCount",
      "language": "es",
      "severity": "medium",
-     "problem": "Spanish text uses masculine plural 'seleccionados' which does not agree when count is 1.",
-     "suggestion": "{{count}} de {{total}} seleccionados",
+     "problem": "Glossary violation: uses 'hallazgos' and 'casos' instead of specified terms 'hallazgo' and 'caso'",
+     "suggestion": "Leer hallazgo y caso",
+     "source": "grok"
+    },
+    {
+     "key": "permissions.cases.manage",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Glossary violation: uses 'casos' instead of specified term 'caso'",
+     "suggestion": "Gestionar caso: asignación, estado, veredicto, comentarios",
+     "source": "grok"
+    },
+    {
+     "key": "support.roleHint",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Uses 'Der Mitarbeiter' instead of referring to the engineer, changing the intended meaning and introducing a different term.",
+     "suggestion": "Der Supporttechniker erhält zusätzlich die einzelne Berechtigung, Beispielzeilen nicht verarbeiteter Ereignisse zu lesen, damit er sieht, warum ein Log nicht gelesen wurde. Sie endet mit dem Zugang.",
+     "source": "grok"
+    },
+    {
+     "key": "support.endBody",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording is terse and unnatural; 'auch offene Verbindungen' lacks a connector like 'einschließlich'.",
+     "suggestion": "Der Techniker verliert den Zugang sofort, einschließlich offener Verbindungen.",
+     "source": "grok"
+    },
+    {
+     "key": "support.engineer",
+     "language": "de",
+     "severity": "low",
+     "problem": "Term 'Supporttechniker' is used inconsistently with later 'Techniker' in the same namespace.",
+     "suggestion": "Support-Techniker",
+     "source": "grok"
+    },
+    {
+     "key": "support.roleHint",
+     "language": "es",
+     "severity": "low",
+     "problem": "Uses 'El técnico' while the key and other strings use 'ingeniero de soporte', creating minor term inconsistency.",
+     "suggestion": "El ingeniero de soporte recibe además el permiso individual para leer las líneas de muestra de eventos no procesados, para ver por qué no se leyó un registro. Termina con el acceso.",
      "source": "grok"
     },
     {
      "key": "clearSelection",
      "language": "de",
      "severity": "low",
-     "problem": "'Leeren' is unnatural for clearing a selection; native wording would use a more precise term.",
+     "problem": "'Leeren' is not a natural button label for clearing a selection in German UI text.",
      "suggestion": "Auswahl löschen",
+     "source": "grok"
+    },
+    {
+     "key": "clearSelection",
+     "language": "es",
+     "severity": "low",
+     "problem": "'Borrar' is imprecise and carries a 'delete' connotation rather than 'clear selection' in this context.",
+     "suggestion": "Limpiar",
      "source": "grok"
     }
    ],
-   "at": "2026-11-25T10:41:14.320Z"
+   "at": "2026-11-25T13:21:15.877Z"
   },
   "features/audit": {
-   "hash": "47c24a9c7fac938d",
+   "hash": "f741751e4f9b5680",
    "findings": [
     {
      "key": "actions.settings.mail_test_sent",
      "language": "de",
      "severity": "medium",
-     "problem": "Unnatural preposition and slightly awkward phrasing for the action description.",
-     "suggestion": "Test der Mailvorlagen in {{language}} gesendet",
+     "problem": "Preposition \"auf\" is incorrect and unnatural; the phrase implies sending a mail \"to\" a language rather than \"in\" a language.",
+     "suggestion": "Test-E-Mail der Mailvorlagen in {{language}} gesendet",
+     "source": "grok"
+    },
+    {
+     "key": "actions.apikeys.key_scoped",
+     "language": "de",
+     "severity": "high",
+     "problem": "Grammatically incorrect and unnatural German sentence structure.",
+     "suggestion": "API-Schlüssel {{name}} von {{owner}} eine ausdrückliche Berechtigungsliste zugewiesen",
      "source": "grok"
     },
     {
      "key": "actions.case.split",
      "language": "de",
      "severity": "medium",
-     "problem": "Uses English plural 'Findings' instead of glossary term 'Finding'",
+     "problem": "Inconsistent use of English term: 'Findings' instead of 'Finding' per glossary.",
      "suggestion": "Finding von Fall #{{number}} {{title}} in einen neuen Fall verschoben",
      "source": "grok"
     },
@@ -3605,7 +3268,7 @@
      "key": "actions.case.findings_added",
      "language": "de",
      "severity": "medium",
-     "problem": "Uses English plural 'Findings' instead of glossary term 'Finding'",
+     "problem": "Inconsistent use of English term: 'Findings' instead of 'Finding' per glossary.",
      "suggestion": "Finding zu Fall #{{number}} {{title}} hinzugefügt",
      "source": "grok"
     },
@@ -3613,148 +3276,268 @@
      "key": "actions.case.findings_removed",
      "language": "de",
      "severity": "medium",
-     "problem": "Uses English plural 'Findings' instead of glossary term 'Finding'",
+     "problem": "Inconsistent use of English term: 'Findings' instead of 'Finding' per glossary.",
      "suggestion": "Finding aus Fall #{{number}} {{title}} entfernt",
      "source": "grok"
     },
     {
-     "key": "actions.apikeys.key_scoped",
+     "key": "actions.case.commented",
      "language": "de",
      "severity": "low",
-     "problem": "Wording is grammatically awkward and unnatural for a native speaker",
-     "suggestion": "API-Schlüssel {{name}} von {{owner}} eine ausdrückliche Berechtigungsliste zugewiesen",
+     "problem": "Unnatural wording; missing equivalent of 'on'.",
+     "suggestion": "Fall #{{number}} {{title}} kommentiert",
      "source": "grok"
     },
     {
-     "key": "actions.core.metrics_read",
+     "key": "actions.case.merged",
+     "language": "de",
+     "severity": "low",
+     "problem": "Unnatural German phrasing with unnecessary article.",
+     "suggestion": "Anderen Fall in Fall #{{number}} {{title}} zusammengeführt",
+     "source": "grok"
+    },
+    {
+     "key": "actions.archive.export_started",
      "language": "de",
      "severity": "medium",
-     "problem": "Uses 'Workspaces' instead of the glossary term 'Workspace'.",
-     "suggestion": "Die Metriken des AI SOC des Workspace {{workspace}} der Organisation {{org}} gelesen",
+     "problem": "English word \"as\" left untranslated in parentheses.",
+     "suggestion": "Export der archivierten Zeilen von Organisation {{org}} von {{from}} bis {{to}} nach {{out}} begonnen ({{by}}, als {{user}})",
      "source": "grok"
     },
     {
      "key": "actionNames.core.certificate_issued",
      "language": "de",
-     "severity": "high",
-     "problem": "Glossary violation: product name rendered as hyphenated AI-SOC instead of AI SOC.",
+     "severity": "medium",
+     "problem": "Uses hyphenated \"AI-SOC\" instead of glossary form \"AI SOC\"",
      "suggestion": "AI SOC-Zertifikat ausgestellt",
      "source": "grok"
     },
     {
      "key": "actionNames.core.annotations_resent",
      "language": "de",
-     "severity": "high",
-     "problem": "Glossary violation: product name rendered as hyphenated AI-SOC instead of AI SOC.",
+     "severity": "medium",
+     "problem": "Uses hyphenated \"AI-SOC\" instead of glossary form \"AI SOC\"",
      "suggestion": "AI SOC-Annotationen erneut gesendet",
      "source": "grok"
     },
     {
      "key": "actionNames.core.inventory_read",
      "language": "de",
-     "severity": "high",
-     "problem": "Glossary violation: product name rendered as hyphenated AI-SOC instead of AI SOC.",
+     "severity": "medium",
+     "problem": "Uses hyphenated \"AI-SOC\" instead of glossary form \"AI SOC\"",
      "suggestion": "AI SOC-Antworten für eine Bestandsaufnahme gelesen",
      "source": "grok"
     },
     {
      "key": "actionNames.core.inventory_ended",
      "language": "de",
-     "severity": "high",
-     "problem": "Glossary violation: product name rendered as hyphenated AI-SOC instead of AI SOC.",
+     "severity": "medium",
+     "problem": "Uses hyphenated \"AI-SOC\" instead of glossary form \"AI SOC\"",
      "suggestion": "AI SOC-Bestandsaufnahme beendet",
      "source": "grok"
     },
     {
-     "key": "fields.added",
+     "key": "actionNames.reports.definition_updated",
      "language": "es",
      "severity": "low",
-     "problem": "Translated as plural form without corresponding English plural key",
-     "suggestion": "Añadido",
+     "problem": "Unnatural wording; \"cambiado\" does not fit well with \"Informe guardado\"",
+     "suggestion": "Informe guardado modificado",
      "source": "grok"
     },
     {
-     "key": "fields.changed",
+     "key": "actionNames.identity.member_joined",
      "language": "es",
      "severity": "low",
-     "problem": "Translated as plural form without corresponding English plural key",
-     "suggestion": "Modificado",
+     "problem": "Unnatural wording for the action name",
+     "suggestion": "Miembro unido al espacio de trabajo",
+     "source": "grok"
+    },
+    {
+     "key": "actionNames.identity.member_left",
+     "language": "es",
+     "severity": "low",
+     "problem": "Unnatural wording for the action name",
+     "suggestion": "Miembro salido del espacio de trabajo",
+     "source": "grok"
+    },
+    {
+     "key": "actionNames.core.size_changed",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Inconsistent spelling of product name (hyphenated AI-SOC here, but unhyphenated AI SOC elsewhere and per glossary)",
+     "suggestion": "AI SOC Größe geändert",
+     "source": "grok"
+    },
+    {
+     "key": "actionNames.core.metrics_read",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Inconsistent spelling of product name (hyphenated AI-SOC here, but unhyphenated AI SOC elsewhere and per glossary)",
+     "suggestion": "AI SOC Metriken gelesen",
+     "source": "grok"
+    },
+    {
+     "key": "actionNames.workspace.placement_changed",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent spelling of product name (unhyphenated here, but hyphenated elsewhere)",
+     "suggestion": "AI SOC verschoben",
+     "source": "grok"
+    },
+    {
+     "key": "actionNames.core.estate_replaced",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent spelling of product name (unhyphenated here, but hyphenated elsewhere)",
+     "suggestion": "AI SOC neu gestartet",
+     "source": "grok"
+    },
+    {
+     "key": "actionNames.core.estate_out_of_memory",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent spelling of product name (unhyphenated here, but hyphenated elsewhere)",
+     "suggestion": "Arbeitsspeicher des AI SOC erschöpft",
+     "source": "grok"
+    },
+    {
+     "key": "actionNames.case.attestation_stuck",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording is abrupt and unnatural for a native speaker",
+     "suggestion": "Rücknahme einer Bestätigung hängt fest",
      "source": "grok"
     },
     {
      "key": "fields.cpus",
      "language": "es",
-     "severity": "low",
-     "problem": "Translated as singular 'CPU' while English source and German use the plural form.",
+     "severity": "medium",
+     "problem": "Plural form is wrong (singular 'CPU' instead of 'CPUs').",
      "suggestion": "CPUs",
+     "source": "grok"
+    },
+    {
+     "key": "fields.memoryGiB",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent term for 'memory' compared to fields.memory ('Speicher').",
+     "suggestion": "Speicher (GiB)",
+     "source": "grok"
+    },
+    {
+     "key": "fields.partnerName",
+     "language": "es",
+     "severity": "low",
+     "problem": "English word 'partner' left untranslated and inconsistently cased.",
+     "suggestion": "Nombre del Partner",
      "source": "grok"
     },
     {
      "key": "filter.search",
      "language": "de",
      "severity": "medium",
-     "problem": "Inconsistent term for audit log compared to filter.label and other strings using 'Audit-Log'.",
+     "problem": "Uses vague 'Protokoll' instead of matching the glossary term 'Audit-Log' used in filter.label.",
      "suggestion": "Audit-Log durchsuchen",
      "source": "grok"
     },
     {
-     "key": "operations.getFindingEvidence",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent verb for 'View' compared to similar keys like getWorkspaceFindingEvidence and getFinding (uses 'abrufen' instead of 'ansehen')",
-     "suggestion": "Belege eines Findings ansehen",
-     "source": "grok"
-    },
-    {
-     "key": "operations.getFindingEvidence",
+     "key": "filter.search",
      "language": "es",
      "severity": "medium",
-     "problem": "Inconsistent verb for 'View' compared to similar keys like getWorkspaceFindingEvidence and getFinding (uses 'Consultar' instead of 'Ver')",
-     "suggestion": "Ver las pruebas de un hallazgo",
+     "problem": "Incomplete translation; omits 'de auditoría' needed to match the full English meaning and filter.label.",
+     "suggestion": "Buscar en el registro de auditoría",
      "source": "grok"
     },
     {
-     "key": "operations.listWorkspaceEvents",
+     "key": "operations.getSession",
      "language": "de",
      "severity": "low",
-     "problem": "Grammatical case with kept term 'Workspace' is incorrect ('eines Workspace')",
-     "suggestion": "Änderungen eines Workspaces nachholen",
+     "problem": "Verb 'abrufen' does not convey 'View'; native wording for viewing a session would use 'ansehen' or 'anzeigen'.",
+     "suggestion": "Sitzung ansehen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.getSession",
+     "language": "es",
+     "severity": "low",
+     "problem": "Verb 'Consultar' implies querying rather than viewing; 'Ver' better matches 'View the session'.",
+     "suggestion": "Ver la sesión",
+     "source": "grok"
+    },
+    {
+     "key": "operations.markCaseStep",
+     "language": "es",
+     "severity": "low",
+     "problem": "Wording is slightly unnatural and imprecise compared to the English source.",
+     "suggestion": "Marcar el siguiente paso de un caso",
+     "source": "grok"
+    },
+    {
+     "key": "operations.markOrganizationOpened",
+     "language": "es",
+     "severity": "low",
+     "problem": "Translation does not fully capture the meaning of \"mark ... as\" and sounds like a reminder rather than setting a flag.",
+     "suggestion": "Marcar la organización como abierta por última vez",
      "source": "grok"
     },
     {
      "key": "operations.approveCaseAttestation",
      "language": "de",
      "severity": "medium",
-     "problem": "Wording is unnatural and grammatically incomplete for a native speaker.",
+     "problem": "Unnatural German wording; 'zustimmen' is intransitive and does not fit the object directly.",
      "suggestion": "Bestätigung genehmigen",
      "source": "grok"
     },
     {
-     "key": "operations.createOperatorRealtimeToken",
+     "key": "operations.getWorkspaceCoreSize",
      "language": "de",
-     "severity": "medium",
-     "problem": "Missing reflexive pronoun; the phrase is incomplete German.",
-     "suggestion": "Sich mit Live-Aktualisierungen der Installation verbinden",
+     "severity": "low",
+     "problem": "Inconsistent hyphenation of the product name 'AI SOC' / 'AI-SOC' across keys in the same namespace.",
+     "suggestion": "Größe des AI-SOC des Workspaces abrufen",
      "source": "grok"
     },
     {
-     "key": "operations.previewAccessFieldMapping",
+     "key": "operations.getCollectionReads",
      "language": "de",
-     "severity": "medium",
-     "problem": "Translation uses 'ausprobieren' (try out/test) instead of conveying 'preview'.",
-     "suggestion": "Vorschau eines Entwurfs der Feldzuordnung eines Zugangs anzeigen",
+     "severity": "low",
+     "problem": "Inconsistent hyphenation of the product name 'AI SOC' / 'AI-SOC' across keys in the same namespace.",
+     "suggestion": "Lesen, was das AI-SOC liest",
      "source": "grok"
     },
     {
-     "key": "operations.previewAccessFieldMapping",
-     "language": "es",
+     "key": "operations.createCredential",
+     "language": "de",
      "severity": "medium",
-     "problem": "Translation uses 'Probar' (test/try) instead of conveying 'preview'.",
-     "suggestion": "Previsualizar un borrador de la asignación de campos de un acceso",
+     "problem": "English uses singular 'a credential' but German uses plural 'Anmeldedaten'.",
+     "suggestion": "Eine Anmeldedaten hinzufügen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.getCredential",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English uses singular 'a credential' but German uses plural 'Anmeldedaten'.",
+     "suggestion": "Eine Anmeldedaten ansehen",
+     "source": "grok"
+    },
+    {
+     "key": "operations.updateCredential",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English uses singular 'a credential' but German uses plural 'Anmeldedaten'.",
+     "suggestion": "Eine Anmeldedaten ändern",
+     "source": "grok"
+    },
+    {
+     "key": "operations.deleteCredential",
+     "language": "de",
+     "severity": "medium",
+     "problem": "English uses singular 'a credential' but German uses plural 'Anmeldedaten'.",
+     "suggestion": "Eine Anmeldedaten löschen",
      "source": "grok"
     }
    ],
-   "at": "2026-11-25T10:44:04.767Z"
+   "at": "2026-11-25T13:23:46.328Z"
   },
   "features/inbox": {
    "hash": "2284baaf7a637e00",
@@ -3779,13 +3562,13 @@
    "at": "2026-11-23T14:38:08.475Z"
   },
   "features/collection": {
-   "hash": "333157930a3ab676",
+   "hash": "805a486438e7cc67",
    "findings": [
     {
      "key": "collectedThrough",
      "language": "de",
      "severity": "high",
-     "problem": "Translation changes meaning: 'Gesammelt bis' means 'collected until' instead of 'collected through/via'.",
+     "problem": "Wrong meaning: 'Gesammelt bis' means 'collected until' instead of indicating the collection method or channel.",
      "suggestion": "Gesammelt über",
      "source": "grok"
     },
@@ -3793,252 +3576,236 @@
      "key": "collectedThrough",
      "language": "es",
      "severity": "high",
-     "problem": "Translation changes meaning: 'Recogido hasta' means 'collected until' instead of 'collected through/via'.",
+     "problem": "Wrong meaning: 'Recogido hasta' means 'collected until' instead of indicating the collection method or channel.",
      "suggestion": "Recogido a través de",
      "source": "grok"
     },
     {
-     "key": "absent.contradicted",
+     "key": "absent.lede",
      "language": "de",
      "severity": "medium",
-     "problem": "Inconsistent and incorrect form of 'Workspace': 'dieses Workspace' instead of genitive 'dieses Workspaces' used elsewhere in the same file.",
-     "suggestion": "dieses Workspaces",
-     "source": "grok"
-    },
-    {
-     "key": "absent.confirm.waiting",
-     "language": "de",
-     "severity": "high",
-     "problem": "Uses English 'Findings' instead of glossary term 'Finding'",
-     "suggestion": "Der AI SOC wartet nicht mehr auf diese Quellen und gibt die Findings frei, die von ihrem Fehlen abhängen.",
-     "source": "grok"
-    },
-    {
-     "key": "absent.feedsDeclared.body",
-     "language": "de",
-     "severity": "high",
-     "problem": "Uses English 'Findings' instead of glossary term 'Finding'",
-     "suggestion": "Der Workspace hat erklärt, dass er keine {{sources}} hat. Der AI SOC behält diese Erklärung und lehnt solche Daten bis zu seiner nächsten Version ab; die Quelle sammelt, aber Findings, die darauf beruhen, fehlen bis dahin.",
-     "source": "grok"
-    },
-    {
-     "key": "absent.confirm.refused",
-     "language": "de",
-     "severity": "high",
-     "problem": "Uses English 'Findings' instead of glossary term 'Finding'",
-     "suggestion": "Wenn Sie später eine solche Quelle hinzufügen, lehnt der AI SOC ihre Daten bis zu seiner nächsten Version ab; Findings, die darauf beruhen, fehlen bis dahin.",
-     "source": "grok"
-    },
-    {
-     "key": "fields.logAnalyticsWorkspaceId",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses 'Arbeitsbereich' instead of required glossary term 'Workspace'",
-     "suggestion": "Log-Analytics-Workspace-ID",
-     "source": "grok"
-    },
-    {
-     "key": "hints.logAnalyticsWorkspaceId",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses 'Arbeitsbereich' instead of required glossary term 'Workspace'",
-     "suggestion": "Die Workspace-ID (eine GUID) von der Übersichtsseite des Workspace.",
+     "problem": "Untranslated English term 'Findings' (glossary requires de 'Finding').",
+     "suggestion": "hält die Finding zurück",
      "source": "grok"
     },
     {
      "key": "absent.confirm.body",
      "language": "es",
      "severity": "high",
-     "problem": "English word 'Declare' left untranslated at start of sentence",
-     "suggestion": "Declare solo lo que sea cierto de forma permanente. El AI SOC lo recibe una vez y conserva la declaración.",
+     "problem": "English word 'Declare' left untranslated at the start of the sentence.",
+     "suggestion": "Declare solo lo que sea cierto de forma permanente.",
      "source": "grok"
     },
     {
-     "key": "fields.logAnalyticsWorkspaceId",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Uses 'área de trabajo' instead of required glossary term 'espacio de trabajo'",
-     "suggestion": "ID del espacio de trabajo de Log Analytics",
-     "source": "grok"
-    },
-    {
-     "key": "hints.logAnalyticsWorkspaceId",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Uses 'área de trabajo' instead of required glossary term 'espacio de trabajo'",
-     "suggestion": "El ID del espacio de trabajo (un GUID) de su página de información general.",
-     "source": "grok"
-    },
-    {
-     "key": "options.incidents",
+     "key": "absent.confirm.waiting",
      "language": "de",
      "severity": "medium",
-     "problem": "English left untranslated",
-     "suggestion": "Vorfälle",
+     "problem": "Uses English 'Findings' (plural) instead of the glossary term 'Finding'.",
+     "suggestion": "Der AI SOC wartet nicht mehr auf diese Quellen und gibt die Findings frei, die von ihrem Fehlen abhängen.",
+     "source": "grok"
+    },
+    {
+     "key": "absent.confirm.refused",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Uses English 'Findings' (plural) instead of the glossary term 'Finding'.",
+     "suggestion": "Wenn Sie später eine solche Quelle hinzufügen, lehnt der AI SOC ihre Daten bis zu seiner nächsten Version ab; Findings, die darauf beruhen, fehlen bis dahin.",
+     "source": "grok"
+    },
+    {
+     "key": "absent.feedsDeclared.body",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Uses English 'Findings' (plural) instead of the glossary term 'Finding'.",
+     "suggestion": "Der Workspace hat erklärt, dass er keine {{sources}} hat. Der AI SOC behält diese Erklärung und lehnt solche Daten bis zu seiner nächsten Version ab; die Quelle sammelt, aber Findings, die darauf beruhen, fehlen bis dahin.",
+     "source": "grok"
+    },
+    {
+     "key": "options.earliest",
+     "language": "de",
+     "severity": "high",
+     "problem": "Translation is grammatically incorrect and does not match the English meaning or structure (uses dative 'Dem' instead of nominative).",
+     "suggestion": "Das älteste aufbewahrte Ereignis",
      "source": "grok"
     },
     {
      "key": "advice.not_found",
      "language": "de",
-     "severity": "medium",
-     "problem": "Uses 'Arbeitsbereich' instead of the required glossary term 'Workspace'.",
+     "severity": "high",
+     "problem": "Uses 'Arbeitsbereich' instead of required term 'Workspace'",
      "suggestion": "Der Namespace, der Event Hub, die Consumergruppe, der Workspace oder das Abonnement existiert nicht.",
      "source": "grok"
     },
     {
+     "key": "advice.workspace_deleted",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Uses 'Workspace' (correct) but other keys use 'Arbeitsbereich', creating inconsistency",
+     "suggestion": "Der Workspace wurde gelöscht. Die Sammlung ist gestoppt und die Quelle behält ihre Konfiguration; wird der Workspace wiederhergestellt, sammelt sie ab diesem Zeitpunkt wieder.",
+     "source": "grok"
+    },
+    {
+     "key": "advice.signature_invalid",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Grammatically incorrect parallel structure ('zu einer anderen Organisation oder einem anderen Workspace')",
+     "suggestion": "oder der Export gehört zu einer anderen Organisation oder zu einem anderen Workspace.",
+     "source": "grok"
+    },
+    {
+     "key": "advice.license_expired",
+     "language": "de",
+     "severity": "low",
+     "problem": "Uses 'AI-SOC-Lizenz' instead of required 'AI SOC'",
+     "suggestion": "Die Lizenz des AI SOC der Organisation ist abgelaufen und die Kulanzzeit ist vorbei.",
+     "source": "grok"
+    },
+    {
      "key": "advice.not_found",
      "language": "es",
-     "severity": "medium",
-     "problem": "Uses 'área de trabajo' instead of the required glossary term 'espacio de trabajo'.",
-     "suggestion": "El espacio de nombres, el event hub, el grupo de consumidores, el espacio de trabajo o la suscripción no existe.",
+     "severity": "high",
+     "problem": "Verb agreement error: list of items requires plural 'no existen'",
+     "suggestion": "El espacio de nombres, el event hub, el grupo de consumidores, el área de trabajo o la suscripción no existen.",
      "source": "grok"
     },
     {
-     "key": "guide.entra_id.step2",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural German wording that mixes English UI text directly into the sentence.",
-     "suggestion": "Wählen Sie „An einen Event Hub streamen“ und wählen Sie Namespace und Hub; geben Sie dem Hub eine eigene Consumergruppe für den AI SOC.",
-     "source": "grok"
-    },
-    {
-     "key": "guide.azure_activity_log.step2",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural German wording that mixes English UI text directly into the sentence.",
-     "suggestion": "Wählen Sie „An einen Event Hub streamen“ und wählen Sie Namespace und Hub; geben Sie dem Hub eine eigene Consumergruppe für den AI SOC.",
-     "source": "grok"
-    },
-    {
-     "key": "guide.entra_id.step2",
+     "key": "advice.signature_invalid",
      "language": "es",
-     "severity": "medium",
-     "problem": "English term \"Event Hub\" left untranslated while surrounding text is translated.",
-     "suggestion": "Elija Transmitir a un centro de eventos y seleccione un espacio de nombres y un hub; dé al hub un grupo de consumidores propio para el AI SOC.",
-     "source": "grok"
-    },
-    {
-     "key": "guide.azure_activity_log.step2",
-     "language": "es",
-     "severity": "medium",
-     "problem": "English term \"Event Hub\" left untranslated while surrounding text is translated.",
-     "suggestion": "Elija Transmitir a un centro de eventos y seleccione un espacio de nombres y un hub; dé al hub un grupo de consumidores propio para el AI SOC.",
+     "severity": "low",
+     "problem": "Inconsistent casing of 'event hub' vs English 'Event Hub' and other keys",
+     "suggestion": "la exportación es de otra organización o de otro espacio de trabajo.",
      "source": "grok"
     },
     {
      "key": "guide.entra_id.step3",
      "language": "de",
-     "severity": "low",
-     "problem": "Inconsistent hyphenation of the same technical term (Event Hub vs. Event-Hub).",
-     "suggestion": "Use \"Event Hub\" consistently or \"Event-Hub\" consistently throughout.",
+     "severity": "medium",
+     "problem": "Inconsistent hyphenation of the term 'Event Hub' within German texts (also appears unhyphenated elsewhere).",
+     "suggestion": "Use 'Event Hub' consistently without internal hyphen.",
      "source": "grok"
     },
     {
      "key": "guide.azure_activity_log.step3",
      "language": "de",
-     "severity": "low",
-     "problem": "Inconsistent hyphenation of the same technical term (Event Hub vs. Event-Hub).",
-     "suggestion": "Use \"Event Hub\" consistently or \"Event-Hub\" consistently throughout.",
+     "severity": "medium",
+     "problem": "Inconsistent hyphenation of the term 'Event Hub' within German texts (also appears unhyphenated elsewhere).",
+     "suggestion": "Use 'Event Hub' consistently without internal hyphen.",
+     "source": "grok"
+    },
+    {
+     "key": "guide.entra_id.step3",
+     "language": "es",
+     "severity": "medium",
+     "problem": "English term 'Event Hub' left untranslated (and inconsistent with 'centro de eventos' used elsewhere in the same language).",
+     "suggestion": "Use 'centro de eventos' consistently.",
+     "source": "grok"
+    },
+    {
+     "key": "guide.azure_activity_log.step3",
+     "language": "es",
+     "severity": "medium",
+     "problem": "English term 'Event Hub' left untranslated (and inconsistent with 'centro de eventos' used elsewhere in the same language).",
+     "suggestion": "Use 'centro de eventos' consistently.",
      "source": "grok"
     },
     {
      "key": "create.size.change",
      "language": "de",
-     "severity": "medium",
-     "problem": "Inconsistent use of product name (hyphenated AI-SOC instead of AI SOC as used everywhere else and required by glossary).",
-     "suggestion": "Größe des AI SOC ändern",
-     "source": "grok"
-    },
-    {
-     "key": "detail.status.signature.verified",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Grammatical gender error on past participle",
-     "suggestion": "Verificada: exportada por esta instalación y sin cambios desde entonces",
+     "severity": "low",
+     "problem": "Inconsistent spelling of product name within German texts (hyphenated AI-SOC here vs. spaced AI SOC elsewhere).",
+     "suggestion": "AI SOC-Größe ändern",
      "source": "grok"
     },
     {
      "key": "onboarding.lede",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Missing paired gender forms for the person role, unlike the German translation and house style.",
+     "suggestion": "Un administrador o una administradora del inquilino de Microsoft lo ejecuta una vez.",
+     "source": "grok"
+    },
+    {
+     "key": "onboarding.step1",
+     "language": "es",
+     "severity": "low",
+     "problem": "Missing paired gender forms for the person role.",
+     "suggestion": "como propietario de la suscripción y administrador global o administradora global del inquilino.",
+     "source": "grok"
+    },
+    {
+     "key": "reads.undeclaredBody",
+     "language": "de",
+     "severity": "high",
+     "problem": "Wrong meaning: subject and object reversed compared to English (nothing reaches the AI SOC).",
+     "suggestion": "Bis dahin erreicht nichts von dieser Quelle es: Ihre Datensätze werden gezählt und zurückgelegt.",
+     "source": "grok"
+    },
+    {
+     "key": "credentials.scope.workspacesHint",
+     "language": "de",
+     "severity": "high",
+     "problem": "Wrong meaning: the German says reading a credential does not already allow using it, but the English means that permission to read does not grant permission to use.",
+     "suggestion": "Anmeldedaten lesen zu dürfen erlaubt nicht deren Verwendung: nur die hier angehakten Workspaces dürfen sie verwenden.",
+     "source": "grok"
+    },
+    {
+     "key": "credential.noneBody",
      "language": "de",
      "severity": "medium",
-     "problem": "Role name uses gendered forms, violating the rule to keep role names without gender forms.",
-     "suggestion": "Ein Administrator des Microsoft-Mandanten führt dies einmal aus.",
+     "problem": "Uses masculine 'der' for 'someone who manages credentials' instead of the required paired gender forms for people.",
+     "suggestion": "Bitten Sie jemanden, der oder die Anmeldedaten verwaltet, welche freizugeben oder neue einzugeben.",
      "source": "grok"
     },
     {
-     "key": "analysis.analysing",
+     "key": "replay.emptyEstate",
      "language": "de",
      "severity": "medium",
-     "problem": "Missing article before product name; wording is ungrammatical for a native speaker.",
-     "suggestion": "Dateien gelesen · Der AI SOC hat {{share}} analysiert",
-     "source": "grok"
-    },
-    {
-     "key": "reads.undeclaredTitle",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Wrong article before product name (\"Das\" instead of \"Der\").",
-     "suggestion": "Der AI SOC hat noch nicht angegeben, was er liest",
-     "source": "grok"
-    },
-    {
-     "key": "analysis.waiting",
-     "language": "de",
-     "severity": "low",
-     "problem": "Grammatically incorrect and unnatural wording (missing plural/article and awkward phrasing).",
-     "suggestion": "Analysiert bis {{through}} · die letzten {{lateness}} Ereigniszeiten schließen um {{closesAt}}",
-     "source": "grok"
-    },
-    {
-     "key": "site.states.pending",
-     "language": "de",
-     "severity": "low",
-     "problem": "Slightly unnatural wording for the state description.",
-     "suggestion": "wartet auf Einschreibung",
-     "source": "grok"
-    },
-    {
-     "key": "credentials.endpointHint",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Missing comma after 'Namespace' creates a grammar error.",
-     "suggestion": "Für einen Event-Hubs-Namespace, dessen Host und Port, zum Beispiel ehns-soc.servicebus.windows.net:443. Für Microsoft Graph, Log Analytics und Defender leer lassen.",
-     "source": "grok"
-    },
-    {
-     "key": "fieldMapping.formats.kv.name",
-     "language": "de",
-     "severity": "low",
-     "problem": "English words left untranslated in format name.",
-     "suggestion": "Schlüssel=Wert",
-     "source": "grok"
-    },
-    {
-     "key": "fieldMapping.formats.kv_colon.name",
-     "language": "de",
-     "severity": "low",
-     "problem": "English words left untranslated in format name.",
-     "suggestion": "Schlüssel:\"Wert\"-Paare",
+     "problem": "Unnatural German wording and awkward sentence structure that a native speaker would find unclear.",
+     "suggestion": "Dieser Zeitraum beginnt vor mehr als 24 Stunden. So viele Datensätze mit dem abzugleichen, was der AI SOC schon hat, ist langsam; das erneute Senden läuft daher nur, wenn der AI SOC noch nie Daten erhalten hat, und wird sonst beim Start abgelehnt.",
      "source": "grok"
     },
     {
      "key": "survey.startBody",
      "language": "de",
-     "severity": "high",
-     "problem": "Internal component name 'Collector' left untranslated (English word appears in German text).",
+     "severity": "medium",
+     "problem": "English internal term \"Collector\" left untranslated.",
      "suggestion": "Der Sammler liest die Dateien dieses Zugangs und hält nur die Form ihrer Zeilen fest. Nichts wird importiert oder an den AI SOC gesendet, und der Zugang darf pausiert bleiben.",
      "source": "grok"
     },
     {
      "key": "survey.lede",
      "language": "es",
-     "severity": "medium",
-     "problem": "Wrong meaning: 'redacted' (blacked-out/sensitive content removed) translated as 'anonimizado' (anonymized).",
+     "severity": "low",
+     "problem": "\"anonimizado\" changes the meaning from \"redacted\".",
      "suggestion": "El informe redactado ayuda a escribir asignaciones.",
+     "source": "grok"
+    },
+    {
+     "key": "fieldMapping.preview.lede",
+     "language": "de",
+     "severity": "low",
+     "problem": "Sentence fragment is unnatural German; missing verb or rephrasing needed to match intended meaning.",
+     "suggestion": "Probieren Sie die Regeln an Einträgen aus, ohne etwas zu ändern: jeder Eintrag wird von der Plattform allein und mit diesen Regeln abgebildet. Während Sie bearbeiten, nutzt die Vorschau Ihren Entwurf.",
+     "source": "grok"
+    },
+    {
+     "key": "fieldMapping.preview.lede",
+     "language": "es",
+     "severity": "low",
+     "problem": "Sentence fragment is unnatural Spanish; missing verb or rephrasing needed to match intended meaning.",
+     "suggestion": "Pruebe las reglas con registros sin cambiar nada: cada registro es asignado solo por la plataforma y con estas reglas. Mientras usted edita, la vista previa usa su borrador.",
+     "source": "grok"
+    },
+    {
+     "key": "causes.certificate_expired",
+     "language": "de",
+     "severity": "medium",
+     "problem": "German sentence is missing a preposition before the second object, which a native speaker would find unnatural or incomplete.",
+     "suggestion": "Laden Sie ein neues in die App-Registrierung und in die Anmeldedaten hoch.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-25T10:46:27.015Z"
+   "at": "2026-11-25T13:26:01.846Z"
   },
   "features/licensing": {
    "hash": "112ea8785015389b",
@@ -4512,117 +4279,93 @@
    "at": "2026-11-25T10:46:45.060Z"
   },
   "features/integrations": {
-   "hash": "a76fa5497112bf8b",
+   "hash": "42770c2058cac06b",
    "findings": [
     {
-     "key": "organization.export.lede",
+     "key": "partner.lede",
      "language": "de",
-     "severity": "medium",
-     "problem": "Sentence structure is awkward and unnatural (object first, infinitive at end); does not match the direct imperative style of the English source or the es translation.",
-     "suggestion": "Senden Sie das Audit-Log der Organisation, einschließlich abgelehnter Anfragen, per Syslog (CEF), Splunk HEC, Microsoft Sentinel oder Webhook an Ihr SIEM.",
+     "severity": "low",
+     "problem": "Wording is awkward and not natural German.",
+     "suggestion": "Ein Kanal für alle Kunden des Partners: die Ereignisse jedes betreuten Kunden, mit Regeln je Kunde. Ein Partnerkanal liefert die Ereignisse aller Kunden, die der Partner betreut, an einen Discord-, Teams-, Slack- oder E-Mail-Kanal.",
      "source": "grok"
     },
     {
-     "key": "workspace.export.lede",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Sentence structure is awkward and unnatural (object first, infinitive at end); does not match the direct imperative style of the English source or the es translation.",
-     "suggestion": "Senden Sie die Sicherheitsereignisse dieses Workspaces per Syslog (CEF), Splunk HEC, Microsoft Sentinel oder Webhook an Ihr SIEM.",
-     "source": "grok"
-    },
-    {
-     "key": "partner.emptyBody",
+     "key": "actions.saved",
      "language": "es",
      "severity": "low",
-     "problem": "Grammar error: \"de partner\" is missing the required article and is unnatural.",
-     "suggestion": "Un canal de partner entrega los eventos de todos los clientes que atiende el partner en un canal de Discord, Teams, Slack o correo electrónico.",
+     "problem": "Added colon makes the string inconsistent with the English source and the German translation.",
+     "suggestion": "{{section}} guardado",
      "source": "grok"
     },
     {
-     "key": "partner.empty",
+     "key": "noDeliveries.failedTitle",
      "language": "es",
-     "severity": "low",
-     "problem": "Grammar error: \"canales de partner\" is missing the required article and is unnatural.",
-     "suggestion": "Aún no hay canales de partner",
-     "source": "grok"
-    },
-    {
-     "key": "what.presets.security",
-     "language": "de",
      "severity": "medium",
-     "problem": "Wording is abbreviated and does not match the consistent terminology used elsewhere for severity levels (\"hohem oder kritischem Schweregrad\").",
-     "suggestion": "Nur hohe und kritische",
+     "problem": "Inconsistent term for 'deliveries': body uses 'envíos' while failedTitle and failedBody use 'entregas'.",
+     "suggestion": "No hay envíos fallidos",
      "source": "grok"
     },
     {
-     "key": "hints.permission",
-     "language": "de",
-     "severity": "low",
-     "problem": "\"Mailt\" is colloquial and unnatural in a formal German UI text.",
-     "suggestion": "Sendet zusätzlich E-Mails an alle Mitglieder, die sie hier haben, jetzt und künftig.",
-     "source": "grok"
-    },
-    {
-     "key": "email.noPermission",
-     "language": "de",
+     "key": "noDeliveries.failedBody",
+     "language": "es",
      "severity": "medium",
-     "problem": "Translation is grammatically awkward and does not convey the intended meaning.",
-     "suggestion": "Niemand nach Berechtigung",
+     "problem": "Inconsistent term for 'deliveries': body uses 'envíos' while failedTitle and failedBody use 'entregas'.",
+     "suggestion": "Todos los envíos hasta ahora han llegado o se siguen intentando.",
      "source": "grok"
     },
     {
      "key": "kinds.identity.member_joined",
      "language": "es",
-     "severity": "medium",
-     "problem": "Translation changes the meaning from an action to a static state.",
-     "suggestion": "Miembro se unió",
+     "severity": "high",
+     "problem": "Wrong meaning: translates as 'New member' instead of 'Member joined'.",
+     "suggestion": "Miembro unido",
      "source": "grok"
     },
     {
      "key": "kinds.identity.member_left",
      "language": "es",
      "severity": "medium",
-     "problem": "Translation is unnatural and slightly changes the meaning.",
+     "problem": "Wording differs from source meaning and other similar keys; reads as 'A member left'.",
      "suggestion": "Miembro se fue",
      "source": "grok"
     },
     {
      "key": "email.noPermission",
      "language": "es",
+     "severity": "medium",
+     "problem": "Unnatural Spanish wording.",
+     "suggestion": "Nadie según permiso",
+     "source": "grok"
+    },
+    {
+     "key": "email.holders",
+     "language": "es",
      "severity": "low",
-     "problem": "Translation is awkward and unclear.",
-     "suggestion": "Nadie por permiso",
+     "problem": "Label starts with lowercase letter, unlike the German translation and most other labels.",
+     "suggestion": "Miembros con «{{permission}}»",
      "source": "grok"
     },
     {
      "key": "kinds.case.attestation_approved",
      "language": "de",
-     "severity": "medium",
-     "problem": "Wording is unnatural and does not correctly convey 'approved'.",
+     "severity": "high",
+     "problem": "Wrong meaning: 'zugestimmt' does not correctly translate 'approved' in this context.",
      "suggestion": "Bestätigung genehmigt",
-     "source": "grok"
-    },
-    {
-     "key": "tls.trust",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Unnatural German wording; 'vertrauen über' is not idiomatic for this context.",
-     "suggestion": "Dem Server vertrauen durch",
      "source": "grok"
     },
     {
      "key": "mapping.fields.detailHint",
      "language": "de",
-     "severity": "high",
-     "problem": "Placeholder <key> was translated to <Schlüssel> instead of kept exactly as in English.",
+     "severity": "medium",
+     "problem": "Placeholder <key> was translated to <Schlüssel>, violating the rule that inline examples and placeholders must stay exactly as in English.",
      "suggestion": "Kein solches Feld. details.<key> liest ein Detail.",
      "source": "grok"
     },
     {
      "key": "mapping.fields.detailHint",
      "language": "es",
-     "severity": "high",
-     "problem": "Placeholder <key> was translated to <clave> instead of kept exactly as in English.",
+     "severity": "medium",
+     "problem": "Placeholder <key> was translated to <clave>, violating the rule that inline examples and placeholders must stay exactly as in English.",
      "suggestion": "No existe ese campo. details.<key> lee un detalle.",
      "source": "grok"
     },
@@ -4630,20 +4373,12 @@
      "key": "mapping.preview.bytes_other",
      "language": "de",
      "severity": "medium",
-     "problem": "Plural form is identical to singular instead of using the correct German plural.",
+     "problem": "Wrong plural form; German plural of Byte is Bytes.",
      "suggestion": "{{count}} Bytes",
-     "source": "grok"
-    },
-    {
-     "key": "mapping.warnings.too_large",
-     "language": "de",
-     "severity": "low",
-     "problem": "Grammatically incomplete sentence; missing verb.",
-     "suggestion": "Die Nachricht ist größer als 64 KiB und würde abgelehnt werden.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-25T10:43:33.381Z"
+   "at": "2026-11-25T13:23:23.698Z"
   },
   "features/sites": {
    "hash": "8ac5fcc53de9cb19",
@@ -4700,467 +4435,406 @@
    "at": "2026-11-25T10:45:43.450Z"
   },
   "features/soc/cases": {
-   "hash": "bfe6f602d32012f2",
+   "hash": "f85640d66c098206",
    "findings": [
     {
      "key": "activity.kinds.attestation_approved",
      "language": "de",
-     "severity": "medium",
-     "problem": "Wording is grammatically incomplete and unnatural for a native speaker.",
+     "severity": "high",
+     "problem": "Unnatural and grammatically incomplete German phrasing.",
      "suggestion": "Bestätigung genehmigt",
+     "source": "grok"
+    },
+    {
+     "key": "activity.kinds.attestation_stuck",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Unnatural German wording for the English source.",
+     "suggestion": "Rücknahme hängt fest",
      "source": "grok"
     },
     {
      "key": "activity.kinds.attestation_met",
      "language": "de",
-     "severity": "medium",
-     "problem": "Wording is unnatural and does not clearly convey the English meaning.",
-     "suggestion": "Bestätigung anerkannt",
-     "source": "grok"
-    },
-    {
-     "key": "activity.kinds.attestation_stuck",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Wording is incomplete and unnatural for a native speaker.",
-     "suggestion": "Rücknahme hängt fest",
-     "source": "grok"
-    },
-    {
-     "key": "activity.kinds.attestation_stuck",
-     "language": "es",
      "severity": "low",
-     "problem": "Wording is unnatural and unclear for a native speaker.",
-     "suggestion": "Retirada bloqueada",
+     "problem": "Slightly unnatural German phrasing.",
+     "suggestion": "Bestätigung erfüllt",
      "source": "grok"
     },
     {
      "key": "evidence.sentences.registry",
      "language": "de",
      "severity": "medium",
-     "problem": "Sentence structure and preposition are unnatural; \"auf {{data}} gesetzt\" is incorrect German.",
-     "suggestion": "{{process}} hat auf {{device}} {{key}}\\{{name}} auf {{data}} gesetzt.",
+     "problem": "Unnatural German wording and incorrect word order",
+     "suggestion": "{{process}} hat auf {{device}} {{key}}\\{{name}} auf {{data}} gesetzt",
      "source": "grok"
     },
     {
      "key": "evidence.sentences.registryDeleted",
      "language": "de",
      "severity": "medium",
-     "problem": "Sentence structure is incomplete and unnatural; missing proper verb placement for the object.",
-     "suggestion": "{{process}} hat {{key}}\\{{name}} auf {{device}} entfernt.",
-     "source": "grok"
-    },
-    {
-     "key": "evidence.sentences.connection",
-     "language": "de",
-     "severity": "low",
-     "problem": "\"über {{process}}\" is an unnatural phrasing; German would use \"von {{process}} aus\" or similar.",
-     "suggestion": "{{device}} hat von {{process}} aus eine Verbindung zu {{remote}}:{{port}} aufgebaut.",
-     "source": "grok"
-    },
-    {
-     "key": "evidence.sentences.connectionFailed",
-     "language": "de",
-     "severity": "low",
-     "problem": "\"über {{process}}\" is unnatural in this context.",
-     "suggestion": "{{device}} hat von {{process}} aus vergeblich versucht, {{remote}}:{{port}} zu erreichen.",
-     "source": "grok"
-    },
-    {
-     "key": "evidence.sentences.file",
-     "language": "de",
-     "severity": "low",
-     "problem": "Word order is slightly awkward compared to natural German phrasing.",
-     "suggestion": "{{process}} hat auf {{device}} {{file}} nach {{folder}} geschrieben.",
+     "problem": "Unnatural German wording and incorrect word order",
+     "suggestion": "{{process}} hat auf {{device}} {{key}}\\{{name}} entfernt",
      "source": "grok"
     },
     {
      "key": "tabs.findings_one",
      "language": "de",
-     "severity": "high",
-     "problem": "English word 'Findings' left untranslated and violates glossary term 'Finding'",
-     "suggestion": "Finding ({{count}})",
+     "severity": "medium",
+     "problem": "English word 'Findings' left untranslated (plural of glossary term 'Finding').",
+     "suggestion": "Findings ({{count}})",
      "source": "grok"
     },
     {
      "key": "tabs.findings_other",
      "language": "de",
-     "severity": "high",
-     "problem": "English word 'Findings' left untranslated and violates glossary term 'Finding'",
-     "suggestion": "Finding ({{count}})",
+     "severity": "medium",
+     "problem": "English word 'Findings' left untranslated (plural of glossary term 'Finding').",
+     "suggestion": "Findings ({{count}})",
      "source": "grok"
     },
     {
      "key": "filters.dateField",
      "language": "es",
-     "severity": "medium",
-     "problem": "Translation 'Fecha' does not match English 'Time' or other time-related labels using 'Hora'",
+     "severity": "low",
+     "problem": "Translated as 'Fecha' (Date) instead of matching English 'Time'.",
      "suggestion": "Hora",
      "source": "grok"
     },
     {
-     "key": "findingsView.title",
+     "key": "findingsView.lede",
      "language": "de",
-     "severity": "high",
-     "problem": "English left untranslated (glossary keeps the singular term but the title remains fully English).",
-     "suggestion": "Findings",
+     "severity": "medium",
+     "problem": "Subject-verb agreement error: plural 'Findings' with singular verb 'enthält'.",
+     "suggestion": "Findings, die noch kein Fall enthält: der AI SOC hat sie noch keinem Angriffsgraphen zugeordnet, oder sie wurden aus einem Fall herausgenommen.",
      "source": "grok"
     },
     {
-     "key": "findingsView.columns.finding",
+     "key": "summary.withdrawn",
      "language": "de",
-     "severity": "high",
-     "problem": "English left untranslated.",
-     "suggestion": "Finding",
-     "source": "grok"
-    },
-    {
-     "key": "findingsView.notFound",
-     "language": "de",
-     "severity": "high",
-     "problem": "English left untranslated.",
-     "suggestion": "Finding nicht gefunden",
-     "source": "grok"
-    },
-    {
-     "key": "findingsView.back",
-     "language": "de",
-     "severity": "high",
-     "problem": "English left untranslated.",
-     "suggestion": "Zurück zu den Findings",
+     "severity": "low",
+     "problem": "Incorrect declension of the glossary term 'Finding'.",
+     "suggestion": "Der AI SOC hat einen Teil dieses Finding inzwischen zurückgezogen.",
      "source": "grok"
     },
     {
      "key": "findingsView.selectAll_one",
      "language": "es",
      "severity": "medium",
-     "problem": "Unnatural wording; singular form does not fit with the structure.",
+     "problem": "Unnatural and grammatically incorrect wording for the singular form; does not match the plural or the English source structure.",
      "suggestion": "Seleccionar el {{count}} cargado",
      "source": "grok"
     },
     {
-     "key": "story.openRun_one",
-     "language": "de",
+     "key": "findingsView.selected_one",
+     "language": "es",
      "severity": "low",
-     "problem": "Unnatural German wording for the singular case.",
-     "suggestion": "Den {{count}} Schritt anzeigen",
+     "problem": "Missing noun after count in singular form (inconsistent with other count strings that include 'hallazgo').",
+     "suggestion": "{{count}} hallazgo seleccionado",
+     "source": "grok"
+    },
+    {
+     "key": "attest.waiting.stuck",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Unclear referent for neuter 'es'; the context is about an attestation or withdrawal (feminine nouns).",
+     "suggestion": "hängt: der AI SOC hat sie seit einem Tag nicht übernommen",
      "source": "grok"
     },
     {
      "key": "scope.title",
      "language": "de",
-     "severity": "medium",
-     "problem": "English plural left untranslated (glossary allows only the singular term 'Finding').",
+     "severity": "low",
+     "problem": "English plural 'Findings' left as-is while glossary specifies keeping the singular term 'Finding'.",
      "suggestion": "Findings",
      "source": "grok"
     },
     {
-     "key": "attest.stuckBody_one",
+     "key": "scope.none",
      "language": "de",
-     "severity": "low",
-     "problem": "Uses gendered role term 'Betreiber' instead of neutral form.",
-     "suggestion": "auch der Betrachter sieht sie.",
-     "source": "grok"
-    },
-    {
-     "key": "attest.stuckBody_other",
-     "language": "de",
-     "severity": "low",
-     "problem": "Uses gendered role term 'Betreiber' instead of neutral form.",
-     "suggestion": "auch der Betrachter sieht sie.",
-     "source": "grok"
-    },
-    {
-     "key": "attest.stuckBody_one",
-     "language": "es",
-     "severity": "low",
-     "problem": "Uses gendered role term 'operador' instead of neutral form.",
-     "suggestion": "el personal operativo también la ve.",
-     "source": "grok"
-    },
-    {
-     "key": "attest.stuckBody_other",
-     "language": "es",
-     "severity": "low",
-     "problem": "Uses gendered role term 'operador' instead of neutral form.",
-     "suggestion": "el personal operativo también las ve.",
-     "source": "grok"
-    },
-    {
-     "key": "scope.inNoCase",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Translation creates common Spanish idiom meaning 'under no circumstances', which conflicts with product term 'caso'.",
-     "suggestion": "No asignado a ningún caso",
-     "source": "grok"
-    },
-    {
-     "key": "scope.benign",
-     "language": "es",
-     "severity": "low",
-     "problem": "Wording is incomplete and unnatural; missing preposition for the technical term.",
-     "suggestion": "Proponer como benigno",
-     "source": "grok"
-    },
-    {
-     "key": "scope.mergeBody",
-     "language": "de",
-     "severity": "low",
-     "problem": "Inconsistent use of English plural 'Findings' (elsewhere singular 'Finding' is kept per glossary).",
-     "suggestion": "Alle Findings von Fall {{number}} ({{title}}) wechseln in diesen Fall; Fall {{number}} wird als zusammengeführt geschlossen.",
+     "severity": "high",
+     "problem": "Grammatical error: 'keinen Finding' uses the wrong article for the neuter noun 'Finding'.",
+     "suggestion": "Der Angriffsgraph verbindet kein Finding außerhalb dieses Falls.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-25T10:48:25.334Z"
+   "at": "2026-11-25T13:26:08.285Z"
   },
   "features/workspaces": {
-   "hash": "9e284c17258f35b1",
+   "hash": "3a8c27915a4d771f",
    "findings": [
     {
-     "key": "overview.sourcesLede",
+     "key": "overview.trend.better",
      "language": "de",
-     "severity": "medium",
-     "problem": "Wording is unnatural and grammatically awkward in German.",
-     "suggestion": "Wo dieser Workspace seine Telemetrie erfasst.",
+     "severity": "low",
+     "problem": "Wording is clearly unnatural for a native speaker.",
+     "suggestion": "von {{previous}} gesunken",
+     "source": "grok"
+    },
+    {
+     "key": "overview.trend.worse",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording is clearly unnatural for a native speaker.",
+     "suggestion": "von {{previous}} gestiegen",
      "source": "grok"
     },
     {
      "key": "empty.ask",
-     "language": "de",
-     "severity": "low",
-     "problem": "Role name uses gendered forms contrary to glossary rule requiring no gender forms for roles.",
-     "suggestion": "Bitten Sie einen Administrator um Zugriff auf einen Workspace.",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses only masculine form for the person/role instead of the required paired gender forms (house style).",
+     "suggestion": "Pida a un administrador o a una administradora que le dé acceso a un espacio de trabajo.",
+     "source": "grok"
+    },
+    {
+     "key": "empty.appoint",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses only masculine form for the person/role instead of the required paired gender forms (house style).",
+     "suggestion": "Nombre a un administrador o a una administradora del producto para crear el primer espacio de trabajo: usted mismo u otra persona, con el aviso de arriba.",
+     "source": "grok"
+    },
+    {
+     "key": "empty.licenseAsk",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses only masculine plural forms for people instead of paired gender forms (house style).",
+     "suggestion": "Pida una a los propietarios o a las propietarias o administradores o administradoras de la organización.",
      "source": "grok"
     },
     {
      "key": "attention.title_one",
      "language": "de",
-     "severity": "high",
-     "problem": "Unnatural and grammatically awkward phrasing that does not convey 'needs you' correctly or formally.",
+     "severity": "medium",
+     "problem": "Unnatural wording; 'Punkt braucht Sie' does not sound like native German for this context.",
      "suggestion": "{{count}} Punkt braucht Ihre Aufmerksamkeit",
      "source": "grok"
     },
     {
      "key": "attention.title_other",
      "language": "de",
-     "severity": "high",
-     "problem": "Unnatural and grammatically awkward phrasing that does not convey 'needs you' correctly or formally.",
+     "severity": "medium",
+     "problem": "Unnatural wording; 'Punkte brauchen Sie' does not sound like native German for this context.",
      "suggestion": "{{count}} Punkte brauchen Ihre Aufmerksamkeit",
-     "source": "grok"
-    },
-    {
-     "key": "core.waiting.body_one",
-     "language": "de",
-     "severity": "high",
-     "problem": "Informal address 'sie' instead of formal 'Sie'.",
-     "suggestion": "Findings, die Sie brauchen, bleiben offen.",
-     "source": "grok"
-    },
-    {
-     "key": "core.waiting.body_other",
-     "language": "de",
-     "severity": "high",
-     "problem": "Informal address 'sie' instead of formal 'Sie'.",
-     "suggestion": "Findings, die Sie brauchen, bleiben offen.",
-     "source": "grok"
-    },
-    {
-     "key": "attention.clear",
-     "language": "de",
-     "severity": "high",
-     "problem": "Grammatically incorrect and unnatural German structure for 'Nothing needs you right now'.",
-     "suggestion": "Gerade braucht Sie nichts: Kein schwerer Fall ist offen und alle Daten kommen an.",
      "source": "grok"
     },
     {
      "key": "analysis.why.waiting",
      "language": "de",
-     "severity": "medium",
-     "problem": "Grammatically incomplete phrase missing required article/preposition to match English meaning.",
-     "suggestion": "Der AI SOC hält die letzten {{lateness}} der Ereigniszeit für verspätete Datensätze offen; dieses Fenster schließt, sobald der Fortschritt der Quellen {{closesAt}} erreicht.",
+     "severity": "low",
+     "problem": "Missing preposition/wording; 'die letzten {{lateness}} Ereigniszeit' is incomplete and ungrammatical compared to English.",
+     "suggestion": "die letzten {{lateness}} der Ereigniszeit",
+     "source": "grok"
+    },
+    {
+     "key": "core.waiting.body_one",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent term; uses 'Findings' (plural) while glossary specifies 'Finding' for German.",
+     "suggestion": "Finding, die sie brauchen",
+     "source": "grok"
+    },
+    {
+     "key": "core.waiting.body_other",
+     "language": "de",
+     "severity": "low",
+     "problem": "Inconsistent term; uses 'Findings' (plural) while glossary specifies 'Finding' for German.",
+     "suggestion": "Finding, die sie brauchen",
      "source": "grok"
     },
     {
      "key": "size.figures",
      "language": "es",
-     "severity": "high",
-     "problem": "Uses singular \"CPU\" where English uses plural \"CPUs\"",
+     "severity": "medium",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs' as in English source.",
      "suggestion": "{{cpus}} CPUs, {{memory}} GiB",
      "source": "grok"
     },
     {
      "key": "size.missingCpus_other",
      "language": "es",
-     "severity": "high",
-     "problem": "Wrong plural form: uses singular \"CPU\" instead of \"CPUs\"",
-     "suggestion": "{{count}} CPUs",
-     "source": "grok"
-    },
-    {
-     "key": "size.custom.cpus",
-     "language": "es",
      "severity": "medium",
-     "problem": "Uses singular \"CPU\" where English uses plural \"CPUs\"",
-     "suggestion": "CPUs",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs'.",
+     "suggestion": "{{count}} CPUs",
      "source": "grok"
     },
     {
      "key": "size.here",
      "language": "es",
      "severity": "medium",
-     "problem": "Uses singular \"CPU\" where English uses plural \"CPUs\"",
-     "suggestion": "{{cpus}} CPUs, {{memory}} GiB para AI SOCs · libre junto a los demás espacios de trabajo: {{freeCpus}} CPUs, {{freeMemory}} GiB",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs' (twice).",
+     "suggestion": "{{cpus}} CPUs, {{memory}} GiB para AI SOC · libre junto a los demás espacios de trabajo: {{freeCpus}} CPUs, {{freeMemory}} GiB",
      "source": "grok"
     },
     {
-     "key": "size.capacity",
+     "key": "size.custom.range",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs'.",
+     "suggestion": "elija aquí {{cpus}} CPUs y {{memory}} GiB",
+     "source": "grok"
+    },
+    {
+     "key": "size.custom.cpus",
+     "language": "es",
+     "severity": "medium",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs'.",
+     "suggestion": "CPUs",
+     "source": "grok"
+    },
+    {
+     "key": "size.customPace",
+     "language": "es",
+     "severity": "low",
+     "problem": "Uses singular 'CPU' instead of plural 'CPUs' (twice).",
+     "suggestion": "Sus CPUs determinan lo rápido que se pone al día tras una pausa o una importación; no se midió ningún tamaño por debajo de 32 CPUs con 1,5 millones de eventos.",
+     "source": "grok"
+    },
+    {
+     "key": "corePlacement.moveLede",
      "language": "de",
      "severity": "medium",
-     "problem": "Wording is awkward and does not match the English meaning",
-     "suggestion": "{{taken}} von {{total}} GiB für AI SOCs mit dieser Größe vorgesehen",
-     "source": "grok"
-    },
-    {
-     "key": "corePlacement.lost.body",
-     "language": "de",
-     "severity": "high",
-     "problem": "Translation drops 'age' and compares data directly to the stream instead of its age, changing the meaning.",
-     "suggestion": "Der Graph des AI SOC: Findings, die er aus Daten abgeleitet hatte, die älter als das Alter des Ingest-Streams sind, kommen möglicherweise nicht zurück. Fälle, Bewertungen und bereits übernommene Findings bleiben erhalten.",
-     "source": "grok"
-    },
-    {
-     "key": "corePlacement.lost.body",
-     "language": "es",
-     "severity": "high",
-     "problem": "Translation drops 'age' and compares data directly to the stream instead of its age, changing the meaning.",
-     "suggestion": "El grafo del AI SOC: los hallazgos que había derivado de datos más antiguos que la antigüedad del flujo de ingesta pueden no volver. Los casos, los veredictos y los hallazgos ya incorporados se conservan.",
+     "problem": "Wording is clearly unnatural due to repetition and awkward structure.",
+     "suggestion": "Der AI SOC endet an seiner jetzigen Platzierung und startet neu und leer an der neuen.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-25T10:48:47.307Z"
+   "at": "2026-11-25T13:27:41.785Z"
   },
   "features/soc": {
-   "hash": "ab857cfa9b0d6fdc",
+   "hash": "5fcdab79ccec46f3",
    "findings": [
     {
-     "key": "actor.activity.label",
-     "language": "de",
-     "severity": "high",
-     "problem": "Translation is incomplete and does not match English structure; ends abruptly without the equivalent of 'week'.",
-     "suggestion": "Sichtungen pro Woche in den letzten {{weeks}} Wochen: {{total}} insgesamt, {{latest}} in der letzten Woche, {{peak}} in der stärksten Woche.",
-     "source": "grok"
-    },
-    {
      "key": "mitre.matrix.note",
-     "language": "de",
+     "language": "es",
      "severity": "medium",
-     "problem": "Uses gendered forms 'Analystin oder des Analysten', violating the rule that role names must appear without gender forms.",
-     "suggestion": "die Lesart des Analysten.",
+     "problem": "Uses singular male form for person instead of required paired gender forms for non-role references to people.",
+     "suggestion": "la lectura de la analista o del analista",
      "source": "grok"
     },
     {
      "key": "case.severity.info",
-     "language": "es",
+     "language": "de",
      "severity": "low",
-     "problem": "Translated as 'informativa' while other severities use direct adjectives matching English style; inconsistent wording.",
+     "problem": "Capitalization inconsistent with other severity levels (all others lowercase).",
      "suggestion": "info",
      "source": "grok"
     },
     {
-     "key": "actor.sighting.kind.paste",
-     "language": "de",
-     "severity": "low",
-     "problem": "English term 'Paste' left untranslated.",
-     "suggestion": "Paste",
-     "source": "grok"
-    },
-    {
-     "key": "actor.sighting.kind.paste",
+     "key": "actors.footer_one",
      "language": "es",
      "severity": "low",
-     "problem": "English term 'Paste' left untranslated.",
-     "suggestion": "Paste",
+     "problem": "Uses English word 'actor' instead of Spanish 'actor' consistently with other actor labels in the file.",
+     "suggestion": "{{count}} actor · activos: {{active}} · vinculados a un caso: {{linked}}",
      "source": "grok"
     },
     {
      "key": "mitre.partial_other",
      "language": "de",
      "severity": "medium",
-     "problem": "Glossary violation: 'Findings' used instead of 'Finding'.",
+     "problem": "Uses 'Findings' instead of the glossary term 'Finding' for German.",
      "suggestion": "Gezählt aus {{counted}} von {{count}} Finding des Falls. Für die übrigen konnte der AI SOC nicht gelesen werden, oder der Fall hat mehr als 50.",
      "source": "grok"
     },
     {
+     "key": "story.episodes.markerLegend",
+     "language": "de",
      "severity": "low",
-     "problem": "Grok's answer could not be read: {\n  \"findings\": [\n    {\n      \"key\": \"story.rows.other.finding_other\",\n      \"language\": \"de\",\n      \"severity\": \"medium\",\n      \"problem\": \"Inconsistent use of English term: mixes 'Finding' (per glossary) with English plural 'Findings'\",\n      \"suggestion\": \"story.rows.other.finding_other\": \"{{coun",
+     "problem": "Translation 'entschiedene Bedingung' does not clearly convey 'standing term decided'.",
+     "suggestion": "Änderung am Fall oder entschiedener Standing Term",
+     "source": "grok"
+    },
+    {
+     "key": "story.event.decided",
+     "language": "es",
+     "severity": "low",
+     "problem": "Feminine adjective 'decidida' may not agree with variable {{term}}.",
+     "suggestion": "{{term}} decidido: {{state}}",
+     "source": "grok"
+    },
+    {
+     "key": "story.episodes.between_one",
+     "language": "es",
+     "severity": "low",
+     "problem": "Wording 'repartido entre ellos' is unnatural for the singular case.",
+     "suggestion": "{{count}} más repartido entre ellos",
+     "source": "grok"
+    },
+    {
+     "key": "derivation.graph.deviceCount_other",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Wrong grammatical case (dative plural) for the count label.",
+     "suggestion": "{{count}} Geräte",
      "source": "grok"
     },
     {
      "key": "derivation.witnesses.more_one",
      "language": "de",
-     "severity": "high",
-     "problem": "Grammatically incorrect adjective ending and unnatural phrasing for singular count.",
-     "suggestion": "und {{count}} weiterer",
-     "source": "grok"
-    },
-    {
-     "key": "summary.strip.ofTactics_one",
-     "language": "de",
      "severity": "medium",
-     "problem": "Grammatically incorrect; German requires plural form after 'von {{count}}' even for count=1.",
-     "suggestion": "{{n}} von {{count}} Taktiken",
+     "problem": "Wrong grammatical form for the singular/plural continuation phrase; 'weiterer' is incorrect and incomplete in context.",
+     "suggestion": "und {{count}} weitere",
      "source": "grok"
     },
     {
-     "key": "summary.entities.moreNamed",
-     "language": "de",
+     "key": "derivation.technique.cited_one",
+     "language": "es",
      "severity": "medium",
-     "problem": "Unnatural wording and word order; verb 'zeigen' and infinitive form are not idiomatic for a UI action.",
-     "suggestion": "{{count}} weitere Rollen anzeigen",
+     "problem": "Gender agreement error: 'Citada' is feminine but refers to masculine 'registro'.",
+     "suggestion": "Citado por {{count}} registro",
      "source": "grok"
     },
     {
-     "key": "finding.standing.noRecords",
+     "key": "summary.strip.refuted_one",
+     "language": "es",
+     "severity": "low",
+     "problem": "Gender agreement error: 'descartada' is feminine but context refers to masculine 'hallazgo'.",
+     "suggestion": "{{count}} descartado",
+     "source": "grok"
+    },
+    {
+     "key": "summary.entities.standing",
      "language": "de",
      "severity": "low",
-     "problem": "Inconsistent use of singular 'Bedingung' while the section title and other strings use plural 'Bedingungen'.",
-     "suggestion": "Die Bedingungen nennen keinen Datensatz dieses Findings.",
+     "problem": "Inconsistent translation of 'standing' key (uses 'Stand' while standing.title and related keys use 'Bedingungen').",
+     "suggestion": "Bedingungen",
      "source": "grok"
     },
     {
-     "key": "summary.freshness.data",
-     "language": "de",
+     "key": "summary.entities.standing",
+     "language": "es",
      "severity": "low",
-     "problem": "Inconsistent hyphenation of product name ('AI-SOC') versus the established 'AI SOC' spelling used everywhere else.",
-     "suggestion": "AI-SOC-Daten mit Stand {{time}}",
-     "source": "grok"
-    },
-    {
-     "key": "summary.checks.on_other",
-     "language": "de",
-     "severity": "high",
-     "problem": "English word 'Findings' left untranslated (glossary specifies German term 'Finding').",
-     "suggestion": "bei {{n}} von {{count}} Findings",
-     "source": "grok"
-    },
-    {
-     "key": "summary.truncated",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Wording is unnatural for a native speaker; 'fold' rendered as 'Zusammenfassung' creates awkward phrasing.",
-     "suggestion": "Über seine Grenzen hinaus ließ die Zusammenfassung aus: {{what}}.",
+     "problem": "Inconsistent translation of 'standing' key (uses 'Estado' while standing.title and related keys use 'Condiciones').",
+     "suggestion": "Condiciones",
      "source": "grok"
     },
     {
      "key": "summary.truncated",
      "language": "es",
      "severity": "medium",
-     "problem": "Wording is unnatural for a native speaker; 'fold' rendered as 'consolidación' creates awkward phrasing.",
-     "suggestion": "Más allá de sus límites, la consolidación omitió: {{what}}.",
+     "problem": "Wrong term: 'consolidación' does not convey the meaning of the English source.",
+     "suggestion": "Más allá de sus límites, el resumen omitió: {{what}}.",
+     "source": "grok"
+    },
+    {
+     "key": "summary.truncated",
+     "language": "de",
+     "severity": "low",
+     "problem": "Wording is unnatural for a native speaker.",
+     "suggestion": "Über seine Grenzen hinaus hat die Zusammenfassung ausgelassen: {{what}}.",
+     "source": "grok"
+    },
+    {
+     "key": "summary.checks.on_other",
+     "language": "de",
+     "severity": "low",
+     "problem": "Glossary violation: uses English plural 'Findings' instead of the specified term 'Finding'.",
+     "suggestion": "bei {{n}} von {{count}} Findings",
      "source": "grok"
     }
    ],
-   "at": "2026-11-25T10:48:44.705Z"
+   "at": "2026-11-25T13:25:46.267Z"
   },
   "shared/i18n": {
    "hash": "85ab5076226d232d",
@@ -5209,109 +4883,77 @@
    "at": "2026-11-25T10:48:46.169Z"
   },
   "shared/i18n/errors": {
-   "hash": "44f6ae9db9b9f4e7",
+   "hash": "370c632fe590a34d",
    "findings": [
     {
-     "key": "access.invalid_subject",
-     "language": "de",
+     "key": "access.person_required",
+     "language": "es",
      "severity": "medium",
-     "problem": "Inconsistent term: 'user' rendered as 'Person' while 'Benutzer' is used for the same concept in nearby keys such as access.unknown_subject.",
-     "suggestion": "Ungültiger Benutzer.",
-     "source": "grok"
-    },
-    {
-     "key": "auth.session_required",
-     "language": "de",
-     "severity": "high",
-     "problem": "Sentence is incomplete and misses a verb, unlike the English source.",
-     "suggestion": "Das kann nur eine angemeldete Person tun, kein API-Schlüssel.",
+     "problem": "Uses only the feminine form 'administradora' for a person/role description, violating the house style that requires paired gender forms for people.",
+     "suggestion": "Solo una persona puede ser nombrada administradora o administrador del producto.",
      "source": "grok"
     },
     {
      "key": "apikeys.escalation",
      "language": "de",
      "severity": "high",
-     "problem": "Sentence is incomplete and unnatural; missing verb equivalent to 'do'.",
-     "suggestion": "Der Schlüssel könnte mehr tun als Sie selbst. Wählen Sie nur Berechtigungen, die Sie dort haben, wo der Inhaber sie hat.",
+     "problem": "First sentence is incomplete and unnatural German.",
+     "suggestion": "Der Schlüssel könnte mehr können als Sie selbst. Wählen Sie nur Berechtigungen, die Sie dort haben, wo der Inhaber sie hat.",
+     "source": "grok"
+    },
+    {
+     "key": "apikeys.escalation",
+     "language": "es",
+     "severity": "high",
+     "problem": "Sentence is incomplete and does not convey the full English meaning.",
+     "suggestion": "La clave podría hacer más de lo que usted puede. Elija solo permisos que usted tenga donde los tiene el propietario.",
      "source": "grok"
     },
     {
      "key": "collection.core_size_too_small",
      "language": "de",
      "severity": "medium",
-     "problem": "Wording is awkward and does not clearly convey the measurement/holding capacity.",
-     "suggestion": "Diese Importdatei enthält schätzungsweise etwa {{estimatedRecords}} Datensätze; die AI-SOC-Größe {{size}} ist für etwa {{sizeHolds}} ausgelegt. Wählen Sie {{needs}} oder starten Sie ihn trotzdem.",
+     "problem": "Uses hyphenated 'AI-SOC' instead of the required term 'AI SOC'.",
+     "suggestion": "Dieser Import enthält schätzungsweise etwa {{estimatedRecords}} Datensätze; die Größe des AI SOC {{size}} ist für etwa {{sizeHolds}} Datensätze ausgelegt. Wählen Sie {{needs}} oder starten Sie ihn trotzdem.",
      "source": "grok"
     },
     {
-     "key": "collection.invalid_name",
-     "language": "es",
+     "key": "collection.core_size_unknown",
+     "language": "de",
      "severity": "medium",
-     "problem": "English imperative 'Use' left untranslated.",
-     "suggestion": "Utilice de 1 a {{max}} caracteres.",
+     "problem": "Uses hyphenated 'AI-SOC' instead of the required term 'AI SOC'.",
+     "suggestion": "In einer Stichprobe dieses Imports ließ sich kein Datensatz zählen. Ob die Größe des AI SOC {{size}} (etwa {{sizeHolds}} Datensätze) ihn fasst, ist daher offen. Wählen Sie eine Größe oder starten Sie ihn trotzdem.",
      "source": "grok"
     },
     {
-     "key": "cases.invalid_title",
-     "language": "es",
-     "severity": "medium",
-     "problem": "English imperative 'Use' left untranslated.",
-     "suggestion": "Utilice de 1 a 200 caracteres.",
+     "key": "cases.attestation_approvers_full",
+     "language": "de",
+     "severity": "high",
+     "problem": "Uses 'Zustimmung' for 'approver' instead of the correct role term 'Zustimmender', and mixes it inconsistently with 'Zustimmenden'.",
+     "suggestion": "Kein weiterer Zustimmender passt: Der AI SOC bewahrt höchstens 8192 Bytes aus Erklärung und Zustimmenden auf. Kürzen Sie die Erklärung in einem neuen Vorschlag.",
      "source": "grok"
     },
     {
      "key": "core.size_invalid",
-     "language": "es",
-     "severity": "low",
-     "problem": "CPU and GiB forms do not agree with the preceding numbers (plural contexts).",
-     "suggestion": "Este tamaño de AI SOC no es posible. Un tamaño personalizado necesita al menos {{minCpus}} CPU y {{minMemoryGiB}} GiB, memoria en GiB enteros y de {{minGiBPerCpu}} a {{maxGiBPerCpu}} GiB por CPU.",
+     "language": "de",
+     "severity": "medium",
+     "problem": "Inconsistent terminology for the product name: 'AI-SOC-Größe' vs 'AI SOCs' elsewhere; should consistently follow 'der AI SOC'.",
+     "suggestion": "Diese AI-SOC-Größe ist nicht möglich. Eine eigene Größe braucht mindestens {{minCpus}} CPUs und {{minMemoryGiB}} GiB, Arbeitsspeicher in ganzen GiB und {{minGiBPerCpu}} bis {{maxGiBPerCpu}} GiB pro CPU.",
      "source": "grok"
     },
     {
      "key": "core.size_not_licensed",
-     "language": "es",
-     "severity": "low",
-     "problem": "CPU and GiB forms do not agree with the preceding numbers (plural contexts).",
-     "suggestion": "La licencia permite AI SOC de hasta {{maxCpus}} CPU y {{maxMemoryGiB}} GiB. Elija un tamaño más pequeño o amplíe la licencia.",
-     "source": "grok"
-    },
-    {
-     "key": "core.size_no_capacity",
-     "language": "es",
-     "severity": "low",
-     "problem": "CPU and GiB forms do not agree with the preceding numbers (plural contexts).",
-     "suggestion": "Este tamaño necesita {{needCpus}} CPU y {{needMemoryGiB}} GiB en sus picos; junto a los demás espacios de trabajo quedan libres aquí {{freeCpus}} CPU y {{freeMemoryGiB}} GiB. Elija un tamaño más pequeño o personalizado.",
-     "source": "grok"
-    },
-    {
-     "key": "core.size_invalid",
      "language": "de",
      "severity": "low",
-     "problem": "Inconsistent hyphenation of the product name (AI-SOC vs. AI SOC elsewhere).",
-     "suggestion": "Diese AI SOC Größe ist nicht möglich. Eine eigene Größe braucht mindestens {{minCpus}} CPUs und {{minMemoryGiB}} GiB, Arbeitsspeicher in ganzen GiB und {{minGiBPerCpu}} bis {{maxGiBPerCpu}} GiB pro CPU.",
-     "source": "grok"
-    },
-    {
-     "key": "integrations.invalid_pem",
-     "language": "de",
-     "severity": "high",
-     "problem": "Uses 'und' (and) instead of 'oder' (or), changing the meaning.",
-     "suggestion": "Dies ist kein gültiges PEM-Zertifikat oder kein gültiger PEM-Schlüssel.",
-     "source": "grok"
-    },
-    {
-     "key": "assets.invalid_owner",
-     "language": "es",
-     "severity": "medium",
-     "problem": "Unnatural and slightly ungrammatical phrasing ('con como máximo').",
-     "suggestion": "Nombre al responsable con un máximo de {{max}} caracteres, o elija un miembro.",
+     "problem": "Uses 'AI SOCs' while other keys use hyphenated 'AI-SOC' form, violating consistent product name usage.",
+     "suggestion": "Die Lizenz erlaubt AI-SOCs bis zu {{maxCpus}} CPUs und {{maxMemoryGiB}} GiB. Wählen Sie eine kleinere Größe oder erweitern Sie die Lizenz.",
      "source": "grok"
     },
     {
      "key": "reports.period_invalid",
      "language": "es",
      "severity": "medium",
-     "problem": "Misses part of the meaning ('and covers').",
+     "problem": "Missing part of the meaning: does not mention that the period must cover (span) at most 400 days.",
      "suggestion": "Elija un período ya terminado que abarque como máximo 400 días.",
      "source": "grok"
     },
@@ -5319,44 +4961,28 @@
      "key": "reports.invalid_name",
      "language": "es",
      "severity": "low",
-     "problem": "Slightly awkward word order for 'at most'.",
+     "problem": "Wording is slightly unnatural and less precise than the English.",
      "suggestion": "Introduzca un nombre de como máximo {{max}} caracteres.",
      "source": "grok"
     },
     {
-     "key": "cases.invalid_named",
+     "key": "intel.bundle_too_large",
      "language": "de",
-     "severity": "medium",
-     "problem": "Uses gendered role forms (Lesende, Verantwortliche) instead of gender-neutral role names as required by glossary.",
-     "suggestion": "Nennen Sie jedes Mitglied höchstens einmal, als Leser oder Manager, und höchstens {{max}} Personen.",
-     "source": "grok"
-    },
-    {
-     "key": "cases.locks_out",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Uses gendered forms (Verantwortliche oder Verantwortlicher) instead of gender-neutral role name.",
-     "suggestion": "Behalten Sie sich als Manager, sonst könnten Sie diesen Fall nicht mehr ändern.",
-     "source": "grok"
-    },
-    {
-     "key": "collection.credential_not_allowed",
-     "language": "de",
-     "severity": "medium",
-     "problem": "Translation uses plural 'andere' and 'sie' while English source uses singular 'another one'; wording is also slightly unnatural/incomplete.",
-     "suggestion": "Wählen Sie eine andere oder erlauben Sie sie auf der Seite Anmeldedaten.",
+     "severity": "low",
+     "problem": "Wording is awkward and slightly unclear compared to the English source.",
+     "suggestion": "Das Bundle ist größer als {{max}} MiB, ob komprimiert oder nicht.",
      "source": "grok"
     },
     {
      "key": "collection.credential_in_use",
      "language": "de",
-     "severity": "medium",
-     "problem": "Translation uses plural 'andere' while English source uses singular 'another credential'; wording is slightly unnatural.",
+     "severity": "low",
+     "problem": "Wording is incomplete and slightly unnatural; 'andere' lacks the noun or article for clarity.",
      "suggestion": "Quellen melden sich noch mit diesen Anmeldedaten an ({{accesses}}). Weisen Sie ihnen zuerst eine andere zu.",
      "source": "grok"
     }
    ],
-   "at": "2026-11-25T10:50:45.600Z"
+   "at": "2026-11-25T13:28:14.154Z"
   }
  }
 }
