@@ -49,7 +49,7 @@ case "${1:-status}" in
     plutil -lint "$PLIST" >/dev/null
     launchctl bootout "$DOMAIN/$LABEL" 2>/dev/null || true
     launchctl bootstrap "$DOMAIN" "$PLIST"
-    echo "On: the visual review of ${BASE:-main} runs $WHEN (budget \$${MAX_USD:-3}). Switch off: .grok-bot/schedule.sh uninstall"
+    echo "On: the visual review of ${BASE:-main} runs $WHEN (budget: $([ "${MAX_USD:-3}" = none ] && echo "no limit" || echo "\${MAX_USD:-3}")). Switch off: .grok-bot/schedule.sh uninstall"
     ;;
   uninstall)
     launchctl bootout "$DOMAIN/$LABEL" 2>/dev/null || true

@@ -268,7 +268,7 @@ export function renderReport(c) {
   const tally = (s) => open.filter((f) => (f.triage?.suggest ?? "none") === s).length;
   const knownCount = c.pageRows.reduce((n, r) => n + r.known.length, 0) + c.texts.known.length;
   const grok = c.ai
-    ? `Grok (texts: ${esc(c.models.text)}, screenshots: ${esc(c.models.page)}) cost this run: <strong>$${c.spent.toFixed(2)}</strong> of $${c.maxUsd}`
+    ? `Grok (texts: ${esc(c.models.text)}, screenshots: ${esc(c.models.page)}) cost this run: <strong>$${c.spent.toFixed(2)}</strong>${c.maxUsd == null ? "" : ` of ${c.maxUsd}`}`
     : c.redraw
       ? `redrawn without Grok; Grok's earlier reviews shown${c.spent ? `, the run cost $${c.spent.toFixed(2)}` : ""}`
       : "without Grok (AI=0): checks, and Grok's earlier reviews of unchanged screenshots";

@@ -37,7 +37,7 @@ if [ "$FROM_GITHUB" = 1 ]; then
     echo "Could not fetch $BASE from GitHub; reviewing this Mac's $BASE"
   fi
 fi
-echo "== $(date): weekly visual review of $BASE, Grok budget \$$MAX_USD"
+echo "== $(date): weekly visual review of $BASE, Grok budget: $MAX_USD (USD; none is no limit)"
 
 # Docker Desktop is started when it is not running, and given three minutes.
 if ! docker info >/dev/null 2>&1; then

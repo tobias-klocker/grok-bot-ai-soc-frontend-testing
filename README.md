@@ -85,7 +85,7 @@ budget; pages left over are reviewed first on the next run.
 
 | Setting | Effect |
 |---|---|
-| `MAX_USD=1` | budget for Grok this run (default 2) |
+| `MAX_USD=1` | budget for Grok this run (default 2; `none`: no limit) |
 | `AI=0` | sweep and free checks, and Grok's earlier reviews of screenshots that did not change; no key needed, $0 |
 | `SWEEP_ONLY='inbox\|cases'` | only routes matching this expression (quick checks) |
 | `SWEEP_VARIANTS='tablet'` | which variants to sweep, by name or part of one: `tablet` (820 px), `wide` (1920 px), `qhd` (2560 px), `de-`, `all`; default the 8 basic ones (desktop 1440 px, phone 390 px) |
@@ -157,8 +157,8 @@ keeps its suggestion in later runs. You decide: Claude does not write
     .grok-bot/schedule.sh uninstall   switch it off
 
 A launchd job of your user runs `scheduled.sh` at the time in `schedule.conf`
-(Mondays 06:42 unless you change it): the visual review of `main` (as it is in
-this repository, not on GitHub) with every page, Grok within `MAX_USD`. It
+(Mondays 06:42 unless you change it): the visual review of `main` (as GitHub has it, fetched first;
+`FROM_GITHUB=0` takes this Mac's) with every page, Grok within `MAX_USD` (`none` in `schedule.conf`: no limit). It
 starts Docker Desktop when it is not running, takes the same lock as manual
 runs (one run at a time), opens nothing, and ends with a notification either
 way: how many findings are new since the previous run, what Grok cost, where

@@ -76,7 +76,7 @@ if [ "${AI:-1}" = 0 ]; then
   say "Review: automatic checks and Grok's earlier reviews of unchanged screenshots (AI=0)"
   ai_args=(-e AI=0 --network none)
 else
-  say "Review by Grok, budget \$${MAX_USD:-2}"
+  say "Review by Grok, budget $([ "${MAX_USD:-2}" = none ] && echo "without a limit" || echo "\${MAX_USD:-2}")"
   ai_args=(-e XAI_API_KEY)
 fi
 docker run --rm "${hardening[@]}" "${ai_args[@]}" \

@@ -30,7 +30,9 @@ const AI = !REDRAW && process.env.AI !== "0" && Boolean(process.env.XAI_API_KEY)
 // vision evals, Nov 2026).
 const TEXT_MODEL = process.env.TEXT_MODEL || "grok-4.3";
 const PAGE_MODEL = process.env.PAGE_MODEL || process.env.REVIEW_MODEL || "grok-4.7";
-const MAX_USD = Number(process.env.MAX_USD || 2);
+// MAX_USD=none: no limit.
+const MAX_USD = process.env.MAX_USD === "none" ? Infinity : Number(process.env.MAX_USD || 2);
+const budgetText = Number.isFinite(MAX_USD) ? `${MAX_USD}` : "no limit";
 const BUDGET = AI ? MAX_USD : 0;
 // FULL=1 reviews everything again; FULL=texts only the translations, FULL=pages only the screenshots.
 const FULL_TEXTS = ["1", "texts"].includes(process.env.FULL);
@@ -466,7 +468,7 @@ const aiTexts = new Map(); // ns -> { findings, reused, skipped }
       measured = true;
       imageTokens = Math.max(100, Math.round(r.input - prompt.length / 3));
       const each = pageEstimate();
-      console.log(`  A screenshot counts as about ${imageTokens} tokens, about $${each.toFixed(4)} with its prompt; all ${pageJobs.length} about $${(each * pageJobs.length).toFixed(2)} (budget left $${(MAX_USD - spent).toFixed(2)})`);
+      console.log(`  A screenshot counts as about ${imageTokens} tokens, about $${each.toFixed(4)} with its prompt; all ${pageJobs.length} about $${(each * pageJobs.length).toFixed(2)} (budget left ${Number.isFinite(MAX_USD) ? `${(MAX_USD - spent).toFixed(2)}` : "no limit"})`);
     }
     const findings = findingsOf(r.answer).map((f) => ({ ...f, variant: j.v, source: "grok", onPage: quoted(f.quote, textsOf(j.r)) }));
     addPage(j.p.route, { findings });
@@ -482,7 +484,7 @@ const aiTexts = new Map(); // ns -> { findings, reused, skipped }
   if (skipped.length)
     notes.push(
       AI
-        ? `${skipped.length} screenshots were not reviewed: the budget of ${MAX_USD} was reached. Raise it with MAX_USD=…; the next run reviews them first.`
+        ? `${skipped.length} screenshots were not reviewed: the budget of ${budgetText} was reached. Raise it with MAX_USD=…; the next run reviews them first.`
         : `${skipped.length} screenshots are new or changed since Grok last reviewed them and were not reviewed in this run (${REDRAW ? "a redraw" : "AI=0"}); .grok-bot/run.sh visual-review reviews them.`,
     );
 }
@@ -671,7 +673,7 @@ writeFileSync(
     redraw: REDRAW,
     models: { text: TEXT_MODEL, page: PAGE_MODEL },
     spent,
-    maxUsd: MAX_USD,
+    maxUsd: Number.isFinite(MAX_USD) ? MAX_USD : null,
     pageTotal: pages.size,
     variantTotal: sweeps.length,
     reviewed,
@@ -696,6 +698,6 @@ const openTotal = pageRows.reduce((n, r) => n + r.open.length, 0) + texts.open.l
 if (previous) console.log(`\nNew since the previous run: ${newPages} page findings, ${newTexts} text findings (compared with ${since})`);
 console.log(`\nPages: ${pageCount.high} high, ${pageCount.medium} medium, ${pageCount.low} low · Texts: ${textCount.high} high, ${textCount.medium} medium, ${textCount.low} low`);
 console.log(`Open: ${openTotal}, triaged by Claude: ${triaged}, not yet: ${openTotal - triaged} · known, to fix: ${pageRows.reduce((n, r) => n + r.known.length, 0) + texts.known.length} · no longer found: ${gone.length}`);
-if (AI) console.log(`Grok cost this run: $${spent.toFixed(2)} (budget $${MAX_USD})`);
+if (AI) console.log(`Grok cost this run: $${spent.toFixed(2)} (budget ${budgetText})`);
 for (const n of notes) console.log(`Note: ${n}`);
 if (failures.length) console.log(`FAILED: Grok could not review ${failureSummary} (${failures[0].error.slice(0, 160)})`);
