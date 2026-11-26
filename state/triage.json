@@ -230,6 +230,13 @@
    "fixIn": "web/src/features/inbox/useInboxText.ts (not committed yet)",
    "why": "Without an organization's role list, a built-in role showed its id ('erhielt analyst'); it is now named by its id ('erhielt Analyst', checked in the mock).",
    "at": "2026-11-25"
+  },
+  "badge-cell-ellipsis": {
+   "title": "An ellipsis after status and severity badges in table cells",
+   "suggest": "fix",
+   "fixIn": "Design system (~/code/storybook), DataTable useMeasuredColumns: locked column widths were fractions of a pixel, so the widest value of a column could miss by a fraction where text draws wider (Linux); 0.44.1 rounds them up (columns/wholeColumns.ts)",
+   "why": "Measured on the partner cases page: the widest pill of each column (Medium, In progress) has exactly 0.000 px of room, every other pill several; on this Mac it just fits, in the sweep's Linux browser it misses by a fraction and the cell draws the ellipsis.",
+   "at": "2026-11-26"
   }
  },
  "findings": {
@@ -3231,6 +3238,285 @@
    "why": "Says the English.",
    "cause": "wording-fine",
    "at": "2026-11-25"
+  },
+  "c3eee370aec63c15": {
+   "suggest": "fix",
+   "why": "The Spanish lede says 'en esta organización, en la organización y en cada espacio de trabajo', which reads as a repetition; German has 'für die Organisation und in jedem Workspace', so es could say 'para toda la organización y en cada espacio de trabajo' (the English 'in this organization, on the organization' is clumsy in the same way).",
+   "cause": "es-small-wording",
+   "at": "2026-11-26"
+  },
+  "84ae9757f8db3e5c": {
+   "suggest": "fine",
+   "why": "Badges that do not fit beside the name wrap under it on phones; Sam Analyst's two badges do exactly what the single long ones do on the Spanish page (Splunk forwarder, CI pipeline).",
+   "cause": "phone-value-column",
+   "at": "2026-11-26"
+  },
+  "6a5b4f1e44aa6042": {
+   "suggest": "fix",
+   "why": "The 'Last report' cell shows a full 'Ready' badge followed by '…', so the column clips at the badge.",
+   "cause": "badge-cell-ellipsis",
+   "at": "2026-11-26"
+  },
+  "443c82036f3bf0aa": {
+   "suggest": "unsure",
+   "why": "The card's description wraps in a narrow column beside the Bearbeiten button on the phone, the known layout of section headers.",
+   "cause": "section-header-phone",
+   "at": "2026-11-26"
+  },
+  "ce3b22d8e05fb6a0": {
+   "suggest": "unsure",
+   "why": "The Versand description wraps beside the Bearbeiten button on the phone, the known layout of section headers.",
+   "cause": "section-header-phone",
+   "at": "2026-11-26"
+  },
+  "7335afe82575f00c": {
+   "suggest": "fix",
+   "why": "Every 'Medium' badge in the Severity column has a '…' after it while 'High' and 'Critical' have none.",
+   "cause": "badge-cell-ellipsis",
+   "at": "2026-11-26"
+  },
+  "b5e3e69e8c240ac0": {
+   "suggest": "fix",
+   "why": "Every 'In progress' badge in the Status column has a '…' after it while 'Open' has none.",
+   "cause": "badge-cell-ellipsis",
+   "at": "2026-11-26"
+  },
+  "36e622a5a9d9b548": {
+   "suggest": "wrong",
+   "why": "'die Findings' is the German plural of the glossary term Finding.",
+   "cause": "glossary-misread",
+   "at": "2026-11-26"
+  },
+  "adbb5000b7d83977": {
+   "suggest": "wrong",
+   "why": "'Findings, die darauf beruhen' is the German plural of the glossary term Finding.",
+   "cause": "glossary-misread",
+   "at": "2026-11-26"
+  },
+  "55d2759a4661a710": {
+   "suggest": "wrong",
+   "why": "'Findings' is the German plural of the glossary term Finding.",
+   "cause": "glossary-misread",
+   "at": "2026-11-26"
+  },
+  "eced371670b7c8a5": {
+   "suggest": "wrong",
+   "why": "'eines Findings' is the genitive of the glossary term Finding, not a plural.",
+   "cause": "glossary-misread",
+   "at": "2026-11-26"
+  },
+  "524a348da813bca9": {
+   "suggest": "wrong",
+   "why": "'von {{count}} Findings' is the plural the glossary allows.",
+   "cause": "glossary-misread",
+   "at": "2026-11-26"
+  },
+  "02d3b568d9d7f7ad": {
+   "suggest": "wrong",
+   "why": "'dieses Workspaces' is the genitive of the glossary term Workspace.",
+   "cause": "glossary-misread",
+   "at": "2026-11-26"
+  },
+  "6a5243985247205b": {
+   "suggest": "wrong",
+   "why": "<name>, <Table> and <day> are spelled-out file-name patterns, not i18n placeholders ({{…}}), so translating them as <Name>, <Tabelle>, <Tag> is right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "4ee106c37f775164": {
+   "suggest": "wrong",
+   "why": "<name>, <Table> and <day> are spelled-out file-name patterns, not i18n placeholders ({{…}}), so <nombre>, <Tabla>, <día> are right.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "d33da288fdb2d8f8": {
+   "suggest": "wrong",
+   "why": "'Use' is the Spanish usted imperative of usar, not English.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "6b029686f0f0e34a": {
+   "suggest": "wrong",
+   "why": "'Ob der AI SOC sie analysiert hat, sehen Personen, die …' is correct German; Grok's version only rephrases it.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "2c3cb7804773b723": {
+   "suggest": "wrong",
+   "why": "'Collector' is the term the German collection texts use throughout (14 times in features/collection/locales/de.json).",
+   "cause": "terms-misread",
+   "at": "2026-11-26"
+  },
+  "b569a84b9d653d93": {
+   "suggest": "wrong",
+   "why": "'Collector' is the term the German collection texts use throughout (14 times in features/collection/locales/de.json).",
+   "cause": "terms-misread",
+   "at": "2026-11-26"
+  },
+  "4d12c6788195f433": {
+   "suggest": "wrong",
+   "why": "'ihre eigenen' refers to the source (die Quelle, feminine), whose own kinds the status lists, so it agrees.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "8f082a68bfc54260": {
+   "suggest": "wrong",
+   "why": "'alarmiert werden' is the usual German for an on-call team being alerted, not 'startled'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "dedf7b15f9af9e6d": {
+   "suggest": "wrong",
+   "why": "'den Fall nicht mehr als offen führen' (no longer list the case as open) is idiomatic German and means what the English says.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "bd1bf3bfec65eba3": {
+   "suggest": "wrong",
+   "why": "'Citada' agrees with the technique (la técnica, key derivation.technique), not with 'registros'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "fbc7bf3145f7ad4e": {
+   "suggest": "wrong",
+   "why": "'descartadas' agrees with the open questions it counts (preguntas, next to open_other 'preguntas abiertas'), not with findings.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "675a4be82fd39a54": {
+   "suggest": "wrong",
+   "why": "'damit sich Zugriff getrennt vergeben … lässt' is correct German without an article.",
+   "cause": "wording-fine",
+   "at": "2026-11-26"
+  },
+  "c08b458074764468": {
+   "suggest": "fix",
+   "why": "'zum neuen Versiegeln' reads as 'for the new sealing'; 'zum erneuten Versiegeln' says 'to seal it anew'.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-26"
+  },
+  "825990799b0efd2e": {
+   "suggest": "wrong",
+   "why": "The long German activity texts use the 'Hat …' form like their pair session.ended ('Hat die Organisation verlassen'); the short name is already 'Organisation betreten'.",
+   "cause": "audit-style",
+   "at": "2026-11-26"
+  },
+  "40f17a1b23a40e5c": {
+   "suggest": "wrong",
+   "why": "The long Spanish activity texts all use the preterite ('Creó…', 'Eliminó el espacio de trabajo'); the short name is already 'Espacio de trabajo restaurado'.",
+   "cause": "audit-style",
+   "at": "2026-11-26"
+  },
+  "071ae791e9e0bfcd": {
+   "suggest": "wrong",
+   "why": "The glossary writes 'der AI SOC' with a space; the hyphen only joins compounds (AI-SOC-Größe).",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "c7f1b3bebd77c911": {
+   "suggest": "wrong",
+   "why": "The glossary writes 'der AI SOC' with a space; the hyphen only joins compounds.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "2125a422cc6877a5": {
+   "suggest": "wrong",
+   "why": "'des AI SOC' is the glossary's spelling, with a space.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "a25853aac03104ff": {
+   "suggest": "wrong",
+   "why": "'AI-SOC-Größe' is the correct German compound with hyphens.",
+   "cause": "compound-hyphens",
+   "at": "2026-11-26"
+  },
+  "995dbe6f3cb2cb10": {
+   "suggest": "wrong",
+   "why": "'Bestätigung im Fall vorgeschlagen' is correct German and matches the long text 'Bestätigung in Fall #… vorgeschlagen'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "083d6aa417d8afc9": {
+   "suggest": "fix",
+   "why": "zustimmen takes a dative object, so 'Bestätigung im Fall zugestimmt' is off (and so is the long text 'Bestätigung in Fall #… zugestimmt'); 'genehmigt' fits the other participles.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-26"
+  },
+  "cdf3e2a9516f7821": {
+   "suggest": "wrong",
+   "why": "'Bestätigung im Fall abgelehnt' is correct German and matches its long text.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "8cabc79954a0403c": {
+   "suggest": "wrong",
+   "why": "'Bestätigung im Fall verfallen' is correct German and matches its long text.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "25dc6d68c883cc0b": {
+   "suggest": "wrong",
+   "why": "'Bestätigung im Fall zurückgezogen' is correct German and matches its long text.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "2f519357e2af78e7": {
+   "suggest": "wrong",
+   "why": "Grok only objects to 'im Fall', which is correct German; 'vereinbart' follows en 'agreed' and es 'acordada'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "ae3ee230dbcf300c": {
+   "suggest": "fix",
+   "why": "Next to 'Añadidos' and 'Modificados' in the same audit fields list, 'Eliminado' should be 'Eliminados'.",
+   "cause": "es-small-wording",
+   "at": "2026-11-26"
+  },
+  "703dbbb6f62bddac": {
+   "suggest": "fix",
+   "why": "'am letzten Tag' means 'on the last day', not 'in the last day'; 'in den letzten 24 Stunden' would be right (also in emptyTitle, de.json line 401).",
+   "cause": "de-small-grammar",
+   "at": "2026-11-26"
+  },
+  "4adea3e9ec45109b": {
+   "suggest": "wrong",
+   "why": "'No legible' is natural Spanish for a preview that cannot be read.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "ffd831f8f6c017db": {
+   "suggest": "fine",
+   "why": "For a single line 'Alle 1 Zeile' would be odd, so '{{count}} Zeile anzeigen' drops 'alle', as the Spanish does.",
+   "cause": "wording-fine",
+   "at": "2026-11-26"
+  },
+  "2a57ff15d30c824e": {
+   "suggest": "wrong",
+   "why": "'que usted no puede abrir' is correct formal Spanish (usted, as the glossary asks).",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-26"
+  },
+  "d34325705b07265d": {
+   "suggest": "fine",
+   "why": "'verwendet keine Datenbankdatei' says the same as 'takes no database file' and matches es 'no usa'.",
+   "cause": "wording-fine",
+   "at": "2026-11-26"
+  },
+  "5b4821817735b964": {
+   "suggest": "fine",
+   "why": "'Incident responder' is a custom role the mock organization created (web/src/mocks/scenarios.ts), so it is sample data; the built-in roles beside it are translated.",
+   "at": "2026-11-26"
+  },
+  "a1a9d830ea34981a": {
+   "suggest": "unsure",
+   "why": "German 'kein Zusammenführungsmerkmal' (no merge key) does not say the same as en 'not merged on' / es 'no fusionado por', and no .tsx uses the key, so the user has to decide which meaning is meant.",
+   "at": "2026-11-26"
+  },
+  "0a9bd2bc641ea5d4": {
+   "suggest": "wrong",
+   "why": "'Bewertung' is the German case verdict in five places (audit case.verdict_set, cases verdict, verdict_changed, decide); only the different audit field 'verdicts' and soc 'Ihr Urteil' say Urteil.",
+   "at": "2026-11-26"
   }
  }
 }
