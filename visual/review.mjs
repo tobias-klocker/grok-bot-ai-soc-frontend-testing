@@ -363,15 +363,21 @@ Answer with JSON only; an empty list if the screenshot looks fine:
 
 const textsOf = (r) => r.texts ?? r.boxes?.map((b) => b[0]);
 
+// Grok types straight quotes where the page has typographic ones.
+const plain = (x) => norm(x).replace(/[„“”«»]/g, '"').replace(/[‚‘’]/g, "'");
+// A quote that runs over several pieces of the page's text is there when those
+// pieces make up most of it; one word of a sentence Grok misquoted is not.
+const covers = (pieces, q) => [...new Set(pieces)].reduce((sum, t) => sum + t.length, 0) >= 0.6 * q.length;
+
 // Where a quoted text stands on a screenshot: its first place, or, for a
 // quote that runs over several pieces of text, those pieces together.
 function locate(quote, boxes) {
-  const q = norm(quote);
+  const q = plain(quote);
   if (!q || !boxes?.length) return null;
-  const whole = boxes.find((b) => norm(b[0]).includes(q));
+  const whole = boxes.find((b) => plain(b[0]).includes(q));
   if (whole) return whole.slice(1);
-  const parts = boxes.filter((b) => b[0].length >= 4 && q.includes(norm(b[0])));
-  if (!parts.length) return null;
+  const parts = boxes.filter((b) => b[0].length >= 4 && q.includes(plain(b[0])));
+  if (!parts.length || !covers(parts.map((b) => plain(b[0])), q)) return null;
   const near = parts.filter((b) => Math.abs(b[2] - parts[0][2]) < 300);
   const x = Math.min(...near.map((b) => b[1]));
   const y = Math.min(...near.map((b) => b[2]));
@@ -380,10 +386,17 @@ function locate(quote, boxes) {
 
 // Whether Grok's quote is text of that screenshot: true, false, or null when there is no quote to check.
 function quoted(quote, texts) {
-  const q = norm(quote);
+  const q = plain(quote);
   if (!q || !texts) return null;
-  const all = texts.map(norm);
-  return all.some((t) => t.includes(q) || (t.length >= 8 && q.includes(t))) || all.join(" ").includes(q);
+  const all = texts.map(plain);
+  return (
+    all.some((t) => t.includes(q)) ||
+    all.join(" ").includes(q) ||
+    covers(
+      all.filter((t) => t.length >= 4 && q.includes(t)),
+      q,
+    )
+  );
 }
 
 const REVIEW_VERSION = 4; // raising it makes every screenshot be reviewed again
