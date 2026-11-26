@@ -22,8 +22,21 @@ fail() {
   exit 1
 }
 
-BASE=main MAX_USD=3 KEEP_RUNS=8 SWEEP_VARIANTS="" REVIEW_VARIANTS="" BACKUP=1
+BASE=main MAX_USD=3 KEEP_RUNS=8 SWEEP_VARIANTS="" REVIEW_VARIANTS="" BACKUP=1 FROM_GITHUB=1
 [ -f "$KIT/schedule.conf" ] && . "$KIT/schedule.conf"
+
+# What GitHub holds, colleagues' commits included: a fetch moves only
+# origin/<branch>, never your working copy or your branches. Without GitHub
+# the run reviews this Mac's branch and says so.
+source_note=""
+if [ "$FROM_GITHUB" = 1 ]; then
+  if git -C "$KIT/.." fetch --quiet origin "$BASE"; then
+    BASE="refs/remotes/origin/$BASE"
+  else
+    source_note=" (GitHub not reached: this Mac's $BASE)"
+    echo "Could not fetch $BASE from GitHub; reviewing this Mac's $BASE"
+  fi
+fi
 echo "== $(date): weekly visual review of $BASE, Grok budget \$$MAX_USD"
 
 # Docker Desktop is started when it is not running, and given three minutes.
@@ -49,7 +62,7 @@ cost="$(sed -nE 's/^Grok cost this run: (\$[0-9.]+).*/\1/p' "$OUT/review.log")"
 left="$(grep -c 'were not reviewed: the budget' "$OUT/review.log" || true)"
 failed="$(sed -nE 's/^FAILED: (Grok could not review [^(]*).*/\1/p' "$OUT/review.log")"
 [ -z "$failed" ] || notify "Weekly review incomplete" "$failed; earlier results are marked not re-checked. Report: .grok-bot/runs/$(basename "$OUT")/report.html"
-notify "Weekly review ready" "${new:-first run, nothing to compare}; Grok ${cost:-\$0}$([ "${left:-0}" -gt 0 ] && echo ', budget reached'). Report: .grok-bot/runs/$(basename "$OUT")/report.html"
+notify "Weekly review ready" "${new:-first run, nothing to compare}${source_note}; Grok ${cost:-\$0}$([ "${left:-0}" -gt 0 ] && echo ', budget reached'). Report: .grok-bot/runs/$(basename "$OUT")/report.html"
 
 # Older runs go, the newest KEEP_RUNS stay.
 if [ "${KEEP_RUNS:-0}" -gt 0 ]; then
