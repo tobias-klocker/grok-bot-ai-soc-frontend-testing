@@ -1,23 +1,30 @@
 # Grok frontend-testing bot
 
-Writes and runs Playwright tests for the web app with xAI's Grok Build, in
-the background, without access to anything else on this Mac. Local only:
-this folder is excluded from Git (`.git/info/exclude`).
+Screenshots every page of a frontend and has xAI's Grok review them and the
+translated texts (the visual review, below), and writes Playwright tests for
+it, in the background, without access to anything else on this Mac. Local
+only: this folder is excluded from Git (`.git/info/exclude`).
+
+The frontend it tests is described in `project/`; everything else is the same
+for every frontend (see "Another frontend" at the end). Here it is
+ai-soc-platform's web app.
 
 ## What Grok can see
 
-The container sees only, from a separate clone in `.worktrees/grok-tests`:
+The container sees only, from a separate clone in `.worktrees/grok-tests`,
+what `project/project.json` "mounts" lists. For this project:
 
 - `web/` (writable), with `web/src` read-only, so app code cannot change
-- `api/`, `AGENTS.md` and the four files the web build reads (read-only)
+- `api/`, `AGENTS.md` and the few files the web build reads (read-only)
 
 Not mounted: the rest of the repo and its Git history, your working copy,
 your home folder, SSH keys, Git and GitHub credentials. The tests run against
 the mock build (fake data, no backend). Your running app is never touched.
 
 Everything Grok reads (the files above, test output) is sent to xAI as
-context. The GitHub token for `@data-insights-ai/*` is used only in a
-separate install step and never reaches Grok's container.
+context. The token for a private registry (here GitHub Packages, for
+`@data-insights-ai/*`) is used only in a separate install step and never
+reaches Grok's container.
 
 ## Setup (once)
 
@@ -25,14 +32,15 @@ separate install step and never reaches Grok's container.
    limit. Store it in the Keychain:
    `security add-generic-password -a "$USER" -s grok-bot-xai -w`
    (paste the key when asked). Or `export XAI_API_KEY=...` before a run.
-2. For the packages: `gh` signed in with `read:packages` (as in
-   web/README.md), or `export GH_PACKAGES_TOKEN=...` (a classic token with
-   only `read:packages`).
+2. Only for a frontend that installs from a private registry
+   (`project.json` "privateRegistry"): here GitHub Packages, so `gh` signed in
+   with `read:packages` (as in web/README.md), or `export
+   GH_PACKAGES_TOKEN=...` (a classic token with only `read:packages`).
 
 ## Run
 
     .grok-bot/run.sh                        # the default task
-    .grok-bot/run.sh tasks/<other>.md       # another task
+    .grok-bot/run.sh tasks/<other>.md       # another task (in project/tasks/)
     BASE=feature-x .grok-bot/run.sh         # a branch other than the current one
     GROK_MODEL=<model> .grok-bot/run.sh     # another model
 
@@ -51,17 +59,20 @@ repo root:
 
     .grok-bot/run.sh visual
 
-1. **Sweep** (free, no network, no AI, 10-20 min): every route of
-   `web/e2e/routes.ts`, in 8 variants (English, German, Spanish; desktop and
-   phone; light and dark), against the mock with a fixed clock. Each page is
-   screenshotted (up to two screens high) and checked automatically: console
-   errors, sideways scrolling, cut-off text, raw text keys, unfilled
-   `{{placeholders}}`, English left on German or Spanish pages.
-2. **Free text checks**: missing German or Spanish texts, placeholders that
-   differ from English, informal address (du / tú), sentences left in English.
-3. **Grok** reviews the German and Spanish texts of every feature against
-   the English (grok-4.3), then each screenshot on its own (grok-4.7,
-   5 variants per page by default). Every finding must quote the text it is
+1. **Sweep** (free, no network, no AI, 10-20 min): every route
+   `project/pages.ts` lists, in the basic variants (each language on desktop
+   and phone, the source language in dark too: 8 for English, German and
+   Spanish), against the app as `project.json` "serve" starts it (here the
+   mock), with a fixed clock. Each page is screenshotted (up to two screens
+   high) and checked automatically: console errors, sideways scrolling,
+   cut-off text, raw text keys, unfilled `{{placeholders}}`, source-language
+   text left on pages in another language.
+2. **Free text checks**: missing translations, placeholders that differ from
+   the source, informal address (where `project.json` gives the pattern: du,
+   tú), sentences left in the source language.
+3. **Grok** reviews the translated texts of every feature against the source
+   (grok-4.3), then each screenshot on its own (grok-4.7, 5 variants per page
+   by default). Every finding must quote the text it is
    about; a quote that is not on that screenshot is rejected, and so is a
    claim that text is cut off at the edge of a row that scrolls sideways (a
    tab bar). Grok sees only what `visual/review.mjs` sends it: the
@@ -90,7 +101,7 @@ budget; pages left over are reviewed first on the next run.
 | `SWEEP_ONLY='inbox\|cases'` | only routes matching this expression (quick checks) |
 | `SWEEP_VARIANTS='tablet'` | which variants to sweep, by name or part of one: `tablet` (820 px), `wide` (1920 px), `qhd` (2560 px), `de-`, `all`; default the 8 basic ones (desktop 1440 px, phone 390 px) |
 | `RUN=<folder in runs/>` | with `visual`: add the swept variants to that run's report |
-| `REVIEW_VARIANTS='...'` | which screenshots Grok reviews now, by name or part of one (default: en-desktop-light en-phone-light en-desktop-dark de-phone-light es-phone-light); earlier reviews of other variants stay in the report |
+| `REVIEW_VARIANTS='...'` | which screenshots Grok reviews now, by name or part of one (default: the source language on desktop, light and dark, and phone, light; every other language on phone, light; here en-desktop-light en-phone-light en-desktop-dark de-phone-light es-phone-light); earlier reviews of other variants stay in the report |
 | `FULL=1` | review everything again, changed or not; `FULL=texts` only the translations, `FULL=pages` only the screenshots |
 | `PAGE_MODEL=...` | model for screenshots (default grok-4.7); changing it reviews them again |
 | `TEXT_MODEL=...` | model for the texts (default grok-4.3; grok-build-0.1 left the API on 2026-11-19; grok-4.7 answers no text review within 270 s, tested 2026-11-23) |
@@ -108,8 +119,9 @@ compares another model on the same screenshots.
 
 After every review (`run.sh visual`, `run.sh visual-review`, the weekly run)
 `triage.sh` starts Claude Code once, unattended, when there are open findings
-without a suggestion: it follows `skill/visual-review/SKILL.md`, looks at the
-screenshots and the three languages, and writes a suggestion per finding into
+without a suggestion: it follows `skill/visual-review/SKILL.md` and
+`project/claude-notes.md`, looks at the screenshots and the texts in every
+language, and writes a suggestion per finding into
 `state/triage.json`; the report is redrawn with them. The session can only
 read files, write `state/triage-new.json` and run `visual/untriaged.mjs` and
 `visual/triage-merge.mjs` (no other command, no network tool, no change to
@@ -191,9 +203,12 @@ report, and counts them at the top.
 
 `skill/visual-review/SKILL.md` teaches Claude Code this kit: the commands and
 their cost, reading `findings.json` and the screenshots, what to trust (checks
-yes, Grok only after looking), the rules in `review-notes.md`, and fixing by
-root cause under AGENTS.md (the project's checks, a commit on main once you
-ask for it, a re-check with `SWEEP_ONLY`, a push only on your word). Link it once, from the project root:
+yes, Grok only after looking), and fixing by root cause (the project's checks,
+a commit once you ask for it, a re-check with `SWEEP_ONLY`, a push only on
+your word). It is the same for every frontend: what is particular to this one
+(the rules in `project/review-notes.md`, where texts and fixes live, Grok's
+known misreads) is in `project/claude-notes.md`, which it reads first. Link it
+once, from the project root:
 
     mkdir -p ~/.claude/skills && ln -s "$PWD/.grok-bot/skill/visual-review" ~/.claude/skills/visual-review
 
@@ -205,9 +220,11 @@ backed up with the kit.
     .grok-bot/backup.sh             commit what changed and push it
     .grok-bot/backup.sh "message"   with your own message
 
-Pushes this folder to github.com/tobias-klocker/grok-bot-ai-soc-frontend-testing
-(private) with your own Git sign-in: scripts, settings, `verdicts.txt`,
-`review-notes.md`, the review cache and Claude's triage in `state/`. `runs/` stays on this Mac
+Pushes this folder to its private repository (here
+github.com/tobias-klocker/grok-bot-ai-soc-frontend-testing; the first backup
+of a new kit names it: `BACKUP_REMOTE=<url> .grok-bot/backup.sh`) with your
+own Git sign-in: scripts, settings, `project/`, `verdicts.txt`, the review
+cache and Claude's triage in `state/`. `runs/` stays on this Mac
 (`.gitignore`). The weekly run backs up after each run (`BACKUP=1` in
 `schedule.conf`). To restore on another Mac: clone the repository into
 `<project>/.grok-bot`, then exclude it there as here (`.git/info/exclude`).
@@ -219,3 +236,51 @@ Pushes this folder to github.com/tobias-klocker/grok-bot-ai-soc-frontend-testing
     .grok-bot/schedule.sh uninstall
     rm -rf .worktrees/grok-tests
     rm -rf .grok-bot/state         # forgets past reviews: the next visual run reviews everything
+
+## Another frontend
+
+The kit tests any web frontend that Playwright can open; only `project/`
+describes this one. For another repository:
+
+1. Copy this folder to `.grok-bot/` in that repository's root, without
+   `project/`, `state/`, `runs/`, `verdicts.txt` and `.git`, and exclude it
+   there (`echo .grok-bot >> .git/info/exclude`).
+2. Write its `project/`, with this project's as the example:
+   - `project.json`:
+     - `product`: one line for Grok ("a booking app for clinics").
+     - `app`: the frontend's folder in the repository (`.` for the root).
+     - `exec`: how to run a dependency's command there (`npx`, `corepack pnpm exec`).
+     - `install`: the clean install (`npm ci`); `installInputs`: the files
+       whose change needs a new one (`package-lock.json`, `package.json`).
+     - `privateRegistry`: a registry that needs a token, or leave it out.
+     - `serve`: builds and starts the app on `{port}` without a backend
+       (a mock, fixtures or a preview build with sample data).
+     - `mounts`: what Grok's container sees, `<path>:ro|rw`, the frontend first.
+     - `tests`: the Playwright folder in the app (for the test-writing bot).
+     - `clock`: the time the browser is held at, so screenshots repeat.
+     - `texts`: the folder under `app` with the text files and a pattern of
+       their path: `{lang}` stands for the language, group 1 for an
+       optional prefix that names its own group (`errors.de.json`).
+     - `source` and `languages`: the language the texts are written in, and
+       for each: `name`, `locale`, and for a language with formal address
+       its `formal` word and an `informal` pattern. Codes have no dash
+       (`pt`, not `pt-BR`): they start each variant's name.
+     - `glossary`, `sampleData`, `staysEnglish`: what Grok is told about the
+       texts and the data on the pages; any of them may be left out.
+   - `pages.ts`: `routes`, `skip`, `scenarios` (the states the app is opened
+     in, each with the routes it covers), `open`, `ready`, `setLanguage`,
+     `paths` (a URL for each route, its parameters filled in) and `ignore`
+     (a selector of the app's own development tools). It runs in the app's
+     folder, so it may use the app's e2e helpers. A frontend without
+     parameters returns its routes as they are from `paths`.
+   - `review-notes.md`: what Grok should know (who uses it, what is intended).
+   - `claude-notes.md`: what Claude needs for triage and fixes: the working
+     rules, where texts and shared components are, the project's checks.
+   - `tasks/frontend-tests.md`: the task for the test-writing bot.
+3. The first backup names its private repository:
+   `BACKUP_REMOTE=<url> .grok-bot/backup.sh`.
+4. `AI=0 .grok-bot/run.sh visual` (free) shows whether the sweep reaches
+   every page; `SWEEP_ONLY='<a route>'` keeps the first tries short.
+
+The skill (`skill/visual-review`) is linked once per Mac; it reads the
+`project/` of the repository it is used in.

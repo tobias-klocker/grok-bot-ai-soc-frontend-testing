@@ -3,7 +3,7 @@
 //   fine  page <route> "<quoted text>"                # intended as it is
 //   wrong page <route> "<quoted text>"                # Grok misread the screenshot
 //   fix   page <route> "<quoted text>"                # a real defect, known, to be fixed
-//   fine  text <namespace> <key> <de|es> "<the text>" # the text as it was decided on
+//   fine  text <namespace> <key> <language> "<the text>" # the text as it was decided on
 //
 // fine and wrong hide a finding; fix keeps it, as known, until it is no longer
 // found. A line without a verdict word is "fine" (the older accepted.txt form).
@@ -24,7 +24,7 @@ const quoted = (s) => `"${String(s).replace(/\s+/g, " ").replace(/["\\]/g, "\\$&
 const unquote = (s) => s.replace(/\\(.)/g, "$1");
 const QUOTE = `"((?:[^"\\\\]|\\\\.)*)"`;
 const PAGE = new RegExp(`^(?:(fine|wrong|fix)\\s+)?page\\s+(\\S+)\\s+${QUOTE}\\s*(?:#\\s*(.*))?$`);
-const TEXT = new RegExp(`^(?:(fine|wrong|fix)\\s+)?text\\s+(\\S+)\\s+(\\S+)\\s+(de|es)(?:\\s+${QUOTE})?\\s*(?:#\\s*(.*))?$`);
+const TEXT = new RegExp(`^(?:(fine|wrong|fix)\\s+)?text\\s+(\\S+)\\s+(\\S+)\\s+([a-z]{2,3})(?:\\s+${QUOTE})?\\s*(?:#\\s*(.*))?$`);
 
 // One line: an entry, null for a comment or blank line, undefined when unreadable.
 export function parseLine(raw) {

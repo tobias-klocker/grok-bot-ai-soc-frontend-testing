@@ -304,7 +304,7 @@ ${goneSection(c.gone)}
 <h2>Pages with findings (${withFindings.length})</h2>
 ${withFindings.map((r) => card(r, ctx)).join("\n")}
 <details><summary>Pages without findings (${clean.length})</summary>${clean.map((r) => card(r, ctx)).join("\n")}</details>
-${c.notReached.length ? `<details><summary>Routes the mock has no example for (${c.notReached.length})</summary><ul>${c.notReached.map((r) => `<li><code>${esc(r)}</code></li>`).join("")}</ul></details>` : ""}
+${c.notReached.length ? `<details><summary>Routes the sweep found no example for (${c.notReached.length})</summary><ul>${c.notReached.map((r) => `<li><code>${esc(r)}</code></li>`).join("")}</ul></details>` : ""}
 <h2>Texts (${c.texts.open.length})</h2>
 ${textTable(c.texts.open, c.causes)}
 ${c.texts.known.length ? `<details><summary>Known, to fix (${c.texts.known.length})</summary>${textTable(c.texts.known, c.causes)}</details>` : ""}

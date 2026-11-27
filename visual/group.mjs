@@ -4,6 +4,7 @@
 // the same device, and quote the same text key in their languages (or the
 // same text), or stand at about the same place on their screenshots.
 // No two members share a variant: two findings of one screenshot stay two.
+import { nameOf, SOURCE, TARGETS } from "./project.mjs";
 import { norm } from "./verdicts.mjs";
 
 const order = { high: 0, medium: 1, low: 2 };
@@ -12,7 +13,8 @@ const devicesOf = (variants) => [...new Set(variants.map(deviceOf))].sort().join
 // What kind of check it is ("Text squeezed into a narrow column"); Grok's are all one kind.
 // The language a check names is not its kind: "English text on the German page" and
 // "… on the Spanish page" about the same text are one finding.
-const kindOf = (f) => (f.source === "grok" ? "grok" : f.problem.split(/[:(]/)[0].replace(/\b(German|Spanish)\b/g, "").trim());
+const languageNames = new RegExp(`\\b(${TARGETS.map(nameOf).join("|")})\\b`, "g");
+const kindOf = (f) => (f.source === "grok" ? "grok" : f.problem.split(/[:(]/)[0].replace(languageNames, "").trim());
 
 // Most of the smaller box lies inside the other.
 function overlaps(a, b) {
@@ -31,11 +33,11 @@ export function mergeVariants(route, findings, keysOf) {
       const anchors = new Set();
       if (f.quote) {
         anchors.add(`q:${norm(f.quote)}`);
-        for (const v of variants) for (const k of keysOf(f.quote, v.slice(0, 2))) anchors.add(`k:${k}`);
+        for (const v of variants) for (const k of keysOf(f.quote, v.split("-")[0])) anchors.add(`k:${k}`);
       }
       return { f, variants, anchors, boxes: (f.spots ?? []).map((s) => s.box) };
     })
-    .sort((a, b) => (order[a.f.severity] ?? 3) - (order[b.f.severity] ?? 3) || Number(!a.variants.some((v) => v.startsWith("en"))) - Number(!b.variants.some((v) => v.startsWith("en"))));
+    .sort((a, b) => (order[a.f.severity] ?? 3) - (order[b.f.severity] ?? 3) || Number(!a.variants.some((v) => v.startsWith(`${SOURCE}-`))) - Number(!b.variants.some((v) => v.startsWith(`${SOURCE}-`))));
 
   const groups = [];
   for (const it of items) {

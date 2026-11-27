@@ -1,20 +1,21 @@
 // Turns a sweep (sweep.spec.ts) into a report: the automatic checks, free
-// checks of the German and Spanish texts, then Grok on the screenshots and
+// checks of the translated texts, then Grok on the screenshots and
 // the texts, within a budget. Pages and texts that did not change since
 // their last review keep that review and cost nothing.
 //
-// Reads /out/sweep, /out/shots, /src (the app's texts), /state, /verdicts.txt
-// and /notes.md; writes /out/report.html, /out/findings.json and
+// Reads /out/sweep, /out/shots, /src (the app's texts), /state, /verdicts.txt,
+// /notes.md and the project (project.mjs); writes /out/report.html, /out/findings.json and
 // /state/visual-state.json.
 //
 // REDRAW=1 (or AI=0) asks Grok nothing: earlier reviews of unchanged
 // screenshots and texts are shown, the rest is marked not reviewed. That is
 // how the report picks up new verdicts and Claude's triage, for free.
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 import { mergeVariants } from "./group.mjs";
+import { describe, informal, LANGS, nameOf, project, readTexts, REVIEWED, SOURCE, TARGETS } from "./project.mjs";
 import { renderReport, when } from "./report.mjs";
 import { keyOf, norm, promptBlock, readTriage, readVerdicts, triageOf, verdictOf } from "./verdicts.mjs";
 
@@ -47,31 +48,9 @@ function priceOf(model) {
 // REVIEW_VARIANTS: which screenshots Grok reviews now, by name or part of a
 // name ("tablet", "en-wide-light"). Reviews from earlier runs of other
 // variants stay in the report either way.
-const REVIEW_TOKENS = (process.env.REVIEW_VARIANTS || "en-desktop-light en-phone-light en-desktop-dark de-phone-light es-phone-light").split(/\s+/).filter(Boolean);
+const REVIEW_TOKENS = (process.env.REVIEW_VARIANTS || REVIEWED.join(" ")).split(/\s+/).filter(Boolean);
 const reviewed = (v) => REVIEW_TOKENS.includes("all") || REVIEW_TOKENS.some((w) => v.includes(w));
 const PARALLEL = 3;
-const LANGS = ["en", "de", "es"];
-
-const describe = {
-  "en-desktop-light": "English, desktop 1440 px, light theme",
-  "en-desktop-dark": "English, desktop 1440 px, dark theme",
-  "en-phone-light": "English, phone 390 px, light theme",
-  "en-phone-dark": "English, phone 390 px, dark theme",
-  "de-desktop-light": "German, desktop 1440 px, light theme",
-  "de-phone-light": "German, phone 390 px, light theme",
-  "es-desktop-light": "Spanish, desktop 1440 px, light theme",
-  "es-phone-light": "Spanish, phone 390 px, light theme",
-  "en-tablet-light": "English, tablet 820 px, light theme",
-  "en-tablet-dark": "English, tablet 820 px, dark theme",
-  "de-tablet-light": "German, tablet 820 px, light theme",
-  "es-tablet-light": "Spanish, tablet 820 px, light theme",
-  "en-wide-light": "English, large desktop 1920 px, light theme",
-  "en-wide-dark": "English, large desktop 1920 px, dark theme",
-  "de-wide-light": "German, large desktop 1920 px, light theme",
-  "es-wide-light": "Spanish, large desktop 1920 px, light theme",
-  "en-qhd-light": "English, large desktop 2560 px, light theme",
-  "en-qhd-dark": "English, large desktop 2560 px, dark theme",
-};
 
 // ---------------------------------------------------------------- inputs
 const sweepDir = join(OUT, "sweep");
@@ -87,29 +66,7 @@ for (const { variant, records } of sweeps)
     pages.set(r.route, p);
   }
 
-function localeFiles(dir, found = []) {
-  for (const name of readdirSync(dir)) {
-    const path = join(dir, name);
-    if (statSync(path).isDirectory()) localeFiles(path, found);
-    else if (/\/locales\/(?:[\w-]+\.)?(en|de|es)\.json$/.test(path)) found.push(path);
-  }
-  return found;
-}
-function flatten(value, prefix, into) {
-  if (typeof value === "string") into[prefix] = value;
-  else if (value && typeof value === "object") for (const [k, v] of Object.entries(value)) flatten(v, prefix ? `${prefix}.${k}` : k, into);
-  return into;
-}
-const namespaces = new Map(); // ns -> { en: {key: text}, de, es, raw: text for hashing }
-for (const file of localeFiles(SRC).sort()) {
-  const [, prefix, lang] = /\/locales\/(?:([\w-]+)\.)?(en|de|es)\.json$/.exec(file);
-  const ns = relative(SRC, dirname(dirname(file))) + (prefix ? `/${prefix}` : "");
-  const entry = namespaces.get(ns) ?? { en: {}, de: {}, es: {}, raw: "" };
-  const raw = readFileSync(file, "utf8");
-  entry[lang] = flatten(JSON.parse(raw), "", {});
-  entry.raw += raw;
-  namespaces.set(ns, entry);
-}
+const namespaces = readTexts(SRC); // ns -> { <lang>: {key: text}, raw: text for hashing }
 
 const state = existsSync(STATE) ? JSON.parse(readFileSync(STATE, "utf8")) : { pages: {}, texts: {} };
 const saveState = () => writeFileSync(STATE, JSON.stringify(state, null, 1));
@@ -122,17 +79,17 @@ for (const p of pages.values()) {
   for (const [variant, r] of Object.entries(p.records)) {
     const add = (severity, problem, at = {}) => found.push({ variant, severity, problem, source: "check", ...at });
     const item = (t) => (typeof t === "string" ? { text: t } : t);
-    const lang = variant.slice(0, 2);
+    const lang = variant.split("-")[0];
     if (r.notReached) continue;
     if (r.failed) add("high", `The page did not load: ${r.failed}`);
     if (r.overflowX) add(variant.includes("phone") ? "high" : "medium", `The page scrolls sideways by ${r.overflowX} px.`);
     for (const t of r.rawKeys ?? []) add("high", `A raw text key is shown instead of a text: "${t}"`, { quote: t });
     for (const t of r.placeholders ?? []) add("high", `An unfilled placeholder is shown: "${t}"`, { quote: t });
-    for (const t of r.english ?? []) add("medium", `English text on the ${lang === "de" ? "German" : "Spanish"} page: "${t}"`, { quote: t });
+    for (const t of r.untranslated ?? r.english ?? []) add("medium", `${nameOf(SOURCE)} text on the ${nameOf(lang)} page: "${t}"`, { quote: t });
     for (const t of (r.clipped ?? []).map(item)) add("low", `Text may be cut off (${t.text})`, { box: t.box });
     for (const t of (r.squeezed ?? []).map(item)) add("medium", `Text squeezed into a narrow column: ${t.text}`, { box: t.box });
     for (const t of r.consoleErrors ?? []) add("medium", `Console error: ${t}`);
-    if (lang !== "en" && r.lang && r.lang !== lang) add("low", `The page stayed in "${r.lang}": the language could not be switched here, so this variant does not show ${lang}.`);
+    if (lang !== SOURCE && r.lang && r.lang !== lang) add("low", `The page stayed in "${r.lang}": the language could not be switched here, so this variant does not show ${lang}.`);
   }
   // The same finding in several variants once, naming them all.
   const merged = new Map();
@@ -148,7 +105,7 @@ const notReached = [...pages.values()].filter((p) => Object.values(p.records).ev
 
 // ---------------------------------------------------------------- text checks (free)
 const placeholders = (s) => [...(s.match(/\{\{\s*[\w.]+\s*\}\}/g) ?? [])].map((x) => x.replace(/\s/g, "")).sort().join(" ");
-const informal = { de: /\b(du|dich|dein|deine|deinen|deinem|deiner|deines|euch|euer|eure)\b/i, es: /\b(tú|tus|contigo|ti)\b|\btu\s+\p{L}/iu };
+
 // Product names ("CrowdStrike Falcon") and labels ("Asset {{name}}") are the
 // same in every language; a sentence has ordinary lowercase words.
 const looksLikeProse = (s) => {
@@ -158,17 +115,17 @@ const looksLikeProse = (s) => {
 const textChecks = new Map(); // ns -> findings
 for (const [ns, t] of namespaces) {
   const found = [];
-  for (const [key, en] of Object.entries(t.en))
-    for (const lang of ["de", "es"]) {
+  for (const [key, en] of Object.entries(t[SOURCE]))
+    for (const lang of TARGETS) {
       const add = (severity, problem) => found.push({ key, language: lang, severity, problem, source: "check" });
       const tr = t[lang][key];
       if (tr === undefined) {
         add("high", "Missing.");
         continue;
       }
-      if (placeholders(tr) !== placeholders(en)) add("high", `Placeholders differ from English (${placeholders(en) || "none"} vs ${placeholders(tr) || "none"}).`);
-      if (tr === en && looksLikeProse(en)) add("low", `Same as the English text: "${en.slice(0, 120)}"`);
-      if (informal[lang].test(tr)) add("medium", `May address the reader informally (${lang === "de" ? "Sie" : "usted"} expected): "${tr.slice(0, 120)}"`);
+      if (placeholders(tr) !== placeholders(en)) add("high", `Placeholders differ from ${nameOf(SOURCE)} (${placeholders(en) || "none"} vs ${placeholders(tr) || "none"}).`);
+      if (tr === en && looksLikeProse(en)) add("low", `Same as the ${nameOf(SOURCE)} text: "${en.slice(0, 120)}"`);
+      if (informal[lang]?.test(tr)) add("medium", `May address the reader informally (${project.languages[lang].formal} expected): "${tr.slice(0, 120)}"`);
     }
   textChecks.set(ns, found);
 }
@@ -302,55 +259,55 @@ async function within(jobs, estimate, run) {
   return skipped;
 }
 
-const glossary = `Rules for the German and Spanish texts of this product:
-- German addresses the reader formally ("Sie"), Spanish too ("usted").
-- The product is "the AI SOC" (de "der AI SOC", es "el AI SOC").
-- Workspace: de "Workspace", es "espacio de trabajo". Finding: de "Finding", es "hallazgo". Case: de "Fall", es "caso".
-- Role names are roles, not people: de "Analyst", "Betrachter", without gender forms.
-- Internal names (SOC core, queue subjects, raw slugs, IDs) never appear in texts.
-- {{placeholders}} stay exactly as in English; keys ending _one/_other are plural forms.`;
+// "German and Spanish"; with their codes: "German (de) and Spanish (es)".
+const listOf = (langs, coded = false) =>
+  langs.map((l) => (coded ? `${nameOf(l)} (${l})` : nameOf(l))).join(", ").replace(/, ([^,]*)$/, " and $1");
+const glossary = [
+  `Rules for the ${listOf(TARGETS)} texts of this product:`,
+  ...(project.glossary ?? []).map((line) => `- ${line}`),
+  `- {{placeholders}} stay exactly as in ${nameOf(SOURCE)}; keys ending _one/_other are plural forms.`,
+].join("\n");
 
-// A group's texts in parts of about 12,000 characters (en, de and es together):
+// A group's texts in parts of about 12,000 characters (every language together):
 // a whole group in one request can take a large model longer than a request may last.
 function partsOf(t, size = 12_000) {
   const parts = [];
-  let part = { en: {}, de: {}, es: {} };
+  const empty = () => Object.fromEntries(LANGS.map((l) => [l, {}]));
+  let part = empty();
   let length = 0;
-  for (const key of Object.keys(t.en)) {
-    const add = JSON.stringify([key, t.en[key], t.de[key], t.es[key]]).length;
+  for (const key of Object.keys(t[SOURCE])) {
+    const add = JSON.stringify([key, ...LANGS.map((l) => t[l][key])]).length;
     if (length + add > size && length) {
       parts.push(part);
-      part = { en: {}, de: {}, es: {} };
+      part = empty();
       length = 0;
     }
-    for (const l of ["en", "de", "es"]) if (t[l][key] !== undefined) part[l][key] = t[l][key];
+    for (const l of LANGS) if (t[l][key] !== undefined) part[l][key] = t[l][key];
     length += add;
   }
   if (length) parts.push(part);
   return parts;
 }
 
-const textPrompt = (ns, t) => `You review the German (de) and Spanish (es) user interface texts of a B2B security product (an AI-assisted SOC) against the English (en) source.
+const textPrompt = (ns, t) => `You review the ${listOf(TARGETS, true)} user interface texts of ${project.product} against the ${listOf([SOURCE], true)} source.
 
 ${glossary}
 ${notesBlock}
 Report real problems only: wrong or missing meaning, English left untranslated, informal address, glossary violations, grammar or spelling errors, wrong plural forms, terms used inconsistently, and wording a native speaker would find clearly unnatural. Do not report matters of taste. At most 15 findings, most important first.
 
 Answer with JSON only:
-{"findings":[{"key":"<key>","language":"de|es","severity":"high|medium|low","problem":"<what is wrong, in English>","suggestion":"<better text>"}]}
+{"findings":[{"key":"<key>","language":"${TARGETS.join("|")}","severity":"high|medium|low","problem":"<what is wrong, in English>","suggestion":"<better text>"}]}
 
 Namespace: ${ns}${t.of > 1 ? ` (part ${t.part} of ${t.of}; the other parts are reviewed separately)` : ""}
-en: ${JSON.stringify(t.en)}
-de: ${JSON.stringify(t.de)}
-es: ${JSON.stringify(t.es)}`;
+${LANGS.map((l) => `${l}: ${JSON.stringify(t[l])}`).join("\n")}`;
 
-const languageName = { en: "English", de: "German", es: "Spanish" };
-const pagePrompt = (p, v) => `You review one screenshot of one page of a B2B security web app (an AI-assisted SOC). Page: ${p.path}
-This screenshot: ${describe[v] ?? v}. Its interface language is ${languageName[v.slice(0, 2)]}.
+const languageOf = (variant) => nameOf(variant.split("-")[0]);
+const pagePrompt = (p, v) => `You review one screenshot of one page of ${project.product}. Page: ${p.path}
+This screenshot: ${describe(v)}. Its interface language is ${languageOf(v)}.
 ${notesBlock}
-The data shown is fake sample data and is never a finding: titles of cases and findings, names of people, customers, workspaces, sites and devices, hostnames, IP addresses, counts, dates and times of events. Product terms that stay English in German and Spanish texts: AI SOC, Workspace (German), Finding (German), Status (German), STIX, MITRE, ATT&CK.
+The data shown is fake sample data and is never a finding${project.sampleData ? `: ${project.sampleData}` : ""}.${project.staysEnglish ? ` Product terms that stay ${nameOf(SOURCE)} in ${listOf(TARGETS)} texts: ${project.staysEnglish}.` : ""}
 
-Report what a careful designer and tester would flag in THIS screenshot: overlapping or cut-off text, broken or misaligned layout, elements outside their box or the screen, controls too small or crowded on a phone, unreadable contrast, areas that look empty or broken, raw keys or {{placeholders}}, interface labels not in ${languageName[v.slice(0, 2)]}, text that wraps badly. Only what you can see in this image, nothing you are not sure of, nothing you expect to be elsewhere on the page.
+Report what a careful designer and tester would flag in THIS screenshot: overlapping or cut-off text, broken or misaligned layout, elements outside their box or the screen, controls too small or crowded on a phone, unreadable contrast, areas that look empty or broken, raw keys or {{placeholders}}, interface labels not in ${languageOf(v)}, text that wraps badly. Only what you can see in this image, nothing you are not sure of, nothing you expect to be elsewhere on the page.
 
 Also report text squeezed into a narrow column while the space beside it stays empty, and other wasted or unbalanced space that makes a layout look broken.
 
@@ -512,9 +469,9 @@ const bySeverity = (a, b) => (order[a.severity] ?? 3) - (order[b.severity] ?? 3)
 // "Editar" is not), and is wrong when the quote is exactly that language's own
 // translation in the app's text files ("Assets" in German).
 const translations = Object.fromEntries(
-  ["de", "es"].map((l) => [l, new Set([...namespaces.values()].flatMap((t) => Object.values(t[l])).map(norm))]),
+  TARGETS.map((l) => [l, new Set([...namespaces.values()].flatMap((t) => Object.values(t[l])).map(norm))]),
 );
-const languageClaim = /\b(english|untranslated|not translated|not locali[sz]ed)\b/i;
+const languageClaim = new RegExp(`\\b(${nameOf(SOURCE).toLowerCase()}|untranslated|not translated|not locali[sz]ed)\\b`, "i");
 const wholeWords = (quote, texts) => {
   const q = norm(quote).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const words = new RegExp(`(?<![\\p{L}\\p{N}])${q}(?![\\p{L}\\p{N}])`, "u");
@@ -536,11 +493,11 @@ function judge(p, f) {
   if (onPage === false) return { ...f, onPage, rejected: "the quoted text is not on the screenshot" };
   if (onPage && cutClaim.test(f.problem) && atScrollEdge(p.records[f.variant], f.quote))
     return { ...f, onPage: false, rejected: "it stands at the edge of a row that scrolls sideways (a tab bar): cut off there is intended" };
-  const lang = String(f.variant).slice(0, 2);
-  if (onPage && languageClaim.test(f.problem) && lang !== "en") {
+  const lang = String(f.variant).split("-")[0];
+  if (onPage && languageClaim.test(f.problem) && lang !== SOURCE) {
     if (!wholeWords(f.quote, texts)) return { ...f, onPage: false, rejected: "the quote is only part of a word on the screenshot" };
     if (translations[lang]?.has(norm(f.quote)))
-      return { ...f, onPage: false, rejected: `the ${lang === "de" ? "German" : "Spanish"} text file has exactly this text: it is the intended translation` };
+      return { ...f, onPage: false, rejected: `the ${nameOf(lang)} text file has exactly this text: it is the intended translation` };
   }
   return { ...f, onPage };
 }

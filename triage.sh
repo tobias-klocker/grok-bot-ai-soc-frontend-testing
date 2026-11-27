@@ -30,10 +30,10 @@ echo "Claude triages $left findings of $(basename "$OUT")"
 
 prompt="Triage the visual review run $RUN of this repository, unattended.
 
-1. Read .grok-bot/skill/visual-review/SKILL.md (sections \"Triage: what to trust\" and \"Writing the triage\") and .grok-bot/review-notes.md, and follow them.
+1. Read .grok-bot/skill/visual-review/SKILL.md (sections \"Triage: what to trust\" and \"Writing the triage\"), .grok-bot/project/review-notes.md and .grok-bot/project/claude-notes.md, and follow them.
 2. Run: node .grok-bot/visual/untriaged.mjs $RUN
-   It lists the causes already known and every open finding without a suggestion: page findings with their screenshot (read it, and look at the box), text findings with their English, German and Spanish.
-3. Decide each finding: fix, fine, wrong or unsure, with one sentence the user can check. Reuse a known cause where it fits; add a cause only for several findings with one root; a cause's fixIn names the code you read, or starts with \"Guess:\" (a page's symptom often comes from a shared component of the design system, whose built code is in web/node_modules/@data-insights-ai/ui). Check a text against the other languages and the glossary in docs/how-to/develop-the-web-app.md; count a term in the locale files (web/src) before calling it inconsistent. Grok is often wrong: look before you agree.
+   It lists the causes already known and every open finding without a suggestion: page findings with their screenshot (read it, and look at the box), text findings with their text in each language.
+3. Decide each finding: fix, fine, wrong or unsure, with one sentence the user can check. Reuse a known cause where it fits; add a cause only for several findings with one root; a cause's fixIn names the code you read, or starts with \"Guess:\" (a page's symptom often comes from a shared component; claude-notes.md says where they live). Check a text against the other languages and the glossary (claude-notes.md says where it is, and lists Grok's known misreads); count a term in the app's text files before calling it inconsistent. Grok is often wrong: look before you agree.
 4. Write your suggestions to .grok-bot/state/triage-new.json as
    {\"causes\": {\"<slug>\": {\"title\": \"…\", \"suggest\": \"…\", \"why\": \"…\", \"fixIn\": \"…\"}}, \"findings\": {\"<id>\": {\"suggest\": \"…\", \"why\": \"…\", \"cause\": \"<slug>\"}}}
    then run: node .grok-bot/visual/triage-merge.mjs $RUN

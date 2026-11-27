@@ -2,7 +2,9 @@ import { resolve } from "node:path";
 
 import { defineConfig } from "@playwright/test";
 
-// The visual sweep (sweep.spec.ts) against the mock build, on a port of its own.
+import { project } from "./project.mjs";
+
+// The visual sweep (sweep.spec.ts) against the app as project.json serves it, on a port of its own.
 const port = 6590;
 
 export default defineConfig({
@@ -14,7 +16,7 @@ export default defineConfig({
   outputDir: "/tmp/sweep-results",
   use: { baseURL: `http://localhost:${port}` },
   webServer: {
-    command: `corepack pnpm build:mock && corepack pnpm exec vite preview --mode mock --outDir dist-mock --port ${port} --strictPort`,
+    command: project.serve.replaceAll("{port}", String(port)),
     cwd: resolve(import.meta.dirname, ".."),
     url: `http://localhost:${port}`,
     reuseExistingServer: false,

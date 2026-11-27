@@ -5,13 +5,15 @@
 #
 #   .grok-bot/backup.sh             commit what changed and push it
 #   .grok-bot/backup.sh "message"   the same, with your own commit message
+#   BACKUP_REMOTE=<url> .grok-bot/backup.sh   the first backup: the private repository to push to
 set -euo pipefail
 
 KIT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REMOTE="${BACKUP_REMOTE:-https://github.com/tobias-klocker/grok-bot-ai-soc-frontend-testing.git}"
 cd "$KIT"
 
 if [ ! -d .git ]; then
+  REMOTE="${BACKUP_REMOTE:-}"
+  [ -n "$REMOTE" ] || { echo "First backup: BACKUP_REMOTE=<url of an empty private repository> .grok-bot/backup.sh" >&2; exit 1; }
   git init -q -b main
   git remote add origin "$REMOTE"
   echo "Connected .grok-bot to $REMOTE"
@@ -36,4 +38,4 @@ if ! git push -q -u origin main; then
   echo "The push failed. Sign Git in to GitHub once (gh auth setup-git), then run this again." >&2
   exit 1
 fi
-echo "Backed up to $REMOTE ($(git log -1 --format='%h %s'))"
+echo "Backed up to $(git remote get-url origin) ($(git log -1 --format='%h %s'))"

@@ -1,0 +1,55 @@
+{
+  "product": "a B2B security web app (an AI-assisted SOC)",
+
+  "app": "web",
+  "exec": "corepack pnpm exec",
+  "install": "corepack pnpm install --frozen-lockfile --store-dir ~/.pnpm-store --reporter=silent",
+  "installInputs": ["pnpm-lock.yaml", "package.json"],
+  "privateRegistry": "npm.pkg.github.com",
+  "serve": "corepack pnpm build:mock && corepack pnpm exec vite preview --mode mock --outDir dist-mock --port {port} --strictPort",
+  "tests": "e2e",
+  "mounts": [
+    "web:rw",
+    "web/src:ro",
+    "api:ro",
+    "AGENTS.md:ro",
+    "docs/how-to/develop-the-web-app.md:ro",
+    "docs/explanation/frontend.md:ro",
+    "internal/casework/reports/render/testdata:ro",
+    "internal/casework/reports/httpapi/download.go:ro",
+    "deploy/azure/onboarding.sh:ro",
+    "deploy/azure/main.json:ro"
+  ],
+
+  "clock": "2026-11-02T09:30:00+01:00",
+
+  "texts": {
+    "dir": "src",
+    "file": "/locales/(?:([\\w-]+)\\.)?({lang})\\.json$"
+  },
+  "source": "en",
+  "languages": {
+    "en": { "name": "English", "locale": "en-US" },
+    "de": {
+      "name": "German",
+      "locale": "de-AT",
+      "formal": "Sie",
+      "informal": "\\b(du|dich|dein|deine|deinen|deinem|deiner|deines|euch|euer|eure)\\b"
+    },
+    "es": {
+      "name": "Spanish",
+      "locale": "es-ES",
+      "formal": "usted",
+      "informal": "\\b(tú|tus|contigo|ti)\\b|\\btu\\s+\\p{L}"
+    }
+  },
+  "glossary": [
+    "German addresses the reader formally (\"Sie\"), Spanish too (\"usted\").",
+    "The product is \"the AI SOC\" (de \"der AI SOC\", es \"el AI SOC\").",
+    "Workspace: de \"Workspace\", es \"espacio de trabajo\". Finding: de \"Finding\", es \"hallazgo\". Case: de \"Fall\", es \"caso\".",
+    "Role names are roles, not people: de \"Analyst\", \"Betrachter\", without gender forms.",
+    "Internal names (SOC core, queue subjects, raw slugs, IDs) never appear in texts."
+  ],
+  "sampleData": "titles of cases and findings, names of people, customers, workspaces, sites and devices, hostnames, IP addresses, counts, dates and times of events",
+  "staysEnglish": "AI SOC, Workspace (German), Finding (German), Status (German), STIX, MITRE, ATT&CK"
+}

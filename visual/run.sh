@@ -8,10 +8,10 @@ mkdir -p "$KIT/state"
   "#   fine  page <route> \"<quoted text>\"              # intended as it is" \
   "#   wrong page <route> \"<quoted text>\"              # Grok misread the screenshot" \
   "#   fix   page <route> \"<quoted text>\"              # a real defect, known until it is gone" \
-  "#   fine  text <namespace> <key> <de|es> \"<text>\"   # the text as it was decided on" > "$KIT/verdicts.txt"
-[ -f "$KIT/review-notes.md" ] || printf '%s\n' \
+  "#   fine  text <namespace> <key> <language> \"<text>\"   # the text as it was decided on" > "$KIT/verdicts.txt"
+[ -f "$KIT/project/review-notes.md" ] || printf '%s\n' \
   "# What Grok should know about the product: what is intended, who uses it." \
-  "# Every line that is not a comment goes into each review." > "$KIT/review-notes.md"
+  "# Every line that is not a comment goes into each review." > "$KIT/project/review-notes.md"
 COMMIT="$(git -C "$CLONE" log -1 --format='%h %s')"
 
 # The run before this one with a report: what "new" is measured against. Runs are
@@ -23,10 +23,11 @@ previous_args() {
   prev_args=()
   [ -z "$prev" ] || prev_args=(-v "$prev/findings.json:/previous.json:ro" -e "PREVIOUS_NAME=$(basename "$prev")")
 }
-# What review.mjs reads besides the run: the kit's scripts, the verdicts, the
-# notes, the review cache and Claude's triage, the app's texts.
-# Only the report's server writes verdicts.txt.
-review_mounts=(-v "$KIT/visual:/visual:ro" -v "$KIT/review-notes.md:/notes.md:ro" -v "$CLONE/web/src:/src:ro")
+# What review.mjs reads besides the run: the kit's scripts, the project (its
+# description and notes), the verdicts, the review cache and Claude's triage,
+# the app's texts. Only the report's server writes verdicts.txt.
+review_mounts=(-v "$KIT/visual:/visual:ro" -v "$KIT/project:/project:ro" -e REVIEW_PROJECT=/project/project.json
+  -e REVIEW_NOTES=/project/review-notes.md -v "$CLONE/$APP/$(conf texts.dir):/src:ro")
 
 if [ "$MODE" = review ] || [ "$MODE" = report ]; then
   if [ -n "${RUN:-}" ]; then OUT="$KIT/runs/${RUN%/}"; else
@@ -61,8 +62,9 @@ say "Screenshot sweep of every page, without network or AI (10–20 minutes; pro
 set +e
 docker run --rm "${hardening[@]}" --shm-size 2g --network none -e COREPACK_ENABLE_NETWORK=0 \
   -e SWEEP_VARIANTS -e SWEEP_WORKERS -e SWEEP_ONLY "${caches[@]}" "${mount_args[@]}" \
-  -v "$KIT/visual:/work/web/grok-visual:ro" -v "$OUT:/out" -w /work/web "$IMAGE" \
-  corepack pnpm exec playwright test -c grok-visual/playwright.config.ts > "$OUT/sweep.log" 2>&1
+  -v "$KIT/visual:/work/$APP/grok-visual:ro" -v "$KIT/project:/work/$APP/grok-project:ro" \
+  -e REVIEW_PROJECT="/work/$APP/grok-project/project.json" -v "$OUT:/out" -w "/work/$APP" "$IMAGE" \
+  $EXEC playwright test -c grok-visual/playwright.config.ts > "$OUT/sweep.log" 2>&1
 sweep=$?
 set -e
 if [ ! -d "$OUT/sweep" ]; then

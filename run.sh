@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 # Grok frontend-testing bot (README.md).
 #
-#   .grok-bot/run.sh                    the default task (tasks/frontend-tests.md)
-#   .grok-bot/run.sh tasks/<file>.md    another task
+#   .grok-bot/run.sh                    the default task (project/tasks/frontend-tests.md)
+#   .grok-bot/run.sh tasks/<file>.md    another task (in project/)
 #   BASE=my-branch .grok-bot/run.sh     test a branch other than the one checked out
 #   .grok-bot/run.sh visual             screenshot every page, have Grok review them (README.md)
 #   .grok-bot/run.sh visual-review      review the last visual run's screenshots again, no new sweep
 #   .grok-bot/run.sh report             the last visual run's report, redrawn and served with working verdict buttons
 #   .grok-bot/run.sh redraw             the same report redrawn, not served
 #
-# Grok runs in a container that sees only a separate clone's web app, the API
-# contract and the few files the web build reads: no git history, no Go
+# The frontend under test is described in project/ (project.json, pages.ts);
+# the rest of the kit is the same for every frontend (README.md).
+#
+# Grok runs in a container that sees only a separate clone's frontend and the
+# few files its build reads (project.json "mounts"): no git history, no
 # backend, no deploy configuration, nothing else of this Mac. Its changes
 # become a commit on a bot/ branch of that clone, to review and take over.
 # `sh run.sh` on macOS is bash in POSIX mode, which this script is not written for.
@@ -27,8 +30,8 @@ if [ "${1:-}" = visual ]; then MODE=visual; TASK=""
 elif [ "${1:-}" = visual-review ]; then MODE=review; TASK=""
 elif [ "${1:-}" = report ]; then MODE=report; TASK=""
 elif [ "${1:-}" = redraw ]; then MODE=report; SERVE=0; TASK=""; else
-  TASK="${1:-$KIT/tasks/frontend-tests.md}"
-  case "$TASK" in /*) ;; *) [ -f "$TASK" ] || TASK="$KIT/$TASK" ;; esac
+  TASK="${1:-$KIT/project/tasks/frontend-tests.md}"
+  case "$TASK" in /*) ;; *) [ -f "$TASK" ] || TASK="$KIT/project/$TASK" ;; esac
 fi
 STAMP="$(date +%Y%m%d-%H%M%S)"
 BRANCH="bot/tests-$STAMP"
@@ -38,6 +41,19 @@ VERIFY="$KIT/runs/$STAMP.verify.log"
 
 say() { printf '\033[1m▸ %s\033[0m\n' "$*"; }
 die() { printf '\033[31m✗ %s\033[0m\n' "$*" >&2; exit 1; }
+
+# The frontend under test (project/project.json): conf <key> prints a value,
+# a list one item per line.
+PROJECT="$KIT/project/project.json"
+[ -f "$PROJECT" ] || die "No $PROJECT: describe the frontend first (README.md, \"Another frontend\")."
+command -v node >/dev/null || die "Node.js is not installed (the kit reads project.json with it)."
+conf() {
+  node -e 'const v = process.argv[2].split(".").reduce((o, k) => o?.[k], require(process.argv[1]));
+    console.log(Array.isArray(v) ? v.join("\n") : (v ?? ""))' "$PROJECT" "$1"
+}
+APP="$(conf app)"
+EXEC="$(conf exec)"
+[ -n "$APP" ] && [ -n "$EXEC" ] || die "project.json needs \"app\" and \"exec\"."
 
 # One run at a time: runs share the clone and the review cache. A lock whose
 # process is gone was left by a run that was stopped, and is taken over.
@@ -72,8 +88,8 @@ hardening=(--init --cap-drop ALL --security-opt no-new-privileges --pids-limit 2
 
 # Review or report only: the last sweep's screenshots, as the clone holds them now.
 if [ "$MODE" = review ] || [ "$MODE" = report ]; then
-  [ -f "$CLONE/web/package.json" ] || die "Nothing to review yet: run .grok-bot/run.sh visual first."
-  IMAGE="grok-bot-web:pw$(sed -nE 's/.*"@playwright\/test": *"([^"]+)".*/\1/p' "$CLONE/web/package.json")"
+  [ -f "$CLONE/$APP/package.json" ] || die "Nothing to review yet: run .grok-bot/run.sh visual first."
+  IMAGE="grok-bot-web:pw$(sed -nE 's/.*"@playwright\/test": *"([^"]+)".*/\1/p' "$CLONE/$APP/package.json")"
   docker image inspect "$IMAGE" >/dev/null 2>&1 || die "The image $IMAGE is gone: run .grok-bot/run.sh visual first."
   . "$KIT/visual/run.sh"
 fi
@@ -99,30 +115,18 @@ else
   say "Testing $(git -C "$CLONE" log -1 --format='%h %s') on $BRANCH"
 fi
 
-# What the container sees (paths in the clone). The web build reads the
-# API contract, the sample report and the Azure onboarding files.
-MOUNTS="
-web:rw
-web/src:ro
-api:ro
-AGENTS.md:ro
-docs/how-to/develop-the-web-app.md:ro
-docs/explanation/frontend.md:ro
-internal/casework/reports/render/testdata:ro
-internal/casework/reports/httpapi/download.go:ro
-deploy/azure/onboarding.sh:ro
-deploy/azure/main.json:ro
-"
+# What the container sees (paths in the clone): project.json "mounts", the
+# frontend and what its build reads.
 mount_args=()
-for m in $MOUNTS; do
+for m in $(conf mounts); do
   path="${m%:*}"; mode="${m##*:}"
-  [ -e "$CLONE/$path" ] || die "$path is gone from the repository: update MOUNTS in run.sh."
+  [ -e "$CLONE/$path" ] || die "$path is gone from the repository: update \"mounts\" in project/project.json."
   mount_args+=(-v "$CLONE/$path:/work/$path:$mode")
 done
 
 # 2. The image, per Playwright version of the tests.
-PW_VERSION="$(sed -nE 's/.*"@playwright\/test": *"([^"]+)".*/\1/p' "$CLONE/web/package.json")"
-[ -n "$PW_VERSION" ] || die "No @playwright/test version in web/package.json."
+PW_VERSION="$(sed -nE 's/.*"@playwright\/test": *"([^"]+)".*/\1/p' "$CLONE/$APP/package.json")"
+[ -n "$PW_VERSION" ] || die "No @playwright/test version in $APP/package.json."
 IMAGE="grok-bot-web:pw$PW_VERSION"
 if ! docker image inspect "$IMAGE" >/dev/null 2>&1; then
   say "Building $IMAGE (once per Playwright version, a few minutes)"
@@ -130,23 +134,28 @@ if ! docker image inspect "$IMAGE" >/dev/null 2>&1; then
 fi
 
 caches=(-v grok-bot-pnpm-store:/home/node/.pnpm-store -v grok-bot-corepack:/home/node/.cache/node/corepack)
-# 3. Dependencies, in a container of their own: the GitHub token for
-#    @data-insights-ai/* is never in the container Grok runs in.
-LOCK="$(git -C "$CLONE" hash-object web/pnpm-lock.yaml web/package.json | tr -d '\n')"
-if [ "$(cat "$CLONE/web/node_modules/.grok-bot-lock" 2>/dev/null)" != "$LOCK" ]; then
+# 3. Dependencies, in a container of their own: a token for a private
+#    registry (project.json "privateRegistry") is never in the container Grok runs in.
+inputs=()
+for f in $(conf installInputs); do inputs+=("$APP/$f"); done
+LOCK="$(git -C "$CLONE" hash-object "${inputs[@]}" | tr -d '\n')"
+if [ "$(cat "$CLONE/$APP/node_modules/.grok-bot-lock" 2>/dev/null)" != "$LOCK" ]; then
   say "Installing dependencies"
-  NODE_AUTH_TOKEN="${GH_PACKAGES_TOKEN:-}"
-  if [ -z "$NODE_AUTH_TOKEN" ] && command -v gh >/dev/null; then
-    NODE_AUTH_TOKEN="$(gh auth token 2>/dev/null || true)"
+  REGISTRY="$(conf privateRegistry)"
+  NODE_AUTH_TOKEN=""
+  if [ -n "$REGISTRY" ]; then
+    NODE_AUTH_TOKEN="${GH_PACKAGES_TOKEN:-}"
+    if [ -z "$NODE_AUTH_TOKEN" ] && [ "$REGISTRY" = npm.pkg.github.com ] && command -v gh >/dev/null; then
+      NODE_AUTH_TOKEN="$(gh auth token 2>/dev/null || true)"
+    fi
+    [ -n "$NODE_AUTH_TOKEN" ] || die "No token for $REGISTRY: set GH_PACKAGES_TOKEN (or sign in with gh for GitHub Packages)."
   fi
-  [ -n "$NODE_AUTH_TOKEN" ] || die "No GitHub token for the packages: set GH_PACKAGES_TOKEN or sign in with gh."
-  export NODE_AUTH_TOKEN
-  docker run --rm "${hardening[@]}" -e NODE_AUTH_TOKEN "${caches[@]}" \
-    -v "$CLONE/web:/work/web" -w /work/web "$IMAGE" \
-    bash -c 'printf "//npm.pkg.github.com/:_authToken=\${NODE_AUTH_TOKEN}\n" > ~/.npmrc \
-      && corepack pnpm install --frozen-lockfile --store-dir ~/.pnpm-store --reporter=silent'
+  export NODE_AUTH_TOKEN REGISTRY
+  docker run --rm "${hardening[@]}" -e NODE_AUTH_TOKEN -e REGISTRY "${caches[@]}" \
+    -v "$CLONE/$APP:/work/$APP" -w "/work/$APP" "$IMAGE" \
+    bash -c '{ [ -z "$REGISTRY" ] || printf "//%s/:_authToken=\${NODE_AUTH_TOKEN}\n" "$REGISTRY" > ~/.npmrc; } && '"$(conf install)"
   unset NODE_AUTH_TOKEN
-  printf '%s\n' "$LOCK" > "$CLONE/web/node_modules/.grok-bot-lock"
+  printf '%s\n' "$LOCK" > "$CLONE/$APP/node_modules/.grok-bot-lock"
 fi
 
 [ "$MODE" = visual ] && . "$KIT/visual/run.sh"
@@ -182,12 +191,13 @@ fi
 git add -A
 git -c user.name="Grok bot" -c user.email="grok-bot@localhost" -c commit.gpgsign=false \
   commit --quiet --no-verify -m "Grok bot: $(basename "$TASK" .md) ($STAMP)"
-outside="$(git show --name-only --format= HEAD | grep -v '^web/e2e/' || true)"
-tests="$(git show --name-only --diff-filter=AM --format= HEAD | grep -E '^web/e2e/.+\.e2e\.ts$' | sed 's#^web/##' || true)"
+TESTS="$APP/$(conf tests)"
+outside="$(git show --name-only --format= HEAD | grep -v "^$TESTS/" || true)"
+tests="$(git show --name-only --diff-filter=AM --format= HEAD | grep -E "^$TESTS/.+\.(e2e|spec)\.[jt]s$" | sed "s#^$APP/##" || true)"
 
 say "Changes on $BRANCH:"
 git show --stat --format= HEAD
-[ -z "$outside" ] || printf '\033[33m! Outside web/e2e (check these):\n%s\033[0m\n' "$outside"
+[ -z "$outside" ] || printf '\033[33m! Outside %s (check these):\n%s\033[0m\n' "$TESTS" "$outside"
 
 # Grok's report is not evidence: its tests run again here, without its key
 # and without network.
@@ -196,8 +206,8 @@ if [ -n "$tests" ]; then
   say "Running Grok's tests myself: $(echo $tests)"
   set +e
   docker run --rm "${hardening[@]}" --shm-size 1g --network none -e COREPACK_ENABLE_NETWORK=0 -e E2E_PHONE=1 \
-    "${caches[@]}" "${mount_args[@]}" -w /work/web "$IMAGE" \
-    corepack pnpm exec playwright test $tests > "$VERIFY" 2>&1
+    "${caches[@]}" "${mount_args[@]}" -w "/work/$APP" "$IMAGE" \
+    $EXEC playwright test $tests > "$VERIFY" 2>&1
   vstatus=$?
   set -e
   tail -6 "$VERIFY"
