@@ -237,6 +237,13 @@
    "fixIn": "Design system (~/code/storybook), DataTable useMeasuredColumns: locked column widths were fractions of a pixel, so the widest value of a column could miss by a fraction where text draws wider (Linux); 0.44.1 rounds them up (columns/wholeColumns.ts)",
    "why": "Measured on the partner cases page: the widest pill of each column (Medium, In progress) has exactly 0.000 px of room, every other pill several; on this Mac it just fits, in the sweep's Linux browser it misses by a fraction and the cell draws the ellipsis.",
    "at": "2026-11-26"
+  },
+  "unreachable-one": {
+   "title": "Singular forms of counts that are never 1",
+   "suggest": "fine",
+   "fixIn": "None needed: web/src/features/soc/case/findings/StepsTable.tsx (run = steps.length > 1, folds only for runs > 1) and web/src/features/soc/findings/SelectionBar.tsx (selectAll only when count < loaded).",
+   "why": "These _one forms never show: a run opens or folds only with 2 or more steps, 'Show all' only past 12 lines, and 'Select all n loaded' only when fewer than the loaded findings (so at least 2) are selected.",
+   "at": "2026-11-27"
   }
  },
  "findings": {
@@ -3517,6 +3524,244 @@
    "suggest": "wrong",
    "why": "'Bewertung' is the German case verdict in five places (audit case.verdict_set, cases verdict, verdict_changed, decide); only the different audit field 'verdicts' and soc 'Ihr Urteil' say Urteil.",
    "at": "2026-11-26"
+  },
+  "92910cf1d8e1732c": {
+   "suggest": "fine",
+   "why": "Sam Analyst holds two grants that do not fit beside the name on a 390 px screen, so they wrap below it; every other row's single badge sits beside the name, left-aligned, not right-aligned as Grok says.",
+   "at": "2026-11-27"
+  },
+  "6daa506859919b28": {
+   "suggest": "wrong",
+   "why": "The Access card ends about 35 px under 'Grant access', the same padding as the General and Keys cards; there is no empty region in it.",
+   "at": "2026-11-27"
+  },
+  "3adc5e441a47fe94": {
+   "suggest": "wrong",
+   "why": "'Findings' is the glossary's German term in its plural.",
+   "cause": "glossary-misread",
+   "at": "2026-11-27"
+  },
+  "8cc8a528528aa293": {
+   "suggest": "wrong",
+   "why": "'Archivexport' is a regular German compound, written closed; no hyphen is needed.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "22fd4ed85c48f330": {
+   "suggest": "wrong",
+   "why": "'Archivexport' is a regular German compound, written closed; no hyphen is needed.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "93c2a1e72b19904f": {
+   "suggest": "fine",
+   "why": "'también las conexiones abiertas' says the same as 'incluidas' and mirrors the German 'auch offene Verbindungen'.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "1c23683423065f84": {
+   "suggest": "fine",
+   "why": "English says 'View' for every get operation and the German audit names use both 'ansehen' (about 10, all Finding and connector ones) and 'abrufen'; 'ansehen' is the closer translation.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "10e3293d2610ff15": {
+   "suggest": "fix",
+   "why": "In a past-tense report 'womit er … benannt werden kann' should be 'konnte', as English and Spanish (llevaba) have it.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-27"
+  },
+  "5d486f7b61993d73": {
+   "suggest": "fix",
+   "why": "In a past-tense report 'womit sie … benannt werden können' should be 'konnten', as English and Spanish (llevaban) have it.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-27"
+  },
+  "85f8b6d69e400119": {
+   "suggest": "wrong",
+   "why": "'Collector' is the product's component name, used in a dozen German collection texts.",
+   "cause": "terms-misread",
+   "at": "2026-11-27"
+  },
+  "b10a107050c96df2": {
+   "suggest": "wrong",
+   "why": "The German sentence is grammatical and complete ('Regeln, die in den Ereignissen dieser Quelle füllen, was …'); only its word order differs from Grok's.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "a4b481f60ca274d2": {
+   "suggest": "wrong",
+   "why": "'Audit-Log' is the German name of the page and is used in about 20 German texts; 'Auditprotokoll' occurs nowhere.",
+   "cause": "terms-misread",
+   "at": "2026-11-27"
+  },
+  "45e86d3954d16468": {
+   "suggest": "wrong",
+   "why": "'Recibimos una alerta y lo corregimos' is natural Spanish for 'we are alerted to it and fix it'; the meaning is unchanged.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "2b955958faf02c33": {
+   "suggest": "wrong",
+   "why": "'Einer Bestätigung zugestimmt' is how all German attestation approvals read (cases, integrations and audit locales), approve being 'zustimmen' throughout.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "b51ac3cb8ec7516d": {
+   "suggest": "wrong",
+   "why": "'Einer Bestätigung zugestimmt' is how all German attestation approvals read (cases, integrations and audit locales), approve being 'zustimmen' throughout.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "08eaa86a3a539e35": {
+   "suggest": "fine",
+   "why": "openRun shows only for runs of 2 or more steps.",
+   "cause": "unreachable-one",
+   "at": "2026-11-27"
+  },
+  "57d66807834e8ff5": {
+   "suggest": "fine",
+   "why": "foldRun shows only for runs of 2 or more steps.",
+   "cause": "unreachable-one",
+   "at": "2026-11-27"
+  },
+  "b1258c5d333293ab": {
+   "suggest": "fine",
+   "why": "selectAll shows only when fewer than the loaded findings are selected, so at least 2 are loaded.",
+   "cause": "unreachable-one",
+   "at": "2026-11-27"
+  },
+  "61e86baffb204af1": {
+   "suggest": "fine",
+   "why": "openRun shows only for runs of 2 or more steps.",
+   "cause": "unreachable-one",
+   "at": "2026-11-27"
+  },
+  "f3872abc2ffa75e8": {
+   "suggest": "fine",
+   "why": "foldRun shows only for runs of 2 or more steps.",
+   "cause": "unreachable-one",
+   "at": "2026-11-27"
+  },
+  "9aa83177f5ebe71f": {
+   "suggest": "fine",
+   "why": "'Show all' appears only past 12 lines, and 'Mostrar 1 línea' would be natural Spanish anyway.",
+   "cause": "unreachable-one",
+   "at": "2026-11-27"
+  },
+  "fe2c7c4a7fc896e2": {
+   "suggest": "fix",
+   "why": "The Spanish audit actions say 'Añadió/Creó/Modificó …' about 35 times; collection.source_* and site.* alone use 'Se añadió/Se cambió/Se eliminó'.",
+   "cause": "es-small-wording",
+   "at": "2026-11-27"
+  },
+  "4bd42427cfeee817": {
+   "suggest": "fix",
+   "why": "The Spanish audit actions say 'Modificó/Cambió …' about 35 times; collection.source_* and site.* alone use 'Se cambió'.",
+   "cause": "es-small-wording",
+   "at": "2026-11-27"
+  },
+  "88fec8f47dacd1ca": {
+   "suggest": "fix",
+   "why": "findingKind is the kind of a Finding (casewire cases.go sets it from e.FindingKind), so the glossary wants 'Art des Findings', as Spanish 'Tipo de hallazgo' has it.",
+   "cause": "glossary-breach",
+   "at": "2026-11-27"
+  },
+  "57489daadeb5f343": {
+   "suggest": "fine",
+   "why": "'Limitada' is the usual Spanish word for throttled and matches the collection texts ('Azure está limitando las solicitudes').",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "39e6b3c585af6b85": {
+   "suggest": "fine",
+   "why": "'Limitar' is the usual Spanish word for throttle, consistent with 'Limitada' and the collection texts.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "51670774bc8f75d4": {
+   "suggest": "wrong",
+   "why": "The German create operations use 'anlegen' (Workspace, Rolle, Dienstkonto anlegen); only issueApiKey says 'erstellen'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "e371368daa910d75": {
+   "suggest": "wrong",
+   "why": "The German create operations use 'anlegen' (Workspace, Rolle, Betreiberschlüssel anlegen); only issueApiKey says 'erstellen'.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "f87155dcec1a9d71": {
+   "suggest": "wrong",
+   "why": "Partner is the product's term, kept in Spanish elsewhere too ('canal de partner').",
+   "cause": "terms-misread",
+   "at": "2026-11-27"
+  },
+  "9ec0ab539974a383": {
+   "suggest": "fix",
+   "why": "The same file writes 'Microsoft-Entra-ID-Protokolle' and assets 'Entra-ID-Inventar'; 'Microsoft Entra ID Inventar' lacks the hyphens.",
+   "cause": "de-small-grammar",
+   "at": "2026-11-27"
+  },
+  "22d94f11690d465c": {
+   "suggest": "wrong",
+   "why": "German hyphenates a compound with a multi-word name throughout ('Check-Point-Exporte', like 'Microsoft-Entra-ID-Protokolle').",
+   "cause": "compound-hyphens",
+   "at": "2026-11-27"
+  },
+  "07112f5605a12131": {
+   "suggest": "fine",
+   "why": "The colon spares an agreement of 'guardado' with a section name of either gender.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "38f97eee13f4648c": {
+   "suggest": "fine",
+   "why": "'Recogida' is the Spanish word for collection in about ten collection and audit texts ('La recogida falla'); 'Colección' would mean a set of items.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "0db31337e739aa0c": {
+   "suggest": "fine",
+   "why": "'speichern Sie mit einem Test' says save together with a test, as the Spanish 'guarde con una prueba' does; the sentence is grammatical.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "3d4c920e2950641f": {
+   "suggest": "fine",
+   "why": "'speichern Sie mit einem Testdatensatz' says save together with a test record, as the Spanish 'guarde con un registro de prueba' does.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "6966342ecdfae3a5": {
+   "suggest": "wrong",
+   "why": "'en {{device}}' names where the key was removed, as 'on' does in English; 'de' would not change the meaning.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "19a86b8dc3ba225c": {
+   "suggest": "wrong",
+   "why": "'über den vorgeschlagen oder zugestimmt wurde' is a correct impersonal passive matching the English.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "a98abaa40aa7b9dd": {
+   "suggest": "wrong",
+   "why": "'Haken' is the common German word for a tick mark.",
+   "cause": "grok-misreads-new",
+   "at": "2026-11-27"
+  },
+  "47d3d270640f5c71": {
+   "suggest": "fine",
+   "why": "'Kette um eine Virenschutz-Ausnahme' names the chain of events built around one exclusion; Grok's 'Kette einer' says no more.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
+  },
+  "7c94264cdf266ffa": {
+   "suggest": "fine",
+   "why": "The option is a group label with its count, the same for any count, as German 'Verbunden' and English 'Connected' are.",
+   "cause": "wording-fine",
+   "at": "2026-11-27"
   }
  }
 }
