@@ -14,10 +14,12 @@ mkdir -p "$KIT/state"
   "# Every line that is not a comment goes into each review." > "$KIT/review-notes.md"
 COMMIT="$(git -C "$CLONE" log -1 --format='%h %s')"
 
-# The newest other run with a report: what "new" is measured against. Sets prev_args.
+# The run before this one with a report: what "new" is measured against. Runs are
+# named by when they were taken, so a redraw of an older run never compares
+# with a later one. Sets prev_args.
 previous_args() {
   local prev
-  prev="$(ls -td "$KIT"/runs/2*-visual 2>/dev/null | while read -r d; do [ "$d" != "$1" ] && [ -f "$d/findings.json" ] && echo "$d" && break; done)"
+  prev="$(ls -d "$KIT"/runs/2*-visual 2>/dev/null | sort -r | while read -r d; do [[ "$d" < "$1" ]] && [ -f "$d/findings.json" ] && echo "$d" && break; done)"
   prev_args=()
   [ -z "$prev" ] || prev_args=(-v "$prev/findings.json:/previous.json:ro" -e "PREVIOUS_NAME=$(basename "$prev")")
 }
@@ -36,13 +38,13 @@ fi
 if [ "$MODE" = report ]; then
   previous_args "$OUT"
   say "Redrawing .grok-bot/runs/$(basename "$OUT") with verdicts.txt and Claude's triage (no Grok, free)"
-  docker run --rm "${hardening[@]}" --network none -e REDRAW=1 -e PAGE_MODEL -e TEXT_MODEL -e REVIEW_VARIANTS \
+  docker run --rm "${hardening[@]}" --network none -e REDRAW=1 -e RUN_NAME="$(basename "$OUT")" -e PAGE_MODEL -e TEXT_MODEL -e REVIEW_VARIANTS \
     "${prev_args[@]+"${prev_args[@]}"}" -v "$OUT:/out" -v "$KIT/state:/state:ro" "${review_mounts[@]}" -v "$KIT/verdicts.txt:/verdicts.txt:ro" \
     "$IMAGE" node /visual/review.mjs | tail -5
   [ "${SERVE:-1}" = 1 ] || exit 0
   PORT="${PORT:-7317}"
   ( sleep 2; command -v open >/dev/null && open "http://127.0.0.1:$PORT/" ) &
-  exec docker run --rm "${hardening[@]}" --name "grok-bot-report-$PORT" -p "127.0.0.1:$PORT:$PORT" -e PORT="$PORT" \
+  exec docker run --rm "${hardening[@]}" --name "grok-bot-report-$PORT" -p "127.0.0.1:$PORT:$PORT" -e PORT="$PORT" -e RUN_NAME="$(basename "$OUT")" \
     -e PAGE_MODEL -e TEXT_MODEL -e REVIEW_VARIANTS "${prev_args[@]+"${prev_args[@]}"}" \
     -v "$OUT:/out" -v "$KIT/state:/state:ro" "${review_mounts[@]}" -v "$KIT/verdicts.txt:/verdicts.txt" "$IMAGE" node /visual/serve.mjs
 fi
@@ -82,7 +84,7 @@ else
 fi
 docker run --rm "${hardening[@]}" "${ai_args[@]}" \
   -e REVIEW_MODEL -e PAGE_MODEL -e TEXT_MODEL -e MAX_USD -e FULL -e REVIEW_VARIANTS -e PRICE_IN -e PRICE_OUT -e PRICE_CACHED \
-  -e STAMP="$STAMP" -e COMMIT="$COMMIT" "${prev_args[@]+"${prev_args[@]}"}" \
+  -e STAMP="$STAMP" -e RUN_NAME="$(basename "$OUT")" -e COMMIT="$COMMIT" "${prev_args[@]+"${prev_args[@]}"}" \
   -v "$OUT:/out" -v "$KIT/state:/state" "${review_mounts[@]}" -v "$KIT/verdicts.txt:/verdicts.txt:ro" \
   "$IMAGE" node /visual/review.mjs | tee "$OUT/review.log"
 

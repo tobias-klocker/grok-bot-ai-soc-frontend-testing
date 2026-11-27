@@ -15,7 +15,7 @@ import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "
 import { dirname, join, relative } from "node:path";
 
 import { mergeVariants } from "./group.mjs";
-import { renderReport } from "./report.mjs";
+import { renderReport, when } from "./report.mjs";
 import { keyOf, norm, promptBlock, readTriage, readVerdicts, triageOf, verdictOf } from "./verdicts.mjs";
 
 const OUT = process.env.REVIEW_OUT ?? "/out";
@@ -650,20 +650,23 @@ const pageCount = count(pageRows.flatMap((r) => r.open));
 const textCount = count(texts.open);
 const newPages = pageRows.reduce((n, r) => n + r.open.filter((f) => f.isNew).length, 0);
 const newTexts = texts.open.filter((f) => f.isNew).length;
-const sinceName = previous?.stamp ?? process.env.PREVIOUS_NAME;
-const since = sinceName ? `the run of ${sinceName}` : "the previous run";
+const sinceName = previous?.shotAt ?? process.env.PREVIOUS_NAME ?? previous?.stamp;
+const since = sinceName ? `the run of ${when(sinceName)}` : "the previous run";
 
-// A redraw keeps what the run itself recorded: its stamp, commit and cost.
+// A redraw keeps what the run itself recorded: its stamps, commit and cost.
+// The run's folder is named after its sweep: when the screenshots were taken.
 const before = REDRAW && existsSync(join(OUT, "findings.json")) ? JSON.parse(readFileSync(join(OUT, "findings.json"), "utf8")) : null;
 if (before) spent = before.spent ?? 0;
 const stamp = process.env.STAMP || before?.stamp || "";
 const commit = process.env.COMMIT || before?.commit || "";
+const shotAt = before?.shotAt || process.env.RUN_NAME?.match(/^\d{8}-\d{6}/)?.[0] || stamp;
 
 writeFileSync(
   join(OUT, "findings.json"),
   JSON.stringify(
     {
       stamp,
+      shotAt,
       commit,
       pages: pageRows.map((r) => ({ route: r.p.route, path: r.p.path, findings: [...r.open, ...r.known] })),
       texts: [...texts.open, ...texts.known],
@@ -681,6 +684,7 @@ writeFileSync(
   renderReport({
     out: OUT,
     stamp,
+    shotAt,
     commit,
     ai: AI,
     redraw: REDRAW,

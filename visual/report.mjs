@@ -7,6 +7,13 @@ import { join } from "node:path";
 
 import { lineOf, targetsOf } from "./verdicts.mjs";
 
+// A run's stamp (20261126-102603, or a folder name that starts with one) as a reader says it.
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+export function when(stamp) {
+  const m = /^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})/.exec(stamp ?? "");
+  return m ? `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}, ${m[4]}:${m[5]}` : String(stamp ?? "");
+}
+
 const order = { high: 0, medium: 1, low: 2 };
 const bySeverity = (a, b) => (order[a.severity] ?? 3) - (order[b.severity] ?? 3);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -273,10 +280,11 @@ export function renderReport(c) {
       ? `redrawn without Grok; Grok's earlier reviews shown${c.spent ? `, the run cost $${c.spent.toFixed(2)}` : ""}`
       : "without Grok (AI=0): checks, and Grok's earlier reviews of unchanged screenshots";
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Visual review ${esc(c.stamp)}</title>
+<title>Visual review ${esc(when(c.shotAt))}</title>
 <style>${CSS}</style></head><body><main>
-<h1>Visual review</h1>
-<p class="muted">${esc(c.commit)} · ${c.pageTotal} pages, ${c.variantTotal} variants · ${grok}</p>
+<h1>Visual review of ${esc(when(c.shotAt))}</h1>
+<p class="muted">Screenshots taken ${esc(when(c.shotAt))}${c.stamp && c.stamp !== c.shotAt ? `, reviewed ${esc(when(c.stamp))}` : ""} · commit <code>${esc(c.commit.split(" ")[0])}</code> ${esc(c.commit.split(" ").slice(1).join(" "))}</p>
+<p class="muted">${c.pageTotal} pages, ${c.variantTotal} variants · ${grok}</p>
 <div class="stats">
 ${c.since ? `<div class="stat"><span class="sev new">new</span> since ${esc(c.since)}: ${c.newPages} on pages, ${c.newTexts} in texts</div>` : ""}
 <div class="stat">Pages: ${badge("high")} ${c.pageCount.high} ${badge("medium")} ${c.pageCount.medium} ${badge("low")} ${c.pageCount.low}</div>
